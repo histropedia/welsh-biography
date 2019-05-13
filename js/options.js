@@ -50,7 +50,10 @@ var TIMELINE_OPTIONS = {
 }
 
 var APP_OPTIONS = {
-	filterOptions:[], //list of Wikidata properties
+	filterOptions: {
+		P21: {enLabel: "gender", cyLabel: "rhyw"}, 
+		P106: {enLabel: "gender", cyLabel: "galwedigaeth"}
+	},
 	colorCodeOptions: [],  //list of Wikidata properties
 	
 }
