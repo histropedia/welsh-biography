@@ -7,8 +7,7 @@ function App() {
 	
 	this.state = {
 		//can be used to store states for browser history, or to create share URLs with current state
-		appliedFilters: {P21:[], P106: []}, // e.g. { P19: ["london", "paris"], P27: ["UK"]  }
-		
+		appliedFilters: {}, // e.g. { P19: ["london", "paris"], P27: ["UK"]  }
 		appliedColorCode: "", //uses property as id, e.g. "P27"
 		filterPanel: {
 			isOpen: false,
@@ -66,6 +65,13 @@ function App() {
 		})
 		
 		this.timeline.defaultRedraw();
+	}
+	
+	this.setupFilterOptions = function () {
+		//setup blank array for each filter property
+		for (var property in this.options.filters) {
+			this.state.appliedFilters[property] = [];
+		}
 	}
 	
 	this.setColourCode = function(property) {
