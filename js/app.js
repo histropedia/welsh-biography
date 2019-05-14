@@ -8,6 +8,7 @@ function App() {
 	this.state = {
 		//can be used to store states for browser history, or to create share URLs with current state
 		appliedFilters: {P21:[], P106: []}, // e.g. { P19: ["london", "paris"], P27: ["UK"]  }
+		
 		appliedColorCode: "", //uses property as id, e.g. "P27"
 		filterPanel: {
 			isOpen: false,
@@ -56,7 +57,15 @@ function App() {
 	}
 	
 	this.applyFilters = function() {
-		console.log("filters applied");
+	//sets the visibility of all articles on the timeline according to currently applied filters
+		var appliedFilters = this.state.appliedFilters;
+		
+		//check all articles on the timeline
+		this.timeline.forLoadedArticles(function(article) {
+			article.hiddenByFilter = !getArticleVisiblityFromFilters(article, appliedFilters);
+		})
+		
+		this.timeline.defaultRedraw();
 	}
 	
 	this.setColourCode = function( property ) {
@@ -84,6 +93,33 @@ function App() {
 		options.width = windowWidth;
 		options.height = windowHeight;
 		return options;
+	}
+	
+	function getArticleVisiblityFromFilters(article, appliedFilters) {
+		//article will not be visible if it fails to match any active filters
+		
+		var articleStatements = article.data.statements;
+		
+		for (var property in appliedFilters) {
+			var propertyFilters = appliedFilters[property]
+			if (propertyFilters.length === 0) continue;
+
+			//active filters found for this property, now check if the article has matching values
+			var articleStatements = articleStatements[property].values;
+			if (!articleStatements) return false;
+
+			//article has statements using this property, check if each active filter value is present
+			for (var i=0; i < propertyFilters.length; i++) {
+				//is this filter value missing from the article's statements?
+				if (!articleStatements.includes(propertyFilters[i])) {
+					//yes? article must be hidden
+					return false;
+				}
+			}
+			//check next filter property...
+		}
+		//all filter properties and values exist in article statements, so it's visible
+		return true
 	}
 	
 	//add window resize event passing this context
