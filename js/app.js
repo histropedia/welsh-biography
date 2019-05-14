@@ -43,7 +43,7 @@ function App() {
 		this.applyFilters();
 	}	
 	
-	this.removeFilter = function( property, value ) { 
+	this.removeFilter = function(property, value) { 
 		var propertyFilters = this.state.appliedFilters[property];
 		if (!propertyFilters) return console.error("no filter setup for property: ", property);
 		
@@ -56,7 +56,7 @@ function App() {
 		this.applyFilters();
 	}
 	
-	this.applyFilters = function() {
+	this.applyFilters = function () {
 	//sets the visibility of all articles on the timeline according to currently applied filters
 		var appliedFilters = this.state.appliedFilters;
 		
@@ -68,14 +68,14 @@ function App() {
 		this.timeline.defaultRedraw();
 	}
 	
-	this.setColourCode = function( property ) {
+	this.setColourCode = function(property) {
 		//updates colour of all articles and gets counts for each colour code group
 		//sort legend by count, and append count to all colour code group labels		
 	}
 	
-	this.windowResized = function() {
+	this.windowResized = function () {
 		updateWindowSettings()
-		this.timeline.setOption( getTimelineOptions() );
+		this.timeline.setOption(getTimelineOptions());
 		this.timeline.fitToHeight(true /*with redraw*/);
 	}
 	
@@ -123,5 +123,5 @@ function App() {
 	}
 	
 	//add window resize event passing this context
-	$(window).resize( $.proxy(this.windowResized, this) )
+	$(window).resize($.proxy(this.windowResized, this))
 }
