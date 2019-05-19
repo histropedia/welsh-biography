@@ -11,26 +11,52 @@
 //  rendering the legend or filtering the timeline
 
 (function() {
-  
-    
-    App.prototype.colorCodeGroups = {} 
+
+    App.prototype.colorCodeGroups = {} // groups for currently applied colour code
     
     App.prototype.setupColorCodeOptions = function() {
         // add dropdown colour code options to UI
     }
     
     App.prototype.setColorCode = function(property) {
-        // updates colour of all articles and gets counts for each colour code group
-        // sort legend by count, and append count to all colour code group labels
+        this.colorCodeGroups = getColorCodeGroups(this.timeline, property);
+        
+        // renderLegend()
+        
+        this.state.appliedColorCode = property;
     }
     
     /****************** Private functions ******************/
     
-    function getColorCodeGroups(property) {
-        // Loop through articles, store each Q number found as key in groups object (if not already there)
-        // Push article to groups[value].article (e.g. groups["Q5"].push(article)
-        // If article does not have the colour code property, push it to groups["noValue"] (creating if necessary)
+    function getColorCodeGroups(timeline, property) {
+        // Loop through articles, store each Q number found as key in colour groups object
+        // Articles without a statement using selected property are stored with "noValue" key instead
+        var colorGroups = {};
+        var articles = timeline.articles;
+        for (var i=0; i < articles.length; i++ ) {
+            var article = articles[i];
+            var statement = article.data.statements[property];
+            var statementValue = (statement && statement.values[0]) ?
+                statement.values[0]: 
+                "noValue";
+            
+            //add new empty colorGroups entry if not already found
+            if (!colorGroups.hasOwnProperty(statementValue)) {
+                colorGroups[statementValue] = {
+                    color: "",
+                    articles: [],
+                    visibleCount: 0,
+                    labelEn: "",
+                    labelCy: ""
+                };
+            }
+            
+            //update colorGroups entry
+            colorGroups[statementValue].articles.push(article);
+            if (!article.isHiddenByFilter) colorGroups[statementValue].visibleCount += 1;
+        }
         
+        return colorGroups;
     }
     
 })() 
