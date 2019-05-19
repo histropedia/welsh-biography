@@ -72,21 +72,11 @@ function App() {
         }
     }
     
-    
-    /****************** Colour Code ******************/
-    
-    this.setColorCode = function(property) {
-        //updates colour of all articles and gets counts for each colour code group
-        //sort legend by count, and append count to all colour code group labels        
-    }
-    
     this.windowResized = function () {
         updateWindowSettings()
         this.timeline.setOption(getTimelineOptions());
         this.timeline.fitToHeight(true /*with redraw*/);
     }
-    
-    
     
     /****************** Private functions ******************/
     
