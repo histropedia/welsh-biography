@@ -23,8 +23,7 @@
         this.colorGroups = getcolorGroups(this.timeline, property);
         this.orderedColorGroups = getOrderedColorGroups(this.colorGroups);
         assignColorGroupColors(this);
-        console.log(this.orderedColorGroups);
-        console.log(this.colorGroups);
+        appyTimelineColors(this.colorGroups);
         // renderLegend()
         
         this.state.appliedColorCode = property;
@@ -91,6 +90,19 @@
             var item = group.item;
             group.color = colorGroups[item].color = colors[ i % colors.length - 1]
         }
+    }
+    
+    // Colour articles on the timeline according to the current active colour code
+    function appyTimelineColors(colorGroups) {
+       for (var group in colorGroups) {
+           var groupArticles = colorGroups[group].articles;
+           var groupColor = colorGroups[group].color;
+           
+           for (var i=0; i < groupArticles.length; i++) {
+               var article = groupArticles[i];
+               article.setStyle("color", groupColor);
+           }
+       }
     }
     
 })() 
