@@ -10,3 +10,88 @@ body {
 	width: 100%;
 	height: 100%;
 }
+
+     .filter-panel  {
+        width:100%;
+        height: 100%;
+        z-index: 3;
+        top:0px;
+        position: fixed;
+        right: 0px;
+        background-color: #fff;
+        padding: 0px 0 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+        border-radius: 2px;
+        
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+         box-sizing: border-box;
+	}
+          
+    .filter-panel-header    {
+
+        text-align: center;
+        padding: 10px;
+    }
+         
+    .filter-panel-content {
+
+        max-height: 75%;
+        width: 100%;
+        min-height: 0;
+        padding: 10px;
+        overflow: auto
+    }
+
+
+    .filter-panel-footer {
+        padding: 20px;
+        position: absolute; 
+        bottom: 0; 
+        text-align: center; 
+        width: 100%; 
+    }
+    
+          
+ /*Position chevron on filter type list*/         
+    #filter-types-list-container .fas {
+	    position: absolute;
+	    right: 16px;
+	    top: 35%;
+    }
+    .filter-panel-content input {
+    width: 100%;
+}
+          
+
+
+          /* Make a nice round button*/        
+.btn-icon {
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 40px;
+    padding-top: 4px;
+	font-size: 22px;
+    cursor: pointer;
+	display: inline;
+	border-color: transparent;
+    font-weight: 400;
+    box-shadow: none;
+}    
+
+ /*Position the open filter panel btn*/         
+#btn-open-filters {position: absolute; right:8px; top:8px}
+
+          
+          
+@media (min-width: 992px) {
+  /*resize and position filter panel on desktop*/
+    .filter-panel {
+        position: absolute;
+        max-width: 800px;
+        max-height: 80%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

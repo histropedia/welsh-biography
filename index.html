@@ -2,15 +2,51 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Dictionary of Welsh Biography</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 				
-<div id="timeline-container"></div>
+<button id="btn-open-filters" class="btn-open-page btn-icon" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="label-total-filters"></span></button>
 
+<div id="filter-types-panel" class="noselect filter-panel" style="display: none">
+    <button class="btn-block btn-primary btn-sm btn btn-open-page" target-element="" style="">CLOSE</button>
+    <div class="filter-panel-header">
+        <h2>Filter the Timeline</h2>
+        <p>Choost the type of filter you want to apply</p>
+    </div>
+    <div class="filter-panel-content">
+        <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
+   		<!-- ***List of available filter types populated by JavaScript*** -->
+            <button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span>  </button>
+            <button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span>  </button><button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span>  </button>
+        </div>
+
+    </div>
+    <div class="filter-panel-footer">
+            <button id="btn-clear-all-filters" type="button" class="btn btn-danger">CLEAR ALL FILTERS</button>
+    </div>
+</div>
+
+<div id="filter-panel-0" class="noselect filter-panel" style="z-index: 4; display: none">
+    <a href="#" class="btn-primary btn-block btn-sm btn btn-open-page" target-element="filter-types-panel" panel-id="0">back</a> 
+    <div class="filter-panel-header">
+        <h3>Filter by type</h3>
+    </div>
+    <div class="filter-panel-content" panel-id="0" role="group" aria-label="Vertical button group">
+        <input id="input-filter-panel-0" placeholder="Search for a filter" class="ui-autocomplete-input" autocomplete="off"> 
+    </div> 
+    <div class="filter-panel-footer">
+        <button type="button" class="btn btn-secondary">footer button</button>
+    </div>
+</div>
+    
+    <div id="timeline-container"></div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script> 
 <script src="js/histropedia-1.1.0.js"></script>
