@@ -10,8 +10,30 @@ body {
 	width: 100%;
 	height: 100%;
 }
+/* reset some bootstrap elements for color code panel*/
+    .color-code-filter-panel *{
+        border-radius:0!important;
+    }
+    
+    .color-code-filter-panel-header .input-group * {
+        border: none!important;
+    }
 
-    /* Make a nice round button*/        
+    #color-code-panel table {
+        margin-bottom:0px;
+    }
+
+    #color-code-panel .table tbody+tbody {
+        border: none
+    }
+	
+	#color-code-panel .input-group.mb-3 {
+		margin: 0!important;
+	}
+   
+
+
+/* Make a nice round button*/        
     .btn-icon {
         min-width: 50px;
         min-height: 50px;
@@ -25,14 +47,14 @@ body {
         box-shadow: none;
     }     
     
-    /*Position the open filter panel btn*/         
+/*Position the open filter panel btn*/         
     #btn-open-filters {
         position: absolute; 
         right:8px; 
         top:8px
     }       
 
-    /*style and position color code trigger*/
+/*style and position color code trigger*/
     #btn-open-color-code {
         position: absolute;
         right: 0;
@@ -42,7 +64,12 @@ body {
         width: 30px
     }   
 
-    /*position and style filter and color code panels*/
+/*hide this button on mobile display*/
+    #btn-close-color-code-desktop {
+        display: none;
+        width: 30px
+    }
+/*position and style filter and color code panels*/
     .filter-panel, .color-code-filter-panel  {
         width:100%;
         height: 100%;
@@ -59,7 +86,7 @@ body {
 		box-sizing: border-box;
 	}          
     
-    /*style inner containers for filter panels*/
+/*style inner containers for filter panels*/
     .filter-panel-header    {
         text-align: center;
         padding: 10px; 
@@ -81,21 +108,26 @@ body {
         padding: 10px
     }
     
-    /*Position chevron on filter type list*/         
+/*Position chevron on filter type list*/         
     #filter-types-list-container .fas {
 	    position: absolute;
 	    right: 16px;
 	    top: 35%;
     }
-    /*make search box fill the panel*/
+/*make search box fill the panel*/
     .filter-panel-content input {
         width: 100%;
     }
           
+/* make flex header for color code panel*/
+    .color-code-filter-panel-header    {
+        text-align: center;
+        display: flex;
+    }          
 
 
 @media (min-width: 992px) {
-    /*resize and position filter panel on desktop*/
+/*resize and position filter panel on desktop*/
     .filter-panel {
         position: absolute;
         max-width: 800px;
@@ -104,5 +136,20 @@ body {
         left: 50%;
         transform: translate(-50%, -50%);
     }
-
+/*resize and position the color code panel on desktop*/    
+    .color-code-filter-panel {
+        max-height: 80%;
+	    min-height: 0px;
+        top:80px;
+        width: auto;
+        height: auto;    }
+   
+/*hide this button on desktop*/
+    #btn-close-color-code-mobile {
+        display:none;
+    }
+/*show this button on desktop*/
+    #btn-close-color-code-desktop{
+        display: inherit
+    }
 }
