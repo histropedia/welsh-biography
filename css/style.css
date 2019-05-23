@@ -11,7 +11,31 @@ body {
 	height: 100%;
 }
 
-     .filter-panel  {
+
+    
+    /* Make a nice round button*/        
+    .btn-icon {
+        min-width: 50px;
+        min-height: 50px;
+        border-radius: 40px;
+        padding-top: 4px;
+        font-size: 22px;
+        cursor: pointer;
+        display: inline;
+        border-color: transparent;
+        font-weight: 400;
+        box-shadow: none;
+    }     
+    
+    /*Position the open filter panel btn*/         
+    #btn-open-filters {
+        position: absolute; 
+        right:8px; 
+        top:8px
+    }       
+
+    /*position and style filter and color code panels*/
+    .filter-panel, .color-code-filter-panel  {
         width:100%;
         height: 100%;
         z-index: 3;
@@ -22,20 +46,18 @@ body {
         padding: 0px 0 20px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
         border-radius: 2px;
-        
+        box-sizing: border-box;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
-         box-sizing: border-box;
-	}
-          
+	}          
+    
+    /*style inner containers for filter panels*/
     .filter-panel-header    {
-
         text-align: center;
-        padding: 10px;
-    }
-         
-    .filter-panel-content {
+        padding: 10px; 
+     }     
 
+    .filter-panel-content {
         max-height: 75%;
         width: 100%;
         min-height: 0;
@@ -43,49 +65,30 @@ body {
         overflow: auto
     }
 
-
     .filter-panel-footer {
         padding: 20px;
         position: absolute; 
         bottom: 0; 
         text-align: center; 
         width: 100%; 
+        padding: 10px
     }
     
-          
- /*Position chevron on filter type list*/         
+    /*Position chevron on filter type list*/         
     #filter-types-list-container .fas {
 	    position: absolute;
 	    right: 16px;
 	    top: 35%;
     }
+    /*make search box fill the panel*/
     .filter-panel-content input {
-    width: 100%;
-}
+        width: 100%;
+    }
           
 
 
-          /* Make a nice round button*/        
-.btn-icon {
-    min-width: 50px;
-    min-height: 50px;
-    border-radius: 40px;
-    padding-top: 4px;
-	font-size: 22px;
-    cursor: pointer;
-	display: inline;
-	border-color: transparent;
-    font-weight: 400;
-    box-shadow: none;
-}    
-
- /*Position the open filter panel btn*/         
-#btn-open-filters {position: absolute; right:8px; top:8px}
-
-          
-          
 @media (min-width: 992px) {
-  /*resize and position filter panel on desktop*/
+    /*resize and position filter panel on desktop*/
     .filter-panel {
         position: absolute;
         max-width: 800px;
@@ -94,4 +97,16 @@ body {
         left: 50%;
         transform: translate(-50%, -50%);
     }
+    /*resize and position the color code panel on desktop*/    
+    .color-code-filter-panel {
+        max-height: 80%;
+	    min-height: 0px;
+        top:80px;
+        width: auto;
+        height: auto;
+	}
+   
+    
 }
+    
+</style>
