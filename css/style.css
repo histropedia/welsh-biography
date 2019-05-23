@@ -11,8 +11,6 @@ body {
 	height: 100%;
 }
 
-
-    
     /* Make a nice round button*/        
     .btn-icon {
         min-width: 50px;
@@ -34,6 +32,16 @@ body {
         top:8px
     }       
 
+    /*style and position color code trigger*/
+    #btn-open-color-code {
+        position: absolute;
+        right: 0;
+        top:80px;
+        border-radius: 0;
+        height: 38px;
+        width: 30px
+    }   
+
     /*position and style filter and color code panels*/
     .filter-panel, .color-code-filter-panel  {
         width:100%;
@@ -46,9 +54,9 @@ body {
         padding: 0px 0 20px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
         border-radius: 2px;
-        box-sizing: border-box;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
+		box-sizing: border-box;
 	}          
     
     /*style inner containers for filter panels*/
@@ -66,7 +74,6 @@ body {
     }
 
     .filter-panel-footer {
-        padding: 20px;
         position: absolute; 
         bottom: 0; 
         text-align: center; 
@@ -104,9 +111,5 @@ body {
         top:80px;
         width: auto;
         height: auto;
-	}
-   
-    
+	}   
 }
-    
-</style>
