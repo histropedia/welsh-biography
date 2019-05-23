@@ -104,12 +104,5 @@ body {
         left: 50%;
         transform: translate(-50%, -50%);
     }
-    /*resize and position the color code panel on desktop*/    
-    .color-code-filter-panel {
-        max-height: 80%;
-	    min-height: 0px;
-        top:80px;
-        width: auto;
-        height: auto;
-	}   
+
 }

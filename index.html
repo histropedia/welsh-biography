@@ -2,10 +2,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Dictionary of Welsh Biography</title>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -26,11 +26,11 @@
     </div>
     <div class="filter-panel-content">
         <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
-   		<!-- ***List of available filter types populated by JavaScript*** -->
+   			<!-- ***List of available filter types populated by JavaScript*** -->
+            <button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span> </button>
             <button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span>  </button>
-            <button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span>  </button><button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span>  </button>
+			<button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span>  </button>
         </div>
-
     </div>
     <div class="filter-panel-footer">
 		<button id="btn-clear-all-filters" type="button" class="btn btn-danger">CLEAR ALL FILTERS</button>
@@ -49,8 +49,45 @@
         <button type="button" class="btn btn-secondary">footer button</button>
     </div>
 </div>
-    
-    <div id="timeline-container"></div>
+
+	
+<div id="color-code-panel" class="color-code-filter-panel" style="display: none">
+	<a href="#" id="btn-close-color-code-mobile" class="btn-primary btn-block btn-sm btn btn-open-page" target-element="">back</a> 
+	<div class="color-code-filter-panel-header">	
+		 
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<label class="input-group-text" for="inputGroupSelect01">Colour Code by</label>
+			</div>
+			<select class="custom-select" id="inputGroupSelect01">
+				<option selected="">option 1</option>
+				<option value="1">option 2</option>
+				<option value="2">option 3</option>
+				<option value="3">option 4</option>
+			</select>
+		</div>
+	</div>
+	<table id="color-code-table" class="table table-hover">
+		<tbody>
+			<!-- ***Color code key populated by JavaScript*** -->
+			<tr group-id="0"> <th scope="row" style="background-color:#961111">&nbsp;</th> <td>World War II (10)</td><td></td></tr>
+			<tr group-id="1"> <th scope="row" style="background-color:#1a5d1f">&nbsp;</th> <td>Operation Overlord (7)</td><td> </td></tr>
+			<tr group-id="2"> <th scope="row" style="background-color:#1565c0">&nbsp;</th> <td>Western Front (World War II) (6)</td><td> </td></tr>
+			<tr group-id="3"> <th scope="row" style="background-color:#7b1fa2">&nbsp;</th> <td>Battle for Caen (4)</td><td> </td></tr>
+			<tr group-id="4"> <th scope="row" style="background-color:#b78617">&nbsp;</th> <td>Allied advance from Paris to the Rhine (1)</td><td> </td></tr>
+			<tr group-id="5"> <th scope="row" style="background-color:#d66f6f">&nbsp;</th> <td>Battle of Arnhem (1)</td><td> </td></tr>
+			<tr group-id="6"> <th scope="row" style="background-color:#56ab6c">&nbsp;</th> <td>Battle of the Scheldt (1)</td><td> </td></tr>
+			<tr group-id="7"> <th scope="row" style="background-color:#377f9a">&nbsp;</th> <td>Invasion of Normandy (1)</td><td> </td></tr>
+			<tr group-id="8"> <th scope="row" style="background-color:#666">&nbsp;</th> <td>Miscellaneous (7)</td><td> </td></tr>
+		</tbody>
+	</table>
+</div>
+     
+<div id="timeline-container"></div>
+	
+	
+	
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script> 
 <script src="js/histropedia-1.1.0.js"></script>
