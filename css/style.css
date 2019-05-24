@@ -163,4 +163,19 @@ body {
     #btn-close-color-code-desktop{
         display: inherit
     }
+/*position button next to timeline title*/	
+	#btn-open-filters{
+		top: 8px;
+		right: 30%;
+	}
+	/*adjust for desktop header*/
+	#timeline-title-container{
+		width:auto;
+		left: 50%;
+		transform: translate(-50%);
+		background-color: transparent;
+	}
+	#timeline-title-container h4 {
+		font-size: 30px;
+	}
 }
