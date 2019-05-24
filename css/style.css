@@ -47,22 +47,22 @@ body {
         box-shadow: none;
     }     
     
-/*Position the open filter panel btn*/         
+/*Position the open filter panel btn under the timeline title*/         
     #btn-open-filters {
         position: absolute; 
         right:8px; 
-        top:8px
+        top:50px
     }       
 
-/*style and position color code trigger*/
+/*style and position color code trigger under the open filter panel btn*/
     #btn-open-color-code {
         position: absolute;
         right: 0;
-        top:80px;
+        top:125px;
         border-radius: 0;
         height: 38px;
         width: 30px
-    }   
+    }  
 
 /*hide this button on mobile display*/
     #btn-close-color-code-desktop {
@@ -125,6 +125,17 @@ body {
         display: flex;
     }          
 
+
+/*center title inside container*/
+#timeline-title-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: lightgrey;
+		height: 45px;
+	position: absolute;
+	width: 100%;
+	}
 
 @media (min-width: 992px) {
 /*resize and position filter panel on desktop*/
