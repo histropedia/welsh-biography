@@ -18,7 +18,16 @@
     App.prototype.orderedColorGroups = []   // used for assigning colours, and rendering the legend
     
     App.prototype.setupColorCodeOptions = function() {
-        // add dropdown colour code options to UI
+        // adds dropdown colour code options to UI
+        var optionsHtml = '';
+        var properties = this.options.colorCode.properties;
+        for (var i=0; i < properties.length; i++) {
+            var property = properties[i];
+            var label = property; //todo: update once getLabel functions are ready
+            var selected = (i === 0) ? ' selected=selected' : ''
+            optionsHtml += '<option value=' + property + selected + '>' + label + '</option>';
+        }
+        $('.color-code-filter-panel-header select').html(optionsHtml);
     }
     
     App.prototype.setColorCode = function(property) {
