@@ -12,6 +12,8 @@
 
 (function() {
 
+    var $colourCodePanel = $('#color-code-panel');
+    
     App.prototype.colorGroups = {}          // groups for currently applied colour code
     App.prototype.orderedColorGroups = []   // used for assigning colours, and rendering the legend
     
@@ -27,6 +29,16 @@
         // renderLegend()
         
         this.state.appliedColorCode = property;
+    }
+    
+    App.prototype.openColorCodePanel = function() {
+        $colourCodePanel.show();
+        this.state.colorCodePanel.isOpen = true;
+    }
+    
+    App.prototype.closeColorCodePanel = function() {
+        $colourCodePanel.hide();
+        this.state.colorCodePanel.isOpen = false;
     }
     
     /****************** Private functions ******************/
