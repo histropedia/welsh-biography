@@ -35,8 +35,7 @@
         this.orderedColorGroups = getOrderedColorGroups(this.colorGroups);
         assignColorGroupColors(this);
         appyTimelineColors(this.colorGroups);
-        // renderLegend()
-        
+        renderLegend(this.orderedColorGroups);
         this.state.appliedColorCode = property;
     }
     
@@ -69,7 +68,7 @@
                     color: "",
                     articles: [],
                     visibleCount: 0,
-                    labelEn: "",
+                    labelEn: statementValue,
                     labelCy: ""
                 };
             }
@@ -109,7 +108,7 @@
         for (var i=0; i < orderedColorGroups.length; i++) {
             var group = orderedColorGroups[i];
             var item = group.item;
-            group.color = colorGroups[item].color = colors[ i % colors.length - 1]
+            group.color = colorGroups[item].color = colors[ i % colors.length]
         }
     }
     
@@ -124,6 +123,23 @@
                article.setStyle("color", groupColor);
            }
        }
+    }
+    
+    // Render the legend in the colour code panel
+    function renderLegend(orderedClorGroups) {
+        var colorGroupsHtml = '';
+        for (var i=0; i < orderedClorGroups.length; i++) {
+            var group = orderedClorGroups[i],
+                nextGroupHtml = '<tr> <th scope="row" style="background-color:{{color}}">&nbsp;</th> \
+                    <td>{{label}}&nbsp; <span class="color-group-count">{{count}}</span></td><td> </td></tr>';
+            console.log(group)
+            nextGroupHtml = nextGroupHtml.replace("{{label}}", group.labelEn)
+                .replace("{{color}}", group.color)
+                .replace("{{count}}", '(' + group.visibleCount + ')')
+            
+            colorGroupsHtml += nextGroupHtml;
+        }
+        $('#color-code-table tbody').html(colorGroupsHtml)
     }
     
 })() 
