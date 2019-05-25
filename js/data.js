@@ -59,13 +59,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/CharletStraton.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/CharletStraton.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "mountain guide",
@@ -137,13 +137,13 @@ var PEOPLE_DATA = [{
             "value": "11",
             "values": ["11"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "agriculturalist",
@@ -215,13 +215,13 @@ var PEOPLE_DATA = [{
             "value": "9",
             "values": ["9"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "diarist",
@@ -299,13 +299,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Ann%20of%20Swansea%20by%20William%20Watkeys%20%281835%29.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Ann%20of%20Swansea%20by%20William%20Watkeys%20%281835%29.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "novelist",
@@ -383,13 +383,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Augusta%20Hall.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Augusta%20Hall.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "journalist",
@@ -467,13 +467,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Eluned%20Morgan.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Eluned%20Morgan.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "journalist",
@@ -545,13 +545,13 @@ var PEOPLE_DATA = [{
             "value": "11",
             "values": ["11"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "poet",
@@ -629,13 +629,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Elizabeth%20griffith.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Elizabeth%20griffith.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "essayist",
@@ -713,13 +713,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Ann%21%2C%20album%20cover.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Ann%21%2C%20album%20cover.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "hymnwriter",
@@ -797,13 +797,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Edith%20Wynne.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Edith%20Wynne.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "opera singer",
@@ -881,13 +881,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Cae%27r%20Gors%20-%20the%20Kate%20Roberts%20Heritage%20Centre%2C%20Rhosgadfan%20-%20geograph.org.uk%20-%20959903.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Cae%27r%20Gors%20-%20the%20Kate%20Roberts%20Heritage%20Centre%2C%20Rhosgadfan%20-%20geograph.org.uk%20-%20959903.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "children's writer",
@@ -965,13 +965,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Madam%20Bevan.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Madam%20Bevan.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "philanthropist",
@@ -1049,13 +1049,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Hester%20thrale%20by%20joshua%20reynolds%201781%20small.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Hester%20thrale%20by%20joshua%20reynolds%201781%20small.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "diarist",
@@ -1133,13 +1133,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Lady%20Charlotte%20Guest%20%284674585%29.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Lady%20Charlotte%20Guest%20%284674585%29.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "translator",
@@ -1211,13 +1211,13 @@ var PEOPLE_DATA = [{
             "value": "11",
             "values": ["11"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "pedagogue",
@@ -1295,13 +1295,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/086e53%20f599b34e9fc646349cccd5987b6176cd.webp",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/086e53%20f599b34e9fc646349cccd5987b6176cd.webp"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "composer",
@@ -1379,13 +1379,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Lucy%20Walter.JPG",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Lucy%20Walter.JPG"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "courtier",
@@ -1463,13 +1463,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Anna%20Williams%20by%20Frances%20Reynolds.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Anna%20Williams%20by%20Frances%20Reynolds.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "poet",
@@ -1547,13 +1547,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Gainsborough%20015.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Gainsborough%20015.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "stage actor",
@@ -1631,13 +1631,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Felicia%20Hemans%202.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Felicia%20Hemans%202.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "poet",
@@ -1715,13 +1715,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Sarah%20Jane%20Rees%20%28Crangowen%2C%201839-1916%29%20NLW3362516.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Sarah%20Jane%20Rees%20%28Crangowen%2C%201839-1916%29%20NLW3362516.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "poet",
@@ -1799,13 +1799,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Gwen%20John%20-%20Self-Portrait.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Gwen%20John%20-%20Self-Portrait.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "painter",
@@ -1883,13 +1883,13 @@ var PEOPLE_DATA = [{
             "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Lilian%20of%20Sweden%201940s%20as%20Mrs.%20Craig.jpg",
             "values": ["http://commons.wikimedia.org/wiki/Special:FilePath/Lilian%20of%20Sweden%201940s%20as%20Mrs.%20Craig.jpg"]
         },
-        "P21": {
+        "gender": {
             "xml:lang": "en",
             "type": "literal",
             "value": "female",
             "values": ["female"]
         },
-        "P106": {
+        "occupation": {
             "xml:lang": "en",
             "type": "literal",
             "value": "model",

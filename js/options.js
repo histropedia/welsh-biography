@@ -54,6 +54,9 @@ var APP_OPTIONS = {
         P21: {enLabel: "gender", cyLabel: "rhyw"}, 
         P106: {enLabel: "gender", cyLabel: "galwedigaeth"}
     },
-    colorCodes: [],  //list of Wikidata properties
+    colorCode: {
+        properties: ["occupation", "gender"],    // list of Wikidata properties
+        colors: ['#961111', '#1a5d1f', '#1565c0', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
+    }
     
 }
