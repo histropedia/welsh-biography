@@ -10,6 +10,23 @@ body {
 	width: 100%;
 	height: 100%;
 }
+
+/*change placeholder text color*/
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #cccccc;;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #cccccc;;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #cccccc;;
+}
+
+
+
 /* reset some bootstrap elements for color code panel*/
     .color-code-filter-panel *{
         border-radius:0!important;
@@ -175,14 +192,19 @@ body {
 		justify-content:  space-between;
 		align-items: baseline;
 	}
-	
+
 /*match button to title and postion size*/
 	.event-title-container span {
-			font-size: 1.75rem;
-			cursor: pointer;
-			line-height: 1.2
-		}	
-	
+		font-size: 1.5rem;
+		cursor: pointer;
+		line-height: 1.2
+
+/*reduce title size to fit in header*/	}	
+	.event-title-container h3 {
+		font-size: 1.5rem;
+		
+	}
+
 /*hide event details on mobile*/
 	.event-details {
 		display: none;
@@ -217,6 +239,32 @@ body {
 		outline: none; 
 		margin: 0;
 	}	
+
+	#search-box-container {
+		border-bottom: 2px solid #fff;
+		width: 100%;
+		margin-bottom: 5px;
+		line-height: 1.2;
+		display: none;
+	}
+
+	#search-box {    
+		position: relative;
+		background: #fff;
+		border: none;
+		color: #fff;
+		font-size: 1.5rem;
+		text-transform: uppercase;
+		font-weight: 500;
+		background-color: transparent;
+		text-overflow: ellipsis;
+		width: 100%;
+		line-height: 1.2;
+	}
+
+	#search-box:focus{
+		outline: none;
+	}
 
 @media (min-width: 992px) {
 	
