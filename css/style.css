@@ -164,6 +164,10 @@ body {
     #btn-close-color-code-desktop{
         display: inherit
     }
+	/*Postion btn on desktop*/
+	#btn-open-color-code {
+		top:80px;
+	}
 /*position button next to timeline title*/	
 	#btn-open-filters{
 		top: 8px;
