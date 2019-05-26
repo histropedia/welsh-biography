@@ -66,10 +66,18 @@ function App() {
     }
     
     this.setupFilterOptions = function () {
-        //setup blank array for each filter property
+        var optionsHtml = ''
         for (var property in this.options.filters) {
+            var filter = this.options.filters[property];
+            
+            //setup blank array for each filter property
             this.state.appliedFilters[property] = [];
+            
+            //add option to filter types page
+            optionsHtml += getFilterOptionHtml(property, filter.label)
         }
+        
+        $('#filter-types-list-container').html(optionsHtml);
     }
     
     this.windowResized = function () {
@@ -120,6 +128,11 @@ function App() {
         }
         //all filter properties and values exist in article statements, so it's visible
         return true
+    }
+    
+    function getFilterOptionHtml(property, label) {
+        //todo: get label from property id
+        return '<button type="button" filter-property=' + property + ' class="btn btn-outline-secondary btn-lg" style="text-align: left">' + label + '<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span> </button>'
     }
     
     //add window resize event passing this context
