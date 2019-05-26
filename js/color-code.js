@@ -132,7 +132,6 @@
             var group = orderedClorGroups[i],
                 nextGroupHtml = '<tr> <th scope="row" style="background-color:{{color}}">&nbsp;</th> \
                     <td>{{label}}&nbsp; <span class="color-group-count">{{count}}</span></td><td> </td></tr>';
-            console.log(group)
             nextGroupHtml = nextGroupHtml.replace("{{label}}", group.labelEn)
                 .replace("{{color}}", group.color)
                 .replace("{{count}}", '(' + group.visibleCount + ')')

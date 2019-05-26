@@ -6,12 +6,12 @@ function App() {
     this.isPortrait = windowWidth < windowHeight;
     
     this.state = {
-        //can be used to store states for browser history, or to create share URLs with current state
-        appliedFilters: {}, // e.g. { P19: ["london", "paris"], P27: ["UK"]  }
-        appliedColorCode: "", //uses property as id, e.g. "P27"
+        // can be used to store states for browser history, or to create share URLs with current state
+        appliedFilters: {}, // e.g. { P19: ["Q84", "Q90"], P27: ["Q47"] }
+        appliedColorCode: "", // e.g. "P27"
         filterPanel: {
             isOpen: false,
-            panel: "", //uses property as id, e.g. "P19"
+            panel: "", // e.g. "P19"
         },
         colorCodePanel: {
             isOpen: false,
@@ -32,52 +32,6 @@ function App() {
         
         this.timeline = new Histropedia.Timeline( container, options );
         this.timeline.load(articles);
-    }
-    
-    
-    /****************** Filters ******************/
-    
-    this.addFilter = function(property, value) {
-        this.state.appliedFilters[property].push(value);
-        this.applyFilters();
-    }    
-    
-    this.removeFilter = function(property, value) { 
-        var propertyFilters = this.state.appliedFilters[property];
-        if (!propertyFilters) return console.error("no filter setup for property: ", property);
-        
-        var valueIndex = propertyFilters.indexOf(value);
-        if (valueIndex === -1) return console.error("no filter found using value: ", value);
-        propertyFilters.splice(valueIndex, 1);
-        
-        this.applyFilters();
-    }
-    
-    this.applyFilters = function () {
-    //sets the visibility of all articles on the timeline according to currently applied filters
-        var appliedFilters = this.state.appliedFilters;
-        
-        //check all articles on the timeline
-        this.timeline.forLoadedArticles(function(article) {
-            article.hiddenByFilter = !getArticleVisiblityFromFilters(article, appliedFilters);
-        })
-        
-        this.timeline.defaultRedraw();
-    }
-    
-    this.setupFilterOptions = function () {
-        var optionsHtml = ''
-        for (var property in this.options.filters) {
-            var filter = this.options.filters[property];
-            
-            //setup blank array for each filter property
-            this.state.appliedFilters[property] = [];
-            
-            //add option to filter types page
-            optionsHtml += getFilterOptionHtml(property, filter.label)
-        }
-        
-        $('#filter-types-list-container').html(optionsHtml);
     }
     
     this.windowResized = function () {
@@ -101,38 +55,6 @@ function App() {
         options.width = windowWidth;
         options.height = windowHeight;
         return options;
-    }
-    
-    function getArticleVisiblityFromFilters(article, appliedFilters) {
-        //article will not be visible if it fails to match any active filters
-        
-        var articleStatements = article.data.statements;
-        
-        for (var property in appliedFilters) {
-            var propertyFilters = appliedFilters[property]
-            if (propertyFilters.length === 0) continue;
-
-            //active filters found for this property, now check if the article has matching values
-            var articleStatements = articleStatements[property].values;
-            if (!articleStatements) return false;
-
-            //article has statements using this property, check if each active filter value is present
-            for (var i=0; i < propertyFilters.length; i++) {
-                //is this filter value missing from the article's statements?
-                if (!articleStatements.includes(propertyFilters[i])) {
-                    //yes? article must be hidden
-                    return false;
-                }
-            }
-            //check next filter property...
-        }
-        //all filter properties and values exist in article statements, so it's visible
-        return true
-    }
-    
-    function getFilterOptionHtml(property, label) {
-        //todo: get label from property id
-        return '<button type="button" filter-property=' + property + ' class="btn btn-outline-secondary btn-lg" style="text-align: left">' + label + '<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span> </button>'
     }
     
     //add window resize event passing this context
