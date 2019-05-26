@@ -18,7 +18,32 @@
 
 <!-- Trigger for Color Code Panel-->
 <button id="btn-open-color-code" class="btn btn-outline-primary btn-sm"><i class="fas fa-chevron-left"></i></button> 
+
 	
+<!--************ READING PANEL****************-->	
+	
+<div id="reading-panel">
+	<div class="reading-panel-header">
+		<div class="event-title-container">
+			<h3 class="label-event-title reading-panel-title ">EVENT TITLE</h3>
+			<span id="btn-close-reading-panel"><i class="far fa-times-circle"></i></span>
+		</div>
+		<div class="event-details">
+				<h5 class="label-event-date reading-panel-date">Day Month Year</h5>
+				<p class="label-event-desc reading-panel-desc">Mini desc of the selected event</p>
+		</div>	
+	</div>
+	<div class="reading-panel-btns-container">
+			<button type="button" class="btn btn-outline-secondary btn-panel-switch" tab="wikipedia">Wikipedia</button>
+			<button type="button" class="btn btn-outline-secondary btn-panel-switch" tab="reasonator">Reasonator</button>
+	</div>
+	<div class="reading-panel-content" style="overflow:auto;-webkit-overflow-scrolling:touch;">
+		<iframe id="reading-panel-iframe" src="https://en.m.wikipedia.org/wiki/Mary_Somerville" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" ></iframe>
+	</div>
+</div>	
+	
+	
+<!--************ FILTER PANEL****************-->
 	
 <div id="filter-types-panel" class="noselect filter-panel" style="display: none">
     <button class="btn-block btn-primary btn-sm btn btn-open-page" target-element="" style="">CLOSE</button>
@@ -39,6 +64,9 @@
     </div>
 </div>
 
+	
+<!--************ FILTER PANEL SEARCH PANEL****************-->
+	
 <div id="filter-panel-0" class="noselect filter-panel" style="z-index: 4; display: none">
     <a href="#" class="btn-primary btn-block btn-sm btn btn-open-page" target-element="filter-types-panel" panel-id="0">back</a> 
     <div class="filter-panel-header">
@@ -52,6 +80,8 @@
     </div>
 </div>
 
+	
+<!--************ COLOR CODE PANEL****************-->	
 	
 <div id="color-code-panel" class="color-code-filter-panel" style="display: none">
 	<a href="#" id="btn-close-color-code-mobile" class="btn-primary btn-block btn-sm btn btn-open-page" target-element="">back</a> 

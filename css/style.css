@@ -128,17 +128,98 @@ body {
 
 
 /*center title inside container*/
-#timeline-title-container {
+	#timeline-title-container {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		background-color: lightgrey;
 		height: 45px;
-	position: absolute;
-	width: 100%;
+		position: absolute;
+		width: 100%;
 	}
 
+	#reading-panel{
+		display: none;
+		height: 100%;
+		width: 100%;
+		position: fixed;
+		left: 0;
+		top: 0;
+		padding-bottom: 60px;		
+		background-color: #fff;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+		border-radius: 2px;
+		z-index: 2
+	}
+
+/*reduce reading panel height when panel content is closed*/
+	#reading-panel.selected {
+    	height: auto;
+    	padding-bottom: 0;
+	}
+	#reading-panel.selected .reading-panel-content {
+   	 	height: 0;
+}
+
+/*style reading panel header*/	
+	.reading-panel-header{
+		padding: 10px 10px 1px;
+		border-bottom: thin white solid;
+		background-color: darkred;
+		color:white;
+		}
+	
+/*make flex container for event title and close button*/	
+	.event-title-container {
+		display: flex;
+		justify-content:  space-between;
+		align-items: baseline;
+	}
+	
+/*match button to title and postion size*/
+	.event-title-container span {
+			font-size: 1.75rem;
+			cursor: pointer;
+			line-height: 1.2
+		}	
+	
+/*hide event details on mobile*/
+	.event-details {
+		display: none;
+	}	
+
+	
+/*make flex container for panel switching buttons*/
+	.reading-panel-btns-container {
+		display: flex;
+		justify-content: space-around;
+		background-color: #E5E7E6 
+	}	
+	
+/*make full width split button*/
+	.reading-panel-btns-container button{
+		width: 50%;
+		border-radius: 0;
+		}
+
+/* make reading panel content fill screen*/
+	.reading-panel-content {
+		height: 100%;
+	}	
+
+/*make inserted iframe fill remaining space*/	
+	#reading-panel-iframe {
+		height: 100%; 
+		width: 100%; 
+		display: table; 
+		border: none; 
+		padding: none; 
+		outline: none; 
+		margin: 0;
+	}	
+
 @media (min-width: 992px) {
+	
 /*resize and position filter panel on desktop*/
     .filter-panel {
         position: absolute;
@@ -160,20 +241,24 @@ body {
     #btn-close-color-code-mobile {
         display:none;
     }
+	
 /*show this button on desktop*/
     #btn-close-color-code-desktop{
         display: inherit
     }
-	/*Postion btn on desktop*/
+	
+/*Postion btn on desktop*/
 	#btn-open-color-code {
 		top:80px;
 	}
+	
 /*position button next to timeline title*/	
 	#btn-open-filters{
 		top: 8px;
 		right: 30%;
 	}
-	/*adjust for desktop header*/
+	
+/*adjust for desktop header*/
 	#timeline-title-container{
 		width:auto;
 		left: 50%;
@@ -182,5 +267,15 @@ body {
 	}
 	#timeline-title-container h4 {
 		font-size: 30px;
+	}
+	
+/* make side panel on desktop*/
+	#reading-panel {
+	width: 450px
+	}
+
+/* show event details in mini card on desktop*/
+	.event-details {
+	display:inherit
 	}
 }
