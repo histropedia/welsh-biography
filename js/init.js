@@ -11,6 +11,7 @@ DWB.setupColorCodeOptions();
 DWB.setColorCode(DWB.options.colorCode.properties[0]);
 
 // Add click events
+// Todo: remove these after setting up panel switching functions
 $('#btn-open-color-code').click( function() {
     DWB.openColorCodePanel();
 });
@@ -18,6 +19,15 @@ $('#btn-open-color-code').click( function() {
 $('#btn-close-color-code-desktop').click( function() {
     DWB.closeColorCodePanel();
 });
+
+
+$('#btn-open-filters').click(function() {
+    DWB.openFilterPanel()
+})
+
+$('#filter-types-panel .btn-open-page:first-of-type').click(function() { //todo: temporary selector
+    DWB.closeFilterPanel()
+})
 
 $('#inputGroupSelect01').on('change', function() { //todo: change id
     var selection = $(this).val();

@@ -51,6 +51,15 @@
     
     /****************** Filter panels ******************/
     
+    App.prototype.openFilterPanel = function () {
+        $('#filter-types-panel').show();
+        this.state.filterPanel.isOpen = true;
+    }
+    
+    App.prototype.closeFilterPanel = function () {
+        $('#filter-types-panel').hide();
+        this.state.filterPanel.isOpen = false;
+    }
     
     /****************** Filter search ******************/
     
