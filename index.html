@@ -12,9 +12,11 @@
 </head>
 
 <body>
+
 <div id="timeline-title-container">
 	<h4>Dictionary of Welsh Biography</h4>
-	</div>				
+</div>
+<div id="selected-filters-container"></div>
 <button id="btn-open-filters" class="btn-open-page btn-icon" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="label-total-filters"></span></button>
 
 <!-- Trigger for Color Code Panel-->
@@ -53,14 +55,11 @@
     <button class="btn-block btn-primary btn-sm btn btn-close-filter-types-panel" style="">CLOSE</button>
     <div class="filter-panel-header">
         <h2>Filter the Timeline</h2>
-        <p>Choost the type of filter you want to apply</p>
+        <p>Choose the type of filter you want to apply</p>
     </div>
     <div class="filter-panel-content">
         <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
    			<!-- ***List of available filter types populated by JavaScript*** -->
-            <button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span> </button>
-            <button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span>  </button>
-			<button panel-id="0" type="button" class="btn btn-outline-secondary btn-lg btn-open-page" target-element="filter-panel-0" style="text-align: left">type<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span>  </button>
         </div>
     </div>
     <div class="filter-panel-footer">

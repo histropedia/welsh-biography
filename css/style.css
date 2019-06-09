@@ -155,6 +155,22 @@ body {
 		width: 100%;
 	}
 
+    #selected-filters-container {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+
+    .selected-filter-tag {
+        display: inline;
+        margin-right: 5px;
+    }
+
+    .remove-filter-tag-btn {
+        cursor: pointer;
+        margin-left: 5px;
+    }
+
 	#reading-panel{
 		display: none;
 		height: 100%;

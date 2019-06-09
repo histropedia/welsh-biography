@@ -6,14 +6,7 @@
 
 (function() { 
     
-    window.filterData = { // todo: make private after development
-        //  P27 : {
-        //      label: "Place of birth"
-        //      searchResults: [ {label: "london", value:"Q84", count: 23}, ..]
-        //      select2 :
-        //  },
-    }
-
+    window.filterData = { }// todo: make private after development
     
     App.prototype.setupFilterOptions = function () {
         var optionsElements = [];
@@ -67,12 +60,12 @@
             return '<select class="filter-panel-search" filter-property="{{property}}" style="width:100%"></select>'
                 .replace('{{property}}', filterProperty);
         }
-        
     }
     
     App.prototype.addFilter = function(property, value) {
         this.state.appliedFilters[property].push(value);
-        this.applyFilters();
+        var valueLabel = value; // todo: get label from wikidata id
+        addFilterTagHtml(property, value, valueLabel);
         this.filtersChanged();
     }    
     
@@ -83,15 +76,26 @@
         var valueIndex = propertyFilters.indexOf(value);
         if (valueIndex === -1) return console.error("no filter found using value: ", value);
         propertyFilters.splice(valueIndex, 1);
-        this.applyFilters();
+        removeFilterTagHtml(property, value);
+        this.filtersChanged();
+    }
+    
+    App.prototype.clearAllFilters = function () {
+        for (var property in this.state.appliedFilters) {
+            this.state.appliedFilters[property] = [];
+        }
+        $('#selected-filters-container').empty();
         this.filtersChanged();
     }
     
     App.prototype.filtersChanged = function () {
+        // notify all filter search boxes they need to update
         for (var prop in filterData) {
-            // notify filter search boxes need update
             filterData[prop].needsUpdate = true;
         }
+        this.applyFilters();
+        this.updateAppliedFilterCounts();
+        this.setColorCode(this.state.appliedColorCode)
     }
     
     App.prototype.applyFilters = function () {
@@ -104,6 +108,17 @@
         })
         
         this.timeline.defaultRedraw();
+    }
+    
+    // updates the active filter counts shown within buttons on filter types panel
+    App.prototype.updateAppliedFilterCounts = function() {
+        var appliedFilters = this.state.appliedFilters;
+        for (var property in appliedFilters) {
+            var propertyFilters = appliedFilters[property],
+                count = propertyFilters.length;
+            count = (count > 0) ? '(' + count + ')' : "";
+            $('button[filter-property=' + property + '] .label-selected-filters').text(count);
+        }
     }
     
     /****************** Filter panels ******************/
@@ -140,6 +155,7 @@
         $('#filter-search-panel').hide();
         this.state.filterPanel.panel = "";
     }
+    
     
     /****************** Filter search ******************/
     
@@ -216,7 +232,7 @@
     /****************** Private functions ******************/
     
     function getArticleVisiblityFromFilters(article, appliedFilters) {
-        //article will not be visible if it fails to match any active filters
+        // article will not be visible if it fails to match any active filters
         
         var articleStatements = article.data.statements;
         
@@ -224,22 +240,37 @@
             var propertyFilters = appliedFilters[property]
             if (propertyFilters.length === 0) continue;
 
-            //active filters found for this property, now check if the article has matching values
-            var articleStatements = articleStatements[property].values;
-            if (!articleStatements) return false;
+            // active filters found for this property, now check if the article has matching values
+            var articleValues = articleStatements[property].values;
+            if (!articleValues) return false;
 
-            //article has statements using this property, check if each active filter value is present
+            // article has statements using this property, check if each active filter value is present
             for (var i=0; i < propertyFilters.length; i++) {
-                //is this filter value missing from the article's statements?
-                if (!articleStatements.includes(propertyFilters[i])) {
-                    //yes? article must be hidden
+                // is this filter value missing from the article's statements?
+                if (!articleValues.includes(propertyFilters[i])) {
+                    // yes? article must be hidden
                     return false;
                 }
             }
-            //check next filter property...
+            // check next filter property...
         }
-        //all filter properties and values exist in article statements, so it's visible
+        // all filter properties and values exist in article statements, so it's visible
         return true
+    }
+    
+    function addFilterTagHtml(property, value, label) {
+        $('#selected-filters-container').append('<p class="selected-filter-tag" filter-property=' + property + ' filter-value=' + value + '><span class="badge badge-primary"><span>' +
+            label + '</span><a><i class="fa fa-times remove-filter-tag-btn"></i></a></span></p>');
+    }
+    
+    function removeFilterTagHtml(property, value) {
+        $('.selected-filter-tag').each(function(index, element) {
+            var tagProperty = $(this).attr('filter-property'),
+                tagValue = $(this).attr('filter-value');
+            if (property === tagProperty && value === tagValue) {
+                $(this).remove();
+            }
+        })
     }
     
 })()

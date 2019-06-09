@@ -42,3 +42,14 @@ $('#filter-types-list-container').on('click', 'button', function() {
     var filterProperty = $(this).attr('filter-property');
     DWB.openFilterSearchPanel(filterProperty);
 })
+
+$('#btn-clear-all-filters').click(function() {
+    DWB.clearAllFilters();
+})
+
+$('#selected-filters-container').on('click', 'a', function() {
+    var $tag = $(this).closest('.selected-filter-tag'),
+        property = $tag.attr('filter-property'),
+        value = $tag.attr('filter-value');
+    DWB.removeFilter(property, value);
+})
