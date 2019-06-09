@@ -27,11 +27,11 @@ $('#btn-close-color-code-desktop').click( function() {
 
 
 $('#btn-open-filters').click(function() {
-    DWB.openFilterPanel()
+    DWB.openFilterTypesPanel()
 })
 
 $('#filter-types-panel .btn-open-page:first-of-type').click(function() { //todo: temporary selector
-    DWB.closeFilterPanel()
+    DWB.closeFilterTypesPanel()
 })
 
 $('#inputGroupSelect01').on('change', function() { //todo: change id

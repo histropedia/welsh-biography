@@ -42,7 +42,19 @@
         
         // append generated html
         $('#filter-types-list-container').html(optionsElements);
-        $('.filter-panel .filter-panel-content').append(searchBoxElements);
+        $('#filter-search-panel .filter-panel-content').append(searchBoxElements);
+        
+        // add filter on select
+        var me = this;
+        $('.filter-panel-search').on('select2:select', function(ev) {
+            var selected = ev.params.data;
+            me.addFilter(selected.property, selected.id);
+        })
+        
+        function getFilterOptionHtml(property, label) {
+            //todo: get label from property id
+            return '<button type="button" filter-property=' + property + ' class="btn btn-outline-secondary btn-lg" style="text-align: left">' + label + '<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span> </button>';
+        }
         
         function getSearchBoxHtml(filterProperty) {
             return '<select class="filter-panel-search" filter-property="{{property}}" style="width:100%"><option>test 1</option></select>'
@@ -54,6 +66,8 @@
     App.prototype.addFilter = function(property, value) {
         this.state.appliedFilters[property].push(value);
         this.applyFilters();
+        this.updateFilterSearchResults("occupation")
+        this.updateFilterSearchResults("gender")
     }    
     
     App.prototype.removeFilter = function(property, value) { 
@@ -81,12 +95,12 @@
     
     /****************** Filter panels ******************/
     
-    App.prototype.openFilterPanel = function () {
+    App.prototype.openFilterTypesPanel = function () {
         $('#filter-types-panel').show();
         this.state.filterPanel.isOpen = true;
     }
     
-    App.prototype.closeFilterPanel = function () {
+    App.prototype.closeFilterTypesPanel = function () {
         $('#filter-types-panel').hide();
         this.state.filterPanel.isOpen = false;
     }
@@ -103,10 +117,7 @@
         
         for (var i=0; i < articles.length; i++) {
             var statement = articles[i].data.statements[filterProperty];
-            if (!statement || statement.values.length === 0) { 
-                console.log("statement NOT found!"); 
-                continue; 
-            };
+            if (articles[i].isHiddenByFilter || !statement || statement.values.length === 0) continue; 
             
             for (var j=0; j < statement.values.length; j++) {
                 var valueId = statement.values[j]; // this is the Wikidata item number of the value
@@ -119,7 +130,8 @@
                     filterValues[valueId] = {
                         id: valueId,
                         text: valuelabel,
-                        count: 1
+                        count: 1,
+                        property: filterProperty
                     }
                 }
                 // check next statement value ...
@@ -130,7 +142,7 @@
         var sortedList = Object.values(filterValues).sort(function(a, b) {
             return b.count - a.count;
         })
-    
+        
         reInitialiseSelect2(sortedList);
         filterSettings.needsUpdate = false;
         
@@ -148,8 +160,11 @@
             $controlElement.select2({
                 data: results,
                 placeholder: 'Search for ' + filterProperty + ' filters',
-                templateResult: searchResultsFormat
+                templateResult: searchResultsFormat,
             });
+            
+            $controlElement.val(null).trigger('change'); // start with nothing selected
+           
         }
         
         // select2 results template
@@ -160,7 +175,6 @@
             var $state = $('<span class="filter-result-label">' + state.text + '</span><span class="filter-result-count">&nbsp;' + '(' + state.count + ')' + '</span>');
             return $state;
         }
-        
     }
     
     /****************** Private functions ******************/
@@ -190,11 +204,6 @@
         }
         //all filter properties and values exist in article statements, so it's visible
         return true
-    }
-    
-    function getFilterOptionHtml(property, label) {
-        //todo: get label from property id
-        return '<button type="button" filter-property=' + property + ' class="btn btn-outline-secondary btn-lg" style="text-align: left">' + label + '<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span> </button>'
     }
     
 })()
