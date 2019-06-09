@@ -6,19 +6,49 @@
 
 (function() { 
     
+    window.filterData = { // todo: make private after development
+        //  P27 : {
+        //      label: "Place of birth"
+        //      searchResults: [ {label: "london", value:"Q84", count: 23}, ..]
+        //      select2 :
+        //  },
+    }
+
+    
     App.prototype.setupFilterOptions = function () {
-        var optionsHtml = '';
+        var optionsElements = [];
+        var searchBoxElements = []
         for (var property in this.options.filters) {
-            var filter = this.options.filters[property];
+            var filter = this.options.filters[property],
+                $optionElement = $(getFilterOptionHtml(property, filter.label)),
+                $searchElement = $(getSearchBoxHtml(property));
             
-            //setup blank array for each filter property
+            // add property to state
             this.state.appliedFilters[property] = [];
             
-            //add option for filter types page
-            optionsHtml += getFilterOptionHtml(property, filter.label)
+            // setup filter data
+            filterData[property] = {
+                label: filter.label,
+                $search: $searchElement,
+                needsUpdate: true, // only update search results needed
+            }
+            
+            // add option for filter types panel
+            optionsElements.push($optionElement);
+            
+            // add search box on filter panel
+            searchBoxElements.push($searchElement);
         }
         
-        $('#filter-types-list-container').html(optionsHtml);
+        // append generated html
+        $('#filter-types-list-container').html(optionsElements);
+        $('.filter-panel .filter-panel-content').append(searchBoxElements);
+        
+        function getSearchBoxHtml(filterProperty) {
+            return '<select class="filter-panel-search" filter-property="{{property}}" style="width:100%"><option>test 1</option></select>'
+                .replace('{{property}}', filterProperty);
+        }
+        
     }
     
     App.prototype.addFilter = function(property, value) {
@@ -63,6 +93,75 @@
     
     /****************** Filter search ******************/
     
+    App.prototype.updateFilterSearchResults = function(filterProperty) {
+        // select2 does not support templated results for dynamically added options
+        // so we need to destroy and re-initialise the search box
+        
+        var filterSettings = filterData[filterProperty],
+            articles = this.timeline.articles,
+            filterValues = {};
+        
+        for (var i=0; i < articles.length; i++) {
+            var statement = articles[i].data.statements[filterProperty];
+            if (!statement || statement.values.length === 0) { 
+                console.log("statement NOT found!"); 
+                continue; 
+            };
+            
+            for (var j=0; j < statement.values.length; j++) {
+                var valueId = statement.values[j]; // this is the Wikidata item number of the value
+                    valuelabel = valueId; // todo: use a getLabel function
+                if (filterValues.hasOwnProperty(valueId)) {
+                    // increment counter if already seen
+                    filterValues[valueId].count += 1;
+                } else {
+                    // if not, create a new entry
+                    filterValues[valueId] = {
+                        id: valueId,
+                        text: valuelabel,
+                        count: 1
+                    }
+                }
+                // check next statement value ...
+            }
+            // check next article ...
+        }
+        
+        var sortedList = Object.values(filterValues).sort(function(a, b) {
+            return b.count - a.count;
+        })
+    
+        reInitialiseSelect2(sortedList);
+        filterSettings.needsUpdate = false;
+        
+        function reInitialiseSelect2(results) {
+            var data = filterData[filterProperty],
+                $controlElement = data.$search;
+            
+            // remove the old select2 instance if present
+            if ($controlElement.data('select2')) $controlElement.select2("destroy");
+            
+            // remove option tags 
+            $($controlElement).empty();
+            
+            // re-initialise with 
+            $controlElement.select2({
+                data: results,
+                placeholder: 'Search for ' + filterProperty + ' filters',
+                templateResult: searchResultsFormat
+            });
+        }
+        
+        // select2 results template
+        function searchResultsFormat(state) {
+            if (!state.id) {
+                return state.text;
+            }
+            var $state = $('<span class="filter-result-label">' + state.text + '</span><span class="filter-result-count">&nbsp;' + '(' + state.count + ')' + '</span>');
+            return $state;
+        }
+        
+    }
     
     /****************** Private functions ******************/
     

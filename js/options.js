@@ -52,8 +52,8 @@ var TIMELINE_OPTIONS = {
 var APP_OPTIONS = {
     //todo: remove labels and store all in single map file
     filters: {
-        P21: {label: "gender"}, 
-        P106: {label: "occupation"}
+        gender: {label: "gender"}, 
+        occupation: {label: "occupation"}
     },
     colorCode: {
         properties: ["occupation", "gender"],    // list of Wikidata properties
