@@ -6,10 +6,6 @@ DWB.setupFilterOptions();
 // Create the timeline
 DWB.createTimeline(document.getElementById("timeline-container"), PEOPLE_DATA);
 
-DWB.updateFilterSearchResults("gender") //temp
-DWB.updateFilterSearchResults("occupation") //temp
-$(".filter-panel").show(); //temp
-
 // Setup colour code
 DWB.setupColorCodeOptions();
 DWB.setColorCode(DWB.options.colorCode.properties[0]);
@@ -25,16 +21,24 @@ $('#btn-close-color-code-desktop').click( function() {
     DWB.closeColorCodePanel();
 });
 
+$('#color-code-select').on('change', function() { 
+    var selection = $(this).val();
+    DWB.setColorCode(selection)
+})
 
 $('#btn-open-filters').click(function() {
     DWB.openFilterTypesPanel()
 })
 
-$('#filter-types-panel .btn-open-page:first-of-type').click(function() { //todo: temporary selector
+$('.btn-close-filter-types-panel').click(function() { //todo: temporary selector
     DWB.closeFilterTypesPanel()
 })
 
-$('#inputGroupSelect01').on('change', function() { //todo: change id
-    var selection = $(this).val();
-    DWB.setColorCode(selection)
+$('.btn-close-filter-panel').click(function() {
+    DWB.closeFilterSearchPanel();
+})
+
+$('#filter-types-list-container').on('click', 'button', function() {
+    var filterProperty = $(this).attr('filter-property');
+    DWB.openFilterSearchPanel(filterProperty);
 })

@@ -44,11 +44,17 @@
         $('#filter-types-list-container').html(optionsElements);
         $('#filter-search-panel .filter-panel-content').append(searchBoxElements);
         
+        // wrap in divs for easy hide/show
+        $('.filter-panel-search').wrap('<div class="filter-search-container"></div>');
+        
         // add filter on select
         var me = this;
         $('.filter-panel-search').on('select2:select', function(ev) {
             var selected = ev.params.data;
             me.addFilter(selected.property, selected.id);
+            me.closeFilterSearchPanel();
+            me.closeFilterTypesPanel();
+            
         })
         
         function getFilterOptionHtml(property, label) {
@@ -57,7 +63,8 @@
         }
         
         function getSearchBoxHtml(filterProperty) {
-            return '<select class="filter-panel-search" filter-property="{{property}}" style="width:100%"><option>test 1</option></select>'
+            // wrap search in div to allow easy show/hide
+            return '<select class="filter-panel-search" filter-property="{{property}}" style="width:100%"></select>'
                 .replace('{{property}}', filterProperty);
         }
         
@@ -66,8 +73,7 @@
     App.prototype.addFilter = function(property, value) {
         this.state.appliedFilters[property].push(value);
         this.applyFilters();
-        this.updateFilterSearchResults("occupation")
-        this.updateFilterSearchResults("gender")
+        this.filtersChanged();
     }    
     
     App.prototype.removeFilter = function(property, value) { 
@@ -77,8 +83,15 @@
         var valueIndex = propertyFilters.indexOf(value);
         if (valueIndex === -1) return console.error("no filter found using value: ", value);
         propertyFilters.splice(valueIndex, 1);
-        
         this.applyFilters();
+        this.filtersChanged();
+    }
+    
+    App.prototype.filtersChanged = function () {
+        for (var prop in filterData) {
+            // notify filter search boxes need update
+            filterData[prop].needsUpdate = true;
+        }
     }
     
     App.prototype.applyFilters = function () {
@@ -103,6 +116,29 @@
     App.prototype.closeFilterTypesPanel = function () {
         $('#filter-types-panel').hide();
         this.state.filterPanel.isOpen = false;
+    }
+    
+    App.prototype.openFilterSearchPanel = function (property) {
+        $('#filter-search-panel').show();
+        var filterSettings = filterData[property];
+        var needsUpdate = filterSettings.needsUpdate;
+        
+        if (needsUpdate) {
+            this.updateFilterSearchResults(property);
+        }
+        
+        // update the property lable in title of the filter panel
+        $('#filter-property-label').text(filterSettings.label);
+        
+        $('.filter-search-container').hide();
+        filterSettings.$search.parent().show();
+        
+        this.state.filterPanel.panel = property;
+    }
+    
+    App.prototype.closeFilterSearchPanel = function () {
+        $('#filter-search-panel').hide();
+        this.state.filterPanel.panel = "";
     }
     
     /****************** Filter search ******************/
