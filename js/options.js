@@ -4,11 +4,12 @@ var TIMELINE_OPTIONS = {
     //default options for all screen sizes
     default: {
         initialDate: {
-            year: 1600,
+            year: 1913,
             month: 1
         },
         zoom: {
-            initial: 43.5,
+            initial: 35.6,
+            max: 53
         },
         draggingVicinity: {
             up: 1200,
@@ -16,13 +17,21 @@ var TIMELINE_OPTIONS = {
         },
         article: {
             density: Histropedia.DENSITY_LOW,
-            autoStacking: {
-                topGap: 80
+            defaultStyle: {
+                header: {
+                    text: {
+                        color: '#fff'
+                    }
+                }
+            },
+            periodLine: {
+                defaultHide: function(article) {
+                    return !(article.isStarred || article.isActive)
+                }
             }
         },
         onArticleClick: function(article) {
-            DWB.contentPanel.setArticle(article)
-            DWB.contentPanel.openMini()
+            DWB.contentPanel.setArticle(article);
         },
         onArticleDoubleClick: function(article) {
             DWB.contentPanel.open()
@@ -33,6 +42,9 @@ var TIMELINE_OPTIONS = {
     small: { 
         article: {
             distanceToMainLine: 200,
+            autoStacking: {
+                topGap: 40
+            },
             defaultStyle: {
                 width: 100
             }
@@ -42,9 +54,12 @@ var TIMELINE_OPTIONS = {
     //overrides for large height timeline
     large: { 
         article: {
-            distanceToMainLine: 500,
+            distanceToMainLine: 430,
+            autoStacking: {
+                topGap: 80
+            },
             defaultStyle: {
-                width: 210
+                width: 185
             }
         }
     }

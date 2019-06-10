@@ -10,7 +10,7 @@ DWB.createTimeline(document.getElementById("timeline-container"), PEOPLE_DATA);
 DWB.setupColorCodeOptions();
 DWB.setColorCode(DWB.options.colorCode.properties[0]);
 
-
+if (!DWB.isMobile) DWB.openColorCodePanel();
 // Add click events
 // Todo: remove these after setting up panel switching functions
 $('#btn-open-color-code').click( function() {
