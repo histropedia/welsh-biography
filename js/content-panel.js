@@ -15,15 +15,13 @@ function ContentPanel(owner, options) {
 			wikipedia: {
 				elementId: "reading-panel-iframe",
 				update: function(article) {
-                    return;
-					$('#' + this.elementId).prop( "src",  article.data.statements.articleEn.values[0].replace("://en", "://en.m") );
+					$('#' + this.elementId).prop( "src",  article.data.statements.article.values[0].replace("://en", "://en.m") );
 				},
 			},
 			
 			dwb: {
 				elementId: "reading-panel-iframe",
 				update: function(article) {
-                    return;
 					$('#' + this.elementId).prop( "src",  "https://biography.wales/article/" + article.data.statements.dwbId.values[0])
 				}
 			}
@@ -32,7 +30,7 @@ function ContentPanel(owner, options) {
 			container: "#reading-panel",
 			tabButtonsContainer: ".reading-panel-btns-container",
 			openButton: ".btn-open-reading",
-			closeButton: ".btn-close-reading-panel",
+			closeButton: "#btn-close-reading-panel",
 			iframe: "#reading-panel-iframe"
 		},
 	};
