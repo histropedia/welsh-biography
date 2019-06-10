@@ -34,7 +34,7 @@
         this.colorGroups = getcolorGroups(this.timeline, property);
         this.orderedColorGroups = getOrderedColorGroups(this.colorGroups);
         assignColorGroupColors(this);
-        appyTimelineColors(this.colorGroups);
+        applyTimelineColors(this.colorGroups);
         renderLegend(this.orderedColorGroups);
         this.state.appliedColorCode = property;
     }
@@ -113,14 +113,16 @@
     }
     
     // Colour articles on the timeline according to the current active colour code
-    function appyTimelineColors(colorGroups) {
+    function applyTimelineColors(colorGroups) {
        for (var group in colorGroups) {
            var groupArticles = colorGroups[group].articles;
            var groupColor = colorGroups[group].color;
            
            for (var i=0; i < groupArticles.length; i++) {
                var article = groupArticles[i];
-               article.setStyle("color", groupColor);
+               
+               // manual instead of article.setStyle for performance
+               article.style.color = article.activeStyle.color = groupColor;
            }
        }
     }
