@@ -34,6 +34,8 @@ function App() {
         this.timeline.load(articles);
     }
     
+    this.contentPanel = new ContentPanel(this, this.options.contentPanel);
+    
     this.windowResized = function () {
         updateWindowSettings()
         this.timeline.setOption(getTimelineOptions());

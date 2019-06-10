@@ -16,12 +16,16 @@ var TIMELINE_OPTIONS = {
         },
         article: {
             density: Histropedia.DENSITY_LOW,
+            autoStacking: {
+                topGap: 80
+            }
         },
         onArticleClick: function(article) {
-            console.log("article clicked", article)
+            DWB.contentPanel.setArticle(article)
+            DWB.contentPanel.openMini()
         },
         onArticleDoubleClick: function(article) {
-            console.log("article double clicked", article)
+            DWB.contentPanel.open()
         }
     },
     
@@ -33,7 +37,6 @@ var TIMELINE_OPTIONS = {
                 width: 100
             }
         }
-    
     },
     
     //overrides for large height timeline
@@ -58,6 +61,9 @@ var APP_OPTIONS = {
     colorCode: {
         properties: ["occupation", "gender"],    // list of Wikidata properties
         colors: ['#961111', '#1a5d1f', '#1565c0', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
+    },
+    contentPanel: {
+        
     }
     
 }
