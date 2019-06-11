@@ -11,13 +11,14 @@ DWB.setupColorCodeOptions();
 DWB.setColorCode(DWB.options.colorCode.properties[0]);
 
 if (!DWB.isMobile) DWB.openColorCodePanel();
+
 // Add click events
-// Todo: remove these after setting up panel switching functions
+// Todo: remove or move after setting up panel switching functions
 $('#btn-open-color-code').click( function() {
     DWB.openColorCodePanel();
 });
      
-$('#btn-close-color-code-desktop').click( function() {
+$('#btn-close-color-code-desktop, #btn-close-color-code-mobile').click( function() {
     DWB.closeColorCodePanel();
 });
 
