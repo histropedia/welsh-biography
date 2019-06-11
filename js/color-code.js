@@ -131,8 +131,9 @@
     function renderLegend(orderedClorGroups) {
         var colorGroupsHtml = '';
         for (var i=0; i < orderedClorGroups.length; i++) {
-            var group = orderedClorGroups[i],
-                nextGroupHtml = '<tr> <th scope="row" style="background-color:{{color}}">&nbsp;</th> \
+            var group = orderedClorGroups[i];
+            if (group.visibleCount < 1) continue; // don't show groups with no articles
+            var nextGroupHtml = '<tr> <th scope="row" style="background-color:{{color}}">&nbsp;</th> \
                     <td>{{label}}&nbsp; <span class="color-group-count">{{count}}</span></td><td> </td></tr>';
             nextGroupHtml = nextGroupHtml.replace("{{label}}", group.labelEn)
                 .replace("{{color}}", group.color)
