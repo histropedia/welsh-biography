@@ -166,6 +166,7 @@
         // so we need to destroy and re-initialise the search box
         
         var filterSettings = filterData[filterProperty],
+            stateAppliedFilters = this.state.appliedFilters[filterProperty],
             articles = this.timeline.articles,
             filterValues = {};
         
@@ -193,11 +194,13 @@
             // check next article ...
         }
         
-        var sortedList = Object.values(filterValues).sort(function(a, b) {
+        var sortedResults = Object.values(filterValues).sort(function(a, b) {
             return b.count - a.count;
         })
         
-        reInitialiseSelect2(sortedList);
+        var finalResults = removeActiveFiltersFromResults(stateAppliedFilters, sortedResults);
+        
+        reInitialiseSelect2(finalResults);
         filterSettings.needsUpdate = false;
         
         function reInitialiseSelect2(results) {
@@ -228,6 +231,15 @@
             }
             var $state = $('<span class="filter-result-label">' + state.text + '</span><span class="filter-result-count">&nbsp;' + '(' + state.count + ')' + '</span>');
             return $state;
+        }
+        
+        // Remove any activeFilters from results list for given filter property 
+        function removeActiveFiltersFromResults(appliedFilters, searchResults) {
+            var filteredResults = searchResults.filter(function(result) {
+                return !appliedFilters.includes(result.id);
+            })
+            
+            return filteredResults;
         }
     }
     
