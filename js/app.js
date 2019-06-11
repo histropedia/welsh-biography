@@ -87,7 +87,7 @@ function App() {
                         active: false
                     }
                 },
-                autostacking: {
+                autoStacking: {
                     range: Histropedia.RANGE_SCREEN
                 }
             }
