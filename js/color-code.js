@@ -119,12 +119,16 @@
            var groupColor = colorGroups[group].color;
            
            for (var i=0; i < groupArticles.length; i++) {
-               var article = groupArticles[i];
-               
-               // manual instead of article.setStyle for performance
-               article.style.color = article.activeStyle.color = groupColor;
+               setArticleColor(groupArticles[i], groupColor);
            }
        }
+    }
+    
+    function setArticleColor(article, color) {
+        // manual instead of article.setStyle for performance (no redraw between article changes)
+        // set article.data.style as well or changes will revert if built in setOption or setStyle are run
+        article.data.style = article.data.style || {};
+        article.data.style.color = article.style.color = article.activeStyle.color = color;
     }
     
     // Render the legend in the colour code panel
