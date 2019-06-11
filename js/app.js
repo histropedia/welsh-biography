@@ -87,6 +87,9 @@ function App() {
                         active: false
                     }
                 },
+                periodLine: {
+                    defaultHide: true
+                },
                 autoStacking: {
                     range: Histropedia.RANGE_SCREEN
                 }
