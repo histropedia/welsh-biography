@@ -10,28 +10,39 @@ function ContentPanel(owner, options) {
 	//Default options
 	this.options = {
 		textCharacterLimit: 100,
-		defaultTab: "wikipedia",
+		defaultTab: 'wikipedia',
 		tabs: {
 			wikipedia: {
-				elementId: "reading-panel-iframe",
+				elementId: 'reading-panel-iframe',
 				update: function(article) {
-					$('#' + this.elementId).prop( "src",  article.data.statements.article.values[0].replace("://en", "://en.m") );
+                    var url;
+                    if (article.data.statements.article) {
+                        url = article.data.statements.article.values[0].replace('://en', '://en.m');
+                    } else {
+                        url = 'no-article.html' + '?name=' + article.data.title;
+                    }
+                    
+                    $('#' + this.elementId).prop('src', url);
+					
 				},
+                /*isButtonVisible: function(article) {
+                    return !!article.data.statements.article
+                }*/
 			},
 			
 			dwb: {
-				elementId: "reading-panel-iframe",
+				elementId: 'reading-panel-iframe',
 				update: function(article) {
-					$('#' + this.elementId).prop( "src",  "https://biography.wales/article/" + article.data.statements.dwbId.values[0])
+					$('#' + this.elementId).prop( 'src',  'https://biography.wales/article/' + article.data.statements.dwbId.values[0])
 				}
 			}
 		},
 		selectors: {
-			container: "#reading-panel",
-			tabButtonsContainer: ".reading-panel-btns-container",
-			openButton: ".btn-open-reading",
-			closeButton: "#btn-close-reading-panel",
-			iframe: "#reading-panel-iframe"
+			container: '#reading-panel',
+			tabButtonsContainer: '.reading-panel-btns-container',
+			openButton: '.btn-open-reading',
+			closeButton: '#btn-close-reading-panel',
+			iframe: '#reading-panel-iframe'
 		},
 	};
 	
@@ -51,10 +62,10 @@ function ContentPanel(owner, options) {
 	var me = this;
 	$(this.options.selectors.tabButtonsContainer).click( function(event) {
 		if (event.target === event.currentTarget) return false
-		var tab = $(event.target).attr("tab");
+		var tab = $(event.target).attr('tab');
 	
 		me.switchTab(tab);					 
-		me.container.removeClass("selected");  //switches off mini-card description for full open reading window
+		me.container.removeClass('selected');  //switches off mini-card description for full open reading window
 		
 		$(event.target).blur();
 		return false;
@@ -73,7 +84,7 @@ function ContentPanel(owner, options) {
 	});
 	
 	//set active class on default tab button
-	//$(this.options.selectors.tabButtonsContainer + ' [tab=' +  this.options.defaultTab + ']').addClass("active");
+	//$(this.options.selectors.tabButtonsContainer + ' [tab=' +  this.options.defaultTab + ']').addClass('active');
 }
 
 ///////////////////////////////////
@@ -82,7 +93,7 @@ function ContentPanel(owner, options) {
 
 ContentPanel.prototype.setArticle = function (article) {
     this.selectedArticle = article;
-    if (this.isOpen && !this.container.hasClass("selected")) {
+    if (this.isOpen && !this.container.hasClass('selected')) {
         this.updateActiveTab();
     }
     else {
@@ -117,7 +128,7 @@ ContentPanel.prototype.setDescription = function (text) {
 
 ContentPanel.prototype.switchTab = function (tab) {
 	var tabData = this.options.tabs[tab];
-	if (!tabData) return console.log("no tab data for",tab)
+	if (!tabData) return console.log('no tab data for',tab)
 	
 	this.activeTab = tab;
 	this.isMiniMode = false; // fully open once any tab is opened
@@ -141,7 +152,7 @@ ContentPanel.prototype.switchTab = function (tab) {
 ContentPanel.prototype.updateTab = function (tabName) {
 	var article = this.selectedArticle;
 	var tab = this.options.tabs[tabName];
-	if (!tab) return console.log("no tab data for",tabName)
+	if (!tab) return console.log('no tab data for',tabName)
 	tab.update(article); // run update function for tab
 };
 
@@ -178,7 +189,7 @@ ContentPanel.prototype.updateButtonVisibility = function () {
 
 ContentPanel.prototype.getSummarisedText = function (text, characterLimit) {
 	if (text.length > characterLimit) {
-		text = text.slice(0,characterLimit) + " ...";
+		text = text.slice(0,characterLimit) + ' ...';
 	}
 	return text;
 };
@@ -197,7 +208,7 @@ ContentPanel.prototype.open = function () {
 	var buttonsContainer = this.options.selectors.tabButtonsContainer;
 	$( buttonsContainer + ' button[tab=' + this.activeTab + ']' ).addClass('active');
 	this.container.show();
-	this.container.removeClass("selected") // switch content panel to 'full' mode
+	this.container.removeClass('selected') // switch content panel to 'full' mode
 	this.isOpen = true;
 	this.isMiniMode = false;
 	
@@ -212,7 +223,7 @@ ContentPanel.prototype.open = function () {
 ContentPanel.prototype.openMini = function () {
     if (this.selectedArticle === null) return
 	this.container.show();
-	this.container.addClass("selected") // switch content panel to 'mini' mode
+	this.container.addClass('selected') // switch content panel to 'mini' mode
 	this.isOpen = true;
 	this.isMiniMode = true;
 	if (this.options.onOpen) {
