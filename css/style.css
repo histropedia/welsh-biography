@@ -155,15 +155,14 @@
 		align-items: center;
 		justify-content: center;
 		background-color: lightgrey;
-		height: 45px;
 		position: absolute;
 		width: 100%;
+        flex-direction: column;
+        height: 45px;
 	}
 
     #selected-filters-container {
-        position: absolute;
-        left: 10px;
-        top: 10px;
+ display:none
     }
 
     .selected-filter-tag {
@@ -288,7 +287,7 @@
 	}
 
 @media (min-width: 992px) {
-	
+    #selected-filters-container{display: inherit}
 /*resize and position filter panel on desktop*/
     .filter-panel {
         position: absolute;
@@ -333,6 +332,8 @@
 		left: 50%;
 		transform: translate(-50%);
 		background-color: transparent;
+        align-items: flex-start;
+        height: auto
 	}
 	#timeline-title-container h4 {
 		font-size: 30px;
