@@ -57,6 +57,7 @@
         var articles = timeline.articles;
         for (var i=0; i < articles.length; i++ ) {
             var article = articles[i];
+            if (article.hiddenByFilter) continue;
             var statement = article.data.statements[property];
             var statementValue = (statement && statement.values[0]) ?
                 statement.values[0]: 
@@ -75,7 +76,7 @@
             
             // update colorGroups entry
             colorGroups[statementValue].articles.push(article);
-            if (!article.isHiddenByFilter) colorGroups[statementValue].visibleCount += 1;
+            colorGroups[statementValue].visibleCount += 1;
         }
         
         return colorGroups;
