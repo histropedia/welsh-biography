@@ -122,6 +122,14 @@
         width: 100%; 
         padding: 10px
     }
+
+    .label-selected-filters {
+        font-size: 14px; 
+        color:red;
+        display: block;
+        white-space: normal;
+        max-width: 95%;
+    }
     
 /*Position chevron on filter type list*/         
     #filter-types-list-container .fas {

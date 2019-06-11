@@ -94,7 +94,9 @@
             filterData[prop].needsUpdate = true;
         }
         this.applyFilters();
-        this.updateAppliedFilterCounts();
+        this.updateFilterTypeButtons();
+        
+        // re-apply colour code to calculate counts
         this.setColorCode(this.state.appliedColorCode)
     }
     
@@ -110,14 +112,14 @@
         this.timeline.defaultRedraw();
     }
     
-    // updates the active filter counts shown within buttons on filter types panel
-    App.prototype.updateAppliedFilterCounts = function() {
+    // updates the active filter tags shown within buttons on filter types panel
+    App.prototype.updateFilterTypeButtons = function() {
         var appliedFilters = this.state.appliedFilters;
         for (var property in appliedFilters) {
             var propertyFilters = appliedFilters[property],
-                count = propertyFilters.length;
-            count = (count > 0) ? '(' + count + ')' : "";
-            $('button[filter-property=' + property + '] .label-selected-filters').text(count);
+                filterHtmlTags = propertyFilters.join(", ");
+            
+            $('button[filter-property=' + property + '] .label-selected-filters').text(filterHtmlTags);
         }
     }
     
