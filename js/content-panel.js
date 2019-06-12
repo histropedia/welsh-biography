@@ -53,7 +53,6 @@ function ContentPanel(owner, options) {
 	this.container = $(this.options.selectors.container);
 	this.iframe = $(this.options.selectors.iframe)
     this.activeTab = this.options.defaultTab;
-	this.visibleElementId = this.options.tabs[this.activeTab].elementId;
 	this.needsUpdate = true;
 	this.isOpen = false;
 	this.isMiniMode = false;
@@ -82,9 +81,12 @@ function ContentPanel(owner, options) {
 		me.close();
 		return false;
 	});
-	
-	//set active class on default tab button
-	//$(this.options.selectors.tabButtonsContainer + ' [tab=' +  this.options.defaultTab + ']').addClass('active');
+    
+    // only show IFrame once loaded, allowing background spinner gif to be seen
+    // switch tab functions take care of hiding when content changes
+    $(this.options.selectors.iframe).on('load', function() {
+        $('.reading-panel-content').show();
+    })
 }
 
 ///////////////////////////////////
@@ -134,12 +136,10 @@ ContentPanel.prototype.switchTab = function (tab) {
 	this.isMiniMode = false; // fully open once any tab is opened
 	this.updateActiveTab();
 	
-	// show tab element (if needed)
-	if (this.visibleElementId !== tabData.elementId) {
-		$('#' + this.visibleElementId).hide();
-		$('#' + tabData.elementId).show();
-		this.visibleElementId = tabData.elementId;
-	}
+	// set tab visibility
+    // todo: control tab visiblity with active-panel class
+    $('.reading-panel-content .active-panel').hide().removeClass("active-panel");
+    $('#' + tabData.elementId).show().addClass("active-panel");
 	
 	// reassign the active class on tab buttons
 	var buttonsContainer = this.options.selectors.tabButtonsContainer;
@@ -150,6 +150,7 @@ ContentPanel.prototype.switchTab = function (tab) {
 };
 
 ContentPanel.prototype.updateTab = function (tabName) {
+    $('.reading-panel-content').hide();
 	var article = this.selectedArticle;
 	var tab = this.options.tabs[tabName];
 	if (!tab) return console.log('no tab data for',tabName)
