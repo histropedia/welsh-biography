@@ -1,14 +1,14 @@
 // Initialise the app
 var DWB = new App();
 
-DWB.setupFilterOptions();
-
-// Create the timeline
 DWB.createTimeline(document.getElementById("timeline-container"), PEOPLE_DATA);
 
-// Setup colour code
+DWB.setupTimelineSearch('#search-box');
+
 DWB.setupColorCodeOptions();
 DWB.setColorCode(DWB.options.colorCode.properties[0]);
+
+DWB.setupFilterOptions();
 
 if (!DWB.isMobile) DWB.openColorCodePanel();
 
@@ -17,7 +17,7 @@ if (!DWB.isMobile) DWB.openColorCodePanel();
 $('#btn-open-color-code').click( function() {
     DWB.openColorCodePanel();
 });
-     
+
 $('#btn-close-color-code-desktop, #btn-close-color-code-mobile').click( function() {
     DWB.closeColorCodePanel();
 });

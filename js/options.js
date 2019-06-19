@@ -32,6 +32,7 @@ var TIMELINE_OPTIONS = {
         },
         onArticleClick: function(article) {
             DWB.contentPanel.setArticle(article);
+            DWB.setSearchInputValue(article.data.title);
         },
         onArticleDoubleClick: function(article) {
             DWB.contentPanel.open()
