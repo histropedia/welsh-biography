@@ -33,7 +33,8 @@
                 
                 me.timeline.bringFront(articleId); //select and bring to front
                 article.activated(); // fire click event 
-                me.timeline.setStartDate(article.period.from, 450);
+                var pixelOffsetX = (me.isMobile) ? 45 : 560;
+                me.timeline.goToDateAnim(article.period.from, {offsetX: pixelOffsetX});
             },
            // formatResult: function (result) {
            //     return '<span class="person-label">' + result.value + '</span><br><span class="from-year">' + result.data.birthYear + '</span>';
