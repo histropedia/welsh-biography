@@ -1,5 +1,9 @@
+import {App} from './js/App';
+import {PEOPLE_DATA} from './js/data';
+import './css/style.css';
+
 // Initialise the app
-var DWB = new App();
+window.DWB = new App();
 
 DWB.createTimeline(document.getElementById("timeline-container"), PEOPLE_DATA);
 

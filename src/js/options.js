@@ -1,5 +1,5 @@
 /*************** TIMELINE OPTIONS ***************/
-var TIMELINE_OPTIONS = {
+export var TIMELINE_OPTIONS = {
     
     //default options for all screen sizes
     default: {
@@ -68,7 +68,7 @@ var TIMELINE_OPTIONS = {
     //can add mobile portrait/landscape overrides here too if needed
 }
 
-var APP_OPTIONS = {
+export var APP_OPTIONS = {
     //todo: remove labels and store all in single map file
     filters: {
         gender: {label: "gender"}, 

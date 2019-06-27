@@ -1,13 +1,12 @@
 // Related Content Panel
 //
-// 
 // Tab switching buttons use 'tab' attribute to define the tab type
 // Must be within tabButtonsContainer specified in options
 // You can add handlers for onClose(), onOpen() or onSelectArticle(article) in options
 
-function ContentPanel(owner, options) {
+export function ContentPanel(owner, options) {
 	
-	//Default options
+    //Default options
 	this.options = {
 		textCharacterLimit: 100,
 		defaultTab: 'wikipedia',

@@ -1,4 +1,7 @@
-function App() {    
+import {ContentPanel} from './ContentPanel';
+import {APP_OPTIONS, TIMELINE_OPTIONS} from './options';
+
+export function App() {    
     var windowWidth = $(window).width(),
         windowHeight = $(window).height(),
         urlParamters = getUrlParameters(),
