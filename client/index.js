@@ -1,6 +1,5 @@
 import {App} from './js/App';
 import {PEOPLE_DATA} from './js/data';
-import './css/style.css';
 
 // Initialise the app
 window.DWB = new App();

@@ -18,7 +18,7 @@ export function ContentPanel(owner, options) {
                     if (article.data.statements.article) {
                         url = article.data.statements.article.values[0].replace('://en', '://en.m');
                     } else {
-                        url = 'no-article.html' + '?name=' + article.data.title;
+                        url = 'no-article' + '?name=' + article.data.title;
                     }
                     
                     $('#' + this.elementId).prop('src', url);
