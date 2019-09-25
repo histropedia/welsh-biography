@@ -4,7 +4,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "dev": "webpack --colors --progress --open -d",
+    "dev": "webpack --colors --progress --watch -d",
     "build": "webpack --colors --progress -p"
   },
   "repository": {

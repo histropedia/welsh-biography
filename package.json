@@ -6,7 +6,7 @@
     "postinstall": "run-p install:server install:client",
     "install:server": "cd server && npm install",
     "install:client": "cd client && npm install",
-    "start": "run-s build:dev start:server",
+    "start": "run-p build:dev start:server",
     "start:server": "cd server && npm start",
     "build:dev": "cd client && npm run dev",
     "build:production": "cd client && npm run build"
