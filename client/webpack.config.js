@@ -22,6 +22,7 @@ module.exports = {
     plugins: [
         new CopyPlugin([
             { from: './css', to: publicFolder + '/css' },
+            { from: './images', to: publicFolder + '/images' },
             { from: './templates', to: viewsFolder },
           ]),
     ]
