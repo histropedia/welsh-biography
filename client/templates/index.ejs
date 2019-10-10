@@ -7,41 +7,116 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="css/style.css" />
 </head>
+    <style>
+/*   .navbar {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0;
+} */
+    
 
+        
+/*        .navbar-nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    justify-content: flex-end;;
+            width: 100%;}
+        */
+
+/*        .navbar-custom  .nav-item {width:100%; padding:5px;}
+        .navbar-custom  .nav-item  .btn-icon {width:100%}
+        .navbar-custom  .nav-item  .btn-icon  .fas {margin-right:15px}*/
+        
+
+        
+        .btn-icon:hover {color:rgba(231, 222, 222, 1)}
+        .btn-icon > .fas:hover{text-dectoration:none}
+    </style>
 <body>
+  
+ <nav class="navbar-custom navbar navbar-expand-lg navbar-dark bg-light">
+     
+     <a id="show-search-btn" href="#" class="btn-icon"><i class="fas fa-search"></i></a>
 
-<div id="timeline-title-container">
-	<h4>Dictionary of Welsh Biography</h4><div id="selected-filters-container"></div>
+     
+     <div class="event-title-container">
+					  <div id="search-box-container" style="z-index: 3">
+    		<input id="search-box" placeholder="Search the Timeline">
+  </div>	
+
+			<span id="btn-close-reading-panel" style="color:white; z-index:3"><i class="far fa-times-circle"></i></span>
+		</div>
+     <div id="timeline-title-container">
+	<img class="logo-bywg" src="https://biography.wales/assets/img/logo_bywg.svg" title="Dictionary of Welsh Biography logo" alt="Read more about the project"><div id="selected-filters-container"></div>
 </div>
+<!--<a class="navbar-brand" href="#">Navbar</a>-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler2" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<button id="btn-open-filters" class="btn-open-page btn-icon" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="label-total-filters"></span></button>
 
+  <div class="collapse navbar-collapse" id="navbarToggler2">
+  <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+          
+        <a href="#" id="btn-open-filters" class="btn-open-page btn-icon" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="label-total-filters"></span>Filters</a>
+      </li>
+      <li class="nav-item">
+          
+      <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i>Colour Code</a> 
+      </li>
+<!--      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>-->
+    </ul>
+
+
+  </div>
+
+</nav>
+    
+    
+    
+    
+    
+    
+
+
+ 
 <!-- Trigger for Color Code Panel-->
-<button id="btn-open-color-code" class="btn btn-outline-primary btn-sm"><i class="fas fa-chevron-left"></i></button> 
 
-	
+
+
 <!--************ READING PANEL****************-->	
 	
 <div id="reading-panel">
 	<div class="reading-panel-header">
-		<div class="event-title-container">
-			
-			  <div id="search-box-container" style="z-index: 3">
-    		<input id="search-box" placeholder="Search the Timeline">
-  </div>
-			<span id="btn-close-reading-panel"><i class="far fa-times-circle"></i></span>
-		</div>
+
 		<div class="event-details">
 				<h5 class="label-event-date reading-panel-date">Day Month Year</h5>
 				<p class="label-event-desc reading-panel-desc">Mini desc of the selected event</p>
 		</div>	
 	</div>
 	<div class="reading-panel-btns-container">
-			<button type="button" class="btn btn-outline-secondary btn-panel-switch" tab="wikipedia">Wikipedia</button>
-			<button type="button" class="btn btn-outline-secondary btn-panel-switch" tab="dwb">DWB</button>
+			<button type="button" class="btn-panel-switch" tab="wikipedia">Wikipedia</button>
+			<button type="button" class="btn-panel-switch" tab="dwb">DWB</button>
 	</div>
     <div id="reading-panel-background">
         <div class="reading-panel-content" style="overflow:auto;-webkit-overflow-scrolling:touch;">
@@ -123,8 +198,10 @@
      
 <div id="timeline-container"></div>
 	
-
+ 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.min.js"></script>

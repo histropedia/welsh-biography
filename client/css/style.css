@@ -1,11 +1,145 @@
 @charset "utf-8";
 /* CSS Document */
 
+/*NAVBAR*/
+
+/* match header bar icons buttons to DWB*/        
+.btn-icon {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(231, 222, 222, 1);
+    padding: .5rem 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.btn-icon > .fas {
+    background-color: #fff;
+    border-radius: 30px;
+    color: #ab363a;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    font-size: 15px;
+    text-align: center;
+    margin: auto 8px;
+}
+
+/*center title inside container*/
+#timeline-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    color: white;
+}
+
+#timeline-title-container h4 {
+   font-size: 1rem;
+}
+#selected-filters-container {
+    display:none
+}
+
+.selected-filter-tag {
+    display: inline;
+    margin-right: 5px;    
+    margin-bottom: 0;
+
+}
+.selected-filter-tag > .badge{
+
+    background-color: white;
+    color: #ab363a
+}
+.remove-filter-tag-btn {
+    cursor: pointer;
+    margin-left: 5px;
+
+}
+
+/*make flex container for event title and close button*/	
+.event-title-container {
+    display: none;
+    justify-content:  space-between;
+    align-items: center;
+    font-size: 1rem;
+  /*  height: 45px;*/
+    flex-grow: 1;
+    padding-right: 20px
+
+}
+
+/*match button to title and postion size*/
+.event-title-container span {
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1.2
+}
+/*reduce title size to fit in header*/		
+.event-title-container h3 {
+    font-size: 1.5rem;
+
+}
+
+
+#search-box-container {
+    border-bottom: 2px solid #fff;
+    width: 100%;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+#search-box {    
+    position: relative;
+    background: #fff;
+    border: none;
+    color: #fff;
+    font-size: 1.25rem;
+    /*text-transform: uppercase;*/
+    font-weight: 500;
+    background-color: transparent;
+    text-overflow: ellipsis;
+    width: 100%;
+    line-height: 1.2;
+}
+
+#search-box:focus{
+    outline: none;
+}
+
+.logo-bywg {
+    /* width: 100%; */
+    height: 46px;
+    max-width: 220px
+}
+
+.navbar-custom {
+    background-color: #ab363a!important;
+    z-index: 1;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+
+}
+
+.navbar-custom .navbar-collapse {
+    flex-grow: 0;
+    width: 450px;
+}
+
+/*****************************************************/
 #timeline-container canvas {vertical-align: top}
 
 #timeline-container {
- 	width: 100%;
-	height: 100%;
+    overflow: hidden;
+    position: absolute;
+    background-position: center;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
 }
 
 /*change placeholder text color*/
@@ -44,45 +178,8 @@
 	#color-code-panel .input-group.mb-3 {
 		margin: 0!important;
 	}
-   
+  
 
-
-/* Make a nice round button*/        
-    .btn-icon {
-        min-width: 50px;
-        min-height: 50px;
-        border-radius: 40px;
-        padding-top: 4px;
-        font-size: 22px;
-        cursor: pointer;
-        display: inline;
-        border-color: transparent;
-        font-weight: 400;
-        box-shadow: none;
-    }     
-    
-/*Position the open filter panel btn under the timeline title*/         
-    #btn-open-filters {
-        position: absolute; 
-        right:8px; 
-        top:50px
-    }       
-
-/*style and position color code trigger under the open filter panel btn*/
-    #btn-open-color-code {
-        position: absolute;
-        right: 0;
-        top:125px;
-        border-radius: 0;
-        height: 38px;
-        width: 30px
-    }  
-
-/*hide this button on mobile display*/
-    #btn-close-color-code-desktop {
-        display: none;
-        width: 30px
-    }
 /*position and style filter and color code panels*/
     .filter-panel, .color-code-filter-panel  {
         width:100%;
@@ -149,31 +246,6 @@
     }          
 
 
-/*center title inside container*/
-	#timeline-title-container {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: lightgrey;
-		position: absolute;
-		width: 100%;
-        flex-direction: column;
-        height: 45px;
-	}
-
-    #selected-filters-container {
- display:none
-    }
-
-    .selected-filter-tag {
-        display: inline;
-        margin-right: 5px;
-    }
-
-    .remove-filter-tag-btn {
-        cursor: pointer;
-        margin-left: 5px;
-    }
 
 	#reading-panel{
 		display: none;
@@ -181,10 +253,10 @@
 		width: 100%;
 		position: fixed;
 		left: 0;
-		top: 0;
-		padding-bottom: 60px;		
+		/*top: 0;*/
+		padding-bottom: 177px;		
 		background-color: #fff;
-		box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+		/*box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);*/
 		border-radius: 2px;
 		z-index: 2
 	}
@@ -207,30 +279,13 @@
     }
 /*style reading panel header*/	
 	.reading-panel-header{
-		padding: 10px 10px 1px;
+		padding: 0;
 		border-bottom: thin white solid;
-		background-color: darkred;
-		color:white;
+		background-color: #eaeaea;
+		/*color:white;*/
 		}
 	
-/*make flex container for event title and close button*/	
-	.event-title-container {
-		display: flex;
-		justify-content:  space-between;
-		align-items: baseline;
-	}
 
-/*match button to title and postion size*/
-	.event-title-container span {
-		font-size: 1.5rem;
-		cursor: pointer;
-		line-height: 1.2
-
-/*reduce title size to fit in header*/	}	
-	.event-title-container h3 {
-		font-size: 1.5rem;
-		
-	}
 
 
 /*hide event details on mobile*/
@@ -250,8 +305,16 @@
 	.reading-panel-btns-container button{
 		width: 50%;
 		border-radius: 0;
+        color: #ab363a;
+        background-color: white;
+        font-weight: 500;
+        border: solid 1px #ab363a;
+        padding: .25rem 0;
 		}
-
+.reading-panel-btns-container button:hover, .reading-panel-btns-container button.active {
+          color: white;
+    background-color: #ab363a;
+}
 /* make reading panel content fill screen*/
 	.reading-panel-content {
 		height: 100%;
@@ -268,30 +331,7 @@
 		margin: 0;
 	}	
 
-	#search-box-container {
-		border-bottom: 2px solid #fff;
-		width: 100%;
-		margin-bottom: 5px;
-		line-height: 1.2;
-	}
 
-	#search-box {    
-		position: relative;
-		background: #fff;
-		border: none;
-		color: #fff;
-		font-size: 1.5rem;
-		text-transform: uppercase;
-		font-weight: 500;
-		background-color: transparent;
-		text-overflow: ellipsis;
-		width: 100%;
-		line-height: 1.2;
-	}
-
-	#search-box:focus{
-		outline: none;
-	}
 
 /*autocomplete results*/
     .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
@@ -302,7 +342,48 @@
     .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
 
 @media (min-width: 992px) {
-    #selected-filters-container{display: inherit}
+    
+        .logo-bywg {
+        /* width: 100%; */
+        height: 46px;
+        max-width:inherit
+    }
+    #show-search-btn {
+        display: none
+    }
+    
+    
+    #selected-filters-container{
+        display: inherit
+    }
+
+	
+/*adjust for desktop header*/
+	#timeline-title-container{
+       height: 65px;
+	}
+
+    #timeline-title-container h4 {
+        margin: 10px;
+        line-height: 0.5;
+        font-size: 1.5rem;
+	}
+        
+    .event-title-container {
+		display: flex;
+        font-size: 1.5rem;
+        width:450px;  
+        height:65px; 
+        z-index:3; 
+        padding-left:10px;
+        flex-grow: 0;
+        padding-right: 0
+    }
+
+    .btn-icon {
+        padding: 0.5rem 0.5rem
+    }
+ 
 /*resize and position filter panel on desktop*/
     .filter-panel {
         position: absolute;
@@ -330,35 +411,13 @@
         display: inherit
     }
 	
-/*Postion btn on desktop*/
-	#btn-open-color-code {
-		top:80px;
-	}
-	
-/*position button next to timeline title*/	
-	#btn-open-filters{
-		top: 8px;
-		right: 30%;
-	}
-	
-/*adjust for desktop header*/
-	#timeline-title-container{
-		width:auto;
-		left: 50%;
-		transform: translate(-50%);
-		background-color: transparent;
-        align-items: flex-start;
-        height: auto
-	}
-	#timeline-title-container h4 {
-		font-size: 30px;
-	}
 	
 /* make side panel on desktop*/
 	#reading-panel {
 	width: 450px
 	}
-
+.reading-panel-header{
+    padding: 10px 10px 1px;}
 /* show event details in mini card on desktop*/
 	.event-details {
 	display:inherit
