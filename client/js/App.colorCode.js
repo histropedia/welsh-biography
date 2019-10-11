@@ -57,7 +57,7 @@ function getcolorGroups(timeline, property) {
     var articles = timeline.articles;
     for (var i=0; i < articles.length; i++ ) {
         var article = articles[i];
-        if (article.hiddenByFilter) continue;
+        if (article.hiddenByFilter || article.data.isContextEvent) continue;
         var statement = article.data.statements[property];
         var statementValue = (statement && statement.values[0]) ?
             statement.values[0]: 

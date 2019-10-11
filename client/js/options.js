@@ -9,7 +9,10 @@ export var TIMELINE_OPTIONS = {
         },
         zoom: {
             initial: 35.6,
-            max: 53
+            max: 53,
+            unitSize: {
+                initial: 105
+            }
         },
         draggingVicinity: {
             up: 1200,
@@ -18,10 +21,14 @@ export var TIMELINE_OPTIONS = {
         article: {
             density: Histropedia.DENSITY_LOW,
             defaultStyle: {
+                color: '#222',
                 header: {
                     text: {
                         color: '#fff'
                     }
+                },
+                subheader: {
+                    color: '#444'
                 }
             },
             periodLine: {
@@ -55,12 +62,13 @@ export var TIMELINE_OPTIONS = {
     //overrides for large height timeline
     large: { 
         article: {
-            distanceToMainLine: 430,
+            distanceToMainLine: 380,
             autoStacking: {
-                topGap: 80
+                topGap: 90
             },
             defaultStyle: {
-                width: 185
+                width: 175,
+                maxImageHeight: 250
             }
         }
     }
@@ -75,8 +83,8 @@ export var APP_OPTIONS = {
         occupation: {label: "occupation"}
     },
     colorCode: {
-        properties: ["occupation", "gender"],    // list of Wikidata properties
-        colors: ['#961111', '#1a5d1f', '#1565c0', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
+        properties: ["gender"],    // list of Wikidata properties
+        colors: ['#1a5d1f', '#1565c0', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
     },
     contentPanel: {
         

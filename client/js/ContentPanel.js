@@ -15,9 +15,11 @@ export function ContentPanel(owner, options) {
 				elementId: 'reading-panel-iframe',
 				update: function(article) {
                     var url;
-                    if (article.data.statements.article) {
+                    if (article.data.statements && article.data.statements.article) {
                         url = article.data.statements.article.values[0].replace('://en', '://en.m');
-                    } else {
+                    } else if (article.data.article) {
+						url = article.data.article.replace('://en', '://en.m');
+					} else {
                         url = 'no-article' + '?name=' + article.data.title;
                     }
                     

@@ -1,6 +1,8 @@
 node_modules/
 client/node_modules/
 server/node_modules/
-server/public/
+server/public/css/
+server/public/js/
+server/public/images/
 server/views/
 server/.env

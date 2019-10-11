@@ -171,6 +171,7 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
         filterValues = {};
 
     for (var i=0; i < articles.length; i++) {
+        if (articles[i].data.isContextEvent) continue;
         var statement = articles[i].data.statements[filterProperty];
         if (articles[i].isHiddenByFilter || !statement || statement.values.length === 0) continue; 
 
@@ -247,6 +248,10 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
 
 function getArticleVisiblityFromFilters(article, appliedFilters) {
     // article will not be visible if it fails to match any active filters
+
+    if (article.data.isContextEvent) {        
+        return article.owner.showContextEvents;
+    }
 
     var articleStatements = article.data.statements;
 

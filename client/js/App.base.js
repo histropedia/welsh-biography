@@ -4,8 +4,8 @@ import {APP_OPTIONS, TIMELINE_OPTIONS} from './options';
 export function App() {    
     var windowWidth = $(window).width(),
         windowHeight = $(window).height(),
-        urlParamters = getUrlParameters(),
-        disableEffects = urlParamters.nofx;
+        urlParameters = getUrlParameters(),
+        disableEffects = urlParameters.nofx;
     
     this.isMobile = windowWidth < 450 || windowHeight < 450;
     this.isPortrait = windowWidth < windowHeight;
@@ -19,6 +19,7 @@ export function App() {
             isOpen: false,
             panel: "", // e.g. "P19"
         },
+        contextEvents: true,
         colorCodePanel: {
             isOpen: false,
         },
@@ -31,15 +32,19 @@ export function App() {
     
     this.options = APP_OPTIONS;
     
-    this.createTimeline = function(container, articles) {
+    // Add any number of optional article array arguments after container
+    this.createTimeline = function(container) {
         var defaultOptions = TIMELINE_OPTIONS.default,
             sizeSpecificOptions = getTimelineOptions(),
             options = $.extend(true, {}, defaultOptions, sizeSpecificOptions);
         
         this.timeline = new Histropedia.Timeline( container, options );
-        this.timeline.load(articles);
+        for (var i=1; i<arguments.length; i++) {
+            this.timeline.load(arguments[i]);
+        }
     }
     
+
     this.contentPanel = new ContentPanel(this, this.options.contentPanel);
     
     this.windowResized = function () {
