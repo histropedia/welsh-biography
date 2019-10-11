@@ -21,3 +21,14 @@ excluding the node_modules and git folders (todo: automate or create build folde
     Note: the .env is left unchanged in future deployments
   - install dependencies using `npm install` from the newly copied folder 
   Note: *only* server dependencies are needed as front end assets have dendencies pre-bundled
+
+
+# Translations
+All commands run from the server folder (todo: move to project root once finalised)
+Compile strings after install:
+- Run `npm run compile-i18n` to compile json for each locale from their completed .po files
+
+Add new strings:
+- Run `npm extract-i18n` to extract new strings to .pot file
+- Run `npm run update-cy` to merge new .pot file into existing Welsh .po file
+- Run `npm run compile-i18n` to compile json for each locale

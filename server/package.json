@@ -3,7 +3,10 @@
   "description": "Back end source code for Dictionary of Welsh Biography timeline",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "extract-i18n": "xgettext -p locale/templates/LC_MESSAGES -o messages.pot -L JavaScript -f filelist.txt",
+    "compile-i18n": "bash ./node_modules/.bin/compile-json locale locale",
+    "update-cy": "msgmerge locale/cy/LC_MESSAGES/messages.po locale/templates/LC_MESSAGES/messages.pot"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,6 +15,7 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "i18n-abide": "0.0.26",
     "morgan": "~1.9.1"
   }
 }

@@ -3,12 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var i18n = require('i18n-abide');
 
 var indexRouter = require('./routes/index');
 var noArticleRouter = require('./routes/no-article');
 
 var app = express();
+
+// i18n setup
+app.use(i18n.abide({
+  supported_languages: ['en-GB', 'cy', 'db-LB', 'it-CH'],
+  default_lang: 'en-GB',
+  debug_lang: 'it-CH',
+  translation_directory: 'locale',
+  locale_on_url: true
+}));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,7 +32,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/no-article', noArticleRouter);
-//app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

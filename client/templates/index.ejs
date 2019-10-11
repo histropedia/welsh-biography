@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html  lang=<%= lang %> dir=<%= lang_dir %> >
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Dictionary of Welsh Biography</title>
+	<title><%= gettext("Dictionary of Welsh Biography") %></title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -76,11 +76,11 @@
   <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <li class="nav-item active">
           
-        <a href="#" id="btn-open-filters" class="btn-open-page btn-icon" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="label-total-filters"></span>Filters</a>
+        <a href="#" id="btn-open-filters" class="btn-open-page btn-icon" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="label-total-filters"></span><%= gettext("Filters") %></a>
       </li>
       <li class="nav-item">
           
-      <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i>Colour Code</a> 
+      <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><%= gettext("Colour Code") %></a> 
       </li>
 <!--      <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -115,8 +115,8 @@
 		</div>	
 	</div>
 	<div class="reading-panel-btns-container">
-			<button type="button" class="btn-panel-switch" tab="wikipedia">Wikipedia</button>
-			<button type="button" class="btn-panel-switch" tab="dwb">DWB</button>
+			<button type="button" class="btn-panel-switch" tab="wikipedia"><%= gettext("Wikipedia") %></button>
+			<button type="button" class="btn-panel-switch" tab="dwb"><%= gettext("DWB") %></button>
 	</div>
     <div id="reading-panel-background">
         <div class="reading-panel-content" style="overflow:auto;-webkit-overflow-scrolling:touch;">
@@ -129,10 +129,10 @@
 <!--************ FILTER PANEL****************-->
 	
 <div id="filter-types-panel" class="noselect filter-panel" style="display: none">
-    <button class="btn-block btn-primary btn-sm btn btn-close-filter-types-panel" style="">CLOSE</button>
+    <button class="btn-block btn-primary btn-sm btn btn-close-filter-types-panel" style=""><%= gettext("CLOSE") %></button>
     <div class="filter-panel-header">
-        <h2>Filter the Timeline</h2>
-        <p>Choose the type of filter you want to apply</p>
+        <h2><%= gettext("Filter the Timeline") %></h2>
+        <p><%= gettext("Choose the type of filter you want to apply") %></p>
     </div>
     <div class="filter-panel-content">
         <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
@@ -140,14 +140,14 @@
         </div>
     </div>
     <div class="filter-panel-footer">
-		<button id="btn-clear-all-filters" type="button" class="btn btn-danger">CLEAR ALL FILTERS</button>
+		<button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= gettext("CLEAR ALL FILTERS") %></button>
     </div>
 </div>
 
 	
 <!--************ FILTER PANEL SEARCH PANEL****************-->
 	
-<div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none"> <a href="#" class="btn-primary btn-block btn-sm btn btn-close-filter-panel">back</a>
+<div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none"> <a href="#" class="btn-primary btn-block btn-sm btn btn-close-filter-panel"><%= gettext("back") %></a>
     <div class="filter-panel-header">
         <h3>Filter by <span id="filter-property-label">type</span></h3>
     </div>
@@ -165,12 +165,12 @@
 <!--************ COLOR CODE PANEL****************-->	
 	
 <div id="color-code-panel" class="color-code-filter-panel" style="display: none">
-	<a href="#" id="btn-close-color-code-mobile" class="btn-primary btn-block btn-sm btn btn-open-page" target-element="">back</a> 
+	<a href="#" id="btn-close-color-code-mobile" class="btn-primary btn-block btn-sm btn btn-open-page" target-element=""><%= gettext("back") %></a> 
 	<div class="color-code-filter-panel-header">	
 		<button id="btn-close-color-code-desktop" class="btn btn-outline-primary btn-sm"><i class="fas fa-chevron-right"></i></button> 
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<label class="input-group-text" for="color-code-select">Colour Code by</label>
+				<label class="input-group-text" for="color-code-select"><%= gettext("Colour Code by") %></label>
 			</div>
 			<select class="custom-select" id="color-code-select">
 				<option selected="">option 1</option>
