@@ -3,7 +3,31 @@
 
 /*NAVBAR*/
 
-/* match header bar icons buttons to DWB*/        
+.navbar-custom {
+    background-color: #ab363a!important;
+    z-index: 1;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+}
+
+.navbar-custom .navbar-collapse {
+    flex-grow: 0;
+    width: 450px;
+}
+
+/*BUTTONS*/
+/*use after for button labels to allow them to be hidden on smaller desktops*/
+#btn-open-filters::after {
+    content: "Filters"
+}
+#btn-open-color-code::after {
+    content: "Colour Code"
+}
+#btn-world-events::after {
+    content: "World Events"
+}
+
+/* match buttons and labels to DWB*/        
 .btn-icon {
     display: flex; 
     flex-direction: row;
@@ -15,7 +39,8 @@
     font-weight: 400;
     line-height: 1.5;
 }
-.btn-icon > .fas {
+/*adjust font-awesome style for icon btns*/
+.btn-icon > .fas, .btn-icon > .fab, .btn-icon > .fa {
     background-color: #fff;
     border-radius: 30px;
     color: #ab363a;
@@ -27,8 +52,11 @@
     text-align: center;
     margin: auto 8px;
 }
+.btn-icon:hover {color:rgba(231, 222, 222, 1)}
+.btn-icon > .fas:hover{text-dectoration:none}
 
-/*center title inside container*/
+/*TIMELINE TITLE*/
+/*center title inside container. Using flex to position applied filter tags*/
 #timeline-title-container {
     display: flex;
     align-items: center;
@@ -36,14 +64,18 @@
     flex-direction: column;
     color: white;
 }
-
+/*size logo for mobile*/
+.logo-bywg {
+    height: 46px;
+    max-width: 220px
+}
 #timeline-title-container h4 {
    font-size: 1rem;
 }
 #selected-filters-container {
     display:none
 }
-
+/*style filter tags*/
 .selected-filter-tag {
     display: inline;
     margin-right: 5px;    
@@ -51,29 +83,25 @@
 
 }
 .selected-filter-tag > .badge{
-
     background-color: white;
     color: #ab363a
 }
 .remove-filter-tag-btn {
     cursor: pointer;
     margin-left: 5px;
-
 }
 
-/*make flex container for event title and close button*/	
+/*EVENT SEARCH AND TILTE*/
+/*make flex container for event title, search and close button*/	
 .event-title-container {
     display: none;
-    justify-content:  space-between;
     align-items: center;
     font-size: 1rem;
-  /*  height: 45px;*/
     flex-grow: 1;
     padding-right: 20px
-
 }
 
-/*match button to title and postion size*/
+/*match close button to title and postion size*/
 .event-title-container span {
     font-size: 1.5rem;
     cursor: pointer;
@@ -82,9 +110,7 @@
 /*reduce title size to fit in header*/		
 .event-title-container h3 {
     font-size: 1.5rem;
-
 }
-
 
 #search-box-container {
     border-bottom: 2px solid #fff;
@@ -99,7 +125,6 @@
     border: none;
     color: #fff;
     font-size: 1.25rem;
-    /*text-transform: uppercase;*/
     font-weight: 500;
     background-color: transparent;
     text-overflow: ellipsis;
@@ -110,24 +135,8 @@
 #search-box:focus{
     outline: none;
 }
-
-.logo-bywg {
-    /* width: 100%; */
-    height: 46px;
-    max-width: 220px
-}
-
-.navbar-custom {
-    background-color: #ab363a!important;
-    z-index: 1;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-
-}
-
-.navbar-custom .navbar-collapse {
-    flex-grow: 0;
-    width: 450px;
+#popover-content {
+    display: none;
 }
 
 /*****************************************************/
@@ -159,227 +168,226 @@
 
 
 /* reset some bootstrap elements for color code panel*/
-    .color-code-filter-panel *{
-        border-radius:0!important;
-    }
-    
-    .color-code-filter-panel-header .input-group * {
-        border: none!important;
-    }
+.color-code-filter-panel *{
+    border-radius:0!important;
+}
 
-    #color-code-panel table {
-        margin-bottom:0px;
-    }
+.color-code-filter-panel-header .input-group * {
+    border: none!important;
+}
 
-    #color-code-panel .table tbody+tbody {
-        border: none
-    }
-	
-	#color-code-panel .input-group.mb-3 {
-		margin: 0!important;
-	}
-  
+#color-code-panel table {
+    margin-bottom:0px;
+}
+
+#color-code-panel .table tbody+tbody {
+    border: none
+}
+
+#color-code-panel .input-group.mb-3 {
+    margin: 0!important;
+}
+
 
 /*position and style filter and color code panels*/
-    .filter-panel, .color-code-filter-panel  {
-        width:100%;
-        height: 100%;
-        z-index: 3;
-        top:0px;
-        position: fixed;
-        right: 0px;
-        background-color: #fff;
-        padding: 0px 0 20px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
-        border-radius: 2px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-		box-sizing: border-box;
-		overflow: auto;
-	}          
-    
+.filter-panel, .color-code-filter-panel  {
+    width:100%;
+    height: 100%;
+    z-index: 3;
+    top:0px;
+    position: fixed;
+    right: 0px;
+    background-color: #fff;
+    padding: 0px 0 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+    border-radius: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: auto;
+}          
+
 /*style inner containers for filter panels*/
-    .filter-panel-header    {
-        text-align: center;
-        padding: 10px; 
-     }     
+.filter-panel-header    {
+    text-align: center;
+    padding: 10px; 
+ }     
 
-    .filter-panel-content {
-        max-height: 75%;
-        width: 100%;
-        min-height: 0;
-        padding: 10px;
-        overflow: auto
-    }
+.filter-panel-content {
+    max-height: 75%;
+    width: 100%;
+    min-height: 0;
+    padding: 10px;
+    overflow: auto
+}
 
-    .filter-panel-footer {
-        position: absolute; 
-        bottom: 0; 
-        text-align: center; 
-        width: 100%; 
-        padding: 10px
-    }
+.filter-panel-footer {
+    position: absolute; 
+    bottom: 0; 
+    text-align: center; 
+    width: 100%; 
+    padding: 10px
+}
 
-    .label-selected-filters {
-        font-size: 14px; 
-        color:red;
-        display: block;
-        white-space: normal;
-        max-width: 95%;
-    }
-    
+.label-selected-filters {
+    font-size: 14px; 
+    color:red;
+    display: block;
+    white-space: normal;
+    max-width: 95%;
+}
+
 /*Position chevron on filter type list*/         
-    #filter-types-list-container .fas {
-	    position: absolute;
-	    right: 16px;
-	    top: 35%;
-    }
+#filter-types-list-container .fas {
+    position: absolute;
+    right: 16px;
+    top: 35%;
+}
 /*make search box fill the panel*/
-    .filter-panel-content input {
-        width: 100%;
-    }
-          
+.filter-panel-content input {
+    width: 100%;
+}
+
 /* make flex header for color code panel*/
-    .color-code-filter-panel-header    {
-        text-align: center;
-        display: flex;
-    }          
+.color-code-filter-panel-header    {
+    text-align: center;
+    display: flex;
+}          
 
-
-
-	#reading-panel{
-		display: none;
-		height: 100%;
-		width: 100%;
-		position: fixed;
-		left: 0;
-		/*top: 0;*/
-		padding-bottom: 177px;		
-		background-color: #fff;
-		/*box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);*/
-		border-radius: 2px;
-		z-index: 2
-	}
+#reading-panel{
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    /*top: 0;*/
+    padding-bottom: 97px;		
+    background-color: #fff;
+    /*box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);*/
+    border-radius: 2px;
+    z-index: 2
+}
 
 /*reduce reading panel height when panel content is closed*/
-	#reading-panel.selected {
-    	height: auto;
-    	padding-bottom: 0;
-	}
-	#reading-panel.selected .reading-panel-content {
-   	 	height: 0;
-    }
+#reading-panel.selected {
+    height: auto;
+    padding-bottom: 0;
+}
+#reading-panel.selected .reading-panel-content {
+    height: 0;
+}
 
-    #reading-panel-background {
-        background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/92/Loading_icon_cropped.gif);
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 100%;
-        height: 100%;
-    }
+#reading-panel-background {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/92/Loading_icon_cropped.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
 /*style reading panel header*/	
-	.reading-panel-header{
-		padding: 0;
-		border-bottom: thin white solid;
-		background-color: #eaeaea;
-		/*color:white;*/
-		}
-	
-
-
+.reading-panel-header{
+    padding: 0;
+    border-bottom: thin white solid;
+    background-color: #eaeaea;
+    /*color:white;*/
+    }
 
 /*hide event details on mobile*/
-	.event-details {
-		display: none;
-	}	
+.event-details {
+    display: none;
+}	
 
-	
+
 /*make flex container for panel switching buttons*/
-	.reading-panel-btns-container {
-		display: flex;
-		justify-content: space-around;
-		background-color: #E5E7E6 
-	}	
-	
+.reading-panel-btns-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #E5E7E6 
+}	
+
 /*make full width split button*/
-	.reading-panel-btns-container button{
-		width: 50%;
-		border-radius: 0;
-        color: #ab363a;
-        background-color: white;
-        font-weight: 500;
-        border: solid 1px #ab363a;
-        padding: .25rem 0;
-		}
+.reading-panel-btns-container button{
+    width: 50%;
+    border-radius: 0;
+    color: #ab363a;
+    background-color: white;
+    font-weight: 500;
+    border: solid 1px #ab363a;
+    padding: .25rem 0;
+}
 .reading-panel-btns-container button:hover, .reading-panel-btns-container button.active {
-          color: white;
+    color: white;
     background-color: #ab363a;
 }
 /* make reading panel content fill screen*/
-	.reading-panel-content {
-		height: 100%;
-	}	
+.reading-panel-content {
+    height: 100%;
+}	
 
 /*make inserted iframe fill remaining space*/	
-	#reading-panel-iframe {
-		height: 100%; 
-		width: 100%; 
-		display: table; 
-		border: none; 
-		padding: none; 
-		outline: none; 
-		margin: 0;
-	}	
+#reading-panel-iframe {
+    height: 100%; 
+    width: 100%; 
+    display: table; 
+    border: none; 
+    padding: none; 
+    outline: none; 
+    margin: 0;
+}	
 
 
 
 /*autocomplete results*/
-    .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
-    .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
-    .autocomplete-selected { background: #F0F0F0; }
-    .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
-    .autocomplete-group { padding: 2px 5px; }
-    .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
 
-@media (min-width: 992px) {
-    
-        .logo-bywg {
-        /* width: 100%; */
-        height: 46px;
-        max-width:inherit
+
+/*main breakpoint from mobile / desktop mode*/
+@media (min-width: 1200px) {
+    /*hide btn labels to fit in header on smaller desktops */
+    #btn-open-filters::after {
+        content: none
     }
+    #btn-open-color-code::after {
+        content: none
+    }
+    #btn-world-events::after {
+        content: none
+    }
+    /*move lang btn to end of row*/
+    #btn-lang-switch{
+        order: 1
+    }
+
+    /*Hide button - search always visiible at this size*/
     #show-search-btn {
         display: none
     }
-    
-    
+    /*allow selected filters to be displayed under title*/
     #selected-filters-container{
         display: inherit
     }
-
-	
-/*adjust for desktop header*/
-	#timeline-title-container{
-       height: 65px;
-	}
-
-    #timeline-title-container h4 {
-        margin: 10px;
-        line-height: 0.5;
-        font-size: 1.5rem;
-	}
-        
+    /*stop reducing logo and title size*/
+    .logo-bywg {
+        height: 46px;
+        max-width:inherit
+    } 
+/*Display event tile and search box, match width to reading window. Height controls navbar height*/
     .event-title-container {
 		display: flex;
         font-size: 1.5rem;
-        width:450px;  
         height:65px; 
         z-index:3; 
         padding-left:10px;
         flex-grow: 0;
-        padding-right: 0
+        padding-right: 0;
+        width:450px
     }
-
+    /*increase spacing between buttons*/
     .btn-icon {
         padding: 0.5rem 0.5rem
     }
@@ -410,16 +418,39 @@
     #btn-close-color-code-desktop{
         display: inherit
     }
-	
-	
+
 /* make side panel on desktop*/
 	#reading-panel {
-	width: 450px
-	}
-.reading-panel-header{
-    padding: 10px 10px 1px;}
+        width: 450px;
+        padding-bottom: 200px
+    }
+    .reading-panel-header{
+        padding: 10px 10px 1px;
+    }
 /* show event details in mini card on desktop*/
 	.event-details {
-	display:inherit
+	    display:inherit
 	}
+}
+
+/*Breakpoint for big monitor size*/
+/*increase width of side elements to allow title to be cetralised*/
+@media (min-width: 1581px) {
+    .event-title-container, .navbar-custom .navbar-collapse {
+        width: 660px;
+    }
+/* adjust search box size to fit in oversized container*/    
+    #search-box-container {
+        width: 414px;
+    }
+/* show btn labels now we have space for them*/    
+    #btn-open-filters::after {
+        content: "Filters"
+    }
+    #btn-open-color-code::after {
+        content: "Colour Code"
+    }
+    #btn-world-events::after {
+        content: "World Events"
+    }    
 }

@@ -12,112 +12,56 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="css/style.css" />
 </head>
-    <style>
-/*   .navbar {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding: 0;
-} */
-    
-
-        
-/*        .navbar-nav {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-    justify-content: flex-end;;
-            width: 100%;}
-        */
-
-/*        .navbar-custom  .nav-item {width:100%; padding:5px;}
-        .navbar-custom  .nav-item  .btn-icon {width:100%}
-        .navbar-custom  .nav-item  .btn-icon  .fas {margin-right:15px}*/
-        
-
-        
-        .btn-icon:hover {color:rgba(231, 222, 222, 1)}
-        .btn-icon > .fas:hover{text-dectoration:none}
-    </style>
 <body>
-  
- <nav class="navbar-custom navbar navbar-expand-lg navbar-dark bg-light">
-     
-     <a id="show-search-btn" href="#" class="btn-icon"><i class="fas fa-search"></i></a>
-
-     
-     <div class="event-title-container">
-					  <div id="search-box-container" style="z-index: 3">
-    		<input id="search-box" placeholder="Search the Timeline">
-  </div>	
-
-			<span id="btn-close-reading-panel" style="color:white; z-index:3"><i class="far fa-times-circle"></i></span>
-		</div>
-     <div id="timeline-title-container">
-	<img class="logo-bywg" src="https://biography.wales/assets/img/logo_bywg.svg" title="Dictionary of Welsh Biography logo" alt="Read more about the project"><div id="selected-filters-container"></div>
-</div>
-<!--<a class="navbar-brand" href="#">Navbar</a>-->
+ 
+<nav class="navbar-custom navbar navbar-expand-xl navbar-dark bg-light">
+    <a id="show-search-btn" href="#" class="btn-icon"><i class="fas fa-search"></i></a>
+    <div class="event-title-container">
+        <div id="search-box-container" style="z-index: 3">
+        <input id="search-box" placeholder="Search the Timeline">
+        </div>	
+        <span id="btn-close-reading-panel" style="color:white; z-index:3"><i class="far fa-times-circle"></i></span>
+    </div>
+    <div id="timeline-title-container">
+        <img class="logo-bywg" src="https://biography.wales/assets/img/logo_bywg.svg" title="Dictionary of Welsh Biography logo" alt="Read more about the project">
+        <div id="selected-filters-container"></div>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler2" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-
-  <div class="collapse navbar-collapse" id="navbarToggler2">
-  <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-          
-        <a href="#" id="btn-open-filters" class="btn-open-page btn-icon" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="label-total-filters"></span><%= gettext("Filters") %></a>
-      </li>
-      <li class="nav-item">
-          
-      <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><%= gettext("Colour Code") %></a> 
-      </li>
-<!--      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>-->
-    </ul>
-
-
-  </div>
-
-</nav>
-    
-    
-    
-    
-    
-    
-
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarToggler2">
+        <div class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <a href="#" id="btn-open-filters" class="btn-open-page btn-icon nav-item" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="label-total-filters"></span></a>
+            <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i></a> 
+            <a href="#" id="btn-world-events" class="btn-icon"><i class="fas fa-globe-europe"></i></a> 
+            <a href="#" id="btn-lang-switch" class="btn-icon"><i class="fas fa-language"></i>Cymraeg</a>
+            <a class="btn-icon nav-item px-0" href="https://twitter.com/WelshBiography" alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a class="btn-icon nav-item px-0" role="button" data-toggle="popover" data-placement="bottom" aria-label="share-button" data-original-title="" title=""><i class="fa fa-share-alt" aria-label=""></i></a>
+            <div id="popover-content">
+                <ul class="fa-ul">
+                    <li><a target="_blank" href="https://twitter.com/share"><i class="fa-li fab fa-twitter"></i>Twitter</a></li>
+                    <li><a target="_blank" href="https://www.facebook.com/sharer.php?u=https://biography.wales/"><i class="fa-li fab fa-facebook"></i>Facebook</a></li>
+                    <li><a target="_blank" href="https://plus.google.com/share?url=https://biography.wales/"><i class="fa-li fab fa-google-plus"></i>Google</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav> 
 
  
-<!-- Trigger for Color Code Panel-->
-
-
-
 <!--************ READING PANEL****************-->	
 	
 <div id="reading-panel">
-	<div class="reading-panel-header">
-
-		<div class="event-details">
-				<h5 class="label-event-date reading-panel-date">Day Month Year</h5>
-				<p class="label-event-desc reading-panel-desc">Mini desc of the selected event</p>
-		</div>	
-	</div>
-	<div class="reading-panel-btns-container">
-			<button type="button" class="btn-panel-switch" tab="wikipedia"><%= gettext("Wikipedia") %></button>
-			<button type="button" class="btn-panel-switch" tab="dwb"><%= gettext("DWB") %></button>
-	</div>
+    <div class="reading-panel-header">
+        <div class="event-details">
+            <h5 class="label-event-date reading-panel-date">Day Month Year</h5>
+            <p class="label-event-desc reading-panel-desc">Mini desc of the selected event</p>
+        </div>	
+    </div>
+    <div class="reading-panel-btns-container">
+        <button type="button" class="btn-panel-switch" tab="wikipedia"><%= gettext("Wikipedia") %></button>
+        <button type="button" class="btn-panel-switch" tab="dwb"><%= gettext("DWB") %></button>
+    </div>
     <div id="reading-panel-background">
         <div class="reading-panel-content" style="overflow:auto;-webkit-overflow-scrolling:touch;">
             <iframe id="reading-panel-iframe" src="https://en.m.wikipedia.org/wiki/Mary_Somerville" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" ></iframe>
@@ -136,28 +80,27 @@
     </div>
     <div class="filter-panel-content">
         <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
-   			<!-- ***List of available filter types populated by JavaScript*** -->
+        <!-- ***List of available filter types populated by JavaScript*** -->
         </div>
     </div>
     <div class="filter-panel-footer">
-		<button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= gettext("CLEAR ALL FILTERS") %></button>
+        <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= gettext("CLEAR ALL FILTERS") %></button>
     </div>
 </div>
 
 	
 <!--************ FILTER PANEL SEARCH PANEL****************-->
 	
-<div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none"> <a href="#" class="btn-primary btn-block btn-sm btn btn-close-filter-panel"><%= gettext("back") %></a>
+<div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none">
+    <a href="#" class="btn-primary btn-block btn-sm btn btn-close-filter-panel"><%= gettext("back") %></a>
     <div class="filter-panel-header">
         <h3>Filter by <span id="filter-property-label">type</span></h3>
     </div>
     <div class="filter-panel-content" role="group" aria-label="Vertical button group">
         <!-- *** populated by JavaScript *** -->
-      
-        
     </div>
- <!--   <div class="filter-panel-footer">
-        <button type="button" class="btn btn-secondary">footer button</button>
+    <!--   <div class="filter-panel-footer">
+    <button type="button" class="btn btn-secondary">footer button</button>
     </div>-->
 </div>
 
@@ -165,43 +108,43 @@
 <!--************ COLOR CODE PANEL****************-->	
 	
 <div id="color-code-panel" class="color-code-filter-panel" style="display: none">
-	<a href="#" id="btn-close-color-code-mobile" class="btn-primary btn-block btn-sm btn btn-open-page" target-element=""><%= gettext("back") %></a> 
-	<div class="color-code-filter-panel-header">	
-		<button id="btn-close-color-code-desktop" class="btn btn-outline-primary btn-sm"><i class="fas fa-chevron-right"></i></button> 
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<label class="input-group-text" for="color-code-select"><%= gettext("Colour Code by") %></label>
-			</div>
-			<select class="custom-select" id="color-code-select">
-				<option selected="">option 1</option>
-				<option value="1">option 2</option>
-				<option value="2">option 3</option>
-				<option value="3">option 5</option>
-			</select>
-		</div>
-	</div>
-	<table id="color-code-table" class="table table-hover">
-		<tbody>
-			<!-- ***Color code key populated by JavaScript*** -->
-			<tr group-id="0"> <th scope="row" style="background-color:#961111">&nbsp;</th> <td>World War II (10)</td><td></td></tr>
-			<tr group-id="1"> <th scope="row" style="background-color:#1a5d1f">&nbsp;</th> <td>Operation Overlord (7)</td><td> </td></tr>
-			<tr group-id="2"> <th scope="row" style="background-color:#1565c0">&nbsp;</th> <td>Western Front (World War II) (6)</td><td> </td></tr>
-			<tr group-id="3"> <th scope="row" style="background-color:#7b1fa2">&nbsp;</th> <td>Battle for Caen (4)</td><td> </td></tr>
-			<tr group-id="4"> <th scope="row" style="background-color:#b78617">&nbsp;</th> <td>Allied advance from Paris to the Rhine (1)</td><td> </td></tr>
-			<tr group-id="5"> <th scope="row" style="background-color:#d66f6f">&nbsp;</th> <td>Battle of Arnhem (1)</td><td> </td></tr>
-			<tr group-id="6"> <th scope="row" style="background-color:#56ab6c">&nbsp;</th> <td>Battle of the Scheldt (1)</td><td> </td></tr>
-			<tr group-id="7"> <th scope="row" style="background-color:#377f9a">&nbsp;</th> <td>Invasion of Normandy (1)</td><td> </td></tr>
-			<tr group-id="8"> <th scope="row" style="background-color:#666">&nbsp;</th> <td>Miscellaneous (7)</td><td> </td></tr>
-		</tbody>
-	</table>
+    <a href="#" id="btn-close-color-code-mobile" class="btn-primary btn-block btn-sm btn btn-open-page" target-element=""><%= gettext("back") %></a> 
+    <div class="color-code-filter-panel-header">	
+        <button id="btn-close-color-code-desktop" class="btn btn-outline-primary btn-sm"><i class="fas fa-chevron-right"></i></button> 
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="color-code-select"><%= gettext("Colour Code by") %></label>
+            </div>
+            <select class="custom-select" id="color-code-select">
+                <option selected="">option 1</option>
+                <option value="1">option 2</option>
+                <option value="2">option 3</option>
+                <option value="3">option 5</option>
+            </select>
+        </div>
+    </div>
+    <table id="color-code-table" class="table table-hover">
+        <tbody>
+        <!-- ***Color code key populated by JavaScript*** -->
+        <tr group-id="0"> <th scope="row" style="background-color:#961111">&nbsp;</th> <td>World War II (10)</td><td></td></tr>
+        <tr group-id="1"> <th scope="row" style="background-color:#1a5d1f">&nbsp;</th> <td>Operation Overlord (7)</td><td> </td></tr>
+        <tr group-id="2"> <th scope="row" style="background-color:#1565c0">&nbsp;</th> <td>Western Front (World War II) (6)</td><td> </td></tr>
+        <tr group-id="3"> <th scope="row" style="background-color:#7b1fa2">&nbsp;</th> <td>Battle for Caen (4)</td><td> </td></tr>
+        <tr group-id="4"> <th scope="row" style="background-color:#b78617">&nbsp;</th> <td>Allied advance from Paris to the Rhine (1)</td><td> </td></tr>
+        <tr group-id="5"> <th scope="row" style="background-color:#d66f6f">&nbsp;</th> <td>Battle of Arnhem (1)</td><td> </td></tr>
+        <tr group-id="6"> <th scope="row" style="background-color:#56ab6c">&nbsp;</th> <td>Battle of the Scheldt (1)</td><td> </td></tr>
+        <tr group-id="7"> <th scope="row" style="background-color:#377f9a">&nbsp;</th> <td>Invasion of Normandy (1)</td><td> </td></tr>
+        <tr group-id="8"> <th scope="row" style="background-color:#666">&nbsp;</th> <td>Miscellaneous (7)</td><td> </td></tr>
+        </tbody>
+    </table>
 </div>
-     
+
 <div id="timeline-container"></div>
 	
  
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.min.js"></script>
