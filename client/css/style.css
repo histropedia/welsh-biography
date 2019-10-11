@@ -16,16 +16,6 @@
 }
 
 /*BUTTONS*/
-/*use after for button labels to allow them to be hidden on smaller desktops*/
-#btn-open-filters::after {
-    content: "Filters"
-}
-#btn-open-color-code::after {
-    content: "Colour Code"
-}
-#btn-world-events::after {
-    content: "World Events"
-}
 
 /* match buttons and labels to DWB*/        
 .btn-icon {
@@ -349,15 +339,7 @@
 /*main breakpoint from mobile / desktop mode*/
 @media (min-width: 1200px) {
     /*hide btn labels to fit in header on smaller desktops */
-    #btn-open-filters::after {
-        content: none
-    }
-    #btn-open-color-code::after {
-        content: none
-    }
-    #btn-world-events::after {
-        content: none
-    }
+  .navlabel {display: none}
     /*move lang btn to end of row*/
     #btn-lang-switch{
         order: 1
@@ -444,13 +426,5 @@
         width: 414px;
     }
 /* show btn labels now we have space for them*/    
-    #btn-open-filters::after {
-        content: "Filters"
-    }
-    #btn-open-color-code::after {
-        content: "Colour Code"
-    }
-    #btn-world-events::after {
-        content: "World Events"
-    }    
+    .navlabel {display: inherit}
 }
