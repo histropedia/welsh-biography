@@ -48,9 +48,15 @@ export function App() {
     this.contentPanel = new ContentPanel(this, this.options.contentPanel);
     
     this.windowResized = function () {
-        updateWindowSettings()
+        this.updateWindowSettings();
         this.timeline.setOption(getTimelineOptions());
         this.timeline.fitToHeight(true /*with redraw*/);
+    }
+
+    this.updateWindowSettings = function () {
+        windowWidth = $(window).width();
+        windowHeight = $(window).height();
+        this.isPortrait = windowWidth < windowHeight;
     }
     
     /****************** Private functions ******************/
@@ -64,12 +70,6 @@ export function App() {
         
         if (disableEffects) extendNofxTimelineOptions(options);
         return options;
-    }
-    
-    function updateWindowSettings() {
-        windowWidth = $(window).width();
-        windowHeight = $(window).height();
-        this.isPortrait = windowWidth < windowHeight;
     }
     
     function getUrlParameters () {
