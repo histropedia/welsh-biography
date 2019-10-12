@@ -33,6 +33,13 @@ export function ContentPanel(owner, options) {
 			
 			dwb: {
 				elementId: 'reading-panel-iframe',
+				isButtonVisible: function(article) {
+					return (
+						article.data.statements && 
+						article.data.statements.dwbId &&
+						article.data.statements.dwbId.values[0]
+					)
+				},
 				update: function(article) {
 					$('#' + this.elementId).prop( 'src',  'https://biography.wales/article/' + article.data.statements.dwbId.values[0])
 				}
@@ -80,6 +87,7 @@ export function ContentPanel(owner, options) {
 	//close button click
 	$(this.options.selectors.closeButton).click( function(event) {
 		me.close();
+		me.owner.setSearchInputValue("");
 		return false;
 	});
     
