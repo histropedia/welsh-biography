@@ -35,6 +35,18 @@ $('#btn-world-events').click( function() {
 
 });
 
+$('#show-search-btn').click( function() {
+    if ( !$(this).hasClass("active") ) {
+        $('#timeline-title-container').css("display", "none");
+        $('.event-title-container').css("display", "flex");
+        $(this).addClass("active");
+    } else {
+        $('#timeline-title-container').css("display", "flex");
+        $('.event-title-container').css("display", "none");
+        $(this).removeClass("active");
+    }
+});
+
 $('#btn-close-color-code-desktop, #btn-close-color-code-mobile').click( function() {
     DWB.closeColorCodePanel();
 });
