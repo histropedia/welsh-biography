@@ -31,9 +31,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler2">
         <div class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <a href="#" id="btn-world-events" class="btn-icon"><i class="fas fa-globe-americas"></i><span class="navlabel">World Events</span></a> 
-            <a href="#" id="btn-open-filters" class="btn-open-page btn-icon nav-item" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="navlabel">Filters</span><span class="label-total-filters"></span></a>
-            <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><span class="navlabel">Colour Code</span></a> 
+            <a href="#" id="btn-world-events" class="btn-icon active"><i class="fas fa-globe-americas"></i><span class="navlabel">World Events</span></a> 
+            <a href="#" id="btn-open-filters" class="btn-open-page btn-icon nav-item" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="navlabel"> <%= gettext("Filters") %> </span><span class="label-total-filters"></span></a>
+            <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><span class="navlabel"><%= gettext("Colour Code") %></span></a> 
             <a href="#" id="btn-lang-switch" class="btn-icon"><i class="fas fa-language"></i>Cymraeg</a>
             <a class="btn-icon nav-item px-0" href="https://twitter.com/WelshBiography" alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
             <a class="btn-icon nav-item px-0" role="button" data-toggle="popover" data-placement="bottom" aria-label="share-button" data-original-title="" title=""><i class="fa fa-share-alt" aria-label=""></i></a>
@@ -89,7 +89,7 @@
 <div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none">
     <a href="#" class="btn-dark btn-block btn-sm btn btn-close-filter-panel"><i class="fas fa-chevron-left"></i>&nbsp;<%= gettext("Back") %></a>
     <div class="filter-panel-header">
-        <h3>Filter by <span id="filter-property-label">type</span></h3>
+        <h3><%= gettext("Filter by") %> <span id="filter-property-label">type</span></h3>
     </div>
     <div class="filter-panel-content" role="group" aria-label="Vertical button group">
         <!-- *** populated by JavaScript *** -->

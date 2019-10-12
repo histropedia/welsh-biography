@@ -20,6 +20,14 @@ msgstr ""
 msgid "Dictionary of Welsh Biography"
 msgstr "Y Bywgraffiadur Cymreig"
 
+#: views/index.ejs:35
+msgid "Filters"
+msgstr "hidlwyr"
+
+#: views/index.ejs:35
+msgid "Colour Code"
+msgstr "Côd Lliw"
+
 #: views/index.ejs:43
 msgid "Wikipedia"
 msgstr "Wicipedia"
@@ -28,21 +36,29 @@ msgstr "Wicipedia"
 msgid "DWB"
 msgstr "YBC"
 
-#: views/index.ejs:59
+#: views/index.ejs:73
 msgid "Filter the Timeline"
-msgstr ""
+msgstr "Hidlo'r Llinell Amser"
 
 #: views/index.ejs:60
 msgid "Choose the type of filter you want to apply"
 msgstr "Dewis hidlydd"
 
 #: views/index.ejs:68
-msgid "CLEAR ALL FILTERS"
-msgstr "CLIRIO'R HOLL HIDLWYR"
+msgid "Clear All Filters"
+msgstr "Clirio'r Holl Hidlwyr"
 
 #: views/index.ejs:93
 msgid "back"
-msgstr ""
+msgstr "Nôl"
+
+#: views/index.ejs:106
+msgid "Close"
+msgstr "Cau"
+
+#: views/index.ejs:92
+msgid "Filter by"
+msgstr "Hidlo yn ôl"
 
 #: views/index.ejs:98
 msgid "Colour Code by"
@@ -54,7 +70,7 @@ msgstr "Nid oes erthygl Wicipedia Cymraeg am y person yma"
 
 #: views/no-article.ejs:10
 msgid "Learn how to add this missing article to Wikipedia"
-msgstr ""
+msgstr "Dysgwch sut i greu'r erthygl Wicipedia yma"
 
 #~ msgid "Jan"
 #~ msgstr "Ion"
@@ -91,6 +107,3 @@ msgstr ""
 
 #~ msgid "Dec"
 #~ msgstr "Rhag"
-
-#~ msgid "CLOSE"
-#~ msgstr "CAU"

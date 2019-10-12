@@ -16,9 +16,9 @@ export function ContentPanel(owner, options) {
 				update: function(article) {
                     var url;
                     if (article.data.statements && article.data.statements.article) {
-                        url = article.data.statements.article.values[0].replace('://en', '://en.m');
+                        url = article.data.statements.article.values[0].replace('.wikipedia.org', '.m.wikipedia.org');
                     } else if (article.data.article) {
-						url = article.data.article.replace('://en', '://en.m');
+						url = article.data.article.replace('.wikipedia.org', '.m.wikipedia.org');
 					} else {
                         url = 'no-article' + '?name=' + article.data.title;
                     }

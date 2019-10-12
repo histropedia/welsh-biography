@@ -7,6 +7,14 @@
          null,
          "Y Bywgraffiadur Cymreig"
       ],
+      "Filters": [
+         null,
+         "hidlwyr"
+      ],
+      "Colour Code": [
+         null,
+         "Côd Lliw"
+      ],
       "Wikipedia": [
          null,
          "Wicipedia"
@@ -17,19 +25,27 @@
       ],
       "Filter the Timeline": [
          null,
-         ""
+         "Hidlo'r Llinell Amser"
       ],
       "Choose the type of filter you want to apply": [
          null,
          "Dewis hidlydd"
       ],
-      "CLEAR ALL FILTERS": [
+      "Clear All Filters": [
          null,
-         "CLIRIO'R HOLL HIDLWYR"
+         "Clirio'r Holl Hidlwyr"
       ],
       "back": [
          null,
-         ""
+         "Nôl"
+      ],
+      "Close": [
+         null,
+         "Cau"
+      ],
+      "Filter by": [
+         null,
+         "Hidlo yn ôl"
       ],
       "Colour Code by": [
          null,
@@ -41,7 +57,7 @@
       ],
       "Learn how to add this missing article to Wikipedia": [
          null,
-         ""
+         "Dysgwch sut i greu'r erthygl Wicipedia yma"
       ]
    }
 }
