@@ -64,7 +64,7 @@ export function App() {
     function getTimelineOptions() {
         var size = ( windowHeight < 450 ) ? 'small' : 'large';
         //deep copy of size specific options
-        var options = $.extend( true , {}, TIMELINE_OPTIONS[size] );
+        var options = $.extend( true , {}, TIMELINE_OPTIONS.default, TIMELINE_OPTIONS[size] );
         options.width = windowWidth;
         options.height = windowHeight;
         

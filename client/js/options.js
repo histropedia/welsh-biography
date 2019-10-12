@@ -20,6 +20,7 @@ export var TIMELINE_OPTIONS = {
         },
         article: {
             density: Histropedia.DENSITY_LOW,
+            showStar: false,
             defaultStyle: {
                 color: '#222',
                 header: {
@@ -49,12 +50,27 @@ export var TIMELINE_OPTIONS = {
     //overrides for small height timeline (e.g. landscape mobile)
     small: { 
         article: {
-            distanceToMainLine: 200,
+            distanceToMainLine: 180,
             autoStacking: {
-                topGap: 40
+                topGap: 80
             },
             defaultStyle: {
-                width: 100
+                width: 80,
+                maxImageHeight: 100,
+                header: {
+                    height: 30,
+                    text: {
+                        font: "10px 'Open Sans'",
+                        lineHeight: 11,
+                        margin: 3
+                    }
+                },
+                subheader: {
+                    height: 0,
+                    text: {
+                        font: "0px 'Open Sans'"
+                    }
+                }
             }
         }
     },
@@ -68,7 +84,22 @@ export var TIMELINE_OPTIONS = {
             },
             defaultStyle: {
                 width: 175,
-                maxImageHeight: 250
+                maxImageHeight: 250,
+                header: {
+                    height: 50,
+                    text: {
+                        font: "14px 'Open Sans'",
+                        lineHeight: 20,
+                        margin: 10
+                    }
+                },
+                subheader: {
+                    height: 25,
+                    text: {
+                        font: "10px 'Open Sans'"
+                    }
+                }
+                
             }
         }
     }
@@ -84,7 +115,7 @@ export var APP_OPTIONS = {
     },
     colorCode: {
         properties: ["gender"],    // list of Wikidata properties
-        colors: ['#1a5d1f', '#1565c0', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
+        colors: ['#1a5d1f', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
     },
     contentPanel: {
         
