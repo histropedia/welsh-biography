@@ -41,6 +41,9 @@ export var TIMELINE_OPTIONS = {
         onArticleClick: function(article) {
             DWB.contentPanel.setArticle(article);
             DWB.setSearchInputValue(article.data.title);
+
+            // todo: hack
+            if ( !$('#show-search-btn').hasClass("active") ) $('#show-search-btn').click()
         },
         onArticleDoubleClick: function(article) {
             DWB.contentPanel.open()
