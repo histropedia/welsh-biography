@@ -1,6 +1,10 @@
 @charset "utf-8";
 /* CSS Document */
 
+.select2-results__options {
+    max-height: 500px!important;
+}
+
 /*NAVBAR*/
 
 .navbar-custom {
@@ -43,8 +47,9 @@
     margin: auto 8px;
 }
 .btn-icon:hover {color:rgba(231, 222, 222, 1)}
-.btn-icon > .fas:hover{text-dectoration:none}
-
+.btn-icon > .fas:hover{text-decoration:none}
+.btn-icon.active{ text-decoration: none}
+.btn-icon.active > .fas {background-color:#007bff;color: #fff;}
 /*TIMELINE TITLE*/
 /*center title inside container. Using flex to position applied filter tags*/
 #timeline-title-container {
@@ -177,8 +182,11 @@
 #color-code-panel .input-group.mb-3 {
     margin: 0!important;
 }
-
-
+/*match to brand color*/
+#color-code-panel .input-group-text {
+   background-color: #ab363a;
+    color: #fff;
+}
 /*position and style filter and color code panels*/
 .filter-panel, .color-code-filter-panel  {
     width:100%;
@@ -216,7 +224,13 @@
     bottom: 0; 
     text-align: center; 
     width: 100%; 
-    padding: 10px
+    padding: 10px;
+    background-color: #ab363a;
+}
+#btn-clear-all-filters {
+    color: #fff;
+    background-color: #ab363a;
+    border-color: #ab363a;
 }
 
 .label-selected-filters {
@@ -297,7 +311,7 @@
 
 /*make full width split button*/
 .reading-panel-btns-container button{
-    width: 50%;
+    width: 100%;
     border-radius: 0;
     color: #ab363a;
     background-color: white;
@@ -338,6 +352,10 @@
 
 /*main breakpoint from mobile / desktop mode*/
 @media (min-width: 1200px) {
+    
+    .navbar-custom{
+        min-height: 86px
+    }
     /*hide btn labels to fit in header on smaller desktops */
   .navlabel {display: none}
     /*move lang btn to end of row*/
@@ -362,7 +380,7 @@
     .event-title-container {
 		display: flex;
         font-size: 1.5rem;
-        height:65px; 
+        /*height:65px;*/ 
         z-index:3; 
         padding-left:10px;
         flex-grow: 0;
@@ -378,7 +396,7 @@
     .filter-panel {
         position: absolute;
         max-width: 800px;
-        max-height: 80%;
+        max-height: 690px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -387,20 +405,22 @@
     .color-code-filter-panel {
         max-height: 80%;
 	    min-height: 0px;
-        top:80px;
+        top:86px;
         width: auto;
-        height: auto;    }
+        height: auto;  
+        box-shadow:none;
+   }
    
 /*hide this button on desktop*/
-    #btn-close-color-code-mobile {
+/*    #btn-close-color-code-mobile {
         display:none;
-    }
+    }*/
 	
 /*show this button on desktop*/
-    #btn-close-color-code-desktop{
+/*    #btn-close-color-code-desktop{
         display: inherit
     }
-
+*/
 /* make side panel on desktop*/
 	#reading-panel {
         width: 450px;
@@ -419,7 +439,7 @@
 /*increase width of side elements to allow title to be cetralised*/
 @media (min-width: 1581px) {
     .event-title-container, .navbar-custom .navbar-collapse {
-        width: 660px;
+        width: auto;
     }
 /* adjust search box size to fit in oversized container*/    
     #search-box-container {
@@ -427,4 +447,10 @@
     }
 /* show btn labels now we have space for them*/    
     .navlabel {display: inherit}
+}
+
+@media (max-width: 376px)  {
+    .event-title-container {
+        max-width:270px;
+    }
 }
