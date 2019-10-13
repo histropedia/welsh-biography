@@ -268,6 +268,7 @@ ul {
    background-color: #ab363a;
     color: #fff;
 }
+#btn-close-color-code-mobile {position: sticky; top: 0}
 /*position and style filter and color code panels*/
 .filter-panel, .color-code-filter-panel  {
     width:100%;
