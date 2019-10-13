@@ -1,6 +1,50 @@
 @charset "utf-8";
 /* CSS Document */
 
+/* ZOOM BUTTONS */
+
+.timeline-controls-set {
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    width: 44px;
+    text-align: center;
+    bottom: 139px;
+    right: 8px;
+    z-index: 4;
+    display: none;
+}
+
+.timeline-control-btn {
+    padding: 9px;
+    cursor: pointer;
+    position: relative;
+    display: block;
+/*  background-color:#ab363a;
+    color: #fff;
+    border: 1px solid #fff;*/
+    background-color: #fff;
+    color:#ab363a;
+    border: 1px solid #ab363a
+}
+
+.timeline-control-btn:hover{
+/*  background-color: #fff;
+    color:#ab363a;
+    border: 1px solid #ab363a;*/
+    background-color:#ab363a;
+    color: #fff;
+    border: 1px solid #ab363a;
+}
+
+#zoom-in-btn  {
+    border-bottom: transparent solid 1px;
+}
+
+
+.bywg_footer img {
+    max-height: 42px;
+}
 .select2-results__options {
     max-height: 500px!important;
 }
@@ -94,7 +138,7 @@
     font-size: 1rem;
     flex-grow: 1;
     padding-right: 10px;
-        width:0;
+    width:0;
 }
 
 /*match close button to title and postion size*/
@@ -352,7 +396,8 @@
 
 /*main breakpoint from mobile / desktop mode*/
 @media (min-width: 1200px) {
-    
+    .timeline-controls-set {display: inherit}
+    #btn-open-info > .navlabel {display: none} 
     .navbar-custom{
         min-height: 86px
     }
@@ -427,17 +472,21 @@
         padding-bottom: 200px
     }
     .reading-panel-header{
-        padding: 10px 10px 1px;
+        padding: 0 10px;
     }
 /* show event details in mini card on desktop*/
 	.event-details {
-	    display:inherit
+	    display:inherit;
+            display: flex;
+    justify-content: center;
+    height: 84px;
+    flex-direction: column;
 	}
 }
 
 /*Breakpoint for big monitor size*/
 /*increase width of side elements to allow title to be cetralised*/
-@media (min-width: 1581px) {
+@media (min-width: 1365px) {
     .event-title-container, .navbar-custom .navbar-collapse {
         width: auto;
     }
@@ -448,4 +497,9 @@
 /* show btn labels now we have space for them*/    
     .navlabel {display: inherit}
 }
-
+@media only screen and (max-device-width: 790px)
+ and (orientation : landscape){	
+     .navbar-custom {
+         padding:0;
+     }
+}

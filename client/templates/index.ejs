@@ -31,25 +31,29 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler2">
         <div class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <a href="#" id="btn-world-events" class="btn-icon active"><i class="fas fa-globe-americas"></i><span class="navlabel">World Events</span></a> 
+            <a href="#" id="btn-world-events" class="btn-icon active"><i class="fas fa-dragon"></i><span class="navlabel">Welsh History</span></a> 
             <a href="#" id="btn-open-filters" class="btn-open-page btn-icon nav-item" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="navlabel"> <%= gettext("Filters") %> </span><span class="label-total-filters"></span></a>
             <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><span class="navlabel"><%= gettext("Colour Code") %></span></a> 
-            <a href="#" id="btn-lang-switch" class="btn-icon"><i class="fas fa-language"></i>Cymraeg</a>
-            <a class="btn-icon nav-item px-0" href="https://twitter.com/WelshBiography" alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
-            <a class="btn-icon nav-item px-0" role="button" data-toggle="popover" data-placement="bottom" aria-label="share-button" data-original-title="" title=""><i class="fa fa-share-alt" aria-label=""></i></a>
-            <a class="btn-icon nav-item px-0" href="#" alt="" title=""><i class="fas fa-info"></i></a>
+           
+           <!-- <a class="btn-icon nav-item px-0" href="https://twitter.com/WelshBiography" alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>-->
+<!--            <a class="btn-icon nav-item px-0" role="button" data-toggle="popover" data-placement="bottom" aria-label="share-button" data-original-title="" title=""><i class="fa fa-share-alt" aria-label=""></i></a>-->
+            <a id="btn-open-info" class="btn-icon nav-item px-0" href="#" alt="" title=""><i class="fas fa-info"></i><span class="navlabel"><%= gettext("Info") %></span></a>
+             <a href="#" id="btn-lang-switch" class="btn-icon pl-3"></i>Cymraeg</a>
         </div>
     </div>
 </nav> 
-
+<div class="timeline-controls-set">
+	<a href="#" class="timeline-control-btn theme-btn" id="zoom-in-btn"><i class="fas fa-plus"></i></a>
+	<a href="#" class="timeline-control-btn theme-btn" id="zoom-out-btn"><i class="fas fa-minus"></i></a>
+</div>
  
 <!--************ READING PANEL****************-->	
 	
 <div id="reading-panel">
     <div class="reading-panel-header">
         <div class="event-details">
-            <h5 class="label-event-date reading-panel-date">Day Month Year</h5>
-            <p class="label-event-desc reading-panel-desc">Mini desc of the selected event</p>
+            <h5 class="label-event-date reading-panel-date my-0">Day Month Year</h5>
+            <p class="label-event-desc reading-panel-desc my-0"></p>
         </div>	
     </div>
     <div class="reading-panel-btns-container">
@@ -83,7 +87,59 @@
     </div>
 </div>
 
+
+    
+<!--************ INFO PANEL****************-->
 	
+<div id="info-panel" class="noselect filter-panel text-center" style="display: none">
+    <button class="btn-block btn-dark btn-sm btn btn-close-info-panel" style=""><%= gettext("Close") %>&nbsp;<i class="fas fa-times"></i></button>
+    <div class="filter-panel-header">
+        <h2><%= gettext("The Dictonary or Welsh Biography Interactive Timeline") %></h2>
+        <p><%= gettext("This website contains over five thousand concise biographies of individuals who have made a significant contribution to national life, whether in Wales or more widely.") %></p>
+    </div>
+    <div class="filter-panel-content">
+<p>The Dictionary of Welsh Biography (DWB) is the starting point for anyone seeking biographical information about persons throughout history whose contribution or prominence has shaped some aspect of the life of Wales, including the impact of Welsh people in the wider world.</p>
+<p>It provides free access to around 5,000 concise biographical articles in Welsh and English, each fully researched and written by a named specialist author.</p>
+<p>The subjects represent a very wide range of activities, including religion, literature and the arts, government and politics, education and scholarship, law, science and technology, industry, economics and trade, agriculture and land ownership, the military, sport, exploration, philanthropy, and more.</p>
+<p>The DWB is a comprehensive, authoritative and accessible standard academic reference work intended for users of all backgrounds.</p>
+    </div>
+<!--<footer class="bywg_footer container no-gutters d-print-none">
+    <div class="row">
+      <div class="col-md-12 col-lg-6 no-gutters bwyg_footer_first">
+        <ul class="list-inline">
+          <li><a href="https://www.library.wales/index.php?id=355">Privacy &amp; Cookies</a></li>
+          <li><a href="https://biography.wales/copyright">Copyright</a></li>
+          <li><a href="https://biography.wales/about">The Project</a></li>
+          <li><a href="https://biography.wales/help">Help</a></li>
+          <li><a href="https://biography.wales/about#contactus">Contact</a></li>
+          
+        </ul>
+      </div>
+      <div class="col-md-12 col-lg-3 no-gutters bywg_footer_second">
+        <a href="https://www.library.wales/">
+          <img class="bygw_logo-icon" src="https://biography.wales/assets/img/bywg_footer_llgc.png" alt="National Library of Wales Logo" title="National Library of Wales Logo">
+        </a>
+      </div>
+      <div class="col-md-12 col-lg-3 no-gutters bywg_footer_third">
+        <div class="icon-container">
+          <a href="http://www.wales.ac.uk/en/CentreforAdvancedWelshCelticStudies/IntroductiontotheCentre.aspx">
+            <img class="bygw_logo-icon icon-round" src="https://biography.wales/assets/img/bywg_footer_ganolfan.png" alt="The Centre for Advanced Welsh and Celtic Studies Logo" title="The Centre for Advanced Welsh and Celtic Studies Logo">
+          </a>
+        </div>
+        <div class="icon-container">
+          <a href="https://www.cymmrodorion.org/">
+            <img class="bygw_logo-icon icon-round" src="https://biography.wales/assets/img/bywg_footer_cymmrodorion.png" alt="The Honourable Society of Cymmrodorion Logo" title="The Honourable Society of Cymmrodorion Logo">
+          </a>
+        </div>
+        <div class="icon-container float-right">
+          <a href="https://gov.wales/?lang=en">
+            <img class="bygw_logo-icon" src="https://biography.wales/assets/img/logo_cynulliad_round_transp.png" alt="Welsh Government Logo" title="Welsh Government Logo">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>-->
+</div>
 <!--************ FILTER PANEL SEARCH PANEL****************-->
 	
 <div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none">
