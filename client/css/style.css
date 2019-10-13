@@ -130,7 +130,7 @@ ul {
 .btn-icon:hover {color:rgba(231, 222, 222, 1)}
 .btn-icon > .fas:hover{text-decoration:none}
 .btn-icon.active{ text-decoration: none}
-.btn-icon.active > .fas {background-color:#007bff;color: #fff;}
+.btn-icon.active > .fas {background-color:#00AD36;color: #fff;}
 /*TIMELINE TITLE*/
 /*center title inside container. Using flex to position applied filter tags*/
 #timeline-title-container {
