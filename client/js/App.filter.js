@@ -52,6 +52,7 @@ App.prototype.setupFilterOptions = function () {
 
     function getFilterOptionHtml(property, label) {
         //todo: get label from property id
+        label = label.replace(/_/g," ");
         return '<button type="button" filter-property=' + property + ' class="btn btn-outline-secondary btn-lg" style="text-align: left">' + label + '<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span> </button>';
     }
 
@@ -217,7 +218,7 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
         // re-initialise with 
         $controlElement.select2({
             data: results,
-            placeholder: 'Search for ' + filterProperty + ' filters',
+            placeholder: 'Search for ' + filterProperty.replace(/_/g," ") + ' filters',
             templateResult: searchResultsFormat,
         });
 

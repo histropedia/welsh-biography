@@ -1,13 +1,16 @@
 import {App} from './js/App';
-import {PEOPLE_DATA} from './js/data';
 
 // Initialise the app
 window.DWB = new App();
 
-addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
-addToArticleIds(CONTEXT_EVENT_DATA, 10000)
 
-DWB.createTimeline(document.getElementById("timeline-container"), PEOPLE_DATA, CONTEXT_EVENT_DATA);
+// temporary for development
+addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
+appendWidthToImageUrls(CONTEXT_EVENT_DATA, 175)
+appendWidthToImageUrls(BIOGRAPHY_DATA, 175)
+
+
+DWB.createTimeline(document.getElementById("timeline-container"), BIOGRAPHY_DATA, CONTEXT_EVENT_DATA);
 
 DWB.setupTimelineSearch('#search-box');
 
@@ -103,5 +106,12 @@ function addToArticleIds(articleData, amount) {
     for (var i=0; i<articleData.length; i++) {
         var article = articleData[i];
         article.id += amount;
+    }
+}
+
+function appendWidthToImageUrls(articleData,width) {
+    for (var i=0; i<articleData.length; i++) {
+        var article = articleData[i];
+        article.imageUrl += ("?width=" + width);
     }
 }

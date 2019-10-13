@@ -23,7 +23,7 @@ App.prototype.setupColorCodeOptions = function() {
     var properties = this.options.colorCode.properties;
     for (var i=0; i < properties.length; i++) {
         var property = properties[i];
-        var label = property; //todo: update once getLabel functions are ready
+        var label = property.replace(/_/g," "); //todo: update once getLabel functions are ready
         var selected = (i === 0) ? ' selected=selected' : ''
         optionsHtml += '<option value=' + property + selected + '>' + label + '</option>';
     }
