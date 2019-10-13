@@ -112,6 +112,6 @@ function addToArticleIds(articleData, amount) {
 function appendWidthToImageUrls(articleData,width) {
     for (var i=0; i<articleData.length; i++) {
         var article = articleData[i];
-        article.imageUrl += ("?width=" + width);
+        if (article.imageUrl) article.imageUrl += ("?width=" + width);
     }
 }
