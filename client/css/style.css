@@ -268,7 +268,7 @@ ul {
    background-color: #ab363a;
     color: #fff;
 }
-#btn-close-color-code-mobile {position: sticky; top: 0}
+
 /*position and style filter and color code panels*/
 .filter-panel, .color-code-filter-panel  {
     width:100%;
@@ -286,7 +286,11 @@ ul {
     box-sizing: border-box;
     overflow: auto;
 }          
-
+.btn-close-panel {
+    position: sticky; 
+    top: 0;
+    z-index:4;
+}
 /*style inner containers for filter panels*/
 .filter-panel-header    {
     text-align: center;
@@ -338,10 +342,7 @@ ul {
     text-align: center;
     display: flex;
 }          
-.btn-close-info-panel {
-    position: sticky;
-    top:0
-}
+
 #reading-panel{
     display: none;
     height: 100%;
@@ -586,6 +587,7 @@ footer.bywg_footer {
      .navbar-custom {
          padding:0;
      }
+     .container{max-width: 100%}
 }
 
 @media only screen and (max-width: 576px){
