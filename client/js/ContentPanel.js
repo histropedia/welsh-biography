@@ -9,22 +9,18 @@ export function ContentPanel(owner, options) {
     //Default options
 	this.options = {
 		textCharacterLimit: 100,
-		defaultTab: 'wikipedia',
+		defaultTab: 'dwb',
 		tabs: {
 			wikipedia: {
 				elementId: 'reading-panel-iframe',
 				update: function(article) {
                     var url;
-                    if (article.data.statements && article.data.statements.article) {
-                        url = article.data.statements.article.values[0].replace('.wikipedia.org', '.m.wikipedia.org');
-                    } else if (article.data.article) {
+                    if (article.data.article) {
 						url = article.data.article.replace('.wikipedia.org', '.m.wikipedia.org');
 					} else {
                         url = 'no-article' + '?name=' + article.data.title;
                     }
-                    
                     $('#' + this.elementId).prop('src', url);
-					
 				},
                 /*isButtonVisible: function(article) {
                     return !!article.data.statements.article
@@ -34,14 +30,10 @@ export function ContentPanel(owner, options) {
 			dwb: {
 				elementId: 'reading-panel-iframe',
 				isButtonVisible: function(article) {
-					return (
-						article.data.statements && 
-						article.data.statements.dwbId &&
-						article.data.statements.dwbId.values[0]
-					)
+					return !!article.data.dwbId;
 				},
 				update: function(article) {
-					$('#' + this.elementId).prop( 'src',  'https://biography.wales/article/' + article.data.statements.dwbId.values[0])
+					$('#' + this.elementId).prop( 'src',  'https://biography.wales/article/' + article.data.dwbId)
 				}
 			}
 		},
@@ -191,7 +183,9 @@ ContentPanel.prototype.updateButtonVisibility = function () {
 		} else {
 			buttonElement.hide();
 			if (tabName === this.activeTab) { // if active tab gets hidden, switch to the default tab
-				this.switchTab(this.options.defaultTab)
+
+				//this.switchTab(this.options.defaultTab)
+				this.switchTab("wikipedia") //temporary hack
 			}
 		}	
 	} //next tab
