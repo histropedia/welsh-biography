@@ -7,6 +7,14 @@
          null,
          "Y Bywgraffiadur Cymreig"
       ],
+      "Search the Timeline": [
+         null,
+         "Chwiliwch y Llinell Amser"
+      ],
+      "Welsh History": [
+         null,
+         "Hanes Cymry"
+      ],
       "Filters": [
          null,
          "hidlwyr"

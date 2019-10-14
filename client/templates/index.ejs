@@ -18,7 +18,7 @@
     <a id="show-search-btn" href="#" class="btn-icon"><i class="fas fa-search"></i></a>
     <div class="event-title-container">
         <div id="search-box-container" style="z-index: 3">
-        <input id="search-box" placeholder="<%= gettext("Search the Timeline") %>" autocomplete="off">
+        <input id="search-box" autocomplete="off" placeholder="<%= gettext("Search the Timeline") %>" >
         </div>	
         <span id="btn-close-reading-panel" style="color:white; z-index:3"><i class="far fa-times-circle"></i></span>
     </div>
@@ -62,8 +62,8 @@
         </div>	
     </div>
     <div class="reading-panel-btns-container">
-        <button type="button" class="btn-panel-switch" tab="dwb">DWB</button>
-        <button type="button" class="btn-panel-switch" tab="wikipedia">Wikipedia</button>
+        <button type="button" class="btn-panel-switch" tab="dwb"><%= gettext("DWB") %></button>
+        <button type="button" class="btn-panel-switch" tab="wikipedia"><%= gettext("Wikipedia") %></button>
         
     </div>
     <div id="reading-panel-background">
@@ -275,9 +275,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.min.js"></script>
 <script src="libraries/histropedia-1.1.1.min.js"></script>
-<script src=<%="data/" + lang + "/context-events.js"%> > </script>
-<script src=<%="data/" + lang + "/biography-events.js"%> > </script>
-<script src=<%="data/" + lang + "/options.js"%> > </script>
+<script src="<%="data/" + lang + "/context-events.js"%>" > </script>
+<script src="<%="data/" + lang + "/biography-events.js"%>" > </script>
+<script src="<%="data/" + lang + "/options.js"%>" > </script>
 <script src="js/main.js"></script>
 </body>
 </html>

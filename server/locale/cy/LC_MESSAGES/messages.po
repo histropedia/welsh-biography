@@ -20,6 +20,14 @@ msgstr ""
 msgid "Dictionary of Welsh Biography"
 msgstr "Y Bywgraffiadur Cymreig"
 
+#: views/index.ejs:21
+msgid "Search the Timeline"
+msgstr "Chwiliwch y Llinell Amser"
+
+#: views/index.ejs:35
+msgid "Welsh History"
+msgstr "Hanes Cymry"
+
 #: views/index.ejs:35
 msgid "Filters"
 msgstr "hidlwyr"
