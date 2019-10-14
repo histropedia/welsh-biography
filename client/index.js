@@ -88,6 +88,16 @@ $('#selected-filters-container').on('click', 'a', function() {
 })
 
 
+$('.timeline-controls-set').on("click", "a", function(ev) {
+    console.log(ev.target)
+    var buttonId = $(this).attr("id");
+    if ( buttonId === "zoom-in-btn" ) {
+        DWB.timeline.setZoom(DWB.timeline.timescaleManager.zoom - 1.5);
+    } else if ( buttonId === "zoom-out-btn" ) {
+        DWB.timeline.setZoom(DWB.timeline.timescaleManager.zoom + 1.5);
+    }
+})
+
 // temporary for development
 function scaleArticleDataRanks(articleData, scale) {
     for (var i=0; i<articleData.length; i++) {
