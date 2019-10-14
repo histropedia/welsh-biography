@@ -119,6 +119,8 @@ ContentPanel.prototype.setArticle = function (article) {
 	
 	if (article.data.description) {
 		this.setDescription(article.data.description);
+	} else {
+		this.setDescription("");
 	}
 	
 	if (this.options.onSetArticle) {
