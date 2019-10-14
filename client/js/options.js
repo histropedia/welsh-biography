@@ -43,7 +43,7 @@ export var TIMELINE_OPTIONS = {
             DWB.setSearchInputValue(article.data.title);
 
             // todo: hack
-            if ( !$('#show-search-btn').hasClass("active") ) $('#show-search-btn').click()
+            if ( !$('#show-search-btn').hasClass("active") && DWB.isMobile) $('#show-search-btn').click()
         },
         onArticleDoubleClick: function(article) {
             DWB.contentPanel.open()
