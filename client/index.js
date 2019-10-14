@@ -80,6 +80,14 @@ $('#btn-clear-all-filters').click(function() {
     DWB.clearAllFilters();
 })
 
+$('#btn-open-info').click(function() {
+    $('#info-panel').show();
+})
+
+$('.btn-close-info-panel').click(function() {
+    $('#info-panel').hide();
+})
+
 $('#selected-filters-container').on('click', 'a', function() {
     var $tag = $(this).closest('.selected-filter-tag'),
         property = $tag.attr('filter-property'),
