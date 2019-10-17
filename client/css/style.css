@@ -402,7 +402,8 @@ ul {
     background-color: white;
     font-weight: 500;
     border: solid 1px #ab363a;
-    padding: .25rem 0;
+    padding: 7px 0;
+    font-size: 12px;
 }
 .reading-panel-btns-container button:hover, .reading-panel-btns-container button.active {
     color: white;
@@ -514,6 +515,7 @@ footer.bywg_footer {
     .reading-panel-header{
         padding: 0 10px;
     }
+    .reading-panel-btns-container button {font-size:14px; padding: 6px 0}
 /* show event details in mini card on desktop*/
 	.event-details {
 	    display:inherit;
