@@ -89,47 +89,13 @@
         </div>
     </div>
     <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= gettext("Clear All Filters") %></button>
-    <footer class="bywg_footer container no-gutters d-print-none">
-        <div class="row">
-            <div class="col-md-12 col-lg-6 no-gutters bwyg_footer_first">
-                <ul class="list-inline">
-                    <li><a href="https://www.library.wales/index.php?id=355">Privacy &amp; Cookies</a></li>
-                    <li><a href="https://biography.wales/copyright">Copyright</a></li>
-                    <li><a href="https://biography.wales/about">The Project</a></li>
-                    <li><a href="https://biography.wales/help">Help</a></li>
-                    <li><a href="https://biography.wales/about#contactus">Contact</a></li>
-                </ul>
-            </div>
-            <div class="col-md-12 col-lg-3 no-gutters bywg_footer_second">
-                <a href="https://www.library.wales/">
-                    <img class="bygw_logo-icon" src="https://biography.wales/assets/img/bywg_footer_llgc.png" alt="National Library of Wales Logo" title="National Library of Wales Logo">
-                </a>
-            </div>
-            <div class="col-md-12 col-lg-3 no-gutters bywg_footer_third">
-                <div class="icon-container">
-                    <a href="http://www.wales.ac.uk/en/CentreforAdvancedWelshCelticStudies/IntroductiontotheCentre.aspx">
-                        <img class="bygw_logo-icon icon-round" src="https://biography.wales/assets/img/bywg_footer_ganolfan.png" alt="The Centre for Advanced Welsh and Celtic Studies Logo" title="The Centre for Advanced Welsh and Celtic Studies Logo">
-                    </a>
-                </div>
-                <div class="icon-container">
-                    <a href="https://www.cymmrodorion.org/">
-                        <img class="bygw_logo-icon icon-round" src="https://biography.wales/assets/img/bywg_footer_cymmrodorion.png" alt="The Honourable Society of Cymmrodorion Logo" title="The Honourable Society of Cymmrodorion Logo">
-                    </a>
-                </div>
-                    <div class="icon-container float-right">
-                    <a href="https://gov.wales/?lang=en">
-                        <img class="bygw_logo-icon" src="https://biography.wales/assets/img/logo_cynulliad_round_transp.png" alt="Welsh Government Logo" title="Welsh Government Logo">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <%- include('blocks/footer-' + lang); %>
 </div>
 
 <!--************ FILTER PANEL SEARCH PANEL****************-->
 	
 <div id="filter-search-panel" class="noselect filter-panel container" style="z-index: 4; display: none">
-    <a href="#" class="btn-dark btn-block btn-sm btn btn-close-filter-panel btn-close-panel"><i class="fas fa-chevron-left"></i>&nbsp;Back</a>
+    <a href="#" class="btn-dark btn-block btn-sm btn btn-close-filter-panel btn-close-panel"><i class="fas fa-chevron-left"></i>&nbsp;<%= gettext("Back") %></a>
     <div class="filter-panel-header">
         <h2><%= gettext("Filter by") %> <span id="filter-property-label">type</span></h2>
     </div>
@@ -142,47 +108,13 @@
             <select class="filter-panel-search" filter-property="occupation" style="width:100%"></select>
         </div>
     </div>
-    <footer class="bywg_footer container no-gutters d-print-none">
-        <div class="row">
-            <div class="col-md-12 col-lg-6 no-gutters bwyg_footer_first">
-                <ul class="list-inline">
-                    <li><a href="https://www.library.wales/index.php?id=355">Privacy &amp; Cookies</a></li>
-                    <li><a href="https://biography.wales/copyright">Copyright</a></li>
-                    <li><a href="https://biography.wales/about">The Project</a></li>
-                    <li><a href="https://biography.wales/help">Help</a></li>
-                    <li><a href="https://biography.wales/about#contactus">Contact</a></li>
-                </ul>
-            </div>
-            <div class="col-md-12 col-lg-3 no-gutters bywg_footer_second">
-                <a href="https://www.library.wales/">
-                    <img class="bygw_logo-icon" src="https://biography.wales/assets/img/bywg_footer_llgc.png" alt="National Library of Wales Logo" title="National Library of Wales Logo">
-                </a>
-            </div>
-            <div class="col-md-12 col-lg-3 no-gutters bywg_footer_third">
-                <div class="icon-container">
-                    <a href="http://www.wales.ac.uk/en/CentreforAdvancedWelshCelticStudies/IntroductiontotheCentre.aspx">
-                        <img class="bygw_logo-icon icon-round" src="https://biography.wales/assets/img/bywg_footer_ganolfan.png" alt="The Centre for Advanced Welsh and Celtic Studies Logo" title="The Centre for Advanced Welsh and Celtic Studies Logo">
-                    </a>
-                </div>
-                <div class="icon-container">
-                    <a href="https://www.cymmrodorion.org/">
-                        <img class="bygw_logo-icon icon-round" src="https://biography.wales/assets/img/bywg_footer_cymmrodorion.png" alt="The Honourable Society of Cymmrodorion Logo" title="The Honourable Society of Cymmrodorion Logo">
-                    </a>
-                </div>
-                <div class="icon-container float-right">
-                    <a href="https://gov.wales/?lang=en">
-                        <img class="bygw_logo-icon" src="https://biography.wales/assets/img/logo_cynulliad_round_transp.png" alt="Welsh Government Logo" title="Welsh Government Logo">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <%- include('blocks/footer-' + lang); %>
 </div>
     
 <!--************ INFO PANEL****************-->
 	
 <div id="info-panel" class="noselect filter-panel container" style="display: none">
-    <button class="btn-block btn-dark btn-sm btn btn-close-info-panel btn-close-panel" style="">Close&nbsp;<i class="fas fa-times"></i></button>
+    <button class="btn-block btn-dark btn-sm btn btn-close-info-panel btn-close-panel" style=""><%= gettext("Close") %>&nbsp;<i class="fas fa-times"></i></button>
     <div class="filter-panel-header">
         <h1>Dictonary of Welsh Biography</h1>
         <h2>Interactive Timeline</h2>
@@ -193,41 +125,10 @@
         <p>The subjects represent a very wide range of activities, including religion, literature and the arts, government and politics, education and scholarship, law, science and technology, industry, economics and trade, agriculture and land ownership, the military, sport, exploration, philanthropy, and more.</p>
         <p>The DWB is a comprehensive, authoritative and accessible standard academic reference work intended for users of all backgrounds.</p>
     </div>
-    <footer class="bywg_footer container no-gutters d-print-none">
-        <div class="row">
-            <div class="col-md-12 col-lg-6 no-gutters bwyg_footer_first">
-                <ul class="list-inline">
-                    <li><a href="https://www.library.wales/index.php?id=355">Privacy &amp; Cookies</a></li>
-                    <li><a href="https://biography.wales/copyright">Copyright</a></li>
-                    <li><a href="https://biography.wales/about">The Project</a></li>
-                    <li><a href="https://biography.wales/help">Help</a></li>
-                    <li><a href="https://biography.wales/about#contactus">Contact</a></li>
-                </ul>
-            </div>
-            <div class="col-md-12 col-lg-3 no-gutters bywg_footer_second">
-                <a href="https://www.library.wales/">
-                    <img class="bygw_logo-icon" src="https://biography.wales/assets/img/bywg_footer_llgc.png" alt="National Library of Wales Logo" title="National Library of Wales Logo">
-                </a>
-            </div>
-            <div class="col-md-12 col-lg-3 no-gutters bywg_footer_third">
-                <div class="icon-container">
-                    <a href="http://www.wales.ac.uk/en/CentreforAdvancedWelshCelticStudies/IntroductiontotheCentre.aspx">
-                        <img class="bygw_logo-icon icon-round" src="https://biography.wales/assets/img/bywg_footer_ganolfan.png" alt="The Centre for Advanced Welsh and Celtic Studies Logo" title="The Centre for Advanced Welsh and Celtic Studies Logo">
-                    </a>
-                </div>
-                <div class="icon-container">
-                    <a href="https://www.cymmrodorion.org/">
-                        <img class="bygw_logo-icon icon-round" src="https://biography.wales/assets/img/bywg_footer_cymmrodorion.png" alt="The Honourable Society of Cymmrodorion Logo" title="The Honourable Society of Cymmrodorion Logo">
-                    </a>
-                </div>
-                    <div class="icon-container float-right">
-                    <a href="https://gov.wales/?lang=en">
-                        <img class="bygw_logo-icon" src="https://biography.wales/assets/img/logo_cynulliad_round_transp.png" alt="Welsh Government Logo" title="Welsh Government Logo">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+
+    <!-- Load different footers per language as more than just text changes-->
+    <%- include('blocks/footer-' + lang); %>
+    
 </div>
 
 	
