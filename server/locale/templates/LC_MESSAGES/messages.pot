@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-10 22:27+0100\n"
+"POT-Creation-Date: 2019-10-21 13:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,38 +17,62 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: views/index.ejs:6 views/index.ejs:17
+#: views/index.ejs:6 views/index.ejs:65
 msgid "Dictionary of Welsh Biography"
 msgstr ""
 
-#: views/index.ejs:43
+#: views/index.ejs:34
+msgid "Welsh History"
+msgstr ""
+
+#: views/index.ejs:35
+msgid "Filters"
+msgstr ""
+
+#: views/index.ejs:36
+msgid "Colour Code"
+msgstr ""
+
+#: views/index.ejs:39
+msgid "Info"
+msgstr ""
+
+#: views/index.ejs:66
 msgid "Wikipedia"
 msgstr ""
 
-#: views/index.ejs:44
-msgid "DWB"
+#: views/index.ejs:80 views/index.ejs:117 views/index.ejs:138
+msgid "Close"
 msgstr ""
 
-#: views/index.ejs:59
+#: views/index.ejs:82
 msgid "Filter the Timeline"
 msgstr ""
 
-#: views/index.ejs:60
+#: views/index.ejs:83
 msgid "Choose the type of filter you want to apply"
 msgstr ""
 
-#: views/index.ejs:68
-msgid "CLEAR ALL FILTERS"
-msgstr ""
-
-#: views/index.ejs:93
-msgid "back"
+#: views/index.ejs:91
+msgid "Clear All Filters"
 msgstr ""
 
 #: views/index.ejs:98
+msgid "Back"
+msgstr ""
+
+#: views/index.ejs:100
+msgid "Filter by"
+msgstr ""
+
+#: views/index.ejs:143
 msgid "Colour Code by"
 msgstr ""
 
 #: views/no-article.ejs:9
 msgid "No English Wikipedia article available for this person."
+msgstr ""
+
+#: views/no-article.ejs:10
+msgid "Learn how to add this missing article to Wikipedia"
 msgstr ""

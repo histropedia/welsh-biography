@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "extract-i18n": "xgettext -p locale/templates/LC_MESSAGES -o messages.pot -L JavaScript -f filelist.txt",
+    "extract-i18n": "xgettext -p locale/templates/LC_MESSAGES -o messages.pot -f filelist.txt",
     "compile-i18n": "bash ./node_modules/.bin/compile-json locale locale",
-    "update-cy": "msgmerge locale/cy/LC_MESSAGES/messages.po locale/templates/LC_MESSAGES/messages.pot"
+    "update-cy": "msgmerge locale/cy/LC_MESSAGES/messages.po locale/templates/LC_MESSAGES/messages.pot -U --backup none",
+    "update-en_GB": "msgmerge locale/en_GB/LC_MESSAGES/messages.po locale/templates/LC_MESSAGES/messages.pot -U --backup none"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

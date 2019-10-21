@@ -1,35 +1,35 @@
 {
    "messages": {
       "": {
-         "Project-Id-Version": " 1.0\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2019-10-10 21:10+0100\nPO-Revision-Date: 2019-10-09 14:33+0100\nLast-Translator: navino@histropedia.com\nLanguage-Team: Welsh\nLanguage: cy\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
+         "Project-Id-Version": " 1.0\nReport-Msgid-Bugs-To: \nPOT-Creation-Date: 2019-10-21 13:28+0100\nPO-Revision-Date: 2019-10-09 14:33+0100\nLast-Translator: navino@histropedia.com\nLanguage-Team: Welsh\nLanguage: cy\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\n"
       },
       "Dictionary of Welsh Biography": [
          null,
          "Y Bywgraffiadur Cymreig"
       ],
-      "Search the Timeline": [
-         null,
-         "Chwiliwch y Llinell Amser"
-      ],
       "Welsh History": [
          null,
-         "Hanes Cymry"
+         "Hanes Cymru"
       ],
       "Filters": [
          null,
-         "hidlwyr"
+         "Hidlo"
       ],
       "Colour Code": [
          null,
          "Côd Lliw"
       ],
+      "Info": [
+         null,
+         ""
+      ],
       "Wikipedia": [
          null,
          "Wicipedia"
       ],
-      "DWB": [
+      "Close": [
          null,
-         "YBC"
+         "Cau"
       ],
       "Filter the Timeline": [
          null,
@@ -43,13 +43,9 @@
          null,
          "Clirio'r Holl Hidlwyr"
       ],
-      "back": [
+      "Back": [
          null,
          "Nôl"
-      ],
-      "Close": [
-         null,
-         "Cau"
       ],
       "Filter by": [
          null,

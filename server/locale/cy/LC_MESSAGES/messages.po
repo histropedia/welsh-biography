@@ -2,12 +2,12 @@
 # Copyright (C) 2019
 # This file is distributed under the same license as the DWB package.
 # FIRST AUTHOR navino@histropedia.com, 2019.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-10 21:10+0100\n"
+"POT-Creation-Date: 2019-10-21 13:28+0100\n"
 "PO-Revision-Date: 2019-10-09 14:33+0100\n"
 "Last-Translator: navino@histropedia.com\n"
 "Language-Team: Welsh\n"
@@ -16,59 +16,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: views/index.ejs:6 views/index.ejs:17
+#: views/index.ejs:6 views/index.ejs:65
 msgid "Dictionary of Welsh Biography"
 msgstr "Y Bywgraffiadur Cymreig"
 
-#: views/index.ejs:21
-msgid "Search the Timeline"
-msgstr "Chwiliwch y Llinell Amser"
-
-#: views/index.ejs:35
+#: views/index.ejs:34
 msgid "Welsh History"
-msgstr "Hanes Cymry"
+msgstr "Hanes Cymru"
 
 #: views/index.ejs:35
 msgid "Filters"
-msgstr "hidlwyr"
+msgstr "Hidlo"
 
-#: views/index.ejs:35
+#: views/index.ejs:36
 msgid "Colour Code"
 msgstr "Côd Lliw"
 
-#: views/index.ejs:43
+#: views/index.ejs:39
+msgid "Info"
+msgstr ""
+
+#: views/index.ejs:66
 msgid "Wikipedia"
 msgstr "Wicipedia"
 
-#: views/index.ejs:44
-msgid "DWB"
-msgstr "YBC"
-
-#: views/index.ejs:73
-msgid "Filter the Timeline"
-msgstr "Hidlo'r Llinell Amser"
-
-#: views/index.ejs:60
-msgid "Choose the type of filter you want to apply"
-msgstr "Dewis hidlydd"
-
-#: views/index.ejs:68
-msgid "Clear All Filters"
-msgstr "Clirio'r Holl Hidlwyr"
-
-#: views/index.ejs:93
-msgid "back"
-msgstr "Nôl"
-
-#: views/index.ejs:106
+#: views/index.ejs:80 views/index.ejs:117 views/index.ejs:138
 msgid "Close"
 msgstr "Cau"
 
-#: views/index.ejs:92
+#: views/index.ejs:82
+msgid "Filter the Timeline"
+msgstr "Hidlo'r Llinell Amser"
+
+#: views/index.ejs:83
+msgid "Choose the type of filter you want to apply"
+msgstr "Dewis hidlydd"
+
+#: views/index.ejs:91
+msgid "Clear All Filters"
+msgstr "Clirio'r Holl Hidlwyr"
+
+#: views/index.ejs:98
+msgid "Back"
+msgstr "Nôl"
+
+#: views/index.ejs:100
 msgid "Filter by"
 msgstr "Hidlo yn ôl"
 
-#: views/index.ejs:98
+#: views/index.ejs:143
 msgid "Colour Code by"
 msgstr "Côd lliw yn ôl"
 
@@ -79,39 +75,3 @@ msgstr "Nid oes erthygl Wicipedia Cymraeg am y person yma"
 #: views/no-article.ejs:10
 msgid "Learn how to add this missing article to Wikipedia"
 msgstr "Dysgwch sut i greu'r erthygl Wicipedia yma"
-
-#~ msgid "Jan"
-#~ msgstr "Ion"
-
-#~ msgid "Feb"
-#~ msgstr "Chw"
-
-#~ msgid "Mar"
-#~ msgstr "Maw"
-
-#~ msgid "Apr"
-#~ msgstr "Ebr"
-
-#~ msgid "May"
-#~ msgstr "Mai"
-
-#~ msgid "Jun"
-#~ msgstr "Meh"
-
-#~ msgid "Jul"
-#~ msgstr "Gor"
-
-#~ msgid "Aug"
-#~ msgstr "Aws"
-
-#~ msgid "Sep"
-#~ msgstr "Med"
-
-#~ msgid "Oct"
-#~ msgstr "Hyd"
-
-#~ msgid "Nov"
-#~ msgstr "Tach"
-
-#~ msgid "Dec"
-#~ msgstr "Rhag"
