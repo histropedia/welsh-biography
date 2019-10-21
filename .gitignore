@@ -6,3 +6,4 @@ server/public/js/
 server/public/images/
 server/views/
 server/.env
+test/
