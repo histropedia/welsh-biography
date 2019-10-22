@@ -301,7 +301,8 @@ ul {
     width: 100%;
     min-height: 0;
     padding: 10px;
-    overflow: auto
+    overflow: auto;
+    max-height: 400px
 }
 
 .filter-panel-footer {
@@ -489,7 +490,7 @@ footer.bywg_footer {
     .filter-panel {
         position: absolute;
         /*max-width: 800px;*/
-        max-height: 690px;
+        max-height: 750px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
