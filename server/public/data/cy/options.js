@@ -113,13 +113,17 @@ var TIMELINE_OPTIONS = {
 var APP_OPTIONS = {
     //todo: remove labels and store all in single map file
     filters: {
-        Rhyw: {label: "Rhyw"}, 
-        Galwedigaeth: {label: "Galwedigaeth"},
-        Man_geni: {label: "Man_geni"},
-        Man_marw: {label: "Man_marw"}
+        "Rhyw": {label: "Rhyw"}, 
+        "Galwedigaeth": {label: "Galwedigaeth"},
+        "Man_geni": {label: "Man geni"},
+        "Man_marw": {label: "Man marw"},
+        "Alma_mater": {label: "Alma mater"},
+        "Enw_cyntaf": {label: "Enw cyntaf"},
+        "Cyfenw": {label: "Cyfenw"},
+        "Crefydd": {label: "Crefydd"}
     },
     colorCode: {
-        properties: ["Rhyw", "Galwedigaeth"],    // list of Wikidata properties
+        properties: [],    // list of Wikidata properties
         colors: ['#1a5d1f', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
     },
     contentPanel: {

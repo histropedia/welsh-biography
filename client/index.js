@@ -14,8 +14,8 @@ DWB.createTimeline(document.getElementById("timeline-container"), BIOGRAPHY_DATA
 
 DWB.setupTimelineSearch('#search-box');
 
-DWB.setupColorCodeOptions();
-DWB.setColorCode(DWB.options.colorCode.properties[0]);
+//DWB.setupColorCodeOptions();
+//DWB.setColorCode(DWB.options.colorCode.properties[0]);
 
 DWB.setupFilterOptions();
 

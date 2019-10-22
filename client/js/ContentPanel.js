@@ -30,10 +30,10 @@ export function ContentPanel(owner, options) {
 			dwb: {
 				elementId: 'reading-panel-iframe',
 				isButtonVisible: function(article) {
-					return !!article.data.dwbId;
+					return !!article.data.dwbUrl;
 				},
 				update: function(article) {
-					$('#' + this.elementId).prop( 'src',  'https://biography.wales/article/' + article.data.dwbId)
+					$('#' + this.elementId).prop( 'src', article.data.dwbUrl)
 				}
 			}
 		},

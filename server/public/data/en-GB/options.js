@@ -113,13 +113,17 @@ var TIMELINE_OPTIONS = {
 var APP_OPTIONS = {
     //todo: remove labels and store all in single map file
     filters: {
-        Gender: {label: "Gender"}, 
-        Occupation: {label: "Occupation"},
-        Place_of_birth: {label: "Place of birth"},
-        Place_of_death: {label: "Place of death"}
+        "Gender": {label: "Gender"}, 
+        "Occupation": {label: "Occupation"},
+        "Place_of_birth": {label: "Place of birth"},
+        "Place_of_death": {label: "Place of death"},
+        "Educated_at": {label: "Educated at"},
+        "Religion": {label: "Religion"},
+        "Given_name": {label: "Given name"},
+        "Family_name": {label: "Family name"}
     },
     colorCode: {
-        properties: ["Gender", "Occupation"],    // list of Wikidata properties
+        properties: [],    // list of Wikidata properties
         colors: ['#1a5d1f', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
     },
     contentPanel: {

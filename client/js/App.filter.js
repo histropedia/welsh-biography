@@ -98,7 +98,7 @@ App.prototype.filtersChanged = function () {
     this.updateFilterTypeButtons();
 
     // re-apply colour code to calculate counts
-    this.setColorCode(this.state.appliedColorCode)
+    if (this.state.appliedColorCode) this.setColorCode(this.state.appliedColorCode);
 }
 
 App.prototype.applyFilters = function () {
@@ -261,6 +261,7 @@ function getArticleVisiblityFromFilters(article, appliedFilters) {
         if (propertyFilters.length === 0) continue;
 
         // active filters found for this property, now check if the article has matching values
+        if (typeof articleStatements[property] === "undefined") return false;
         var articleValues = articleStatements[property].values;
         if (!articleValues) return false;
 
@@ -279,7 +280,8 @@ function getArticleVisiblityFromFilters(article, appliedFilters) {
 }
 
 function addFilterTagHtml(property, value, label) {
-    $('#selected-filters-container').append('<p class="selected-filter-tag" filter-property=' + property + ' filter-value=' + value + '><span class="badge badge-primary"><span>' +
+    console.log(value)
+    $('#selected-filters-container').append('<p class="selected-filter-tag" filter-property="' + property + '" filter-value="' + value + '"><span class="badge badge-primary"><span>' +
         label + '</span><a><i class="fa fa-times remove-filter-tag-btn"></i></a></span></p>');
 }
 
