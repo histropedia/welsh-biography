@@ -12,8 +12,8 @@ var app = express();
 
 // i18n setup
 app.use(i18n.abide({
-  supported_languages: ['en-GB', 'cy', 'db-LB', 'it-CH'],
-  default_lang: 'en-GB',
+  supported_languages: ['en_GB', 'cy', 'db-LB', 'it-CH'],
+  default_lang: 'en_GB',
   debug_lang: 'it-CH',
   translation_directory: 'locale',
   locale_on_url: true

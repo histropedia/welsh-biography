@@ -32,6 +32,12 @@ var TIMELINE_OPTIONS = {
                     color: '#444'
                 }
             },
+            defaultActiveStyle: {
+                //color: '#222',
+                border: {
+                    color: "#ab363a"
+                }
+            },
             periodLine: {
                 defaultHide: function(article) {
                     return !(article.isStarred || article.isActive)
