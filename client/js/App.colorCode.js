@@ -39,6 +39,33 @@ App.prototype.setColorCode = function(property) {
     this.state.appliedColorCode = property;
 }
 
+// Assigns a rank colour scale without setting up any colour code options
+App.prototype.setRankColorScale = function(hue, articleFilter) {
+    var saturationTop = 95,
+    saturationBottom = 30,
+    lightnessTop = 35,
+    lightnessBottom = 25,
+
+    hue = hue || 139,
+    saturation,
+    lightness,
+
+    articles = this.timeline.articles,
+    maxArticleRank = getMaxRank(this.timeline, articleFilter);
+
+    var articlesLength = articles.length;
+    for (var i=0; i<articlesLength; i++) {
+        var article = articles[i];
+        if ( !doesArticleMatchFilter(article, articleFilter) ) continue;
+
+        var fraction = article.data.rank / maxArticleRank;
+        saturation = Math.round(saturationBottom + (saturationTop - saturationBottom) * fraction);
+        lightness = Math.round(lightnessBottom + (lightnessTop - lightnessBottom) * fraction);
+        setArticleColor(article, 'hsl(' + [hue, saturation + "%", lightness + "%"].join(',') + ')')
+    }
+    this.timeline.defaultRedraw();
+}
+
 App.prototype.openColorCodePanel = function() {
     $colourCodePanel.show();
     this.state.colorCodePanel.isOpen = true;
@@ -148,5 +175,23 @@ function renderLegend(orderedClorGroups) {
     }
     $('#color-code-table tbody').html(colorGroupsHtml)
 }
-    
-    
+
+
+function getMaxRank(timeline, articleFilter) {
+    var maxRank = 0;
+    timeline.forLoadedArticles(function(article) {
+        if ( doesArticleMatchFilter(article, articleFilter) ) {
+            maxRank = Math.max(maxRank, article.rank);
+        }
+    })
+    return maxRank;
+}
+
+function doesArticleMatchFilter(article, filter) {
+    // Todo: make filter matching public in App.filter.js
+    return (
+        article.data.statements &&
+        article.data.statements[filter.property] &&
+        article.data.statements[filter.property].values.includes(filter.value)
+    );
+}

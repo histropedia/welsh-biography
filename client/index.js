@@ -17,6 +17,21 @@ DWB.setupTimelineSearch('#search-box');
 //DWB.setupColorCodeOptions();
 //DWB.setColorCode(DWB.options.colorCode.properties[0]);
 
+
+// Todo: remove once client side translation system complete
+window.currentLang = $('html').attr("lang");
+var femaleFilter;
+var maleFilter;
+if (currentLang === "en_GB") {
+    femaleFilter = {property: "Gender", value:"female"};
+    maleFilter = {property: "Gender", value:"male"};
+} else {
+    femaleFilter = {property: "Rhyw", value:"benywaidd"};
+    maleFilter = {property: "Rhyw", value:"gwrywaidd"};
+}
+DWB.setRankColorScale(240 /*hue*/, femaleFilter )
+DWB.setRankColorScale(125 /*hue*/, maleFilter )
+
 DWB.setupFilterOptions();
 
 DWB.timeline.showContextEvents = true;
