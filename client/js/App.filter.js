@@ -68,6 +68,10 @@ App.prototype.addFilter = function(property, value) {
     var valueLabel = value; // todo: get label from wikidata id
     addFilterTagHtml(property, value, valueLabel);
     this.filtersChanged();
+
+    // after adding filters, pan to see earliest visible article
+    var offsetX = this.isMobile ? 30 : 480;
+    panToFirstVisibleArticle(this.timeline, offsetX)
 }    
 
 App.prototype.removeFilter = function(property, value) { 
@@ -280,7 +284,6 @@ function getArticleVisiblityFromFilters(article, appliedFilters) {
 }
 
 function addFilterTagHtml(property, value, label) {
-    console.log(value)
     $('#selected-filters-container').append('<p class="selected-filter-tag" filter-property="' + property + '" filter-value="' + value + '"><span class="badge badge-primary"><span>' +
         label + '</span><a><i class="fa fa-times remove-filter-tag-btn"></i></a></span></p>');
 }
@@ -293,5 +296,20 @@ function removeFilterTagHtml(property, value) {
             $(this).remove();
         }
     })
+}
+
+function panToFirstVisibleArticle(timeline, offsetX) {
+    var articles = timeline.articles;
+    articles.sort(Histropedia.ARTICLE_FROM_SORTER);
+
+    var articlesLength = articles.length;
+    for (var i=0; i<articlesLength; i++) {
+        var article = articles[i];
+
+        if (!article.hiddenByFilter && !article.data.isContextEvent) {
+            console.log(article.data.title, " - " ,article.data.subtitle)
+            return timeline.goToDateAnim(article.period.from, {offsetX: offsetX});
+        }
+    }
 }
     
