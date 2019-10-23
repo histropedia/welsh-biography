@@ -35,9 +35,9 @@ App.prototype.setupTimelineSearch = function(inputSelector) {
             var pixelOffsetX = (me.isMobile) ? 45 : 560;
             me.timeline.goToDateAnim(article.period.from, {offsetX: pixelOffsetX});
         },
-       // formatResult: function (result) {
-       //     return '<span class="person-label">' + result.value + '</span><br><span class="from-year">' + result.data.birthYear + '</span>';
-       // },
+        formatResult: function (result) {
+            return '<span class="search-result-label">' + result.value + '</span><br><span class="search-result-date">' + result.data.subtitle + '</span>';
+        },
         triggerSelectOnValidInput: false
     })
 }
