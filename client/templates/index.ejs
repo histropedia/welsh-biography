@@ -87,9 +87,12 @@
             <button type="button" filter-property="gender" class="btn btn-outline-secondary btn-lg" style="text-align: left">gender<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"></span></button>
             <button type="button" filter-property="occupation" class="btn btn-outline-secondary btn-lg" style="text-align: left">occupation<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"></span></button>
         </div>
+       
     </div>
-    <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= gettext("Clear All Filters") %></button>
+     <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= gettext("Clear All Filters") %></button>
+       <div class="footer-container">
     <%- include('blocks/footer-' + lang); %>
+</div>
 </div>
 
 <!--************ FILTER PANEL SEARCH PANEL****************-->
@@ -108,8 +111,9 @@
             <select class="filter-panel-search" filter-property="occupation" style="width:100%"></select>
         </div>
     </div>
+    <div class="footer-container">
     <%- include('blocks/footer-' + lang); %>
-</div>
+</div></div>
     
 <!--************ INFO PANEL****************-->
 	
@@ -125,9 +129,11 @@
         <p>The subjects represent a very wide range of activities, including religion, literature and the arts, government and politics, education and scholarship, law, science and technology, industry, economics and trade, agriculture and land ownership, the military, sport, exploration, philanthropy, and more.</p>
         <p>The DWB is a comprehensive, authoritative and accessible standard academic reference work intended for users of all backgrounds.</p>
     </div>
-
+<div class="footer-container">
     <!-- Load different footers per language as more than just text changes-->
+        
     <%- include('blocks/footer-' + lang); %>
+</div></div>
     
 </div>
 
