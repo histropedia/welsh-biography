@@ -5,9 +5,10 @@
 }
 
 footer.bywg_footer {
-    margin: 1rem auto 1rem auto;
+ /*   margin: 1rem auto 1rem auto;*/
     padding: 1rem 0.6rem;
     position: initial;
+    max-width: 100%
 }
 .bywg_footer {
     background-color: #ab363a;
@@ -79,8 +80,6 @@ ul {
 #zoom-in-btn  {
     border-bottom: transparent solid 1px;
 }
-
-
 
 .select2-results__options {
     max-height: 350px!important;
@@ -215,7 +214,7 @@ ul {
     display: none;
 }
 
-
+/*autocomplete results*/
 .search-result-label {
  font-weight: 500;
 }
@@ -236,8 +235,6 @@ font-size: 0.85rem;
     color: #f5f5f5;
 }
 
-
-/*autocomplete results*/
 .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
 .autocomplete-selected { background: #F0F0F0; }
 .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
@@ -306,7 +303,7 @@ font-size: 0.85rem;
     top:0px;
     position: fixed;
     right: 0px;
-    background-color: #fff;
+       background-color: rgba(47, 47, 47, 0.97);
     padding: 0px 0 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
     border-radius: 2px;
@@ -314,7 +311,12 @@ font-size: 0.85rem;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     overflow: auto;
-}          
+}     
+
+.btn-outline-secondary {
+    color: #d2d2d2;
+    border-color: #6c757d;
+}
 .btn-close-panel {
     position: sticky; 
     top: 0;
@@ -327,11 +329,18 @@ font-size: 0.85rem;
  }     
 
 .filter-panel-content {
-    width: 100%;
+    width: 40%;
     min-height: 0;
     padding: 10px;
     overflow: auto;
-    max-height: 400px
+    max-height: 400px;
+            width: 40%;
+    min-height: 0;
+    /* padding: 10px; */
+    overflow: auto;
+    /* max-height: 400px; */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .filter-panel-footer {
@@ -460,7 +469,7 @@ font-size: 0.85rem;
 
 @media (min-width: 576px){
 footer.bywg_footer {
-    margin: 1rem auto 1rem auto;
+   /* margin: 1rem auto 1rem auto;*/
     padding: 2rem 1rem;
 }   
 }
@@ -510,12 +519,13 @@ footer.bywg_footer {
  
 /*resize and position filter panel on desktop*/
     .filter-panel {
-        position: absolute;
-        /*max-width: 800px;*/
-        max-height: 750px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    position: absolute;
+    max-width: 100%;
+    /* max-height: 750px; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    color: rgb(255, 255, 255);
     }
 /*resize and position the color code panel on desktop*/    
     .color-code-filter-panel {
