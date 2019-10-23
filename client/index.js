@@ -4,20 +4,6 @@ import {App} from './js/App';
 window.DWB = new App();
 
 
-// temporary for development
-addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
-appendWidthToImageUrls(CONTEXT_EVENT_DATA, 175)
-appendWidthToImageUrls(BIOGRAPHY_DATA, 175)
-
-
-DWB.createTimeline(document.getElementById("timeline-container"), BIOGRAPHY_DATA, CONTEXT_EVENT_DATA);
-
-DWB.setupTimelineSearch('#search-box');
-
-//DWB.setupColorCodeOptions();
-//DWB.setColorCode(DWB.options.colorCode.properties[0]);
-
-
 // Todo: remove once client side translation system complete
 window.currentLang = $('html').attr("lang");
 var femaleFilter;
@@ -29,9 +15,21 @@ if (currentLang === "en_GB") {
     femaleFilter = {property: "Rhyw", value:"benywaidd"};
     maleFilter = {property: "Rhyw", value:"gwrywaidd"};
 }
-DWB.setRankColorScale(240 /*hue*/, femaleFilter )
-DWB.setRankColorScale(125 /*hue*/, maleFilter )
+addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
+appendWidthToImageUrls(CONTEXT_EVENT_DATA, 175)
+appendWidthToImageUrls(BIOGRAPHY_DATA, 175)
+scaleArticleDataRanks(BIOGRAPHY_DATA, 4, femaleFilter);
 
+
+DWB.createTimeline(document.getElementById("timeline-container"), BIOGRAPHY_DATA, CONTEXT_EVENT_DATA);
+
+DWB.setupTimelineSearch('#search-box');
+
+//DWB.setupColorCodeOptions();
+//DWB.setColorCode(DWB.options.colorCode.properties[0]);
+
+DWB.setRankColorScale(240 /*hue*/, femaleFilter );
+DWB.setRankColorScale(125 /*hue*/, maleFilter );
 DWB.setupFilterOptions();
 
 DWB.timeline.showContextEvents = true;
@@ -122,10 +120,12 @@ $('.timeline-controls-set').on("click", "a", function(ev) {
 })
 
 // temporary for development
-function scaleArticleDataRanks(articleData, scale) {
+function scaleArticleDataRanks(articleData, scale, filter) {
     for (var i=0; i<articleData.length; i++) {
         var article = articleData[i];
-        article.rank = Math.floor(article.rank * scale)
+        if (doesArticleDataMatchFilter(article,filter)) {
+            article.rank = Math.round(article.rank * scale)
+        }
     }
 }
 function addToArticleDataRanks(articleData, amount) {
@@ -135,16 +135,18 @@ function addToArticleDataRanks(articleData, amount) {
     }
 }
 
-function addToArticleIds(articleData, amount) {
-    for (var i=0; i<articleData.length; i++) {
-        var article = articleData[i];
-        article.id += amount;
-    }
-}
-
 function appendWidthToImageUrls(articleData,width) {
     for (var i=0; i<articleData.length; i++) {
         var article = articleData[i];
         if (article.imageUrl) article.imageUrl += ("?width=" + width);
     }
+}
+
+function doesArticleDataMatchFilter(articleData, filter) {
+    // Todo: make filter matching public in App.filter.js
+    return (
+        articleData.statements &&
+        articleData.statements[filter.property] &&
+        articleData.statements[filter.property].values.includes(filter.value)
+    );
 }
