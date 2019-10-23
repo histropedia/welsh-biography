@@ -18,7 +18,7 @@ export function App() {
             isOpen: false,
             panel: "", // e.g. "P19"
         },
-        contextEvents: true,
+        contextEvents: false,
         colorCodePanel: {
             isOpen: false,
         },

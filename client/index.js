@@ -32,7 +32,8 @@ DWB.setRankColorScale(240 /*hue*/, femaleFilter );
 DWB.setRankColorScale(125 /*hue*/, maleFilter );
 DWB.setupFilterOptions();
 
-DWB.timeline.showContextEvents = true;
+DWB.timeline.showContextEvents = false;
+DWB.filtersChanged();
 
 // Add click events
 // Todo: remove or move after setting up panel switching functions
