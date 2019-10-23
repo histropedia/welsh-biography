@@ -219,10 +219,17 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
         // remove option tags 
         $($controlElement).empty();
 
-        // re-initialise with 
+        var placeholderText; 
+        if (currentLang === "en_GB") {
+            placeholderText = "Search for *property* filters";
+        } else {
+            placeholderText = "Chwiliwch am hidlwyr *property*";
+        };
+
+        // re-initialise
         $controlElement.select2({
             data: results,
-            placeholder: 'Search for ' + filterProperty.replace(/_/g," ") + ' filters',
+            placeholder: placeholderText.replace( "*property*", filterProperty.replace(/_/g," ") ),
             templateResult: searchResultsFormat,
         });
 

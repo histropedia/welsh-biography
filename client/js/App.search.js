@@ -64,7 +64,7 @@ App.prototype.setupTimelineSearch = function(inputSelector) {
             });
         },
         formatResult: function (result) {
-            return '<span class="search-result-label">' + result.value + '</span><br><span class="search-result-date">' + result.data.subtitle + '</span>';
+            return '<span class="search-result-label">' + result.value + '</span><span class="search-result-date">' + result.data.subtitle + '</span>';
         },
         triggerSelectOnValidInput: false
     })
