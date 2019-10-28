@@ -115,6 +115,18 @@ ul {
     font-weight: 400;
     line-height: 1.5;
 }
+.filter-panel .btn-icon > .fas, .filter-panel .btn-icon > .fab, .btn-icon > .fa {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+.filter-panel .btn-icon{
+    margin-left: auto;
+}
+#filter-search-panel.filter-panel{
+    background-color: rgba(47, 47, 47, 1)
+}
 /*adjust font-awesome style for icon btns*/
 .btn-icon > .fas, .btn-icon > .fab, .btn-icon > .fa {
     background-color: #fff;
