@@ -24,7 +24,7 @@
     </div>
     <div id="timeline-title-container">
         <img class="logo-bywg" src="https://biography.wales/assets/img/logo_bywg.svg" title="Dictionary of Welsh Biography logo" alt="Read more about the project">
-        <div id="selected-filters-container"></div>
+        <div id="selected-filters-container"><span class="selected-filter-tag badge" filter-property="Place_of_birth" filter-value="London">London<a><i class="fa fa-times remove-filter-tag-btn"></i></a></span></div>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler2" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -97,7 +97,7 @@
 
 <!--************ FILTER PANEL SEARCH PANEL****************-->
 	
-<div id="filter-search-panel" class="noselect filter-panel container" style="z-index: 4; display: none">
+<div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none">
     <button href="#" class="btn-icon btn btn-close-filter-panel"><i class="fas fa-times"></i></button>
     <div class="filter-panel-header">
         <h2><%= gettext("Filter by") %> <span id="filter-property-label">type</span></h2>
@@ -111,9 +111,15 @@
             <select class="filter-panel-search" filter-property="occupation" style="width:100%"></select>
         </div>
     </div>
+   <div class="mx-auto active-filters">
+<h4 class="mb-4">Active Filters</h4>
+
+    <span class="selected-filter-tag badge">minister<a><i class="fa fa-times remove-filter-tag-btn"></i></a></span>
+    </div>
     <div class="footer-container">
     <%- include('blocks/footer-' + lang); %>
-</div></div>
+    </div>
+</div>
     
 <!--************ INFO PANEL****************-->
 	
