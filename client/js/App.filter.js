@@ -221,7 +221,7 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
         $($controlElement).empty();
 
         var placeholderText; 
-        if (currentLang === "en_GB") {
+        if (LANG === "en_GB") {
             placeholderText = "Search for *property* filters";
         } else {
             placeholderText = "Chwiliwch am hidlwyr *property*";

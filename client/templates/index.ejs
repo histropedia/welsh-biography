@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html  lang=<%= lang %> dir=<%= lang_dir %> >
+
+<html  lang="<%= lang %>" dir="rtf" >
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title><%= gettext("Dictionary of Welsh Biography") %></title>
+	<title><%= __("Dictionary of Welsh Biography") %></title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -18,7 +19,7 @@
     <a id="show-search-btn" href="#" class="btn-icon"><i class="fas fa-search"></i></a>
     <div class="event-title-container">
         <div id="search-box-container" style="z-index: 3">
-        <input id="search-box" autocomplete="off" placeholder="<%= gettext("Search the Timeline") %>" >
+        <input id="search-box" autocomplete="off" placeholder="<%= __("Search the Timeline") %>" >
         </div>	
         <span id="btn-close-reading-panel" style="color:white; z-index:3"><i class="far fa-times-circle"></i></span>
     </div>
@@ -32,16 +33,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarToggler2">
         <div class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <a href="#" id="btn-world-events" class="btn-icon"><i class="fas fa-dragon"></i><span class="navlabel"><%= gettext("Welsh History") %></span></a> 
-            <a href="#" id="btn-open-filters" class="btn-open-page btn-icon nav-item" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="navlabel"><%= gettext("Filters") %></span><span class="label-total-filters"></span></a>
-           <!-- <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><span class="navlabel"><%= gettext("Colour Code") %></span></a> -->
+            <a href="#" id="btn-world-events" class="btn-icon"><i class="fas fa-dragon"></i><span class="navlabel"><%= __("Welsh History") %></span></a> 
+            <a href="#" id="btn-open-filters" class="btn-open-page btn-icon nav-item" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="navlabel"><%= __("Filters") %></span><span class="label-total-filters"></span></a>
+           <!-- <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><span class="navlabel"><%= __("Colour Code") %></span></a> -->
            
             <a class="twitter btn-icon nav-item px-0" href="https://twitter.com/WelshBiography" alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i><span class="navlabel">Twitter</span></a>
-            <a id="btn-open-info" class="btn-icon nav-item btn-open-page px-0" href="#" alt="" title=""><i class="fas fa-info"></i><span class="navlabel"><%= gettext ("Info") %></span></a>
-             <% if (lang === "en_GB")  { %>
-            <a href="/cy" id="btn-lang-switch" class="btn-icon pl-3">Cymraeg</a>
+            <a id="btn-open-info" class="btn-icon nav-item btn-open-page px-0" href="#" alt="" title=""><i class="fas fa-info"></i><span class="navlabel"><%= __ ("Info") %></span></a>
+            <% if (lang === "en-GB")  { %>
+            <a href="?lang=cy" id="btn-lang-switch" class="btn-icon pl-3">Cymraeg</a>
             <% } else { %>
-            <a href="/en_GB" id="btn-lang-switch" class="btn-icon pl-3">English</a>
+            <a href="?lang=en-GB" id="btn-lang-switch" class="btn-icon pl-3">English</a>
             <% } %>
         </div>
     </div>
@@ -63,8 +64,8 @@
         </div>	
     </div>
     <div class="reading-panel-btns-container">
-        <button type="button" class="btn-panel-switch" tab="dwb"><%= gettext("Dictionary of Welsh Biography") %></button>
-        <button type="button" class="btn-panel-switch" tab="wikipedia"><%= gettext("Wikipedia") %></button>
+        <button type="button" class="btn-panel-switch" tab="dwb"><%= __("Dictionary of Welsh Biography") %></button>
+        <button type="button" class="btn-panel-switch" tab="wikipedia"><%= __("Wikipedia") %></button>
         
     </div>
     <div id="reading-panel-background">
@@ -80,8 +81,8 @@
 <div id="filter-types-panel" class="noselect filter-panel text-center container" style="display: none">
     <button class="btn-icon btn btn-close-filter-types-panel"><i class="fas fa-times"></i></button>
     <div class="filter-panel-header">
-        <h1><%= gettext("Filter the Timeline") %></h1>
-        <h6><%= gettext("Choose the type of filter you want to apply") %></h6>
+        <h1><%= __("Filter the Timeline") %></h1>
+        <h6><%= __("Choose the type of filter you want to apply") %></h6>
     </div>
     <div class="filter-panel-content">
         <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
@@ -90,7 +91,7 @@
         </div>
        
     </div>
-     <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= gettext("Clear All Filters") %></button>
+     <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= __("Clear All Filters") %></button>
        <div class="footer-container">
     <%- include('blocks/footer-' + lang); %>
 </div>
@@ -101,7 +102,7 @@
 <div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none">
     <button href="#" class="btn-icon btn btn-close-filter-panel"><i class="fas fa-times"></i></button>
     <div class="filter-panel-header">
-        <h2><%= gettext("Filter by") %> <span id="filter-property-label">type</span></h2>
+        <h2><%= __("Filter by") %> <span id="filter-property-label">type</span></h2>
     </div>
     <div class="filter-panel-content" role="group" aria-label="Vertical button group">
             <!-- *** populated by JavaScript *** -->
@@ -145,12 +146,12 @@
 <!--************ COLOR CODE PANEL****************-->	
 	
 <div id="color-code-panel" class="color-code-filter-panel" style="display: none">
-    <a href="#" id="btn-close-color-code-mobile" class="btn-dark btn-block btn-sm btn btn-open-page btn-close-panel" target-element=""><%= gettext("Close") %>&nbsp;<i class="fas fa-times"></i></a> 
+    <a href="#" id="btn-close-color-code-mobile" class="btn-dark btn-block btn-sm btn btn-open-page btn-close-panel" target-element=""><%= __("Close") %>&nbsp;<i class="fas fa-times"></i></a> 
     <div class="color-code-filter-panel-header">	
         <!--<button id="btn-close-color-code-desktop" class="btn btn-outline-primary btn-sm"><i class="fas fa-chevron-right"></i></button> -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <label class="input-group-text" for="color-code-select"><%= gettext("Colour Code by") %></label>
+                <label class="input-group-text" for="color-code-select"><%= __("Colour Code by") %></label>
             </div>
             <select class="custom-select" id="color-code-select">
                 <option selected="">option 1</option>
@@ -177,9 +178,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.min.js"></script>
 <script src="libraries/histropedia-1.1.1.min.js"></script>
-<script src="<%="data/" + lang + "/context-events.js"%>" > </script>
-<script src="<%="data/" + lang + "/biography-events.js"%>" > </script>
-<script src="<%="data/" + lang + "/options.js"%>" > </script>
+<script src="<%="data/" + lang  + "/context-events.js"%>" > </script>
+<script src="<%="data/" + lang  + "/biography-events.js"%>" > </script>
+<script src="<%="data/" + lang  + "/options.js"%>" > </script>
 <script src="js/main.js"></script>
 </body>
 </html>

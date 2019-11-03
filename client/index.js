@@ -5,10 +5,11 @@ window.DWB = new App();
 
 
 // Todo: remove once client side translation system complete
-window.currentLang = $('html').attr("lang");
+window.LANG = $('html').attr("lang");
+
 var femaleFilter;
 var maleFilter;
-if (currentLang === "en_GB") {
+if (LANG === "en-GB") {
     femaleFilter = {property: "Gender", value:"female"};
     maleFilter = {property: "Gender", value:"male"};
 } else {

@@ -1,4 +1,4 @@
-<html  lang=<%= lang %> dir=<%= lang_dir %> >
+<html  lang=<%= getLocale() %> dir="rtf" >
 <html>
 <head>
 	<title>No Wikipedia Article found</title>
@@ -6,8 +6,7 @@
 
 <body style="padding: 20px; background-color:#FFF">
 
-<h3><%= gettext("No English Wikipedia article available for this person.") %></h3>
-<p><a href="https://en.wikipedia.org/wiki/Wikipedia:How_to_create_a_page" target="_blank"><%= gettext("Learn how to add this missing article to Wikipedia") %></a></p>
-
+<h3><%= __("No English Wikipedia article available for this person.") %></h3>
+<p><a href="https://en.wikipedia.org/wiki/Wikipedia:How_to_create_a_page" target="_blank"><%= __("Learn how to add this missing article to Wikipedia") %></a></p>
 </body>
 </html>

@@ -14,17 +14,17 @@ App.prototype.setupTimelineSearch = function(inputSelector) {
 
     // Todo: setup client side i18n
     var groupLabels = {
-        en_GB: {
+        "en-GB": {
             contextEvent: "Welsh History",
             biographyEvent: "People"
         },
 
-        cy: {
+        "cy": {
             contextEvent: "Hanes Cymru",
             biographyEvent: "Bobl"
         },
     }
-    
+
     var searchResults = this.timeline.articles.map(function(article) {
         var type = article.data.isContextEvent ? "contextEvent" : "biographyEvent";
         return {
@@ -34,7 +34,7 @@ App.prototype.setupTimelineSearch = function(inputSelector) {
                 subtitle: article.data.subtitle,
                 description: article.data.description || "",
                 type: type,
-                category: groupLabels[currentLang][type]
+                category: groupLabels[LANG][type]
             }
         }
     })
