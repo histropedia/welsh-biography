@@ -178,16 +178,16 @@ button for the filter and info panels*/
 #timeline-title-container h4 {
    font-size: 1rem;
 }
-#selected-filters-container {
+#active-filters-container {
     display:none
 }
 /*style filter tags*/
 
 /* can be simplified after js tag is updated*/
-.selected-filter-tag {
+.active-filter-tag {
     margin-bottom: 0;
 }
-.selected-filter-tag.badge, .selected-filter-tag > .badge{
+.active-filter-tag.badge, .active-filter-tag > .badge{
     background-color: white;
     color: #ab363a;
     margin-right: 5px;    
@@ -389,7 +389,7 @@ font-size: 0.85rem;
     border-top: 1px solid;
         padding-top:1rem;
     }
-.active-filters .selected-filter-tag.badge {
+.active-filters .active-filter-tag.badge {
     font-size: 1rem;
 }
 .filter-panel-footer {
@@ -406,7 +406,7 @@ font-size: 0.85rem;
     border-color: #ab363a;
 }
 
-.label-selected-filters {
+.label-active-filters {
     font-size: 14px; 
     color:red;
     display: block;
@@ -545,7 +545,7 @@ footer.bywg_footer {
         display: none
     }
     /*allow selected filters to be displayed under title*/
-    #selected-filters-container{
+    #active-filters-container{
         display: inherit
     }
     /*stop reducing logo and title size*/

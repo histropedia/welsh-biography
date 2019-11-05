@@ -2,7 +2,7 @@
 //
 //  Sets up filters from properties chosen in App.options
 //  After setup you can Add/Remove filters by property and value
-//  Search results for each filter are only generated when panel opens
+//  Search results for each filter are regenerated when panel opens if they've changed 
 
 import {App} from './App.base'; 
     
@@ -17,7 +17,7 @@ App.prototype.setupFilterOptions = function () {
             $searchElement = $(getSearchBoxHtml(property));
 
         // add property to state
-        this.state.appliedFilters[property] = [];
+        this.state.activeFilters[property] = [];
 
         // setup filter data
         filterData[property] = {
@@ -53,7 +53,7 @@ App.prototype.setupFilterOptions = function () {
     function getFilterOptionHtml(property, label) {
         //todo: get label from property id
         label = label.replace(/_/g," ");
-        return '<button type="button" filter-property=' + property + ' class="btn btn-outline-secondary btn-lg" style="text-align: left">' + label + '<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"> </span> </button>';
+        return '<button type="button" filter-property=' + property + ' class="btn btn-outline-secondary btn-lg" style="text-align: left">' + label + '<i class="fas fa-chevron-right"></i> <span class="label-active-filters"> </span> </button>';
     }
 
     function getSearchBoxHtml(filterProperty) {
@@ -64,7 +64,7 @@ App.prototype.setupFilterOptions = function () {
 }
 
 App.prototype.addFilter = function(property, value) {
-    this.state.appliedFilters[property].push(value);
+    this.state.activeFilters[property].push(value);
     var valueLabel = value; // todo: get label from wikidata id
     addFilterTagHtml(property, value, valueLabel);
     this.filtersChanged();
@@ -75,7 +75,7 @@ App.prototype.addFilter = function(property, value) {
 }    
 
 App.prototype.removeFilter = function(property, value) { 
-    var propertyFilters = this.state.appliedFilters[property];
+    var propertyFilters = this.state.activeFilters[property];
     if (!propertyFilters) return console.error("no filter setup for property: ", property);
 
     var valueIndex = propertyFilters.indexOf(value);
@@ -86,10 +86,10 @@ App.prototype.removeFilter = function(property, value) {
 }
 
 App.prototype.clearAllFilters = function () {
-    for (var property in this.state.appliedFilters) {
-        this.state.appliedFilters[property] = [];
+    for (var property in this.state.activeFilters) {
+        this.state.activeFilters[property] = [];
     }
-    $('#selected-filters-container').empty();
+    $('#active-filters-container').empty();
     this.filtersChanged();
 }
 
@@ -107,11 +107,11 @@ App.prototype.filtersChanged = function () {
 
 App.prototype.applyFilters = function () {
 //sets the visibility of all articles on the timeline according to currently applied filters
-    var appliedFilters = this.state.appliedFilters;
+    var activeFilters = this.state.activeFilters;
 
     //check all articles on the timeline
     this.timeline.forLoadedArticles(function(article) {
-        article.hiddenByFilter = !getArticleVisiblityFromFilters(article, appliedFilters);
+        article.hiddenByFilter = !getArticleVisiblityFromFilters(article, activeFilters);
     })
 
     this.timeline.defaultRedraw();
@@ -119,12 +119,12 @@ App.prototype.applyFilters = function () {
 
 // updates the active filter tags shown within buttons on filter types panel
 App.prototype.updateFilterTypeButtons = function() {
-    var appliedFilters = this.state.appliedFilters;
-    for (var property in appliedFilters) {
-        var propertyFilters = appliedFilters[property],
+    var activeFilters = this.state.activeFilters;
+    for (var property in activeFilters) {
+        var propertyFilters = activeFilters[property],
             filterHtmlTags = propertyFilters.join(", ");
 
-        $('button[filter-property=' + property + '] .label-selected-filters').text(filterHtmlTags);
+        $('button[filter-property=' + property + '] .label-active-filters').text(filterHtmlTags);
     }
 }
 
@@ -148,13 +148,15 @@ App.prototype.openFilterSearchPanel = function (property) {
     if (needsUpdate) {
         this.updateFilterSearchResults(property);
     }
+    
+    // Update filter tags for the current property on the filter search panel
+    updateFilterPanelTagsHtml(property, this.state.activeFilters);
 
-    // update the property lable in title of the filter panel
+    // Update the property label in title of the filter panel
     $('#filter-property-label').text(filterSettings.label);
 
     $('.filter-search-container').hide();
     filterSettings.$search.parent().show();
-
     this.state.filterPanel.panel = property;
 }
 
@@ -163,7 +165,6 @@ App.prototype.closeFilterSearchPanel = function () {
     this.state.filterPanel.panel = "";
 }
 
-
 /****************** Filter search ******************/
 
 App.prototype.updateFilterSearchResults = function(filterProperty) {
@@ -171,7 +172,7 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
     // so we need to destroy and re-initialise the search box
 
     var filterSettings = filterData[filterProperty],
-        stateAppliedFilters = this.state.appliedFilters[filterProperty],
+        stateAppliedFilters = this.state.activeFilters[filterProperty],
         articles = this.timeline.articles,
         filterValues = {};
 
@@ -247,9 +248,9 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
     }
 
     // Remove any activeFilters from results list for given filter property 
-    function removeActiveFiltersFromResults(appliedFilters, searchResults) {
+    function removeActiveFiltersFromResults(activeFilters, searchResults) {
         var filteredResults = searchResults.filter(function(result) {
-            return !appliedFilters.includes(result.id);
+            return !activeFilters.includes(result.id);
         })
 
         return filteredResults;
@@ -258,7 +259,7 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
 
 /****************** Private functions ******************/
 
-function getArticleVisiblityFromFilters(article, appliedFilters) {
+function getArticleVisiblityFromFilters(article, activeFilters) {
     // article will not be visible if it fails to match any active filters
 
     if (article.data.isContextEvent) {        
@@ -267,8 +268,8 @@ function getArticleVisiblityFromFilters(article, appliedFilters) {
 
     var articleStatements = article.data.statements;
 
-    for (var property in appliedFilters) {
-        var propertyFilters = appliedFilters[property]
+    for (var property in activeFilters) {
+        var propertyFilters = activeFilters[property]
         if (propertyFilters.length === 0) continue;
 
         // active filters found for this property, now check if the article has matching values
@@ -290,13 +291,33 @@ function getArticleVisiblityFromFilters(article, appliedFilters) {
     return true
 }
 
+function getFilterTagHtml(property, value, label) {
+    return '<span class="active-filter-tag badge" filter-property="' + property + '" filter-value="' + value + '">' + label + '<a><i class="fa fa-times remove-filter-tag-btn"></i></a></span>';
+}
+
+// Add the main filter tags that show in the header bar
 function addFilterTagHtml(property, value, label) {
-    $('#selected-filters-container').append('<p class="selected-filter-tag" filter-property="' + property + '" filter-value="' + value + '"><span class="badge badge-primary"><span>' +
-        label + '</span><a><i class="fa fa-times remove-filter-tag-btn"></i></a></span></p>');
+    $('#active-filters-container').append(getFilterTagHtml(property, value, label));
+}
+
+// Add the filter tags that shows in the Filter Search Panel
+function updateFilterPanelTagsHtml(filterProperty, activeFilters) {
+    for (var prop in activeFilters) {
+        if (prop === filterProperty) {
+            var filterValues = activeFilters[prop];
+            var filtersHtml = "";
+            for (var i=0; i<filterValues.length; i++) {
+                var value = filterValues[i];
+                var label = filterValues[i]; // todo: use getLabel function
+                filtersHtml += getFilterTagHtml(filterProperty, value, label);
+            }
+            return $('#panel-active-filters-container').html(filtersHtml);
+        }
+    }
 }
 
 function removeFilterTagHtml(property, value) {
-    $('.selected-filter-tag').each(function(index, element) {
+    $('.active-filter-tag').each(function(index, element) {
         var tagProperty = $(this).attr('filter-property'),
             tagValue = $(this).attr('filter-value');
         if (property === tagProperty && value === tagValue) {
@@ -314,7 +335,6 @@ function panToFirstVisibleArticle(timeline, offsetX) {
         var article = articles[i];
 
         if (!article.hiddenByFilter && !article.data.isContextEvent) {
-            console.log(article.data.title, " - " ,article.data.subtitle)
             return timeline.goToDateAnim(article.period.from, {offsetX: offsetX});
         }
     }
