@@ -12,7 +12,7 @@ export function App() {
     
     this.state = {
         // can be used to store states for browser history, or to create share URLs with current state
-        appliedFilters: {}, // e.g. { P19: ["Q84", "Q90"], P27: ["Q47"] }
+        activeFilters: {}, // e.g. { P19: ["Q84", "Q90"], P27: ["Q47"] }
         appliedColorCode: "", // e.g. "P27"
         filterPanel: {
             isOpen: false,

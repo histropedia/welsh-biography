@@ -102,8 +102,8 @@ $('.btn-close-info-panel').click(function() {
     $('#info-panel').hide();
 })
 
-$('#selected-filters-container').on('click', 'a', function() {
-    var $tag = $(this).closest('.selected-filter-tag'),
+$('#active-filters-container, #panel-active-filters-container').on('click', 'a', function() {
+    var $tag = $(this).closest('.active-filter-tag'),
         property = $tag.attr('filter-property'),
         value = $tag.attr('filter-value');
     DWB.removeFilter(property, value);

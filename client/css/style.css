@@ -1,23 +1,30 @@
 @charset "utf-8";
 /* CSS Document */
+
+/*MATCH PANEL FOOTERS TO DWB FOOTER
+Allows the html from the dwb site to be used as the footer for filter and info panels.
+Some changes have been made from the original CSS, this could be made to work as an override
+to the orginal CSS if required*/
+
+/*hide the footer in the filter panels on mobile view*/
 #filter-types-panel > .footer-container footer.bywg_footer, #filter-search-panel > .footer-container footer.bywg_footer {
     display:none;
 }
+/*new class to hold the footer in full width container*/
 .footer-container{
     width: 100%;
-    background-color: #ab363a;}
+    background-color: #ab363a;
+}
+/*dwb classes*/
 footer.bywg_footer {
- /*   margin: 1rem auto 1rem auto;*/
     padding: 1rem 0.6rem;
     position: initial;
-   /* max-width: 100%*/
 }
 .bywg_footer {
     background-color: #ab363a;
     color: #fff;
     font-size: 0.8rem;
 }
-
 .row {
     margin: 0px;
 }
@@ -29,13 +36,11 @@ footer.bywg_footer {
     align-items: center;
     justify-content: center;
 }
-
 li {
     list-style: none !important;
     padding: 0;
     margin: 0;
 }
-
 .bywg_footer a {
     color: #fff;
 }
@@ -43,6 +48,9 @@ ul {
     margin: 0;
     padding: 0;
 }
+/*END FOOTER*/
+
+
 /* ZOOM BUTTONS */
 
 .timeline-controls-set {
@@ -83,11 +91,10 @@ ul {
     border-bottom: transparent solid 1px;
 }
 
-.select2-results__options {
-    max-height: 350px!important;
-}
-
-/*NAVBAR*/
+/*NAVBAR
+Using some of the Bootstrap overides from the DWB site, plus some
+additional custom classes to match the style of the navbar to DWB site.
+*/
 
 .navbar-custom {
     background-color: #ab363a!important;
@@ -101,7 +108,8 @@ ul {
     width: 450px;
 }
 
-/*BUTTONS*/
+/*MAIN ROUND BUTTON - primarily used in navbar, also used as the close
+button for the filter and info panels*/
 
 /* match buttons and labels to DWB*/        
 .btn-icon {
@@ -115,18 +123,7 @@ ul {
     font-weight: 400;
     line-height: 1.5;
 }
-.filter-panel .btn-icon > .fas, .filter-panel .btn-icon > .fab, .btn-icon > .fa {
-    font-size: 1.5rem;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-}
-.filter-panel .btn-icon{
-    margin-left: auto;
-}
-#filter-search-panel.filter-panel{
-    background-color: rgba(47, 47, 47, 1)
-}
+
 /*adjust font-awesome style for icon btns*/
 .btn-icon > .fas, .btn-icon > .fab, .btn-icon > .fa {
     background-color: #fff;
@@ -138,12 +135,31 @@ ul {
     width: 30px;
     font-size: 15px;
     text-align: center;
-    margin: auto 8px;
+    margin: auto 6px;
 }
+
+/* Increase button size for panels*/
+.filter-panel .btn-icon > .fas, .filter-panel .btn-icon > .fab, .btn-icon > .fa {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+/*position button for panels*/
+.filter-panel .btn-icon{
+    position: absolute;
+    right: 0;
+}
+
+/*main button hover and active states*/
 .btn-icon:hover {color:rgba(231, 222, 222, 1)}
 .btn-icon > .fas:hover{text-decoration:none}
 .btn-icon.active{ text-decoration: none}
 .btn-icon.active > .fas {background-color:#00AD36;color: #fff;}
+
+/*END MAIN BUTTON/*
+
+
 /*TIMELINE TITLE*/
 /*center title inside container. Using flex to position applied filter tags*/
 #timeline-title-container {
@@ -153,6 +169,7 @@ ul {
     flex-direction: column;
     color: white;
 }
+
 /*size logo for mobile*/
 .logo-bywg {
     height: 46px;
@@ -161,19 +178,21 @@ ul {
 #timeline-title-container h4 {
    font-size: 1rem;
 }
-#selected-filters-container {
+#active-filters-container {
     display:none
 }
 /*style filter tags*/
-.selected-filter-tag {
-    display: inline;
+
+/* can be simplified after js tag is updated*/
+.active-filter-tag {
+    margin-bottom: 0;
+}
+.active-filter-tag.badge, .active-filter-tag > .badge{
+    background-color: white;
+    color: #ab363a;
     margin-right: 5px;    
     margin-bottom: 0;
-
-}
-.selected-filter-tag > .badge{
-    background-color: white;
-    color: #ab363a
+    margin-top: 5px;
 }
 .remove-filter-tag-btn {
     cursor: pointer;
@@ -328,6 +347,12 @@ font-size: 0.85rem;
     overflow: auto;
     color: #FFFFFF
 }     
+#filter-search-panel.filter-panel{
+    background-color: rgba(47, 47, 47, 1)
+}
+.select2-results__options {
+    max-height: 350px!important;
+}
 
 .btn-outline-secondary {
     color: #d2d2d2;
@@ -340,10 +365,13 @@ font-size: 0.85rem;
 }
 /*style inner containers for filter panels*/
 .filter-panel-header    {
-    text-align: center;
-    padding: 20px 10px; 
+     text-align: left;
+    padding: 6px 6px;
+    font-size: 1.5rem;
+    padding-top: 14px;
  }     
-
+.filter-panel-header  h2 {font-size: 1.5rem}
+.filter-panel-header  h1 {font-size: 2rem}
 .filter-panel-content {
     max-height: 100%;
     min-height: 0;
@@ -351,8 +379,19 @@ font-size: 0.85rem;
     overflow: auto;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
 }
-
+.active-filters{
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    border-top: 1px solid;
+        padding-top:1rem;
+    }
+.active-filters .active-filter-tag.badge {
+    font-size: 1rem;
+}
 .filter-panel-footer {
     position: absolute; 
     bottom: 0; 
@@ -367,7 +406,7 @@ font-size: 0.85rem;
     border-color: #ab363a;
 }
 
-.label-selected-filters {
+.label-active-filters {
     font-size: 14px; 
     color:red;
     display: block;
@@ -506,7 +545,7 @@ footer.bywg_footer {
         display: none
     }
     /*allow selected filters to be displayed under title*/
-    #selected-filters-container{
+    #active-filters-container{
         display: inherit
     }
     /*stop reducing logo and title size*/
@@ -543,6 +582,10 @@ footer.bywg_footer {
     .filter-panel-content{
         width: 40%;
         max-height: 60%;
+    }
+    
+    .filter-panel-header {
+        text-align: center
     }
 /*resize and position the color code panel on desktop*/    
     .color-code-filter-panel {
@@ -589,6 +632,7 @@ footer.bywg_footer {
         position: absolute;
     bottom: 0;
     }
+    .active-filters{bottom:120px}
 }
 
 

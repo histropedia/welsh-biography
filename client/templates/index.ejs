@@ -24,7 +24,8 @@
     </div>
     <div id="timeline-title-container">
         <img class="logo-bywg" src="https://biography.wales/assets/img/logo_bywg.svg" title="Dictionary of Welsh Biography logo" alt="Read more about the project">
-        <div id="selected-filters-container"></div>
+        <div id="active-filters-container">
+        </div>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler2" aria-controls="navbarToggler1" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -84,8 +85,8 @@
     </div>
     <div class="filter-panel-content">
         <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
-            <button type="button" filter-property="gender" class="btn btn-outline-secondary btn-lg" style="text-align: left">gender<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"></span></button>
-            <button type="button" filter-property="occupation" class="btn btn-outline-secondary btn-lg" style="text-align: left">occupation<i class="fas fa-chevron-right"></i> <span class="label-selected-filters"></span></button>
+            <button type="button" filter-property="gender" class="btn btn-outline-secondary btn-lg" style="text-align: left">gender<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
+            <button type="button" filter-property="occupation" class="btn btn-outline-secondary btn-lg" style="text-align: left">occupation<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
         </div>
        
     </div>
@@ -97,7 +98,7 @@
 
 <!--************ FILTER PANEL SEARCH PANEL****************-->
 	
-<div id="filter-search-panel" class="noselect filter-panel container" style="z-index: 4; display: none">
+<div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none">
     <button href="#" class="btn-icon btn btn-close-filter-panel"><i class="fas fa-times"></i></button>
     <div class="filter-panel-header">
         <h2><%= gettext("Filter by") %> <span id="filter-property-label">type</span></h2>
@@ -111,9 +112,14 @@
             <select class="filter-panel-search" filter-property="occupation" style="width:100%"></select>
         </div>
     </div>
+    <div class="mx-auto active-filters">
+    <h4 class="mb-4">Active Filters</h4>
+    <div id="panel-active-filters-container"></div>
+    </div>
     <div class="footer-container">
     <%- include('blocks/footer-' + lang); %>
-</div></div>
+    </div>
+</div>
     
 <!--************ INFO PANEL****************-->
 	
@@ -134,8 +140,6 @@
         
     <%- include('blocks/footer-' + lang); %>
 </div></div>
-    
-</div>
 
 	
 <!--************ COLOR CODE PANEL****************-->	
@@ -159,15 +163,6 @@
     <table id="color-code-table" class="table table-hover">
         <tbody>
         <!-- ***Color code key populated by JavaScript*** -->
-        <tr group-id="0"> <th scope="row" style="background-color:#961111">&nbsp;</th> <td>World War II (10)</td><td></td></tr>
-        <tr group-id="1"> <th scope="row" style="background-color:#1a5d1f">&nbsp;</th> <td>Operation Overlord (7)</td><td> </td></tr>
-        <tr group-id="2"> <th scope="row" style="background-color:#1565c0">&nbsp;</th> <td>Western Front (World War II) (6)</td><td> </td></tr>
-        <tr group-id="3"> <th scope="row" style="background-color:#7b1fa2">&nbsp;</th> <td>Battle for Caen (4)</td><td> </td></tr>
-        <tr group-id="4"> <th scope="row" style="background-color:#b78617">&nbsp;</th> <td>Allied advance from Paris to the Rhine (1)</td><td> </td></tr>
-        <tr group-id="5"> <th scope="row" style="background-color:#d66f6f">&nbsp;</th> <td>Battle of Arnhem (1)</td><td> </td></tr>
-        <tr group-id="6"> <th scope="row" style="background-color:#56ab6c">&nbsp;</th> <td>Battle of the Scheldt (1)</td><td> </td></tr>
-        <tr group-id="7"> <th scope="row" style="background-color:#377f9a">&nbsp;</th> <td>Invasion of Normandy (1)</td><td> </td></tr>
-        <tr group-id="8"> <th scope="row" style="background-color:#666">&nbsp;</th> <td>Miscellaneous (7)</td><td> </td></tr>
         </tbody>
     </table>
 </div>
