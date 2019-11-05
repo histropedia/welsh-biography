@@ -44,10 +44,11 @@ App.prototype.setupFilterOptions = function () {
     var me = this;
     $('.filter-panel-search').on('select2:select', function(ev) {
         var selected = ev.params.data;
-        me.addFilter(selected.property, selected.id);
+
+        // close the filter search panel before adding the filter, to prevent unecessary search results update
         me.closeFilterSearchPanel();
         me.closeFilterTypesPanel();
-
+        me.addFilter(selected.property, selected.id);
     })
 
     function getFilterOptionHtml(property, label) {
@@ -100,6 +101,12 @@ App.prototype.filtersChanged = function () {
     }
     this.applyFilters();
     this.updateFilterTypeButtons();
+
+    if (this.state.filterPanel.panel) {
+        // filter search panel is open when filters changed, so search box needs updating
+        console.log("here")
+        this.updateFilterSearchResults(this.state.filterPanel.panel)
+    }
 
     // re-apply colour code to calculate counts
     if (this.state.appliedColorCode) this.setColorCode(this.state.appliedColorCode);
@@ -221,7 +228,7 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
         $($controlElement).empty();
 
         var placeholderText; 
-        if (LANG === "en_GB") {
+        if (LANG === "en-GB") {
             placeholderText = "Search for *property* filters";
         } else {
             placeholderText = "Chwiliwch am hidlwyr *property*";
