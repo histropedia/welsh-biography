@@ -1,4 +1,5 @@
 import {ContentPanel} from './ContentPanel';
+import {TIMELINE_OPTIONS, APP_OPTIONS} from './options';
 
 export function App() {    
     var windowWidth = $(window).width(),

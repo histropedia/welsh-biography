@@ -4,11 +4,11 @@ export var TIMELINE_OPTIONS = {
     //default options for all screen sizes
     default: {
         initialDate: {
-            year: 1913,
+            year: 1820,
             month: 1
         },
         zoom: {
-            initial: 35.6,
+            initial: 36.7,
             max: 53,
             unitSize: {
                 initial: 105
@@ -30,6 +30,15 @@ export var TIMELINE_OPTIONS = {
                 },
                 subheader: {
                     color: '#444'
+                },
+                star: {
+                    width: 0,
+                }	
+            },
+            defaultActiveStyle: {
+                color: '#222',
+                border: {
+                    color: "#ab363a"
                 }
             },
             periodLine: {
@@ -51,15 +60,44 @@ export var TIMELINE_OPTIONS = {
     },
     
     //overrides for small height timeline (e.g. landscape mobile)
-    small: { 
+    small: {
+        verticalOffset: 25,
+        style: {
+            mainLine: {
+                size: 4
+            },
+            marker: {
+                minor: {
+                    height: 8               
+                },
+                major: {
+                    height: 24
+                }
+            },
+            dateLabel: {
+                minor: {
+                    font: "normal 9px Calibri"
+                },
+                major: {
+                    font: "normal 12px Calibri",
+                    offset: {
+                        x: 4,
+                        y: -5
+                    },	
+                }
+            }
+        },
         article: {
-            distanceToMainLine: 180,
+            distanceToMainLine: 160,
             autoStacking: {
-                topGap: 80
+                topGap: 8
+            },
+            periodLine: {
+                thickness: 4
             },
             defaultStyle: {
                 width: 80,
-                maxImageHeight: 100,
+                maxImageHeight: 95,
                 header: {
                     height: 30,
                     text: {
@@ -73,21 +111,64 @@ export var TIMELINE_OPTIONS = {
                     text: {
                         font: "0px 'Open Sans'"
                     }
+                },
+                connectorLine: {                         
+                    offsetX: 9,                   
+                    offsetY: -10,
+                    thickness: 1,
+                    arrow: {
+                        width: 8, 
+                        height: 22 
+                    }
+                },
+            },
+            defaultActiveStyle: {
+                border: {
+                    width: 2
                 }
             }
         }
     },
     
     //overrides for large height timeline
-    large: { 
+    large: {
+        verticalOffset: 40,
+        style: {
+            mainLine: {
+                size: 8
+            },
+            marker: {
+                minor: {
+                    height: 12               
+                },
+                major: {
+                    height: 30
+                }
+            },
+            dateLabel: {
+                minor: {
+                    font: "normal 10px Calibri"
+                },
+                major: {
+                    font: "normal 16px Calibri",
+                    offset: {
+                        x: 4,
+                        y: 0
+                    },	
+                }
+            }
+        },
         article: {
-            distanceToMainLine: 380,
+            distanceToMainLine: 390,
             autoStacking: {
-                topGap: 90
+                topGap: 100
+            },
+            periodLine: {
+                thickness: 8
             },
             defaultStyle: {
                 width: 175,
-                maxImageHeight: 250,
+                maxImageHeight: 260,
                 header: {
                     height: 50,
                     text: {
@@ -101,8 +182,21 @@ export var TIMELINE_OPTIONS = {
                     text: {
                         font: "10px 'Open Sans'"
                     }
+                },
+                connectorLine: {                         
+                    offsetX: 18,                   
+                    offsetY: -20,
+                    thickness: 1,
+                    arrow: {
+                        width: 16, 
+                        height: 45 
+                    }
                 }
-                
+            },
+            defaultActiveStyle: {
+                border: {
+                    width: 3
+                }
             }
         }
     }
@@ -111,13 +205,9 @@ export var TIMELINE_OPTIONS = {
 }
 
 export var APP_OPTIONS = {
-    //todo: remove labels and store all in single map file
-    filters: {
-        gender: {label: "gender"}, 
-        occupation: {label: "occupation"}
-    },
+    filters: ["P21", "P106", "P19", "P20", "P69", "P140", "P735", "P734"],
     colorCode: {
-        properties: ["gender"],    // list of Wikidata properties
+        properties: [],
         colors: ['#1a5d1f', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
     },
     contentPanel: {

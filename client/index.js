@@ -6,15 +6,14 @@ window.DWB = new App();
 
 // Todo: remove once client side translation system complete
 window.LANG = $('html').attr("lang");
-
 var femaleFilter;
 var maleFilter;
 if (LANG === "en-GB") {
-    femaleFilter = {property: "Gender", value:"female"};
-    maleFilter = {property: "Gender", value:"male"};
+    femaleFilter = {property: "P21", value:"female"};
+    maleFilter = {property: "P21", value:"male"};
 } else {
-    femaleFilter = {property: "Rhyw", value:"benywaidd"};
-    maleFilter = {property: "Rhyw", value:"gwrywaidd"};
+    femaleFilter = {property: "P21", value:"benywaidd"};
+    maleFilter = {property: "P21", value:"gwrywaidd"};
 }
 addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
 appendWidthToImageUrls(CONTEXT_EVENT_DATA, 175)

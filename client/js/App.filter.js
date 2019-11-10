@@ -5,23 +5,23 @@
 //  Search results for each filter are regenerated when panel opens if they've changed 
 
 import {App} from './App.base'; 
-    
 var filterData = {};
 
 App.prototype.setupFilterOptions = function () {
     var optionsElements = [];
     var searchBoxElements = []
-    for (var property in this.options.filters) {
-        var filter = this.options.filters[property],
-            $optionElement = $(getFilterOptionHtml(property, filter.label)),
-            $searchElement = $(getSearchBoxHtml(property));
+    for (var i=0; i< this.options.filters.length; i++) {
+        var filterProperty = this.options.filters[i],
+            filterLabel = App.getLabel.property(filterProperty),
+            $optionElement = $(getFilterOptionHtml(filterProperty, filterLabel)),
+            $searchElement = $(getSearchBoxHtml(filterProperty));
 
         // add property to state
-        this.state.activeFilters[property] = [];
+        this.state.activeFilters[filterProperty] = [];
 
         // setup filter data
-        filterData[property] = {
-            label: filter.label,
+        filterData[filterProperty] = {
+            label: filterLabel,
             $search: $searchElement,
             needsUpdate: true, // only update search results needed
         }
@@ -52,8 +52,6 @@ App.prototype.setupFilterOptions = function () {
     })
 
     function getFilterOptionHtml(property, label) {
-        //todo: get label from property id
-        label = label.replace(/_/g," ");
         return '<button type="button" filter-property=' + property + ' class="btn btn-outline-secondary btn-lg" style="text-align: left">' + label + '<i class="fas fa-chevron-right"></i> <span class="label-active-filters"> </span> </button>';
     }
 
@@ -213,58 +211,58 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
     })
 
     var finalResults = removeActiveFiltersFromResults(stateAppliedFilters, sortedResults);
-
-    reInitialiseSelect2(finalResults);
+    reInitialiseSelect2(finalResults, filterProperty);
     filterSettings.needsUpdate = false;
-
-    function reInitialiseSelect2(results) {
-        var data = filterData[filterProperty],
-            $controlElement = data.$search;
-
-        // remove the old select2 instance if present
-        if ($controlElement.data('select2')) $controlElement.select2("destroy");
-
-        // remove option tags 
-        $($controlElement).empty();
-
-        var placeholderText; 
-        if (LANG === "en-GB") {
-            placeholderText = "Search for *property* filters";
-        } else {
-            placeholderText = "Chwiliwch am hidlwyr *property*";
-        };
-
-        // re-initialise
-        $controlElement.select2({
-            data: results,
-            placeholder: placeholderText.replace( "*property*", filterProperty.replace(/_/g," ") ),
-            templateResult: searchResultsFormat,
-        });
-
-        $controlElement.val(null).trigger('change'); // start with nothing selected
-
-    }
-
-    // select2 results template
-    function searchResultsFormat(state) {
-        if (!state.id) {
-            return state.text;
-        }
-        var $state = $('<span class="filter-result-label">' + state.text + '</span><span class="filter-result-count">&nbsp;' + '(' + state.count + ')' + '</span>');
-        return $state;
-    }
-
-    // Remove any activeFilters from results list for given filter property 
-    function removeActiveFiltersFromResults(activeFilters, searchResults) {
-        var filteredResults = searchResults.filter(function(result) {
-            return !activeFilters.includes(result.id);
-        })
-
-        return filteredResults;
-    }
 }
 
+
 /****************** Private functions ******************/
+
+function reInitialiseSelect2(results, filterProperty) {
+    var data = filterData[filterProperty],
+        $controlElement = data.$search;
+
+    // remove the old select2 instance if present
+    if ($controlElement.data('select2')) $controlElement.select2("destroy");
+
+    // remove option tags 
+    $($controlElement).empty();
+
+    var placeholderText; 
+    if (LANG === "en-GB") {
+        placeholderText = "Search for *property* filters";
+    } else {
+        placeholderText = "Chwiliwch am hidlwyr *property*";
+    };
+
+    // re-initialise
+    $controlElement.select2({
+        data: results,
+        placeholder: placeholderText.replace( "*property*", App.getLabel.property(filterProperty) ),
+        templateResult: searchResultsFormat,
+    });
+
+    $controlElement.val(null).trigger('change'); // start with nothing selected
+}
+
+// select2 results template
+function searchResultsFormat(state) {
+    if (!state.id) {
+        return state.text;
+    }
+    var $state = $('<span class="filter-result-label">' + state.text + '</span><span class="filter-result-count">&nbsp;' + '(' + state.count + ')' + '</span>');
+    return $state;
+}
+
+// Remove any activeFilters from results list for given filter property 
+function removeActiveFiltersFromResults(activeFilters, searchResults) {
+    var filteredResults = searchResults.filter(function(result) {
+        return !activeFilters.includes(result.id);
+    })
+
+    return filteredResults;
+}
+
 
 function getArticleVisiblityFromFilters(article, activeFilters) {
     // article will not be visible if it fails to match any active filters

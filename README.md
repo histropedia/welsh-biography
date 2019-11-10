@@ -37,4 +37,10 @@ New strings found are merged into existing files, keeping all existing translati
 Language is set from the `accept-language` header in the request sent by the client.
 It can be set manually by appending `?lang=<language code>` to the url.
 
-For more info, see the i18n library documentation: https://github.com/mashpie/i18n-node 
+For more info, see the i18n library documentation: https://github.com/mashpie/i18n-node
+
+Note: All timeline data is localised via Wikidata labels, see below
+
+# Property labels
+Labels for Wikidata properties used as filter and colour code options are set manually for each language in `server/public/data/<lang>/wikidata-labels`. This allows you to deviate from the Wikidata labels for the properties if desired.
+Todo: Use Wikidata labels for properties as a fallback
