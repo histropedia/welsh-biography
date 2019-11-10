@@ -7,15 +7,9 @@ window.DWB = new App();
 // Todo: remove once client side translation system complete
 window.LANG = $('html').attr("lang");
 
-var femaleFilter;
-var maleFilter;
-if (LANG === "en-GB") {
-    femaleFilter = {property: "Gender", value:"female"};
-    maleFilter = {property: "Gender", value:"male"};
-} else {
-    femaleFilter = {property: "Rhyw", value:"benywaidd"};
-    maleFilter = {property: "Rhyw", value:"gwrywaidd"};
-}
+// Todo: migrate runtime transforms to server side data update routine 
+var femaleFilter = {property: "P21", value:"Q6581072"};
+var maleFilter = {property: "P21", value:"Q6581097"};
 addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
 appendWidthToImageUrls(CONTEXT_EVENT_DATA, 175)
 appendWidthToImageUrls(BIOGRAPHY_DATA, 175)
