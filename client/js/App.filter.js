@@ -102,7 +102,6 @@ App.prototype.filtersChanged = function () {
 
     if (this.state.filterPanel.panel) {
         // filter search panel is open when filters changed, so search box needs updating
-        console.log("here")
         this.updateFilterSearchResults(this.state.filterPanel.panel)
     }
 
@@ -126,9 +125,11 @@ App.prototype.applyFilters = function () {
 App.prototype.updateFilterTypeButtons = function() {
     var activeFilters = this.state.activeFilters;
     for (var property in activeFilters) {
-        var propertyFilters = activeFilters[property],
-            filterHtmlTags = propertyFilters.join(", ");
-
+        var propertyFilters = activeFilters[property];
+        var filterLabels = propertyFilters.map( function(filterValue) {
+            return App.getLabel.item(filterValue);
+        })
+        var filterHtmlTags = filterLabels.join(", ");
         $('button[filter-property=' + property + '] .label-active-filters').text(filterHtmlTags);
     }
 }
@@ -188,7 +189,7 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
 
         for (var j=0; j < statement.values.length; j++) {
             var valueId = statement.values[j], // this is the Wikidata item number of the value
-                valuelabel = valueId; // todo: use a getLabel function
+                valuelabel = App.getLabel.item(valueId);
             if (filterValues.hasOwnProperty(valueId)) {
                 // increment counter if already seen
                 filterValues[valueId].count += 1;
@@ -296,13 +297,14 @@ function getArticleVisiblityFromFilters(article, activeFilters) {
     return true
 }
 
-function getFilterTagHtml(property, value, label) {
+function getFilterTagHtml(property, value) {
+    var label = App.getLabel.item(value);
     return '<span class="active-filter-tag badge" filter-property="' + property + '" filter-value="' + value + '">' + label + '<a><i class="fa fa-times remove-filter-tag-btn"></i></a></span>';
 }
 
 // Add the main filter tags that show in the header bar
-function addFilterTagHtml(property, value, label) {
-    $('#active-filters-container').append(getFilterTagHtml(property, value, label));
+function addFilterTagHtml(property, value) {
+    $('#active-filters-container').append(getFilterTagHtml(property, value));
 }
 
 // Add the filter tags that shows in the Filter Search Panel
@@ -313,8 +315,7 @@ function updateFilterPanelTagsHtml(filterProperty, activeFilters) {
             var filtersHtml = "";
             for (var i=0; i<filterValues.length; i++) {
                 var value = filterValues[i];
-                var label = filterValues[i]; // todo: use getLabel function
-                filtersHtml += getFilterTagHtml(filterProperty, value, label);
+                filtersHtml += getFilterTagHtml(filterProperty, value);
             }
             return $('#panel-active-filters-container').html(filtersHtml);
         }
