@@ -14,19 +14,12 @@ App.prototype.setupTimelineSearch = function(inputSelector) {
 
     // Todo: setup client side i18n
     var groupLabels = {
-        "en-GB": {
-            contextEvent: "Welsh History",
-            biographyEvent: "People"
-        },
-
-        "cy": {
-            contextEvent: "Hanes Cymru",
-            biographyEvent: "Bobl"
-        },
+        "en-GB": ["Welsh History", "People"],
+        "cy": ["Hanes Cymru", "Bobl"]
     }
 
     var searchResults = this.timeline.articles.map(function(article) {
-        var type = article.data.isContextEvent ? "contextEvent" : "biographyEvent";
+        var type = article.data.isContextEvent ? 0 : 1;
         return {
             value: article.data.title,
             data: {
@@ -34,14 +27,18 @@ App.prototype.setupTimelineSearch = function(inputSelector) {
                 subtitle: article.data.subtitle,
                 description: article.data.description || "",
                 type: type,
+                rank: article.data.rank,
                 category: groupLabels[LANG][type]
             }
         }
     })
 
     // Need to sort by category to avoid multiple instance of each group
-    searchResults.sort(function(result) {
-        return (result.data.type === "contextEvent") ? +1 : -1;
+    searchResults.sort(function(a, b) {
+        var typeRankBoost = 1e3;
+        var effectiveRankA = a.data.rank + (a.data.type) * typeRankBoost;
+        var effectiveRankB = b.data.rank + (b.data.type) * typeRankBoost;
+        return effectiveRankB - effectiveRankA;
     })
 
     $searchElement.autocomplete({
