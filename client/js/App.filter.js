@@ -69,8 +69,8 @@ App.prototype.addFilter = function(property, value) {
     this.filtersChanged();
 
     // after adding filters, pan to see earliest visible article
-    var offsetX = this.isMobile ? 30 : 480;
-    panToFirstVisibleArticle(this.timeline, offsetX)
+    var offsetX = (!this.contentPanel.isOpen || this.isMobile)? 0 : 480;
+    this.timeline.fitArticles({startOffsetX: offsetX, withAnim: true})
 }    
 
 App.prototype.removeFilter = function(property, value) { 
