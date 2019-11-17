@@ -106,12 +106,23 @@ $('#active-filters-container, #panel-active-filters-container').on('click', 'a',
 
 
 $('.timeline-controls-set').on("click", "a", function(ev) {
-    console.log(ev.target)
     var buttonId = $(this).attr("id");
     if ( buttonId === "zoom-in-btn" ) {
         DWB.timeline.setZoom(DWB.timeline.timescaleManager.zoom - 1.5);
     } else if ( buttonId === "zoom-out-btn" ) {
         DWB.timeline.setZoom(DWB.timeline.timescaleManager.zoom + 1.5);
+    }
+})
+
+
+$('#search-box').on('input js-input', function() {
+    // 'input' for normal user input, 'js-input' for script updated input
+    if ($(this).val() !== "" ) {
+        $('#btn-close-reading-panel').css('visibility','visible')
+    } else if ( !DWB.contentPanel.isOpen ) {
+        // Do not hide clear search button if content panel is open
+        // because it doubles as the close button
+        $('#btn-close-reading-panel').css('visibility','hidden')
     }
 })
 

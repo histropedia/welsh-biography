@@ -243,6 +243,13 @@ button for the filter and info panels*/
 #search-box:focus{
     outline: none;
 }
+
+#btn-close-reading-panel {
+    color:white; 
+    z-index: 3;
+    visibility: hidden;
+}
+
 #popover-content {
     display: none;
 }

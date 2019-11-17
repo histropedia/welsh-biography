@@ -67,7 +67,10 @@ App.prototype.setupTimelineSearch = function(inputSelector) {
     })
 }
 
-
 App.prototype.setSearchInputValue = function(value) {
      $searchElement.val(value);
+
+     // Trigger custom event for setting clear button visibility for JS changes
+     // Using 'input' or 'change' also triggers search dropdown
+     $searchElement.trigger("js-input");
 }
