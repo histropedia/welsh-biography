@@ -34,11 +34,11 @@
     <div class="collapse navbar-collapse" id="navbarToggler2">
         <div class="navbar-nav ml-auto mt-2 mt-lg-0">
             <a href="#" id="btn-world-events" class="btn-icon"><i class="fas fa-dragon"></i><span class="navlabel"><%= __("Welsh History") %></span></a> 
-            <a href="#" id="btn-open-filters" class="btn-open-page btn-icon nav-item" target-element="filter-types-panel"><i class="fas fa-filter"></i><span class="navlabel"><%= __("Filters") %></span><span class="label-total-filters"></span></a>
+            <a href="#" id="btn-open-filters" class="btn-icon nav-item" data-toggle="collapse" data-target=".navbar-collapse.show"><i class="fas fa-filter"></i><span class="navlabel"><%= __("Filters") %></span><span class="label-total-filters"></span></a>
            <!-- <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><span class="navlabel"><%= __("Colour Code") %></span></a> -->
            
             <a class="twitter btn-icon nav-item px-0" href="https://twitter.com/WelshBiography" alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i><span class="navlabel">Twitter</span></a>
-            <a id="btn-open-info" class="btn-icon nav-item btn-open-page px-0" href="#" alt="" title=""><i class="fas fa-info"></i><span class="navlabel"><%= __ ("Info") %></span></a>
+            <a id="btn-open-info" class="btn-icon nav-item px-0" data-toggle="collapse" data-target=".navbar-collapse.show" href="#" alt="" title=""><i class="fas fa-info"></i><span class="navlabel"><%= __ ("Info") %></span></a>
             <% if (lang === "en-GB")  { %>
             <a href="?lang=cy" id="btn-lang-switch" class="btn-icon pl-3">Cymraeg</a>
             <% } else { %>
@@ -149,7 +149,7 @@
 <!--************ COLOR CODE PANEL****************-->	
 	
 <div id="color-code-panel" class="color-code-filter-panel" style="display: none">
-    <a href="#" id="btn-close-color-code-mobile" class="btn-dark btn-block btn-sm btn btn-open-page btn-close-panel" target-element=""><%= __("Close") %>&nbsp;<i class="fas fa-times"></i></a> 
+    <a href="#" id="btn-close-color-code-mobile" class="btn-dark btn-block btn-sm btn btn-close-panel"><%= __("Close") %>&nbsp;<i class="fas fa-times"></i></a> 
     <div class="color-code-filter-panel-header">	
         <!--<button id="btn-close-color-code-desktop" class="btn btn-outline-primary btn-sm"><i class="fas fa-chevron-right"></i></button> -->
         <div class="input-group mb-3">
