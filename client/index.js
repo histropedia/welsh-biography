@@ -90,11 +90,11 @@ $('#btn-clear-all-filters').click(function() {
 })
 
 $('#btn-open-info').click(function() {
-    $('#info-panel').show();
+    DWB.openInfoPanel()
 })
 
 $('.btn-close-info-panel').click(function() {
-    $('#info-panel').hide();
+    DWB.closeInfoPanel()
 })
 
 $('#active-filters-container, #panel-active-filters-container').on('click', 'a', function() {

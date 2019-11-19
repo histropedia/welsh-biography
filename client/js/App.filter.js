@@ -147,7 +147,11 @@ App.prototype.closeFilterTypesPanel = function () {
 }
 
 App.prototype.openFilterSearchPanel = function (property) {
+    // Only allow one panel open at a time on mobile
+    if (this.isMobile) this.closeAllPanels();
+
     $('#filter-search-panel').show();
+
     var filterSettings = filterData[property];
     var needsUpdate = filterSettings.needsUpdate;
 

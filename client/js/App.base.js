@@ -27,6 +27,9 @@ export function App() {
             isOpen: false,
             isSummaryMode: false,
             tab: ""
+        },
+        infoPanel: {
+            isOpen: false
         }
     };
     
@@ -57,6 +60,23 @@ export function App() {
         windowWidth = $(window).width();
         windowHeight = $(window).height();
         this.isPortrait = windowWidth < windowHeight;
+    }
+
+    this.openInfoPanel = function () {
+        $('#info-panel').show();
+        this.state.infoPanel.isOpen = true;
+    }
+
+    this.closeInfoPanel = function () {
+        $('#info-panel').hide();
+        this.state.infoPanel.isOpen = false;
+    }
+
+    this.closeAllPanels = function () {
+        this.closeInfoPanel();
+        this.closeFilterTypesPanel();
+        this.closeFilterSearchPanel();
+        this.contentPanel.close();
     }
     
     /****************** Private functions ******************/
