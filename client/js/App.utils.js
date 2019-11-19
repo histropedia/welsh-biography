@@ -7,7 +7,8 @@ import {App} from './App.base';
 // Then animate to correct start position
 // Todo: remove when next HistropediaJS version is live with pan & zoom function built in
 Histropedia.Timeline.prototype.fitArticles = function (options) {
-    var margin = (typeof options.margin === "number") ? options.margin : 20;
+    var options = options || {};
+    var margin = (typeof options.margin === "number") ? options.margin : 40;
     var startOffsetX = options.startOffsetX || 0;
     var articleFilter = options.articleFilter || function(article) {return !article.isHiddenByFilter && !article.data.isContextEvent};
     var withAnimation = options.withAnim;

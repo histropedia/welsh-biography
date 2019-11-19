@@ -107,10 +107,15 @@ $('#active-filters-container, #panel-active-filters-container').on('click', 'a',
 
 $('.timeline-controls-set').on("click", "a", function(ev) {
     var buttonId = $(this).attr("id");
-    if ( buttonId === "zoom-in-btn" ) {
-        DWB.timeline.setZoom(DWB.timeline.timescaleManager.zoom - 1.5);
-    } else if ( buttonId === "zoom-out-btn" ) {
-        DWB.timeline.setZoom(DWB.timeline.timescaleManager.zoom + 1.5);
+    switch (buttonId) {
+        case "zoom-in-btn":
+            DWB.timeline.setZoom(DWB.timeline.timescaleManager.zoom - 1.5);
+            break;
+        case "zoom-out-btn":
+            DWB.timeline.setZoom(DWB.timeline.timescaleManager.zoom + 1.5);
+            break;
+        case "fit-screen-btn":
+            DWB.timeline.fitArticles();
     }
 })
 
