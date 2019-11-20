@@ -35,15 +35,19 @@
         <div class="navbar-nav ml-auto mt-2 mt-lg-0">
             <a href="#" id="btn-world-events" class="btn-icon"><i class="fas fa-dragon"></i><span class="navlabel"><%= __("Welsh History") %></span></a> 
             <a href="#" id="btn-open-filters" class="btn-icon nav-item" data-toggle="collapse" data-target=".navbar-collapse.show"><i class="fas fa-filter"></i><span class="navlabel"><%= __("Filters") %></span><span class="label-total-filters"></span></a>
-           <!-- <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><span class="navlabel"><%= __("Colour Code") %></span></a> -->
-           
-            <a class="twitter btn-icon nav-item px-0" href="https://twitter.com/WelshBiography" alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i><span class="navlabel">Twitter</span></a>
+            <!-- <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><span class="navlabel"><%= __("Colour Code") %></span></a> -->
+            <% if (lang === "en-GB")  { 
+                var twitterHref = "https://twitter.com/WelshBiography",
+                    langText = "Cymraeg",
+                    langHref = "?lang=cy";
+            } else {
+                var twitterHref = "https://twitter.com/bywgraffiadur",
+                    langText = "English",
+                    langHref = "?lang=en-gb";
+            } %>
+            <a class="twitter btn-icon nav-item px-0" href=<%= twitterHref %> alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i><span class="navlabel">Twitter</span></a>
             <a id="btn-open-info" class="btn-icon nav-item px-0" data-toggle="collapse" data-target=".navbar-collapse.show" href="#" alt="" title=""><i class="fas fa-info"></i><span class="navlabel"><%= __ ("Info") %></span></a>
-            <% if (lang === "en-GB")  { %>
-            <a href="?lang=cy" id="btn-lang-switch" class="btn-icon pl-3">Cymraeg</a>
-            <% } else { %>
-            <a href="?lang=en-GB" id="btn-lang-switch" class="btn-icon pl-3">English</a>
-            <% } %>
+            <a href=<%= langHref %> id="btn-lang-switch" class="btn-icon pl-3"><%= langText %></a>
         </div>
     </div>
 </nav> 
