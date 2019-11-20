@@ -9,7 +9,7 @@ export var TIMELINE_OPTIONS = {
         },
         zoom: {
             initial: 36.7,
-            max: 53,
+            maximum: 52,
             unitSize: {
                 initial: 105
             }
