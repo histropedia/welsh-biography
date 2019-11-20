@@ -9,9 +9,17 @@
 	"Filter the Timeline": "Filter the Timeline",
 	"Choose the type of filter you want to apply": "Choose the type of filter you want to apply",
 	"Clear All Filters": "Clear All Filters",
-	"Filter by": "Filter by",
-	"Close": "Close",
+    "Filter by": "Filter by",
+    "Close": "Close",
 	"Colour Code by": "Colour Code by",
 	"No English Wikipedia article available for this person.": "No English Wikipedia article available for this person.",
-	"Learn how to add this missing article to Wikipedia": "Learn how to add this missing article to Wikipedia"
+	"Learn how to add this missing article to Wikipedia": "Learn how to add this missing article to Wikipedia",
+	"The Dictionary of Welsh Biography interactive timeline was developed by <a href=\"http://histropedia.com\">Histropedia</a> for The National Library of Wales, with grant funding from the <a href=\"https://www.end2end.ch/index.php/www-my-d-org\">My-D Foundation</a>.": "The Dictionary of Welsh Biography interactive timeline was developed by <a href=\"http://histropedia.com\">Histropedia</a> for The National Library of Wales, with grant funding from the <a href=\"https://www.end2end.ch/index.php/www-my-d-org\">My-D Foundation</a>.",
+	"The timeline is powered using linked open data and openly licenced content hosted by the <a href=\"https://www.wikimedia.org/\">Wikimedia</a> projects.": "The timeline is powered using linked open data and openly licenced content hosted by the <a href=\"https://www.wikimedia.org/\">Wikimedia</a> projects.",
+	"This allows us to offer our users a new visual and interactive way of exploring the Dictionary of Welsh Biography content.": "This allows us to offer our users a new visual and interactive way of exploring the Dictionary of Welsh Biography content.",
+	"Much of the data, and images used has been shared by The National Library of Wales, however the timeline also uses data and images shared by other institutions and individuals.": "Much of the data, and images used has been shared by The National Library of Wales, however the timeline also uses data and images shared by other institutions and individuals.",
+	"Whilst every effort is made to ensure the accuracy of this data we cannot guarantee the quality of all data used.": "Whilst every effort is made to ensure the accuracy of this data we cannot guarantee the quality of all data used.",
+	"The Timeline only includes individuals whose birth or death dates are known or approximated.": "The Timeline only includes individuals whose birth or death dates are known or approximated.",
+	"The timeline does not include entries for people with no known dates and does not include entries for families or groups of people.": "The timeline does not include entries for people with no known dates and does not include entries for families or groups of people.",
+	"To perform a search of all the Welsh Biography entries please search using the <a href=\"https://biography.wales/\">Dictionary of Welsh Biography website</a>.": "To perform a search of all the Welsh Biography entries please search using the <a href=\"https://biography.wales/\">Dictionary of Welsh Biography website</a>."
 }
