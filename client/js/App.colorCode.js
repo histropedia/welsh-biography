@@ -156,7 +156,8 @@ function setArticleColor(article, color) {
     // manual instead of article.setStyle for performance (no redraw between article changes)
     // set article.data.style as well or changes will revert if built in setOption or setStyle are run
     article.data.style = article.data.style || {};
-    article.data.style.color = article.style.color = article.activeStyle.color = color;
+    article.data.activeStyle = article.data.activeStyle || {};
+    article.data.style.color = article.style.color = article.data.activeStyle.color = article.activeStyle.color = color;
 }
 
 // Render the legend in the colour code panel
