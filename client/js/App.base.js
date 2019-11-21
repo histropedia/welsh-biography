@@ -67,6 +67,12 @@ export function App() {
         this.updateWindowSettings();
         this.timeline.setOption(getTimelineOptions());
         this.timeline.fitToHeight(true /*with redraw*/);
+        if (
+            this.isMobile &&
+            !this.isPortrait &&
+            this.contentPanel.isOpen &&
+            this.contentPanel.isMiniMode
+            ) this.contentPanel.close;
     }
 
     this.updateWindowSettings = function () {
