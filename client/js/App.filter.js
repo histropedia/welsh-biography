@@ -105,6 +105,12 @@ App.prototype.filtersChanged = function () {
         this.updateFilterSearchResults(this.state.filterPanel.panel)
     }
 
+    if (this.getActiveFilterCount() > 0) {
+        $('#btn-open-filters').addClass("active");
+    } else {
+        $('#btn-open-filters').removeClass("active");
+    }
+
     // re-apply colour code to calculate counts
     if (this.state.appliedColorCode) this.setColorCode(this.state.appliedColorCode);
 }
@@ -219,6 +225,15 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
     reInitialiseSelect2(finalResults, filterProperty);
     filterSettings.needsUpdate = false;
 }
+
+App.prototype.getActiveFilterCount = function() {
+    var count = 0;
+    for (var property in this.state.activeFilters) {
+        count += this.state.activeFilters[property].length;
+    }
+    return count;
+} 
+
 
 
 /****************** Private functions ******************/
@@ -335,18 +350,3 @@ function removeFilterTagHtml(property, value) {
         }
     })
 }
-
-function panToFirstVisibleArticle(timeline, offsetX) {
-    var articles = timeline.articles;
-    articles.sort(Histropedia.ARTICLE_FROM_SORTER);
-
-    var articlesLength = articles.length;
-    for (var i=0; i<articlesLength; i++) {
-        var article = articles[i];
-
-        if (!article.hiddenByFilter && !article.data.isContextEvent) {
-            return timeline.goToDateAnim(article.period.from, {offsetX: offsetX});
-        }
-    }
-}
-    
