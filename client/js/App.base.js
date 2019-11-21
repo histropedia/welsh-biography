@@ -41,10 +41,23 @@ export function App() {
             sizeSpecificOptions = getTimelineOptions(),
             options = $.extend(true, {}, defaultOptions, sizeSpecificOptions);
         
-        this.timeline = new Histropedia.Timeline( container, options );
+        var timeline = this.timeline = new Histropedia.Timeline( container, options );
         for (var i=1; i<arguments.length; i++) {
-            this.timeline.load(arguments[i]);
+            timeline.load(arguments[i]);
         }
+
+        // Increase density of articles when zoomed in
+        // Todo: Use single custom density settings object in next HistropediaJS version
+        timeline.timescaleManager.addZoomChangedHandler(function() {
+            var zoom = timeline.timescaleManager.zoom;
+            if (zoom < 15 ) {
+                timeline.options.article.density = Histropedia.DENSITY_ALL;
+            } else if (zoom < 20) {
+                timeline.options.article.density = Histropedia.DENSITY_HIGH;
+            } else {
+                timeline.options.article.density = options.article.density;
+            }
+        })
     }
     
 
