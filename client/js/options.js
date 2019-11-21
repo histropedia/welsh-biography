@@ -90,7 +90,7 @@ export var TIMELINE_OPTIONS = {
         article: {
             distanceToMainLine: 160,
             autoStacking: {
-                topGap: 8
+                topGap: 50
             },
             periodLine: {
                 thickness: 4
