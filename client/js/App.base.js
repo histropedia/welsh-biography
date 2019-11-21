@@ -72,7 +72,7 @@ export function App() {
             !this.isPortrait &&
             this.contentPanel.isOpen &&
             this.contentPanel.isMiniMode
-            ) this.contentPanel.close;
+            ) this.contentPanel.close();
     }
 
     this.updateWindowSettings = function () {
