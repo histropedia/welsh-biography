@@ -22,19 +22,9 @@ export function ContentPanel(owner, options) {
                     }
                     $('#' + this.elementId).prop('src', url);
 				},
-                /*isButtonVisible: function(article) {
-                    return !!article.data.statements.article
-                }*/
-			},
-			
-			dwb: {
-				elementId: 'reading-panel-iframe',
-				isButtonVisible: function(article) {
-					return !!article.data.dwbUrl;
-				},
-				update: function(article) {
-					$('#' + this.elementId).prop( 'src', article.data.dwbUrl)
-				}
+                isButtonVisible: function(article) {
+                    return !!article.data.article;
+                }
 			}
 		},
 		selectors: {

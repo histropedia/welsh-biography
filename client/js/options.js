@@ -211,7 +211,18 @@ export var APP_OPTIONS = {
         colors: ['#1a5d1f', '#7b1fa2', '#b78617', '#d66f6f', '#56ab6c', '#377f9a']
     },
     contentPanel: {
-        
+        tabs: {
+            // Setup the dictionary of Welsh Biography related content tab
+            dwb: {
+				elementId: 'reading-panel-iframe',
+				isButtonVisible: function(article) {
+					return !!article.data.dwbUrl;
+				},
+				update: function(article) {
+					$('#' + this.elementId).prop( 'src', article.data.dwbUrl)
+				}
+            }
+            // Wikipedia tab already in default ContentPanel.js options
+        }
     }
-    
 }
