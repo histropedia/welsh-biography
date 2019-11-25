@@ -3,15 +3,18 @@ Wikidata and HistropediaJS driven interactive timeline of people in the Dictiona
 Developed by Histropedia for The National Library of Wales, with grant funding from the My-D Foundation.
 Timeline data like dates, names and filter options are all sourced directly from Wikidata. Images are from Wikimedia Commons, with articles from Wikipedia and the Dictionary of Welsh Biography.
 
+See the live running version at http://welsh-biography.histropedia.com
+
 # Local setup instructions
 1. Install dependencies using `npm install` from the root folder
 2. Copy `server/sample.env` to `server/.env` (adjust if needed for local environment)
 3. Start app and watch for changes using `npm start`
+   
    If preferred, you can start the app with separate client and server consoles:
    - `cd client && npm run dev`
    - `cd server && npm start`
 
-Note: All files in the `client` folder are either either bundled or copied over to the relevant
+Note: All files in the `client` folder are either bundled or copied over to the relevant
 locations in the `server` folder during the build process.
 
 # Server setup and Deployment
@@ -21,11 +24,10 @@ So this is the only folder you need to deploy to the server.
 - Copy the contents of the `server` folder to the desired folder on the server, excluding the 
   `node_modules` folder and `.env` file
 - If it's the first time setup:
-  - Create a new `.env` in the root folder of the applciation on the server, using a copy of `sample.env`
-  - Set `NODE_ENV` to `production` in the new file.
+  - Create a new `.env` in the root folder of the application on the server, using a copy of `sample.env`
+  - Set `NODE_ENV` to `production` in the new file
   - Make any other required changes to the `.env` for the environment you've deployed to
-  - install dependencies using `npm install` from the newly copied folder 
-    Note: *only* server dependencies are installed as front end assets have dependencies pre-bundled
+  - install dependencies using `npm install` from the newly copied folder
 - Launch the app on the server with `npm start`
 
 # Translations
@@ -73,27 +75,30 @@ Filter labels are different for each avaialable language:
 # Application Settings
 All options for the timeline and other front end components can be found in `client/js/options.js`.
 
-TIMELINE_OPTIONS
-Options for the HistropdiaJS timeline interface. 
-- `TIMELINE_OPTIONS.default`: options that apply to all timeline sizes
-- `TIMELINE_OPTIONS.small`: extra options and overrides for small height timelines (i.e. mobile landscape)
-- `TIMELINE_OPTIONS.large`: extra options and overrides for large height timelines
+## TIMELINE_OPTIONS
+Options for the HistropdiaJS timeline interface:
+- `TIMELINE_OPTIONS.default`are options that apply to all timeline sizes
+- `TIMELINE_OPTIONS.small` are extra options and overrides for *small* height timelines (i.e. mobile landscape)
+- `TIMELINE_OPTIONS.large` are extra options and overrides for *large* height timelines
+
 See http://histropedia.com/histropediajs/documentation.html for all available options.
 
-APP_OPTIONS
+## APP_OPTIONS
 Options for the whole application:
-- Filter options
+  ### Filter options
   Provide a list of Wikidata properties to filter by, e.g. `["P21", "P106", "P69"]`.
   The filter panels, selection menus and filter search boxes are generated automatically from the array you provide.
 
-- Colour code options
+  ### Colour code options
   Provide a list of Wikidata properties to colour code by.
   The colour code legends and colour code selection dropdown are generated automatically from the array you provide.
+  
   Note: The Dictionary of Welsh Biography app does not use this feature at present. If you do use this in another project, make
   sure you un-comment the colour code setup lines in `client/index.js`, and add a button to show/hide the `#color-code-panel` element.
 
-- Content Panel options, which override the default settings shown in `client/js/ContentPanel.js`.
+  ### Content Panel options
   These allow you to control the tabs listed and general functionality of the related content panel.
+  They override the default settings shown in `client/js/ContentPanel.js`.
   You can add as many tabs as you like space perimitting. The `update` function is used to set what happens when it is opened, and the `elementId` sets which HTML element contains the tab's content.
-  You also can define `onClose()`, `onOpen()` or `onSelectArticle(article)` handlers for the whole panel by adding these properties to the options object.
+  You can also define `onClose()`, `onOpen()` or `onSelectArticle(article)` handlers for the whole panel by adding these properties to the options object.
 
