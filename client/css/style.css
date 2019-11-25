@@ -1,0 +1,750 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*MATCH PANEL FOOTERS TO DWB FOOTER
+Allows the html from the dwb site to be used as the footer for filter and info panels.
+Some changes have been made from the original CSS, this could be made to work as an override
+to the orginal CSS if required*/
+
+/*hide the footer in the filter panels on mobile view*/
+#filter-types-panel > .footer-container footer.bywg_footer, #filter-search-panel > .footer-container footer.bywg_footer {
+    display:none;
+}
+/*new class to hold the footer in full width container*/
+.footer-container{
+    width: 100%;
+    background-color: #ab363a;
+}
+/*dwb classes*/
+footer.bywg_footer {
+    padding: 1rem 0.6rem;
+    position: initial;
+}
+.bywg_footer {
+    background-color: #ab363a;
+    color: #fff;
+    font-size: 0.8rem;
+}
+.row {
+    margin: 0px;
+}
+
+.bywg_footer ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+li {
+    list-style: none !important;
+    padding: 0;
+    margin: 0;
+}
+.bywg_footer a {
+    color: #fff;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+/*END FOOTER*/
+
+
+/* ZOOM BUTTONS */
+.timeline-controls-set.fit-screen {
+    bottom:250px;
+}
+.timeline-controls-set {
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    width: 44px;
+    text-align: center;
+    bottom: 135px;
+    right: 8px;
+    z-index: 4;
+    display: none;
+}
+
+.timeline-control-btn {
+    padding: 9px;
+    cursor: pointer;
+    position: relative;
+    display: block;
+/*  background-color:#ab363a;
+    color: #fff;
+    border: 1px solid #fff;*/
+    background-color: #fff;
+    color:#ab363a;
+    border: 1px solid #ab363a
+}
+
+.timeline-control-btn:hover{
+/*  background-color: #fff;
+    color:#ab363a;
+    border: 1px solid #ab363a;*/
+    background-color:#ab363a;
+    color: #fff;
+    border: 1px solid #ab363a;
+}
+
+#zoom-in-btn  {
+    border-bottom: transparent solid 1px;
+}
+
+/*NAVBAR
+Using some of the Bootstrap overides from the DWB site, plus some
+additional custom classes to match the style of the navbar to DWB site.
+*/
+
+.navbar-custom {
+    background-color: #ab363a!important;
+    z-index: 1;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+}
+
+.navbar-custom .navbar-collapse {
+    flex-grow: 0;
+    width: 450px;
+}
+
+/*MAIN ROUND BUTTON - primarily used in navbar, also used as the close
+button for the filter and info panels*/
+
+/* match buttons and labels to DWB*/        
+.btn-icon {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(231, 222, 222, 1);
+    padding: .5rem 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/*adjust font-awesome style for icon btns*/
+.btn-icon > .fas, .btn-icon > .fab, .btn-icon > .fa {
+    background-color: #fff;
+    border-radius: 30px;
+    color: #ab363a;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    font-size: 15px;
+    text-align: center;
+    margin: auto 6px;
+}
+
+/* Increase button size for panels*/
+.filter-panel .btn-icon > .fas, .filter-panel .btn-icon > .fab, .btn-icon > .fa {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+/*position button for panels*/
+.filter-panel .btn-icon{
+    position: absolute;
+    right: 0;
+}
+
+/*main button hover and active states*/
+.btn-icon:hover {color:rgba(231, 222, 222, 1)}
+.btn-icon > .fas:hover{text-decoration:none}
+.btn-icon.active{ text-decoration: none}
+.btn-icon.active > .fas {background-color:#00AD36;color: #fff;}
+
+/*END MAIN BUTTON/*
+
+
+/*TIMELINE TITLE*/
+/*center title inside container. Using flex to position applied filter tags*/
+#timeline-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    color: white;
+}
+
+/*size logo for mobile*/
+.logo-bywg {
+    height: 46px;
+    max-width: 220px
+}
+#timeline-title-container h4 {
+   font-size: 1rem;
+}
+#active-filters-container {
+    display:none
+}
+/*style filter tags*/
+
+/* can be simplified after js tag is updated*/
+.active-filter-tag {
+    margin-bottom: 0;
+}
+.active-filter-tag.badge, .active-filter-tag > .badge{
+    background-color: white;
+    color: #ab363a;
+    margin-right: 5px;    
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+.remove-filter-tag-btn {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/*EVENT SEARCH AND TILTE*/
+/*make flex container for event title, search and close button*/	
+.event-title-container {
+    display: none;
+    align-items: center;
+    font-size: 1rem;
+    flex-grow: 1;
+    padding-right: 10px;
+    width:0;
+}
+
+/*match close button to title and postion size*/
+.event-title-container span {
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1.2
+}
+/*reduce title size to fit in header*/		
+.event-title-container h3 {
+    font-size: 1.5rem;
+}
+
+#search-box-container {
+    border-bottom: 2px solid #fff;
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+#search-box {    
+    position: relative;
+    background: #fff;
+    border: none;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+    background-color: transparent;
+    text-overflow: ellipsis;
+    width: 100%;
+    line-height: 1.2;
+}
+
+#search-box:focus{
+    outline: none;
+}
+
+#btn-close-reading-panel {
+    color:white; 
+    z-index: 3;
+    visibility: hidden;
+}
+
+#popover-content {
+    display: none;
+}
+
+/*autocomplete results*/
+.search-result-label {
+ font-weight: 500;
+}
+.search-result-date{
+      font-size: 0.75rem;
+}
+.autocomplete-suggestion {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-bottom: solid 1px rgba(186, 186, 186, 0.5);
+}
+.autocomplete-group {
+font-size: 0.85rem;
+    background-color: #444;
+    color: #f5f5f5;
+}
+
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+/*****************************************************/
+#timeline-container canvas {vertical-align: top}
+
+#timeline-container {
+    overflow: hidden;
+    position: absolute;
+    background-position: center;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+/*change placeholder text color*/
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #cccccc;;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #cccccc;;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #cccccc;;
+}
+
+
+
+/* reset some bootstrap elements for color code panel*/
+.color-code-filter-panel *{
+    border-radius:0!important;
+}
+
+.color-code-filter-panel-header .input-group * {
+    border: none!important;
+}
+
+#color-code-panel table {
+    margin-bottom:0px;
+}
+
+#color-code-panel .table tbody+tbody {
+    border: none
+}
+
+#color-code-panel .input-group.mb-3 {
+    margin: 0!important;
+}
+/*match to brand color*/
+#color-code-panel .input-group-text {
+   background-color: #ab363a;
+    color: #fff;
+}
+
+
+/*position and style filter and color code panels*/
+.filter-panel, .color-code-filter-panel  {
+    width:100%;
+    height: 100%;
+    z-index: 4;
+    top:0px;
+    position: fixed;
+    right: 0px;
+       background-color: rgba(47, 47, 47, 0.97);
+    padding: 0px 0 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
+    border-radius: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: auto;
+    color: #FFFFFF
+}     
+#filter-search-panel.filter-panel{
+    background-color: rgba(47, 47, 47, 1)
+}
+.select2-results__options {
+    max-height: 350px!important;
+}
+
+.btn-outline-secondary {
+    color: #d2d2d2;
+    border-color: #6c757d;
+}
+.btn-close-panel {
+    position: sticky; 
+    top: 0;
+    z-index:4;
+}
+/*style inner containers for filter panels*/
+.filter-panel-header    {
+     text-align: left;
+    padding: 6px 6px;
+    font-size: 1.5rem;
+    padding-top: 14px;
+ }     
+.filter-panel-header  h2 {font-size: 1.5rem}
+.filter-panel-header  h1 {font-size: 2rem}
+.filter-panel-content {
+    max-height: 100%;
+    min-height: 0;
+    padding: 10px;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+.active-filters{
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    border-top: 1px solid;
+        padding-top:1rem;
+    }
+.active-filters .active-filter-tag.badge {
+    font-size: 1rem;
+}
+.filter-panel-footer {
+    position: absolute; 
+    bottom: 0; 
+    text-align: center; 
+    width: 100%; 
+    padding: 10px;
+    background-color: #ab363a;
+}
+#btn-clear-all-filters {
+    color: #fff;
+    background-color: #ab363a;
+    border-color: #ab363a;
+}
+
+.label-active-filters {
+    font-size: 14px; 
+    color:red;
+    display: block;
+    white-space: normal;
+    max-width: 95%;
+}
+
+/*Position chevron on filter type list*/         
+#filter-types-list-container .fas {
+    position: absolute;
+    right: 16px;
+    top: 35%;
+}
+/*make search box fill the panel*/
+.filter-panel-content input {
+    width: 100%;
+}
+
+/* make flex header for color code panel*/
+.color-code-filter-panel-header    {
+    text-align: center;
+    display: flex;
+}          
+
+#reading-panel{
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    /*top: 0;*/
+    padding-bottom: 97px;		
+    background-color: #fff;
+    /*box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);*/
+    border-radius: 2px;
+    z-index: 2
+}
+
+/*reduce reading panel height when panel content is closed*/
+#reading-panel.selected {
+    height: auto;
+    padding-bottom: 0;
+}
+#reading-panel.selected .reading-panel-content {
+    height: 0;
+}
+
+#reading-panel-background {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/9/92/Loading_icon_cropped.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+/*style reading panel header*/	
+.reading-panel-header{
+    padding: 0;
+    border-bottom: thin white solid;
+    background-color: #eaeaea;
+    /*color:white;*/
+    }
+
+/*hide event details on mobile*/
+.event-details {
+    display: none;
+}	
+
+
+/*make flex container for panel switching buttons*/
+.reading-panel-btns-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #E5E7E6 
+}	
+
+/*make full width split button*/
+.reading-panel-btns-container button{
+    width: 100%;
+    border-radius: 0;
+    color: #ab363a;
+    background-color: white;
+    font-weight: 500;
+    border: solid 1px #ab363a;
+    padding: 7px 0;
+    font-size: 12px;
+}
+.reading-panel-btns-container button:hover, .reading-panel-btns-container button.active {
+    color: white;
+    background-color: #ab363a;
+}
+/* make reading panel content fill screen*/
+.reading-panel-content {
+    height: 100%;
+}	
+
+/*make inserted iframe fill remaining space*/	
+#reading-panel-iframe {
+    height: 100%; 
+    width: 100%; 
+    display: table; 
+    border: none; 
+    padding: none; 
+    outline: none; 
+    margin: 0;
+}	
+
+
+
+
+@media (min-width: 576px){
+footer.bywg_footer {
+   /* margin: 1rem auto 1rem auto;*/
+    /*padding: 2rem 1rem;*/
+    margin-left: auto;
+    margin-right: auto;
+}   
+
+}
+/*main breakpoint from mobile / desktop mode*/
+@media (min-width: 992px) {
+    .timeline-controls-set {display: inherit}
+    #btn-open-info > .navlabel {display: none}  
+    .twitter > .navlabel {display: none} 
+    .navbar-custom{
+        min-height: 86px
+    }
+    /*hide btn labels to fit in header on smaller desktops */
+  .navlabel {display: none}
+    /*move lang btn to end of row*/
+    #btn-lang-switch{
+        order: 1
+    }
+
+    /*Hide button - search always visiible at this size*/
+    #show-search-btn {
+        display: none
+    }
+    /*allow selected filters to be displayed under title*/
+    #active-filters-container{
+        display: inherit
+    }
+    /*stop reducing logo and title size*/
+    .logo-bywg {
+        height: 46px;
+        max-width:inherit
+    } 
+/*Display event tile and search box, match width to reading window. Height controls navbar height*/
+    .event-title-container {
+		display: flex;
+        font-size: 1.5rem;
+        /*height:65px;*/ 
+        z-index:3; 
+        padding-left:10px;
+        flex-grow: 0;
+        padding-right: 0;
+        width:450px
+    }
+    /*increase spacing between buttons*/
+    .btn-icon {
+        padding: 0.5rem 0.5rem
+    }
+ 
+/*resize and position filter panel on desktop*/
+    .filter-panel {
+    position: absolute;
+    max-width: 100%;
+    /* max-height: 750px; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    color: rgb(255, 255, 255);
+    }
+    .filter-panel-content{
+        width: 40%;
+        max-height: 60%;
+    }
+    
+    .filter-panel-header {
+        text-align: center
+    }
+/*resize and position the color code panel on desktop*/    
+    .color-code-filter-panel {
+       max-height: 80%;
+       min-height: 0px;
+       top: 86px;
+       width: auto;
+       height: auto;
+       box-shadow: none;
+       border-bottom: 20px solid #ab363a;
+       padding-bottom: 0px;
+        
+   }
+
+/* make side panel on desktop*/
+	#reading-panel {
+        width: 450px;
+        padding-bottom: 200px
+    }
+    .reading-panel-header{
+        padding: 0 10px;
+    }
+    .reading-panel-btns-container button {font-size:14px; padding: 6px 0}
+/* show event details in mini card on desktop*/
+	.event-details {
+	    display:inherit;
+            display: flex;
+    justify-content: center;
+    height: 84px;
+    flex-direction: column;
+	}
+    
+        .col-lg-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 44%;
+    }
+    .col-lg-3 {
+          -ms-flex: 0 0 25%;
+    flex: 0 0 27%;
+    max-width: 27%;
+    }    
+        .footer-container {
+        position: absolute;
+    bottom: 0;
+    }
+    .active-filters{bottom:120px}
+}
+
+
+@media only screen and (min-width: 1024px){
+        .bywg_footer ul.list-inline {
+        display: flex;
+    }
+        .bywg_footer ul.list-inline li {
+        float: left; 
+    }
+        .bywg_footer_second {
+        margin: 0 0 0 0;
+    }
+    .bywg_footer img {
+        max-height: 39px;
+    }
+    .bywg_footer .icon-container {
+    float: right;
+    text-align: center;
+    padding: 0 0 0.6rem 0.6rem;
+}
+    .bywg_footer ul.list-inline li:after {
+    content: ' | ';
+    padding: 0.5rem;
+}
+    .bywg_footer ul.list-inline li:last-child:after {
+    content: '';
+    padding: 0;
+}
+    #filter-types-panel > .footer-container footer.bywg_footer, #filter-search-panel > .footer-container footer.bywg_footer {
+    display:inherit;
+}
+/*    footer.bywg_footer{
+        position: absolute;
+        bottom: 0; 
+    }*/
+}
+
+/*increase width of side elements to allow title to be cetralised*/
+@media (min-width: 1365px) {
+    .event-title-container, .navbar-custom .navbar-collapse {
+        width: auto;
+    }
+/* adjust search box size to fit in oversized container*/    
+    #search-box-container {
+        width: 414px;
+    }
+/* show btn labels now we have space for them*/    
+    .navlabel {display: inherit}
+}
+
+
+
+@media only screen and (max-device-width: 790px)
+ and (orientation : landscape){	
+     .navbar-custom {
+         padding:0;
+     }
+     .container{max-width: 100%}
+}
+
+@media only screen and (max-width: 576px){
+    .container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    footer.bywg_footer {
+        margin: 1rem auto 1rem auto;
+        padding: 2rem 1rem;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    .bywg_footer ul.list-inline {
+        columns: 2;
+        -webkit-columns: 2;
+        -moz-columns: 2;
+        display: block;
+    }
+        .bywg_footer ul > li {
+        padding: 0.5rem 0 0.5rem 0;
+    }
+        .bywg_footer_second {
+        margin: 1rem 0 1rem 0;
+    }
+        .bywg_footer_second img {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+        .bywg_footer .icon-container {
+        float: left;
+        width: auto;
+        /* margin: 0.2rem 0.6rem; */
+        text-align: left;
+    }
+}    
+
+
+    @media (max-device-width: 991px) and (min-device-width: 768px){
+.bywg_footer_second img {
+    width: 50%;
+    padding: 0;
+    margin: 0;
+        }}
