@@ -3,11 +3,10 @@ import {App} from './js/App';
 // Initialise the app
 window.DWB = new App();
 
-
 // Todo: remove once client side translation system complete
 window.LANG = $('html').attr("lang");
 
-// Todo: migrate runtime transforms to server side data update routine 
+// Todo: migrate to server side data update routine
 var femaleFilter = {property: "P21", value:"Q6581072"};
 var maleFilter = {property: "P21", value:"Q6581097"};
 addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
@@ -15,22 +14,25 @@ appendWidthToImageUrls(CONTEXT_EVENT_DATA, 175)
 appendWidthToImageUrls(BIOGRAPHY_DATA, 175)
 scaleArticleDataRanks(BIOGRAPHY_DATA, 4, femaleFilter);
 
-
+// Setup the timeline
 DWB.createTimeline(document.getElementById("timeline-container"), BIOGRAPHY_DATA, CONTEXT_EVENT_DATA);
-
 DWB.setupTimelineSearch('#search-box');
+DWB.setupFilterOptions();
 
+// Setup colour code from the property list in options
 //DWB.setupColorCodeOptions();
 //DWB.setColorCode(DWB.options.colorCode.properties[0]);
 
+// Colour code by rank
 DWB.setRankColorScale(240 /*hue*/, femaleFilter );
 DWB.setRankColorScale(125 /*hue*/, maleFilter );
-DWB.setupFilterOptions();
 
 DWB.timeline.showContextEvents = false;
 DWB.filtersChanged();
 
-// Add click events
+
+// Click events
+
 // Todo: remove or move after setting up panel switching functions
 $('#btn-open-color-code').click( function() {
     DWB.openColorCodePanel();
@@ -104,7 +106,6 @@ $('#active-filters-container, #panel-active-filters-container').on('click', 'a',
     DWB.removeFilter(property, value);
 })
 
-
 $('.timeline-controls-set').on("click", "a", function(ev) {
     var buttonId = $(this).attr("id");
     switch (buttonId) {
@@ -119,7 +120,6 @@ $('.timeline-controls-set').on("click", "a", function(ev) {
     }
 })
 
-
 $('#search-box').on('input js-input', function() {
     // 'input' for normal user input, 'js-input' for script updated input
     if ($(this).val() !== "" ) {
@@ -131,7 +131,7 @@ $('#search-box').on('input js-input', function() {
     }
 })
 
-// temporary for development
+// Todo: migrate to server side data update routine
 function scaleArticleDataRanks(articleData, scale, filter) {
     for (var i=0; i<articleData.length; i++) {
         var article = articleData[i];
@@ -155,7 +155,6 @@ function appendWidthToImageUrls(articleData,width) {
 }
 
 function doesArticleDataMatchFilter(articleData, filter) {
-    // Todo: make filter matching public in App.filter.js
     return (
         articleData.statements &&
         articleData.statements[filter.property] &&
