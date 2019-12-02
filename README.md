@@ -5,6 +5,9 @@ Timeline data like dates, names and filter options are all sourced directly from
 
 See the live running version at http://welsh-biography.histropedia.com
 
+# Licence
+The code for this application is published under the GPLv3 licence. Note that dependencies have their own licences. They are all open source except for the HistropediaJS library used for rendering the timeline, which is free for non-commercial use (see http://histropedia.com/histropediajs/licence.html). See the "Using another timeline library" section below for instructions on linking to another open source timeline library.
+
 # Local setup instructions
 1. Install dependencies using `npm install` from the root folder
 2. Copy `server/sample.env` to `server/.env` (adjust if needed for local environment)
@@ -102,3 +105,19 @@ Options for the whole application:
   You can add as many tabs as you like space perimitting. The `update` function is used to set what happens when it is opened, and the `elementId` sets which HTML element contains the tab's content.
   You can also define `onClose()`, `onOpen()` or `onSelectArticle(article)` handlers for the whole panel by adding these properties to the options object.
 
+# Using another timeline library
+You can link this application to another timeline library with the following changes:
+- Load the chosen library using your preferred method (script tag, npm etc)
+
+Update the following files in `client/js/` folder:
+
+App.base 
+- Update the `App.createTimeline` method as required to initialise the new timeline
+
+options.js 
+- Update TIMELINE_OPTIONS for each specified size (default, small, large) according to the options for the library used
+
+App.filter.js, App.colorCode.js, App.search.js
+- Update references to functions and properties of `this.timeline` where needed.
+
+Contact info@histropedia.com or post questions to https://github.com/histropedia/welsh-biography/issues for further assistance.

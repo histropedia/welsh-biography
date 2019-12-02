@@ -9,8 +9,8 @@
 	"Filter the Timeline": "Filter the Timeline",
 	"Choose the type of filter you want to apply": "Choose the type of filter you want to apply",
 	"Clear All Filters": "Clear All Filters",
-    "Filter by": "Filter by",
-    "Close": "Close",
+	"Filter by": "Filter by",
+	"Close": "Close",
 	"Colour Code by": "Colour Code by",
 	"No English Wikipedia article available for this person.": "No English Wikipedia article available for this person.",
 	"Learn how to add this missing article to Wikipedia": "Learn how to add this missing article to Wikipedia",
@@ -21,5 +21,7 @@
 	"Whilst every effort is made to ensure the accuracy of this data we cannot guarantee the quality of all data used.": "Whilst every effort is made to ensure the accuracy of this data we cannot guarantee the quality of all data used.",
 	"The Timeline only includes individuals whose birth or death dates are known or approximated.": "The Timeline only includes individuals whose birth or death dates are known or approximated.",
 	"The timeline does not include entries for people with no known dates and does not include entries for families or groups of people.": "The timeline does not include entries for people with no known dates and does not include entries for families or groups of people.",
-	"To perform a search of all the Welsh Biography entries please search using the <a href=\"https://biography.wales/\">Dictionary of Welsh Biography website</a>.": "To perform a search of all the Welsh Biography entries please search using the <a href=\"https://biography.wales/\">Dictionary of Welsh Biography website</a>."
+	"To perform a search of all the Welsh Biography entries please search using the <a href=\"https://biography.wales/\">Dictionary of Welsh Biography website</a>.": "To perform a search of all the Welsh Biography entries please search using the <a href=\"https://biography.wales/\">Dictionary of Welsh Biography website</a>.",
+	"This website is open source.": "This website is open source.",
+	"You can access the code via <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>.": "You can access the code via <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>."
 }
