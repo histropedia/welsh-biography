@@ -14,7 +14,7 @@
 	"Colour Code by": "Colour Code by",
 	"No English Wikipedia article available for this person.": "No English Wikipedia article available for this person.",
 	"Learn how to add this missing article to Wikipedia": "Learn how to add this missing article to Wikipedia",
-	"The Dictionary of Welsh Biography interactive timeline was developed by <a href=\"http://histropedia.com\">Histropedia</a> for The National Library of Wales, with grant funding from the <a href=\"https://www.end2end.ch/index.php/www-my-d-org\">My-D Foundation</a>.": "The Dictionary of Welsh Biography interactive timeline was developed by <a href=\"http://histropedia.com\">Histropedia</a> for The National Library of Wales, with grant funding from the <a href=\"https://www.end2end.ch/index.php/www-my-d-org\">My-D Foundation</a>.",
+	"The Dictionary of Welsh Biography interactive timeline was developed by <a href=\"http://histropedia.com\">Histropedia</a> for The National Library of Wales, with grant funding from the <a href=\"https://my-d.org\">My-D Foundation</a>.": "The Dictionary of Welsh Biography interactive timeline was developed by <a href=\"http://histropedia.com\">Histropedia</a> for The National Library of Wales, with grant funding from the <a href=\"https://my-d.org\">My-D Foundation</a>.",
 	"The timeline is powered using linked open data and openly licenced content hosted by the <a href=\"https://www.wikimedia.org/\">Wikimedia</a> projects.": "The timeline is powered using linked open data and openly licenced content hosted by the <a href=\"https://www.wikimedia.org/\">Wikimedia</a> projects.",
 	"This allows us to offer our users a new visual and interactive way of exploring the Dictionary of Welsh Biography content.": "This allows us to offer our users a new visual and interactive way of exploring the Dictionary of Welsh Biography content.",
 	"Much of the data, and images used has been shared by The National Library of Wales, however the timeline also uses data and images shared by other institutions and individuals.": "Much of the data, and images used has been shared by The National Library of Wales, however the timeline also uses data and images shared by other institutions and individuals.",
@@ -24,4 +24,5 @@
 	"To perform a search of all the Welsh Biography entries please search using the <a href=\"https://biography.wales/\">Dictionary of Welsh Biography website</a>.": "To perform a search of all the Welsh Biography entries please search using the <a href=\"https://biography.wales/\">Dictionary of Welsh Biography website</a>.",
 	"This website is open source.": "This website is open source.",
 	"You can access the code via <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>.": "You can access the code via <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>."
+
 }
