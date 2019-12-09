@@ -1,4 +1,4 @@
-# Dictionary of Welsh Biography
+# Dictionary of Welsh Biography Timeline
 Wikidata and HistropediaJS driven interactive timeline of people in the Dictionary of Welsh Biography.
 Developed by Histropedia for The National Library of Wales, with grant funding from the My-D Foundation.
 Timeline data like dates, names and filter options are all sourced directly from Wikidata. Images are from Wikimedia Commons, with articles from Wikipedia and the Dictionary of Welsh Biography.
