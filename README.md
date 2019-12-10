@@ -1,4 +1,4 @@
-# Dictionary of Welsh Biography
+# Dictionary of Welsh Biography Timeline
 Wikidata and HistropediaJS driven interactive timeline of people in the Dictionary of Welsh Biography.
 Developed by Histropedia for The National Library of Wales, with grant funding from the My-D Foundation.
 Timeline data like dates, names and filter options are all sourced directly from Wikidata. Images are from Wikimedia Commons, with articles from Wikipedia and the Dictionary of Welsh Biography.
@@ -6,7 +6,12 @@ Timeline data like dates, names and filter options are all sourced directly from
 See the live running version at http://welsh-biography.histropedia.com
 
 # Licence
-The code for this application is published under the GPLv3 licence. Note that dependencies have their own licences. They are all open source except for the HistropediaJS library used for rendering the timeline, which is free for non-commercial use (see http://histropedia.com/histropediajs/licence.html). See the "Using another timeline library" section below for instructions on linking to another open source timeline library.
+The code for this application is open source, with terms of re-use covered by:
+1. The GNU Affero General Public License v3, and
+2. The Profit Contribution Agreement between Licensee and MY-D Foundation 
+Details are shown in the COPYING file in the repository.
+
+Important: Dependencies used in the application have their own licences. They are all open source except for the HistropediaJS library used for rendering the timeline, which is free for non-commercial use (see http://histropedia.com/histropediajs/licence.html). See the "Using another timeline library" section below for instructions on linking to another open source timeline library.
 
 # Local setup instructions
 1. Install dependencies using `npm install` from the root folder

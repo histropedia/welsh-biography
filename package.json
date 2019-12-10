@@ -1,6 +1,6 @@
 {
   "name": "dictionary-of-welsh-biography",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Wikidata and HistropediaJS driven timeline of people in the Dictionary of Welsh Biography",
   "scripts": {
     "postinstall": "run-p install:server install:client",
