@@ -3,9 +3,9 @@
  * Updates en-GB and cy biography-events.js files in public/data folder
  */
 require('dotenv').config();
-var QueryDispatcher = require('./query-dispatcher');
-var generateTimelineData = require('./generate-timeline-data');
-var queries = require('./queries');
+var QueryDispatcher = require('./data-update/query-dispatcher');
+var generateTimelineData = require('./data-update/generate-timeline-data');
+var queries = require('./data-update/queries');
 var fs = require('fs');
 var debug = require('debug')('dwb:data-update');
 
@@ -50,7 +50,7 @@ function writeBiographyData(biographyData) {
     var lang = biographyData[i].lang;
     var data = biographyData[i].data;
     var fileContents = 'var BIOGRAPHY_DATA =' + JSON.stringify(data);
-    fs.writeFile('../public/data/' + lang + '/biography-events.js', fileContents, function (err) {
+    fs.writeFile('./public/data/' + lang + '/biography-events.js', fileContents, function (err) {
       if (err) throw err;
       debug(lang + ' biography data written to disk!');
     });
