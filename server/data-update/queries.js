@@ -97,7 +97,7 @@ var filterData = `SELECT DISTINCT (SUBSTR(STR(?person), 33) as ?id)
 
 WHERE {
   ?person wdt:P1648 [] .
-  ?person p:P569 [] .
+  ?person p:P569/psv:P569 [] .
   OPTIONAL { 
     ?person wdt:P21 ?gender .
     BIND( SUBSTR(STR(?gender),32) as ?genderQ )
