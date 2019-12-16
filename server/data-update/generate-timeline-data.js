@@ -4,6 +4,7 @@
  */
 require('dotenv').config();
 var debug = require('debug')('dwb:data-update:generate-timeline-data');
+var DATE_LABELS = require('./options').DATE_LABELS;
 
  // Dictionary of Welsh Biography uses different domains for en and cy version
  var biographyUrlRoot = {
@@ -46,6 +47,8 @@ module.exports = function(coreData, filterData, lang) {
         precision: nextArticle.from.precision,
       }
     }
+
+    nextArticle.subtitle = getPrettyDate(nextArticle.from, lang) + ' - ' + getPrettyDate(nextArticle.to, lang);
     return nextArticle;
   })
 
@@ -80,50 +83,7 @@ function getPrecisionFixedDate(date) {
   // Wikidata dates at low precision can have inconsistent values for day, month, year
   // This function unifies them so each precision uses the same rules
   // See https://www.wikidata.org/wiki/Help:Dates for more info on the ranges of values covered by each precision
-  // HistropediaJS uses e.g. year=500 for 5th Century, year=2000 for 2nd millenium
-
-  // Todo: Adjust for BC dates
-  var precision = date.precision;
-  if (precision <= 9) {
-    date.day = 1;
-    date.month = 1;
-  } else if (precision === 10) {
-    date.day = 1;
-  }
-  switch (precision) {
-    case 11:
-      // Day precision
-      break;
-    case 10:
-      // Month precision
-      break;
-    case 9:
-      // Year precision
-      break;
-    case 8:
-      // Decade precision
-      date.year = Math.floor(date.year/10) * 10;
-      break;
-    case 7:
-      // Century precision
-      date.year = Math.ceil(date.year/100) * 100;
-      break;
-    case 6:
-      // Century precision
-      date.year = Math.ceil(date.year/1000) * 1000;
-      break;
-    default:
-      debug("Unknown precision: ", precision);
-  }
-
-  return date;
-}
-
-function getPrecisionFixedDate(date) {
-  // Wikidata dates at low precision can have inconsistent values for day, month, year
-  // This function unifies them so each precision uses the same rules
-  // See https://www.wikidata.org/wiki/Help:Dates for more info on the ranges of values covered by each precision
-  // Todo: Adjust for BC dates
+   // Todo: Check for BC dates
 
   var precision = date.precision;
   if (precision <= 9) date.month = 1;
@@ -138,21 +98,53 @@ function getPrecisionFixedDate(date) {
       break;
     case 7:
       // Century precision
-      // e.g. 2nd century
-      // Wikidata use any year from 101 to 200
-      // HistropediaJS uses year=200
       date.year = Math.ceil(date.year/100) * 100;
       break;
     case 6:
-      // Century precision
-      // e.g. 2nd millennium
-      // Wikidata use any year from 1001 to 2000
-      // HistropediaJS uses year=2000
+      // Millennium precision
       date.year = Math.ceil(date.year/1000) * 1000;
       break;
     default:
       debug("Unknown precision: ", precision);
   }
-
   return date;
+}
+
+function getPrettyDate(date, lang) {
+  // Todo: Check for BC dates
+  var lang = lang || "en-GB",
+  year = date.year,
+  month = date.month,
+  day = date.day,
+  bceText = (date.year < 1) ? getBceText(lang) : '',
+  dateString;
+  switch (date.precision) {
+    case 11:
+      dateString = day + ' ' + getMonthLabel(month, lang) + ' ' + year;
+    case 10:
+      dateString = getMonthLabel(month, lang) + ' ' + year;
+    case 9:
+      dateString = year + bceText;
+    case 8:
+      dateString = year + getPeriodLabel("decade", lang);
+    case 7:
+      dateString = year / 100 + ' . ' + getPeriodLabel("century", lang);
+    case 6:
+      dateString = year / 1000 + ' . ' + getPeriodLabel("millennium", lang);
+  }
+  
+  dateString += bceText;
+  return dateString;
+}
+
+function getMonthLabel(number, lang) {
+  return DATE_LABELS[lang].months[number - 1];
+}
+
+function getPeriodLabel(period, lang) {
+  return DATE_LABELS[lang].periods[period];
+}
+
+function getBceText(lang) {
+  return DATE_LABELS[lang].bceText;
 }
