@@ -7,12 +7,10 @@ window.DWB = new App();
 window.LANG = $('html').attr("lang");
 
 // Todo: migrate to server side data update routine
-var femaleFilter = {property: "P21", value:"Q6581072"};
-var maleFilter = {property: "P21", value:"Q6581097"};
 addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
+
 appendWidthToImageUrls(CONTEXT_EVENT_DATA, 175)
 appendWidthToImageUrls(BIOGRAPHY_DATA, 175)
-scaleArticleDataRanks(BIOGRAPHY_DATA, 4, femaleFilter);
 
 // Setup the timeline
 DWB.createTimeline(document.getElementById("timeline-container"), BIOGRAPHY_DATA, CONTEXT_EVENT_DATA);
@@ -23,7 +21,9 @@ DWB.setupFilterOptions();
 //DWB.setupColorCodeOptions();
 //DWB.setColorCode(DWB.options.colorCode.properties[0]);
 
-// Colour code by rank
+// Colour code by gender and rank
+var femaleFilter = {property: "P21", value:"Q6581072"};
+var maleFilter = {property: "P21", value:"Q6581097"};
 DWB.setRankColorScale(240 /*hue*/, femaleFilter );
 DWB.setRankColorScale(125 /*hue*/, maleFilter );
 
@@ -131,15 +131,7 @@ $('#search-box').on('input js-input', function() {
     }
 })
 
-// Todo: migrate to server side data update routine
-function scaleArticleDataRanks(articleData, scale, filter) {
-    for (var i=0; i<articleData.length; i++) {
-        var article = articleData[i];
-        if (doesArticleDataMatchFilter(article,filter)) {
-            article.rank = Math.round(article.rank * scale)
-        }
-    }
-}
+
 function addToArticleDataRanks(articleData, amount) {
     for (var i=0; i<articleData.length; i++) {
         var article = articleData[i];
@@ -152,12 +144,4 @@ function appendWidthToImageUrls(articleData,width) {
         var article = articleData[i];
         if (article.imageUrl) article.imageUrl += ("?width=" + width);
     }
-}
-
-function doesArticleDataMatchFilter(articleData, filter) {
-    return (
-        articleData.statements &&
-        articleData.statements[filter.property] &&
-        articleData.statements[filter.property].values.includes(filter.value)
-    );
 }

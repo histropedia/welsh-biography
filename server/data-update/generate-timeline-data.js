@@ -4,14 +4,15 @@
  */
 require('dotenv').config();
 var debug = require('debug')('dwb:data-update:generate-timeline-data');
-var DATE_LABELS = require('./options').DATE_LABELS;
+var OPTIONS = require('./options'),
+    DATE_LABELS = OPTIONS.DATE_LABELS,
+    RANK_FACTORS = OPTIONS.RANK_FACTORS;
 
  // Dictionary of Welsh Biography uses different domains for en and cy version
  var biographyUrlRoot = {
    "en-GB": 'https://biography.wales/article/',
    "cy": "https://bywgraffiadur.cymru/article/"
  }
-
 
 module.exports = function(coreData, filterData, lang) {
   var lang = lang || "en-GB";
@@ -49,34 +50,31 @@ module.exports = function(coreData, filterData, lang) {
     }
 
     nextArticle.subtitle = getPrettyDate(nextArticle.from, lang) + ' - ' + getPrettyDate(nextArticle.to, lang);
+
+    addFiltersToArticleData(nextArticle, filterData);
+    // Boost rank if article has statement "gender" (P21) = "female" (Q6581072)
+    scaleArticleDataRank(nextArticle, RANK_FACTORS.women, {property:'P21', value: 'Q6581072' })
     return nextArticle;
   })
 
-  // Add filters to articleData
-  articleData = addFiltersToArticleData(articleData, filterData);
   return {data: articleData, lang: lang};
 }
 
 function addFiltersToArticleData(articleData, filterData) {
-  filterData = filterData.results.bindings;
-  for (var i=0; i<articleData.length; i++) {
-    var article = articleData[i];
-    var articleStatements = {};
+  var filterResults = filterData.results.bindings;
+  for (var i=0; i<filterResults.length; i++) {
+    var articleFilterData = filterResults[i];
 
-    for (var j=0; j<filterData.length; j++) {
-      var articleFilterData = filterData[j];
-
-      if (parseInt(articleFilterData.id.value) === article.id ) {
-        for (var filterProperty in articleFilterData) {
-          if (filterProperty === 'id') continue;
-          articleStatements[filterProperty] = {values: articleFilterData[filterProperty].value.split("|")};
-        }
-        break;
+    if (parseInt(articleFilterData.id.value) === articleData.id ) {
+      articleData.statements = {};
+      for (var filterProperty in articleFilterData) {
+        if (filterProperty === 'id') continue;
+        articleData.statements[filterProperty] = {values: articleFilterData[filterProperty].value.split("|")};
       }
+      break;
     }
-    article.statements = articleStatements;
   }
-  return articleData;
+  //return articleData;
 }
 
 function getPrecisionFixedDate(date) {
@@ -121,16 +119,24 @@ function getPrettyDate(date, lang) {
   switch (date.precision) {
     case 11:
       dateString = day + ' ' + getMonthLabel(month, lang) + ' ' + year;
+      break;
     case 10:
       dateString = getMonthLabel(month, lang) + ' ' + year;
+      break;
     case 9:
       dateString = year + bceText;
+      break;
     case 8:
       dateString = year + getPeriodLabel("decade", lang);
+      break;
     case 7:
       dateString = year / 100 + ' . ' + getPeriodLabel("century", lang);
+      break;
     case 6:
       dateString = year / 1000 + ' . ' + getPeriodLabel("millennium", lang);
+      break;
+    default:
+      debug("Unknown precision: ", precision);
   }
   
   dateString += bceText;
@@ -147,4 +153,19 @@ function getPeriodLabel(period, lang) {
 
 function getBceText(lang) {
   return DATE_LABELS[lang].bceText;
+}
+
+// Scales rank by specified amount if filter condition is present
+function scaleArticleDataRank(articleData, scale, filter) {
+  if (articleDataMatchesFilter(articleData,filter)) {
+    articleData.rank = Math.round(articleData.rank * scale)
+  }
+}
+
+function articleDataMatchesFilter(articleData, filter) {
+  return (
+      articleData.statements &&
+      articleData.statements[filter.property] &&
+      articleData.statements[filter.property].values.includes(filter.value)
+  );
 }

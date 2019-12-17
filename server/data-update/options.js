@@ -20,3 +20,8 @@ exports.DATE_LABELS = {
     bceText: " BCE"
   }
 }
+
+exports.RANK_FACTORS = {
+  women: 4,
+  contextEvents: 1
+}
