@@ -14,9 +14,17 @@ var OPTIONS = require('./options'),
    "cy": "https://bywgraffiadur.cymru/article/"
  }
 
-module.exports = function(coreData, filterData, lang) {
-  var lang = lang || "en-GB";
-  var articleData = coreData.results.bindings.map(function(result) {
+module.exports = function(queryResults) {
+  var coreData = queryResults.coreData,
+  contextData = queryResults.contextData,
+  filterData = queryResults.filterData,
+  lang = queryResults.lang || "en-GB";
+
+  // Join contextData with coreData without creating a copy 
+  var combinedResults = coreData.results.bindings;
+  combinedResults.push.apply(combinedResults, contextData.results.bindings);
+
+  var articleData = combinedResults.map(function(result) {
     var nextArticle = {
       id: parseInt(result.id.value),
       title: result.title.value,
@@ -26,8 +34,12 @@ module.exports = function(coreData, filterData, lang) {
         month: parseInt(result.from_month.value),
         day: parseInt(result.from_day.value),
         precision: parseInt(result.from_precision.value),
-      }),
-      dwbUrl: biographyUrlRoot[lang] + result.dwbId.value
+      })
+    }
+    if (result.dwbId) {
+      nextArticle.dwbUrl = biographyUrlRoot[lang] + result.dwbId.value;
+    } else {
+      nextArticle.isContextEvent = true;
     }
     if (result.imageUrl) nextArticle.imageUrl = result.imageUrl.value;
     if (result.article) nextArticle.article = result.article.value;
@@ -50,7 +62,6 @@ module.exports = function(coreData, filterData, lang) {
     }
 
     nextArticle.subtitle = getPrettyDate(nextArticle.from, lang) + ' - ' + getPrettyDate(nextArticle.to, lang);
-
     addFiltersToArticleData(nextArticle, filterData);
     // Boost rank if article has statement "gender" (P21) = "female" (Q6581072)
     scaleArticleDataRank(nextArticle, RANK_FACTORS.women, {property:'P21', value: 'Q6581072' })

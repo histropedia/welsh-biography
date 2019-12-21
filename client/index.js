@@ -6,22 +6,19 @@ window.DWB = new App();
 // Todo: remove once client side translation system complete
 window.LANG = $('html').attr("lang");
 
-// Todo: migrate to server side data update routine
-addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
-
-appendWidthToImageUrls(CONTEXT_EVENT_DATA, 175)
-appendWidthToImageUrls(BIOGRAPHY_DATA, 175)
+// Todo: move to DWB.createTimeline
+appendWidthToImageUrls(TIMELINE_DATA, 175)
 
 // Setup the timeline
-DWB.createTimeline(document.getElementById("timeline-container"), BIOGRAPHY_DATA, CONTEXT_EVENT_DATA);
+DWB.createTimeline(document.getElementById("timeline-container"), TIMELINE_DATA);
 DWB.setupTimelineSearch('#search-box');
 DWB.setupFilterOptions();
 
-// Setup colour code from the property list in options
+// Setup colour code options from property list in options
 //DWB.setupColorCodeOptions();
 //DWB.setColorCode(DWB.options.colorCode.properties[0]);
 
-// Colour code by gender and rank
+// Colour scale code by gender and rank
 var femaleFilter = {property: "P21", value:"Q6581072"};
 var maleFilter = {property: "P21", value:"Q6581097"};
 DWB.setRankColorScale(240 /*hue*/, femaleFilter );
@@ -130,14 +127,6 @@ $('#search-box').on('input js-input', function() {
         $('#btn-close-reading-panel').css('visibility','hidden')
     }
 })
-
-
-function addToArticleDataRanks(articleData, amount) {
-    for (var i=0; i<articleData.length; i++) {
-        var article = articleData[i];
-        article.rank += amount;
-    }
-}
 
 function appendWidthToImageUrls(articleData,width) {
     for (var i=0; i<articleData.length; i++) {
