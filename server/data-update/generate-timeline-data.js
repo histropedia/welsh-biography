@@ -4,6 +4,7 @@
  */
 require('dotenv').config();
 var debug = require('debug')('dwb:data-update:generate-timeline-data');
+var WELSH_ID_MAP = require('./welsh-id-map.json');
 var OPTIONS = require('./options'),
     DATE_LABELS = OPTIONS.DATE_LABELS,
     RANK_FACTORS = OPTIONS.RANK_FACTORS;
@@ -37,7 +38,9 @@ module.exports = function(queryResults) {
       })
     }
     if (result.dwbId) {
-      nextArticle.dwbUrl = biographyUrlRoot[lang] + result.dwbId.value;
+      var dwbId = result.dwbId.value;
+      if (lang === "cy") dwbId = getCyBiographyId(dwbId);
+      nextArticle.dwbUrl = biographyUrlRoot[lang] + dwbId;
     } else {
       nextArticle.isContextEvent = true;
     }
@@ -179,4 +182,10 @@ function articleDataMatchesFilter(articleData, filter) {
       articleData.statements[filter.property] &&
       articleData.statements[filter.property].values.includes(filter.value)
   );
+}
+
+function getCyBiographyId(enId) {
+  // Most biography IDs for cy version can be found be replacing first "s" with "c"
+  // But some older IDs do have no simple convertion so retreived using ID map 
+  return WELSH_ID_MAP[enId] || enId.replace("s","c");
 }
