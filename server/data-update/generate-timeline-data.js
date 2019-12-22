@@ -139,7 +139,9 @@ function getDateRangeSubtitle(from, to, lang) {
 function getPrettyDate(date, lang) {
   // Todo: Check for BC dates
   var lang = lang || "en-GB",
-  year = date.year,
+  isBCE = date.year < 1,
+  // Shift BCE dates for display (internally stored with year 0 = 1BC)
+  year = (isBCE) ? ( date.year - 1 ) * -1 : date.year,
   month = date.month,
   day = date.day,
   bceText = (date.year < 1) ? getBceText(lang) : '',
