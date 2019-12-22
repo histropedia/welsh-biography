@@ -64,7 +64,7 @@ module.exports = function(queryResults) {
       }
     }
 
-    nextArticle.subtitle = getPrettyDate(nextArticle.from, lang) + ' - ' + getPrettyDate(nextArticle.to, lang);
+    nextArticle.subtitle = getDateRangeSubtitle(nextArticle.from, nextArticle.to, lang);
     addFiltersToArticleData(nextArticle, filterData);
     // Boost rank if article has statement "gender" (P21) = "female" (Q6581072)
     scaleArticleDataRank(nextArticle, RANK_FACTORS.women, {property:'P21', value: 'Q6581072' })
@@ -122,6 +122,20 @@ function getPrecisionFixedDate(date) {
   return date;
 }
 
+function getDateRangeSubtitle(from, to, lang) {
+  var subtitleText = getPrettyDate(from, lang);
+  var isDateRange = !(
+    from.year === to.year && 
+    from.month === to.month && 
+    from.day === to.day
+    )
+
+  if (isDateRange) {
+    subtitleText += ' - ' + getPrettyDate(to, lang);
+  }
+  return subtitleText;
+}
+
 function getPrettyDate(date, lang) {
   // Todo: Check for BC dates
   var lang = lang || "en-GB",
@@ -138,7 +152,7 @@ function getPrettyDate(date, lang) {
       dateString = getMonthLabel(month, lang) + ' ' + year;
       break;
     case 9:
-      dateString = year + bceText;
+      dateString = year;
       break;
     case 8:
       dateString = year + getPeriodLabel("decade", lang);
