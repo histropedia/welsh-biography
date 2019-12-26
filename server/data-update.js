@@ -6,6 +6,7 @@ require('dotenv').config();
 var QueryDispatcher = require('./data-update/query-dispatcher');
 var generateTimelineData = require('./data-update/generate-timeline-data');
 var queries = require('./data-update/queries');
+var PROPERTY_LABELS = require('./data-update/options').PROPERTY_LABELS;
 var fs = require('fs');
 var debug = require('debug')('dwb:data-update');
 
@@ -20,7 +21,7 @@ var coreDataEnPromise = queryDispatcher.query( queries.coreDataEn ),
     itemLabelsCyPromise = queryDispatcher.query( queries.itemLabelsCy );
 
 debug("Queries sent...");
-//debug(contextDataEn)
+
 Promise.all([
   coreDataEnPromise,
   coreDataCyPromise,
@@ -59,6 +60,15 @@ Promise.all([
     });
 
     writeTimelineData([biographyDataEn, biographyDataCy]);
+    debug("Timeline data written to disk!")
+
+    itemLabelsEn = generateLabelData(itemLabelsEn, "en-GB");
+    itemLabelsCy = generateLabelData(itemLabelsCy, "cy");
+
+    writePublicData(itemLabelsEn, '/en-GB/wikidata-labels.json')
+    writePublicData(itemLabelsCy, '/cy/wikidata-labels.json')
+    debug("Label data written to disk!")
+
   })
   .catch(function(err) {
     debug("something went wrong running at least one of the update queries")
@@ -67,6 +77,7 @@ Promise.all([
     // if failed multiple times, send error in email to developer
   })
 
+// Todo: Use writePublicData function instead once timeline data swithces to .json
 function writeTimelineData(timelineData) {
   // One biography dataset for each language
   // File path for each <lang> is ./public/data/<lang>/timeline-data.js
@@ -76,9 +87,37 @@ function writeTimelineData(timelineData) {
     var fileContents = 'var TIMELINE_DATA =' + JSON.stringify(data);
     fs.writeFile('./public/data/' + lang + '/timeline-data.js', fileContents, function (err) {
       if (err) throw err;
-      debug('data written to disk!');
     });
   }
+}
+
+function writePublicData(data, path) {
+  var fileContents = JSON.stringify(data);
+  fs.writeFile('./public/data/' + path, fileContents, function (err) {
+    if (err) throw err;
+  });
+}
+
+function generateLabelData(itemLabelResults, lang) {
+  var results = itemLabelResults.results.bindings;
+  var itemLabels = {};
+  for (var i=0; i<results.length; i++) {
+    var result = results[i];
+    if (result.item && result.valueLabel) {
+      itemLabels[result.item.value] = result.valueLabel.value;
+    } else {
+      debug("Label query results must have 'item' and 'valueLabel' properties")
+    }
+  }
+
+  // Property labels are set for each UI language in options
+  // Todo: fallback to Wikidata query results when no value set in options
+  var propertyLabels = PROPERTY_LABELS[lang];
+
+  return {
+    items: itemLabels,
+    properties: propertyLabels
+  };
 }
 
 

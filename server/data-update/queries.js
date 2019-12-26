@@ -146,6 +146,7 @@ WHERE {
   UNION { ?person wdt:P140 ?value }
   UNION { ?person wdt:P735 ?value }
   UNION { ?person wdt:P734 ?value }
+  FILTER (!isBLANK(?value))
   
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }`;
@@ -164,6 +165,7 @@ WHERE {
   UNION { ?person wdt:P140 ?value }
   UNION { ?person wdt:P735 ?value }
   UNION { ?person wdt:P734 ?value }
+  FILTER (!isBLANK(?value))
   
   SERVICE wikibase:label { bd:serviceParam wikibase:language "cy, en". }
 }`;
