@@ -71,7 +71,7 @@ module.exports = function(queryResults) {
     return nextArticle;
   })
 
-  return {data: articleData, lang: lang};
+  return articleData;
 }
 
 function addFiltersToArticleData(articleData, filterData) {

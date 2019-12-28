@@ -1,36 +1,21 @@
 import {App} from './js/App';
 
-// Initialise the app
-window.DWB = new App();
-
 // Todo: remove once client side translation system complete
 window.LANG = $('html').attr("lang");
 
-// Todo: move to DWB.createTimeline
-appendWidthToImageUrls(TIMELINE_DATA, 175)
+// Get timeline data
+$.getJSON('data/' + LANG + '/timeline-data.json', function(timelineData) {
 
-// Setup the timeline
-DWB.createTimeline(document.getElementById("timeline-container"), TIMELINE_DATA);
-DWB.setupTimelineSearch('#search-box');
-DWB.setupFilterOptions();
+    // Todo: move to createTimeline method
+    appendWidthToImageUrls(timelineData.articles, 175)
 
-// Setup colour code options from property list in options
-//DWB.setupColorCodeOptions();
-//DWB.setColorCode(DWB.options.colorCode.properties[0]);
-
-// Colour scale code by gender and rank
-var femaleFilter = {property: "P21", value:"Q6581072"};
-var maleFilter = {property: "P21", value:"Q6581097"};
-DWB.setRankColorScale(240 /*hue*/, femaleFilter );
-DWB.setRankColorScale(125 /*hue*/, maleFilter );
-
-DWB.timeline.showContextEvents = false;
-DWB.filtersChanged();
+    // Initialise app and render timeline
+    window.DWB = new App(timelineData,"#timeline-container");
+})
 
 
 // Click events
 
-// Todo: remove or move after setting up panel switching functions
 $('#btn-open-color-code').click( function() {
     DWB.openColorCodePanel();
 });

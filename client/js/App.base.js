@@ -1,7 +1,7 @@
 import {ContentPanel} from './ContentPanel';
 import {TIMELINE_OPTIONS, APP_OPTIONS} from './options';
 
-export function App() {    
+export function App(timelineData, containerSelector) {    
     var windowWidth = $(window).width(),
         windowHeight = $(window).height(),
         urlParameters = getUrlParameters(),
@@ -9,7 +9,6 @@ export function App() {
     
     this.isMobile = windowWidth < 450 || windowHeight < 450;
     this.isPortrait = windowWidth < windowHeight;
-    
     
     this.state = {
         // can be used to store states for browser history, or to create share URLs with current state
@@ -34,33 +33,35 @@ export function App() {
     };
     
     this.options = APP_OPTIONS;
-    
-    // Add any number of optional article array arguments after container
-    this.createTimeline = function(container) {
-        var defaultOptions = TIMELINE_OPTIONS.default,
-            sizeSpecificOptions = getTimelineOptions(),
-            options = $.extend(true, {}, defaultOptions, sizeSpecificOptions);
-        
-        var timeline = this.timeline = new Histropedia.Timeline( container, options );
-        for (var i=1; i<arguments.length; i++) {
-            timeline.load(arguments[i]);
-        }
+    this.timeline = null;
+    this.setupTimeline = function() {
+        this.timeline = createTimeline(containerSelector, timelineData.articles);
+        this.setupTimelineSearch('#search-box');
+        this.setupFilterOptions();
 
-        // Increase density of articles when zoomed in
-        // Todo: Use single custom density settings object in next HistropediaJS version
-        timeline.timescaleManager.addZoomChangedHandler(function() {
-            var zoom = timeline.timescaleManager.zoom;
-            if (zoom < 15 ) {
-                timeline.options.article.density = Histropedia.DENSITY_ALL;
-            } else if (zoom < 20) {
-                timeline.options.article.density = Histropedia.DENSITY_HIGH;
-            } else {
-                timeline.options.article.density = options.article.density;
-            }
-        })
+        // Setup colour code options from property list in options
+        //DWB.setupColorCodeOptions();
+        //DWB.setColorCode(DWB.options.colorCode.properties[0]);
+
+        // Colour scale code by gender and rank
+        var femaleFilter = {property: "P21", value:"Q6581072"};
+        var maleFilter = {property: "P21", value:"Q6581097"};
+        this.setRankColorScale(240 /*hue*/, femaleFilter );
+        this.setRankColorScale(125 /*hue*/, maleFilter );
+
+        this.timeline.showContextEvents = false;
+        this.filtersChanged();
+    }
+
+    this.getLabel = {
+        property: function(property) {
+            return timelineData.labels.properties[property] || property;
+        },
+        item: function(item) {
+            return timelineData.labels.items[item] || item;
+        }
     }
     
-
     this.contentPanel = new ContentPanel(this, this.options.contentPanel);
     
     this.windowResized = function () {
@@ -100,6 +101,30 @@ export function App() {
     
     /****************** Private functions ******************/
     
+    // Add any number of optional article array arguments after container
+    function createTimeline(containerSelector /*, articles1, articles2...]*/) {
+        var options = getTimelineOptions()
+        var timeline = new Histropedia.Timeline( $(containerSelector)[0], options );
+        for (var i=1; i<arguments.length; i++) {
+            timeline.load(arguments[i]);
+        }
+
+        // Increase density of articles when zoomed in
+        // Todo: Use single custom density settings object in next HistropediaJS version
+        timeline.timescaleManager.addZoomChangedHandler(function() {
+            var zoom = timeline.timescaleManager.zoom;
+            if (zoom < 15 ) {
+                timeline.options.article.density = Histropedia.DENSITY_ALL;
+            } else if (zoom < 20) {
+                timeline.options.article.density = Histropedia.DENSITY_HIGH;
+            } else {
+                timeline.options.article.density = options.article.density;
+            }
+        })
+
+        return timeline;
+    }
+
     function getTimelineOptions() {
         var size = ( windowHeight < 450 ) ? 'small' : 'large';
         //deep copy of size specific options
@@ -145,6 +170,8 @@ export function App() {
         $.extend(true, options, effectsOptions)
     }
     
+    this.setupTimeline();
+
     //add window resize event passing this context
     $(window).resize($.proxy(this.windowResized, this))
 }

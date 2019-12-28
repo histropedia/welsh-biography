@@ -44,7 +44,7 @@ Promise.all([
     
     
     // Todo: automate from languages in app config
-    var biographyDataEn = generateTimelineData({
+    var articleDataEn = generateTimelineData({
       coreData: coreDataEn,
       contextData: contextDataEn,
       filterData: filterData, 
@@ -52,22 +52,19 @@ Promise.all([
     });
 
       // Todo: automate from languages in app config
-    var biographyDataCy = generateTimelineData({
+    var articleDataCy = generateTimelineData({
       coreData: coreDataCy,
       contextData: contextDataCy,
       filterData: filterData,
       lang: 'cy'
     });
 
-    writeTimelineData([biographyDataEn, biographyDataCy]);
-    debug("Timeline data written to disk!")
-
     itemLabelsEn = generateLabelData(itemLabelsEn, "en-GB");
     itemLabelsCy = generateLabelData(itemLabelsCy, "cy");
 
-    writePublicData(itemLabelsEn, '/en-GB/wikidata-labels.json')
-    writePublicData(itemLabelsCy, '/cy/wikidata-labels.json')
-    debug("Label data written to disk!")
+    writeTimelineData({articles: articleDataEn, labels: itemLabelsEn}, "en-GB");
+    writeTimelineData({articles: articleDataCy, labels: itemLabelsCy}, "cy");
+    debug("Update complete!")
 
   })
   .catch(function(err) {
@@ -78,17 +75,12 @@ Promise.all([
   })
 
 // Todo: Use writePublicData function instead once timeline data swithces to .json
-function writeTimelineData(timelineData) {
-  // One biography dataset for each language
-  // File path for each <lang> is ./public/data/<lang>/timeline-data.js
-  for (var i=0; i<timelineData.length; i++) {
-    var lang = timelineData[i].lang;
-    var data = timelineData[i].data;
-    var fileContents = 'var TIMELINE_DATA =' + JSON.stringify(data);
-    fs.writeFile('./public/data/' + lang + '/timeline-data.js', fileContents, function (err) {
-      if (err) throw err;
-    });
-  }
+function writeTimelineData(timelineData, lang) {
+  var fileContents = JSON.stringify(timelineData);
+  fs.writeFile('./public/data/' + lang + '/timeline-data.json', fileContents, function (err) {
+    if (err) throw err;
+    debug ("Timeline data written to disk")
+  });
 }
 
 function writePublicData(data, path) {
