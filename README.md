@@ -16,11 +16,12 @@ Important: Dependencies used in the application have their own licences. They ar
 # Local setup instructions
 1. Install dependencies using `npm install` from the root folder
 2. Copy `server/sample.env` to `server/.env` (adjust if needed for local environment)
-3. Start app and watch for changes using `npm start`
+3. Generate local timeline data using `npm run data-update`
+4. Start app and watch for changes using `npm start`
    
    If preferred, you can start the app with separate client and server consoles:
-   - `cd client && npm run dev`
-   - `cd server && npm start`
+   - `npm run build:dev`
+   - `npm run start:server`
 
 Note: All files in the `client` folder are either bundled or copied over to the relevant
 locations in the `server` folder during the build process.
@@ -28,15 +29,16 @@ locations in the `server` folder during the build process.
 # Server setup and Deployment
 The app runs entirely from the `server` folder once the front end assets have been bundled.
 So this is the only folder you need to deploy to the server.
-- Run `npm run build:production` locally to bundle all front end assets for production
-- Copy the contents of the `server` folder to the desired folder on the server, excluding the 
+1. Run `npm run build:production` locally to bundle all front end assets for production
+2. (optional) Run `npm run data-update` to get latest timeline data.
+3. Copy the contents of the `server` folder to the desired folder on the server, excluding the 
   `node_modules` folder and `.env` file
-- If it's the first time setup:
+4. If it's the first time setup:
   - Create a new `.env` in the root folder of the application on the server, using a copy of `sample.env`
   - Set `NODE_ENV` to `production` in the new file
   - Make any other required changes to the `.env` for the environment you've deployed to
   - install dependencies using `npm install` from the newly copied folder
-- Launch the app on the server with `npm start`
+5. Launch app on the server with `npm start`
 
 # Translations
 Translations are extracted automatically from source code as it runs.
@@ -57,19 +59,19 @@ Note: All timeline data is localised separately using Wikidata labels. Further d
 
 # Wikidata labels
 The app uses Wikidata properties (e.g. P21) and items (e.g. Q84) for all filter and colour code data.
-When labels need to be rendered in the UI, the following methods are used:
-- `App.getLabel.property(property)`
-- `App.getLabel.item(item)`
+When labels need to be rendered in the UI, the following methods are used from the App() instance:
+- `DWB.getLabel.property(property)`
+- `DWB.getLabel.item(item)`
 
-Labels for each language are stored in `server/public/data/<lang>/wikidata-labels`.
-Labels for properties are set manually to allow deviation from the label used on Wikidata if desired.
-Todo: fallback to Wikidata label if no custom label defined
-
-Labels for items are generated using a Wikidata query at the time of each timeline data update.
+During the data update process, item labels for each language are generated from Wikidata queries, while 
+property labels are taken from a manual list in `server/data-update/options.js`.
+The resulting label data is stored as part of the main `timeline-data.json` file (see below).
 
 # Timeline data
-All timeline data is generated via Wikidata queries.
-Core timeline data is different for each avaialable language:
+All timeline data is generated via the Wikidata queries in `server/data-update/queries.js`.
+The resulting data for the timeline is stored in `server/public/data/<lang>/timeline-data.json`,
+with `articles` and `labels` properties.
+Core timeline data queries are different for each avaialable language:
 - Core data (English): https://w.wiki/CgM
 - Core data (Welsh): https://w.wiki/CgK
 
@@ -81,13 +83,14 @@ Filter labels are different for each avaialable language:
 - Filter labels (Welsh): https://w.wiki/CgU
 
 # Application Settings
-All options for the timeline and other front end components can be found in `client/js/options.js`.
+- Timeline and other front end components: `client/js/options.js`
+- Data update process: `server/data-update/options.js`
 
 ## TIMELINE_OPTIONS
 Options for the HistropdiaJS timeline interface:
-- `TIMELINE_OPTIONS.default`are options that apply to all timeline sizes
-- `TIMELINE_OPTIONS.small` are extra options and overrides for *small* height timelines (i.e. mobile landscape)
-- `TIMELINE_OPTIONS.large` are extra options and overrides for *large* height timelines
+- `TIMELINE_OPTIONS.default`: Options that apply to all timeline sizes
+- `TIMELINE_OPTIONS.small`: Extra options and overrides for *small* height timelines (i.e. mobile landscape)
+- `TIMELINE_OPTIONS.large`: Extra options and overrides for *large* height timelines
 
 See http://histropedia.com/histropediajs/documentation.html for all available options.
 
@@ -114,8 +117,7 @@ Options for the whole application:
 You can link this application to another timeline library with the following changes:
 - Load the chosen library using your preferred method (script tag, npm etc)
 
-Update the following files in `client/js/` folder:
-
+## client/js/ folder
 App.base 
 - Update the `App.createTimeline` method as required to initialise the new timeline
 
@@ -124,5 +126,9 @@ options.js
 
 App.filter.js, App.colorCode.js, App.search.js
 - Update references to functions and properties of `this.timeline` where needed.
+
+## server/data-update/ folder
+generate-timeline-data.js
+- Change output to the required format for the timeline library used
 
 Contact info@histropedia.com or post questions to https://github.com/histropedia/welsh-biography/issues for further assistance.

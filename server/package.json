@@ -3,7 +3,8 @@
   "description": "Back end source code for Dictionary of Welsh Biography timeline",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "data-update": "node data-update.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
