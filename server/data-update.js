@@ -1,14 +1,19 @@
 
-/* Runs Wikidata queries to update timeline data
- * Updates en-GB and cy biography-events.js files in public/data folder
+/* Runs Wikidata queries to update timeline datanpm d
+ * Updates en-GB and cy timeline-data.json files in public/data folder
  */
+
 require('dotenv').config();
-var QueryDispatcher = require('./data-update/query-dispatcher');
-var generateTimelineData = require('./data-update/generate-timeline-data');
-var queries = require('./data-update/queries');
-var PROPERTY_LABELS = require('./data-update/options').PROPERTY_LABELS;
-var fs = require('fs');
-var debug = require('debug')('dwb:data-update');
+var QueryDispatcher = require('./data-update/query-dispatcher'),
+generateTimelineData = require('./data-update/generate-timeline-data'),
+utils = require('./data-update/utils.js'),
+writeTimelineData = utils.writeTimelineData,
+generateLabelData = utils.generateLabelData,
+queries = require('./data-update/queries'),
+debug = require('debug')('dwb:data-update');
+
+// Set working directory
+process.chdir( __dirname );
 
 var endpointUrl = 'https://query.wikidata.org/sparql';
 var queryDispatcher = new QueryDispatcher(endpointUrl);
@@ -42,7 +47,6 @@ Promise.all([
     itemLabelsEn = values[5],
     itemLabelsCy = values[6];
     
-    
     // Todo: automate from languages in app config
     var articleDataEn = generateTimelineData({
       coreData: coreDataEn,
@@ -64,8 +68,6 @@ Promise.all([
 
     writeTimelineData({articles: articleDataEn, labels: itemLabelsEn}, "en-GB");
     writeTimelineData({articles: articleDataCy, labels: itemLabelsCy}, "cy");
-    debug("Update complete!")
-
   })
   .catch(function(err) {
     debug("something went wrong running at least one of the update queries")
@@ -74,43 +76,7 @@ Promise.all([
     // if failed multiple times, send error in email to developer
   })
 
-// Todo: Use writePublicData function instead once timeline data swithces to .json
-function writeTimelineData(timelineData, lang) {
-  var fileContents = JSON.stringify(timelineData);
-  fs.writeFile('./public/data/' + lang + '/timeline-data.json', fileContents, function (err) {
-    if (err) throw err;
-    debug ("Timeline data written to disk")
-  });
-}
 
-function writePublicData(data, path) {
-  var fileContents = JSON.stringify(data);
-  fs.writeFile('./public/data/' + path, fileContents, function (err) {
-    if (err) throw err;
-  });
-}
-
-function generateLabelData(itemLabelResults, lang) {
-  var results = itemLabelResults.results.bindings;
-  var itemLabels = {};
-  for (var i=0; i<results.length; i++) {
-    var result = results[i];
-    if (result.item && result.valueLabel) {
-      itemLabels[result.item.value] = result.valueLabel.value;
-    } else {
-      debug("Label query results must have 'item' and 'valueLabel' properties")
-    }
-  }
-
-  // Property labels are set for each UI language in options
-  // Todo: fallback to Wikidata query results when no value set in options
-  var propertyLabels = PROPERTY_LABELS[lang];
-
-  return {
-    items: itemLabels,
-    properties: propertyLabels
-  };
-}
 
 
   
