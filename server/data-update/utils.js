@@ -1,18 +1,19 @@
 require('dotenv').config();
 var PROPERTY_LABELS = require('./options').PROPERTY_LABELS,
 path = require('path'),
-fs = require('fs'),
+fs = require('fs-extra'),
 debug = require('debug')('dwb:data-update');
 
-// Requires working directory to be /server
+// Requires working directory to be /server, as set in data-update.js
 function writeTimelineData(timelineData, lang) {
-    var fileContents = JSON.stringify(timelineData);
     var filePath = path.resolve('public/data/', lang) + '/timeline-data.json';
-    ensureDirectoryExistence(filePath);
-    fs.writeFile(filePath, fileContents, function (err) {
-        if (err) throw err;
+    fs.outputJson(filePath, timelineData)
+    .then(function() {
         debug("Timeline data written to disk")
-    });
+    })
+    .catch(function(err) {
+        debug(err)
+    })
 }
 
 function generateLabelData(itemLabelResults, lang) {
@@ -37,16 +38,25 @@ function generateLabelData(itemLabelResults, lang) {
     };
 }
 
-function ensureDirectoryExistence(filePath) {
-    var dirname = path.dirname(filePath);
-    if (fs.existsSync(dirname)) {
-        return true;
-    }
-    ensureDirectoryExistence(dirname);
-    fs.mkdirSync(dirname);
+function backupTimelineData() {
+    fs.pathExists('./public/data')
+    .then( function(exists) {
+        if (exists) {
+            return fs.copy('./public/data', './data-backup');
+        } else {
+            debug("No timeline data yet, skipping backup")
+        }
+        return false;
+    })
+}
+
+function rollbackTimelineData() {
+    return fs.copySync('./data-backup', './public/data');
 }
 
 module.exports = {
     writeTimelineData: writeTimelineData,
-    generateLabelData: generateLabelData
+    generateLabelData: generateLabelData,
+    backupTimelineData: backupTimelineData,
+    rollbackTimelineData: rollbackTimelineData
 }

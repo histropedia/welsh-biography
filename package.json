@@ -10,7 +10,8 @@
     "start:server": "cd server && npm start",
     "build:dev": "cd client && npm run dev",
     "build:production": "cd client && npm run build",
-    "data-update": "cd server && npm run data-update"
+    "data-update": "cd server && npm run data-update",
+    "data-rollback": "cd server && npm run data-rollback"
   },
   "repository": {
     "type": "git",

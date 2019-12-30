@@ -1,5 +1,5 @@
 
-/* Runs Wikidata queries to update timeline datanpm d
+/* Runs Wikidata queries to update timeline data
  * Updates en-GB and cy timeline-data.json files in public/data folder
  */
 
@@ -9,21 +9,32 @@ generateTimelineData = require('./data-update/generate-timeline-data'),
 utils = require('./data-update/utils.js'),
 writeTimelineData = utils.writeTimelineData,
 generateLabelData = utils.generateLabelData,
+backupTimelineData = utils.backupTimelineData,
+rollbackTimelineData = utils.rollbackTimelineData,
 queries = require('./data-update/queries'),
 debug = require('debug')('dwb:data-update');
 
 // Set working directory
 process.chdir( __dirname );
 
-var endpointUrl = 'https://query.wikidata.org/sparql';
-var queryDispatcher = new QueryDispatcher(endpointUrl);
-var coreDataEnPromise = queryDispatcher.query( queries.coreDataEn ),
+if (process.argv[2] === "--rollback") {
+  debug("Rolling back timeline data...")
+  // Synchronous folder copying
+  rollbackTimelineData();
+  debug("Old data restored!");
+  return;
+}
+
+var endpointUrl = 'https://query.wikidata.org/sparql',
+    queryDispatcher = new QueryDispatcher(endpointUrl),
+    coreDataEnPromise = queryDispatcher.query( queries.coreDataEn ),
     coreDataCyPromise = queryDispatcher.query( queries.coreDataCy ),
     filterDataPromise = queryDispatcher.query( queries.filterData ),
     contextDataEnPromise = queryDispatcher.query( queries.contextDataEn ),
     contextDataCyPromise = queryDispatcher.query( queries.contextDataCy ),
     itemLabelsEnPromise = queryDispatcher.query( queries.itemLabelsEn ),
-    itemLabelsCyPromise = queryDispatcher.query( queries.itemLabelsCy );
+    itemLabelsCyPromise = queryDispatcher.query( queries.itemLabelsCy ),
+    dataBackupPromise = backupTimelineData();
 
 debug("Queries sent...");
 
@@ -34,11 +45,13 @@ Promise.all([
   contextDataEnPromise,
   contextDataCyPromise,
   itemLabelsEnPromise,
-  itemLabelsCyPromise
-])
-.then(function(values) {
+  itemLabelsCyPromise,
+  dataBackupPromise
+  ])
+  .then(function(values) {
     // Process and combine results to generate timeline data
-    debug("All queries completed, start processing..."); 
+    debug("Queries and data backup complete");
+    
     var coreDataEn = values[0],
     coreDataCy = values[1],
     filterData = values[2],
@@ -75,6 +88,7 @@ Promise.all([
     // attempt to re-run the update after a wait period
     // if failed multiple times, send error in email to developer
   })
+
 
 
 

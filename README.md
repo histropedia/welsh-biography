@@ -30,7 +30,7 @@ locations in the `server` folder during the build process.
 The app runs entirely from the `server` folder once the front end assets have been bundled.
 So this is the only folder you need to deploy to the server.
 1. Run `npm run build:production` locally to bundle all front end assets for production
-2. (optional) Run `npm run data-update` to get latest timeline data.
+2. (optional) Run `npm run data-update` to get latest timeline data
 3. Copy the contents of the `server` folder to the desired folder on the server, excluding the 
   `node_modules` folder and `.env` file
 4. If it's the first time setup:
@@ -39,6 +39,12 @@ So this is the only folder you need to deploy to the server.
   - Make any other required changes to the `.env` for the environment you've deployed to
   - install dependencies using `npm install` from the newly copied folder
 5. Launch app on the server with `npm start`
+
+# Data update process
+You can manually trigger an update of all timeline data using `npm run data-update`.
+This will update the `server/public/data/<lang>/timeline-data.json` files for each UI language.
+Before updating the files, all previous timeline data is backed up to the `server/data-backup` folder.
+You can rollback to the backed up timeline data files using `npm run data-rollback`.
 
 # Translations
 Translations are extracted automatically from source code as it runs.
@@ -71,16 +77,22 @@ The resulting label data is stored as part of the main `timeline-data.json` file
 All timeline data is generated via the Wikidata queries in `server/data-update/queries.js`.
 The resulting data for the timeline is stored in `server/public/data/<lang>/timeline-data.json`,
 with `articles` and `labels` properties.
-Core timeline data queries are different for each avaialable language:
-- Core data (English): https://w.wiki/CgM
-- Core data (Welsh): https://w.wiki/CgK
+Links to run the queries on the Wikidata Query Service are shown below:
 
-Filter data is the same for all languages as it does not include labels:
-- Filter data (All languages): https://tinyurl.com/ssy9sxo
+Timeline data for Biography events
+- English: https://w.wiki/CgM
+- Welsh: https://w.wiki/CgK
 
-Filter labels are different for each avaialable language:
-- Filter labels (English): https://w.wiki/CgS
-- Filter labels (Welsh): https://w.wiki/CgU
+Timeline data for Welsh History events
+- English: https://tinyurl.com/rl2uvwv
+- Welsh: https://tinyurl.com/uk3q4j8
+
+Filter data for Biography Events
+- All languages: https://tinyurl.com/ssy9sxo
+
+Filter value labels:
+- English: https://w.wiki/EhL
+- Welsh: https://w.wiki/EhT
 
 # Application Settings
 - Timeline and other front end components: `client/js/options.js`
