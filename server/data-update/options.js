@@ -26,6 +26,8 @@ exports.RANK_FACTORS = {
   contextEvents: 1
 }
 
+// Manually set labels for properties used as filters and colour codes
+// Todo: Fallback to Wikidata labels so these options are optional
 exports.PROPERTY_LABELS = {
   "en-GB": {
     "P21": "Gender",
@@ -46,6 +48,12 @@ exports.PROPERTY_LABELS = {
     "P140": "Crefydd",
     "P735": "Enw cyntaf",
     "P734": "Cyfenw"
-
   }
+}
+
+// Dictionary of Welsh Biography uses different domains for en and cy version
+// Used for constructing Biography URL from ID
+exports.BIOGRAPHY_URL = {
+  "en-GB": 'https://biography.wales/article/',
+  "cy": "https://bywgraffiadur.cymru/article/"
 }

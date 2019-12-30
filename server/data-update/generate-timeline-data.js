@@ -7,13 +7,8 @@ var debug = require('debug')('dwb:data-update:generate-timeline-data');
 var WELSH_ID_MAP = require('./welsh-id-map.json');
 var OPTIONS = require('./options'),
     DATE_LABELS = OPTIONS.DATE_LABELS,
-    RANK_FACTORS = OPTIONS.RANK_FACTORS;
-
- // Dictionary of Welsh Biography uses different domains for en and cy version
- var biographyUrlRoot = {
-   "en-GB": 'https://biography.wales/article/',
-   "cy": "https://bywgraffiadur.cymru/article/"
- }
+    RANK_FACTORS = OPTIONS.RANK_FACTORS,
+    BIOGRAPHY_URL = OPTIONS.BIOGRAPHY_URL;
 
 module.exports = function(queryResults) {
   var coreData = queryResults.coreData,
@@ -40,7 +35,7 @@ module.exports = function(queryResults) {
     if (result.dwbId) {
       var dwbId = result.dwbId.value;
       if (lang === "cy") dwbId = getCyBiographyId(dwbId);
-      nextArticle.dwbUrl = biographyUrlRoot[lang] + dwbId;
+      nextArticle.dwbUrl = BIOGRAPHY_URL[lang] + dwbId;
     } else {
       nextArticle.isContextEvent = true;
     }
