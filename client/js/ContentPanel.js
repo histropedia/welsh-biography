@@ -23,7 +23,7 @@ export function ContentPanel(owner, options) {
                     $('#' + this.elementId).prop('src', url);
 				},
                 isButtonVisible: function(article) {
-                    return !!article.data.article;
+                    return true;
                 }
 			}
 		},
