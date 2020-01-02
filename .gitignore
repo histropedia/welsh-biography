@@ -1,9 +1,8 @@
 node_modules/
 client/node_modules/
 server/node_modules/
-server/public/css/
-server/public/js/
-server/public/images/
+server/public/
+server/data-backup/
 server/views/
 server/.env
 test/
