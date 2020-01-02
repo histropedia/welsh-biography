@@ -9,8 +9,8 @@ See the live running version at http://welsh-biography.histropedia.com
 The code for this application is open source, with terms of re-use covered by:
 1. The GNU Affero General Public License v3, and
 2. The Profit Contribution Agreement between Licensee and MY-D Foundation 
-Details are shown in the COPYING file in the repository.
 
+Details are shown in the COPYING file in the repository.
 Important: Dependencies used in the application have their own licences. They are all open source except for the HistropediaJS library used for rendering the timeline, which is free for non-commercial use (see http://histropedia.com/histropediajs/licence.html). See the "Using another timeline library" section below for instructions on linking to another open source timeline library.
 
 # Local setup instructions

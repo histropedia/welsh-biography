@@ -12,6 +12,7 @@ generateLabelData = utils.generateLabelData,
 backupTimelineData = utils.backupTimelineData,
 rollbackTimelineData = utils.rollbackTimelineData,
 queries = require('./data-update/queries'),
+email = require('./data-update/email'),
 debug = require('debug')('dwb:data-update');
 
 // Set working directory
@@ -36,7 +37,7 @@ var endpointUrl = 'https://query.wikidata.org/sparql',
     itemLabelsCyPromise = queryDispatcher.query( queries.itemLabelsCy ),
     dataBackupPromise = backupTimelineData();
 
-debug("Queries sent...");
+debug("Queries sent ✔️");
 
 Promise.all([
   coreDataEnPromise,
@@ -50,7 +51,7 @@ Promise.all([
   ])
   .then(function(values) {
     // Process and combine results to generate timeline data
-    debug("Queries and data backup complete");
+    debug("Queries and data backup complete ✔️");
     
     var coreDataEn = values[0],
     coreDataCy = values[1],
@@ -76,17 +77,39 @@ Promise.all([
       lang: 'cy'
     });
 
-    itemLabelsEn = generateLabelData(itemLabelsEn, "en-GB");
-    itemLabelsCy = generateLabelData(itemLabelsCy, "cy");
+    var labelsEn = generateLabelData(itemLabelsEn, "en-GB");
+    var labelsCy = generateLabelData(itemLabelsCy, "cy");
 
-    writeTimelineData({articles: articleDataEn, labels: itemLabelsEn}, "en-GB");
-    writeTimelineData({articles: articleDataCy, labels: itemLabelsCy}, "cy");
+    Promise.all([
+      writeTimelineData({articles: articleDataEn, labels: labelsEn}, "en-GB"),
+      writeTimelineData({articles: articleDataCy, labels: labelsCy}, "cy")
+    ])
+    .then(function() {
+      debug("Timeline data updated successfully ✔️");
+      email.sendDataUpdateLog({
+        stage: "complete",
+        articleCountEn: articleDataEn.length,
+        itemLabelCountEn: Object.keys(labelsEn.items).length,
+        articleCountCy: articleDataCy.length,
+        itemLabelCountCy: Object.keys(labelsCy.items).length,
+      });
+    })
+    .catch(function(err) {
+      debug("Error writing timeline data to disk ❌\n", err)
+      email.sendDataUpdateLog({
+        stage: "writing to disk",
+        error: err
+      });
+    })
   })
   .catch(function(err) {
-    debug("something went wrong running at least one of the update queries")
-    debug(err)
-    // attempt to re-run the update after a wait period
-    // if failed multiple times, send error in email to developer
+    debug("Error processing data update queries ❌\n", err)
+    email.sendDataUpdateLog({
+      stage: "processing queries",
+      error: err
+    });
+    
+    // Todo: attempt to re-run the update after a wait period
   })
 
 

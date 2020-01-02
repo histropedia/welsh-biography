@@ -1,4 +1,3 @@
-require('dotenv').config();
 var PROPERTY_LABELS = require('./options').PROPERTY_LABELS,
 path = require('path'),
 fs = require('fs-extra'),
@@ -7,13 +6,8 @@ debug = require('debug')('dwb:data-update');
 // Requires working directory to be /server, as set in data-update.js
 function writeTimelineData(timelineData, lang) {
     var filePath = path.resolve('public/data/', lang) + '/timeline-data.json';
-    fs.outputJson(filePath, timelineData)
-    .then(function() {
-        debug("Timeline data written to disk")
-    })
-    .catch(function(err) {
-        debug(err)
-    })
+    return fs.outputJson(filePath, timelineData)
+  
 }
 
 function generateLabelData(itemLabelResults, lang) {
