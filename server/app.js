@@ -19,6 +19,10 @@ i18n.configure({
 
 // i18n init parses req for language headers, cookies, etc.
 app.use(i18n.init);
+app.use(function(req, res, next) {
+  res.locals.lang = i18n.getLocale(req) ;
+  next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
