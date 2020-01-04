@@ -1,37 +1,46 @@
+require('dotenv').config();
 var createError = require('http-errors');
+var cookieSession = require('cookie-session');
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var i18n = require('i18n');
+var debug = require('debug')('dwb:app');
 
+var localeRouter = require('./routes/locale');
 var indexRouter = require('./routes/index');
 var noArticleRouter = require('./routes/no-article');
 
 var app = express();
 
+// basic setup
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// cookie setup
+app.set('trust proxy', 1);
+app.use(cookieSession({
+  name: 'session',
+  keys: ["dwbkey1", "dwbkey2"],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+
+// i18n setup and redirecting
 i18n.configure({
-  locales:['en-GB', 'cy'],
+  locales: ['en-GB', 'cy'],
   defaultLocale: 'en-GB',
-  queryParameter: 'lang',
   autoReload: true,
   directory: path.join(__dirname, '/locales')
 });
 
-// i18n init parses req for language headers, cookies, etc.
 app.use(i18n.init);
-app.use(function(req, res, next) {
-  res.locals.lang = i18n.getLocale(req) ;
-  next();
-});
+app.use(localeRouter);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/no-article', noArticleRouter);

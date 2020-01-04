@@ -39,11 +39,11 @@
             <% if (lang === "en-GB")  { 
                 var twitterHref = "https://twitter.com/WelshBiography",
                     langText = "Cymraeg",
-                    langHref = "?lang=cy";
+                    langHref = "/cy";
             } else {
                 var twitterHref = "https://twitter.com/bywgraffiadur",
                     langText = "English",
-                    langHref = "?lang=en-GB";
+                    langHref = "/en-GB";
             } %>
             <a class="twitter btn-icon nav-item px-0" href=<%= twitterHref %> alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i><span class="navlabel">Twitter</span></a>
             <a id="btn-open-info" class="btn-icon nav-item px-0" data-toggle="collapse" data-target=".navbar-collapse.show" href="#" alt="" title=""><i class="fas fa-info"></i><span class="navlabel"><%= __ ("Info") %></span></a>
