@@ -2,7 +2,6 @@
  * Uses email settings from environment in /server/.env file 
  */
 
-require('dotenv').config({path: '../.env'})
 var debug = require('debug')('dwb:email');
 var nodemailer = require('nodemailer');
 var sendAdminEmails = process.env.SEND_ADMIN_EMAILS === "1";

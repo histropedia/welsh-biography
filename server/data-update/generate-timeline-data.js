@@ -2,7 +2,7 @@
  * Combines separate coreData and filterData query results
  * Returns timeline data in HistropediaJS format 
  */
-require('dotenv').config();
+
 var debug = require('debug')('dwb:data-update:generate-timeline-data');
 var WELSH_ID_MAP = require('./welsh-id-map.json');
 var OPTIONS = require('./options'),
