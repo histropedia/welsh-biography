@@ -46,8 +46,7 @@ App.prototype.setupFilterOptions = function () {
         var selected = ev.params.data;
 
         // close the filter search panel before adding the filter, to prevent unecessary search results update
-        me.closeFilterSearchPanel();
-        me.closeFilterTypesPanel();
+        me.closeAllPanels();
         me.addFilter(selected.property, selected.id);
     })
 
@@ -140,8 +139,6 @@ App.prototype.closeFilterTypesPanel = function () {
 }
 
 App.prototype.openFilterSearchPanel = function (property) {
-    // Only allow one panel open at a time on mobile
-    if (this.isMobile) this.closeAllPanels();
 
     $('#filter-search-panel').show();
 
