@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var cookieSession = require('cookie-session');
 var express = require('express');
+var helmet = require('helmet')
 var path = require('path');
 var logger = require('morgan');
 var i18n = require('i18n');
@@ -15,6 +16,7 @@ var updateTimelineData = require('./data-update').updateTimelineData;
 var app = express();
 
 // basic setup
+app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.json());
