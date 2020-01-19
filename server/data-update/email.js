@@ -41,7 +41,7 @@ function sendDataUpdateLog(logData) {
   var message = `Stage Reached: ${logData.stage} \n`
   if (logData.error) {
     subject = "Timeline data update FAIL!!";
-    message += `\n${logData.error}`;
+    message += `\n${logData.error.name}: \n${logData.error.message}`;
   } else {
     subject = "Timeline data update SUCCESS";
     message += `
