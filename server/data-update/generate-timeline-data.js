@@ -44,7 +44,7 @@ module.exports = function(queryResults) {
     } else {
       nextArticle.isContextEvent = true;
     }
-    if (result.imageUrl) nextArticle.imageUrl = result.imageUrl.value;
+    if (result.imageUrl) nextArticle.imageUrl = result.imageUrl.value.replace("http://", "https://");
     if (result.article) nextArticle.article = result.article.value;
     if (result.description) nextArticle.description = result.description.value;
     if (result.to_year) {
@@ -75,7 +75,7 @@ module.exports = function(queryResults) {
     //debug(resultsWithDateErrors)
     var errors = resultsWithDateErrors
     .map( function(result, index) {
-      return `${index + 1}. ${result.title.value} : http://wikidata.org/wiki/Q${result.id.value} (${result.birth_date.value})`;
+      return `${index + 1}. ${result.title.value} : https://wikidata.org/wiki/Q${result.id.value} (${result.birth_date.value})`;
     })
 
     throw {name : "invalidStartDates", message : errors.join('\n')};
