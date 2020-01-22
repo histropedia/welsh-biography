@@ -23,5 +23,6 @@
 	"The timeline does not include entries for people with no known dates and does not include entries for families or groups of people.": "Nid yw'r llinell amser yn cynnwys cofnodion ar gyfer pobl heb ddyddiadau hysbys ac nid yw'n cynnwys cofnodion ar gyfer teuluoedd na grwpiau.",
 	"To perform a search of all the Welsh Biography entries please search using the <a href=\"https://biography.wales/\">Dictionary of Welsh Biography website</a>.": "Defnyddiwch <a href=\"https://bywgraffiadur.cymru/\">wefan Y Bywgraffiadur Cymreig</a> er mwyn chwilio holl gofnodion y Bywgraffiadur.",
 	"This website is open source.": "Mae'r wefan hon yn ffynhonnell agored.",
-	"You can access the code via <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>.": "Cewch fynediad i'r cod trwy <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>."
+	"You can access the code via <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>.": "Cewch fynediad i'r cod trwy <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>.",
+	"Interactive Timeline": "Llinell Amser Ryngweithiol"
 }
