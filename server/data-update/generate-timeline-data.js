@@ -20,7 +20,12 @@ module.exports = function(queryResults) {
   var combinedResults = coreData.results.bindings;
   combinedResults.push.apply(combinedResults, contextData.results.bindings);
 
+  var resultsWithDateErrors = [];
   var articleData = combinedResults.map(function(result) {
+    if (typeof result.from_year === 'undefined') {
+      resultsWithDateErrors.push(result);
+      return false;
+    }
     var nextArticle = {
       id: parseInt(result.id.value),
       title: result.title.value,
@@ -39,7 +44,7 @@ module.exports = function(queryResults) {
     } else {
       nextArticle.isContextEvent = true;
     }
-    if (result.imageUrl) nextArticle.imageUrl = result.imageUrl.value;
+    if (result.imageUrl) nextArticle.imageUrl = result.imageUrl.value.replace("http://", "https://");
     if (result.article) nextArticle.article = result.article.value;
     if (result.description) nextArticle.description = result.description.value;
     if (result.to_year) {
@@ -65,6 +70,16 @@ module.exports = function(queryResults) {
     scaleArticleDataRank(nextArticle, RANK_FACTORS.women, {property:'P21', value: 'Q6581072' })
     return nextArticle;
   })
+
+  if (resultsWithDateErrors.length > 0) {
+    //debug(resultsWithDateErrors)
+    var errors = resultsWithDateErrors
+    .map( function(result, index) {
+      return `${index + 1}. ${result.title.value} : https://wikidata.org/wiki/Q${result.id.value} (${result.birth_date.value})`;
+    })
+
+    throw {name : "invalidStartDates", message : errors.join('\n')};
+  }
 
   return articleData;
 }
