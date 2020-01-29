@@ -5,7 +5,7 @@
  */
 require('dotenv').config();
 var app = require('../app');
-var debug = require('debug')('server:dwb-back-end');
+var debug = require('debug')('dwb:intialise');
 var http = require('http');
 
 

@@ -12,7 +12,7 @@ App.prototype.setupFilterOptions = function () {
     var searchBoxElements = []
     for (var i=0; i< this.options.filters.length; i++) {
         var filterProperty = this.options.filters[i],
-            filterLabel = App.getLabel.property(filterProperty),
+            filterLabel = this.getLabel.property(filterProperty),
             $optionElement = $(getFilterOptionHtml(filterProperty, filterLabel)),
             $searchElement = $(getSearchBoxHtml(filterProperty));
 
@@ -46,8 +46,7 @@ App.prototype.setupFilterOptions = function () {
         var selected = ev.params.data;
 
         // close the filter search panel before adding the filter, to prevent unecessary search results update
-        me.closeFilterSearchPanel();
-        me.closeFilterTypesPanel();
+        me.closeAllPanels();
         me.addFilter(selected.property, selected.id);
     })
 
@@ -64,7 +63,7 @@ App.prototype.setupFilterOptions = function () {
 
 App.prototype.addFilter = function(property, value) {
     this.state.activeFilters[property].push(value);
-    var valueLabel = value; // todo: get label from wikidata id
+    var valueLabel = this.getLabel.item(value);
     addFilterTagHtml(property, value, valueLabel);
     this.filtersChanged();
 
@@ -127,19 +126,6 @@ App.prototype.applyFilters = function () {
     this.timeline.defaultRedraw();
 }
 
-// updates the active filter tags shown within buttons on filter types panel
-App.prototype.updateFilterTypeButtons = function() {
-    var activeFilters = this.state.activeFilters;
-    for (var property in activeFilters) {
-        var propertyFilters = activeFilters[property];
-        var filterLabels = propertyFilters.map( function(filterValue) {
-            return App.getLabel.item(filterValue);
-        })
-        var filterHtmlTags = filterLabels.join(", ");
-        $('button[filter-property=' + property + '] .label-active-filters').text(filterHtmlTags);
-    }
-}
-
 /****************** Filter panels ******************/
 
 App.prototype.openFilterTypesPanel = function () {
@@ -153,8 +139,6 @@ App.prototype.closeFilterTypesPanel = function () {
 }
 
 App.prototype.openFilterSearchPanel = function (property) {
-    // Only allow one panel open at a time on mobile
-    if (this.isMobile) this.closeAllPanels();
 
     $('#filter-search-panel').show();
 
@@ -166,7 +150,7 @@ App.prototype.openFilterSearchPanel = function (property) {
     }
     
     // Update filter tags for the current property on the filter search panel
-    updateFilterPanelTagsHtml(property, this.state.activeFilters);
+    this.updateFilterPanelTagsHtml(property, this.state.activeFilters);
 
     // Update the property label in title of the filter panel
     $('#filter-property-label').text(filterSettings.label);
@@ -181,8 +165,37 @@ App.prototype.closeFilterSearchPanel = function () {
     this.state.filterPanel.panel = "";
 }
 
+// Updates the active filter tags shown within buttons on filter types panel
+App.prototype.updateFilterTypeButtons = function() {
+    var me = this;
+    var activeFilters = this.state.activeFilters;
+    for (var property in activeFilters) {
+        var propertyFilters = activeFilters[property];
+        var filterLabels = propertyFilters.map( function(filterValue) {
+            return me.getLabel.item(filterValue);
+        })
+        var filterHtmlTags = filterLabels.join(", ");
+        $('button[filter-property=' + property + '] .label-active-filters').text(filterHtmlTags);
+    }
+}
+
 /****************** Filter search ******************/
 
+// Add the filter tags that shows in the Filter Search Panel
+App.prototype.updateFilterPanelTagsHtml = function(filterProperty, activeFilters) {
+    for (var prop in activeFilters) {
+        if (prop === filterProperty) {
+            var filterValues = activeFilters[prop];
+            var filtersHtml = "";
+            for (var i=0; i<filterValues.length; i++) {
+                var value = filterValues[i];
+                var label = this.getLabel.item(value);
+                filtersHtml += getFilterTagHtml(filterProperty, value, label);
+            }
+            return $('#panel-active-filters-container').html(filtersHtml);
+        }
+    }
+}
 App.prototype.updateFilterSearchResults = function(filterProperty) {
     // select2 does not support templated results for dynamically added options
     // so we need to destroy and re-initialise the search box
@@ -199,7 +212,7 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
 
         for (var j=0; j < statement.values.length; j++) {
             var valueId = statement.values[j], // this is the Wikidata item number of the value
-                valuelabel = App.getLabel.item(valueId);
+                valuelabel = this.getLabel.item(valueId);
             if (filterValues.hasOwnProperty(valueId)) {
                 // increment counter if already seen
                 filterValues[valueId].count += 1;
@@ -222,7 +235,7 @@ App.prototype.updateFilterSearchResults = function(filterProperty) {
     })
 
     var finalResults = removeActiveFiltersFromResults(stateAppliedFilters, sortedResults);
-    reInitialiseSelect2(finalResults, filterProperty);
+    reInitialiseSelect2(finalResults, filterProperty, this.getLabel.property(filterProperty));
     filterSettings.needsUpdate = false;
 }
 
@@ -238,7 +251,7 @@ App.prototype.getActiveFilterCount = function() {
 
 /****************** Private functions ******************/
 
-function reInitialiseSelect2(results, filterProperty) {
+function reInitialiseSelect2(results, filterProperty, filterLabel) {
     var data = filterData[filterProperty],
         $controlElement = data.$search;
 
@@ -258,7 +271,7 @@ function reInitialiseSelect2(results, filterProperty) {
     // re-initialise
     $controlElement.select2({
         data: results,
-        placeholder: placeholderText.replace( "*property*", App.getLabel.property(filterProperty) ),
+        placeholder: placeholderText.replace( "*property*", filterLabel),
         templateResult: searchResultsFormat,
     });
 
@@ -316,29 +329,13 @@ function getArticleVisiblityFromFilters(article, activeFilters) {
     return true
 }
 
-function getFilterTagHtml(property, value) {
-    var label = App.getLabel.item(value);
+function getFilterTagHtml(property, value, label) {
     return '<span class="active-filter-tag badge" filter-property="' + property + '" filter-value="' + value + '">' + label + '<a><i class="fa fa-times remove-filter-tag-btn"></i></a></span>';
 }
 
 // Add the main filter tags that show in the header bar
-function addFilterTagHtml(property, value) {
-    $('#active-filters-container').append(getFilterTagHtml(property, value));
-}
-
-// Add the filter tags that shows in the Filter Search Panel
-function updateFilterPanelTagsHtml(filterProperty, activeFilters) {
-    for (var prop in activeFilters) {
-        if (prop === filterProperty) {
-            var filterValues = activeFilters[prop];
-            var filtersHtml = "";
-            for (var i=0; i<filterValues.length; i++) {
-                var value = filterValues[i];
-                filtersHtml += getFilterTagHtml(filterProperty, value);
-            }
-            return $('#panel-active-filters-container').html(filtersHtml);
-        }
-    }
+function addFilterTagHtml(property, value, label) {
+    $('#active-filters-container').append(getFilterTagHtml(property, value, label));
 }
 
 function removeFilterTagHtml(property, value) {

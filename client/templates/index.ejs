@@ -39,11 +39,11 @@
             <% if (lang === "en-GB")  { 
                 var twitterHref = "https://twitter.com/WelshBiography",
                     langText = "Cymraeg",
-                    langHref = "?lang=cy";
+                    langHref = "/cy";
             } else {
                 var twitterHref = "https://twitter.com/bywgraffiadur",
                     langText = "English",
-                    langHref = "?lang=en-GB";
+                    langHref = "/en-GB";
             } %>
             <a class="twitter btn-icon nav-item px-0" href=<%= twitterHref %> alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i><span class="navlabel">Twitter</span></a>
             <a id="btn-open-info" class="btn-icon nav-item px-0" data-toggle="collapse" data-target=".navbar-collapse.show" href="#" alt="" title=""><i class="fas fa-info"></i><span class="navlabel"><%= __ ("Info") %></span></a>
@@ -134,8 +134,8 @@
 <div id="info-panel" class="noselect filter-panel container" style="display: none">
     <button class="btn-icon btn btn-close-info-panel" style=""><i class="fas fa-times"></i></button>
     <div class="filter-panel-header">
-        <h1>Dictonary of Welsh Biography</h1>
-        <h2>Interactive Timeline</h2>
+        <h1><%- __('Dictionary of Welsh Biography') %></h1>
+        <h2><%- __('Interactive Timeline') %></h2>
     </div>
     <div class="filter-panel-content">
 <p>
@@ -203,9 +203,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.min.js"></script>
 <script src="https://cdn.histropedia.com/histropedia-1.1.1.min.js"></script>
-<script src="<%="data/" + lang  + "/context-events.js"%>" > </script>
-<script src="<%="data/" + lang  + "/biography-events.js"%>" > </script>
-<script src="<%="data/" + lang  + "/wikidata-labels.js"%>" > </script>
 <script src="js/main.js"></script>
 </body>
 </html>

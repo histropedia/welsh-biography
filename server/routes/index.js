@@ -1,13 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var debug = require('debug')('server:routes');
-var i18n = require('i18n');
+var debug = require('debug')('dwb:routes');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var requestLang = i18n.getLocale(req)
-  debug("request language: ", requestLang);
-  res.render('index', {lang: requestLang});
+  res.render('index');
 });
 
 module.exports = router;

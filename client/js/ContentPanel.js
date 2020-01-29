@@ -23,7 +23,7 @@ export function ContentPanel(owner, options) {
                     $('#' + this.elementId).prop('src', url);
 				},
                 isButtonVisible: function(article) {
-                    return !!article.data.article;
+                    return true;
                 }
 			}
 		},
@@ -76,7 +76,7 @@ export function ContentPanel(owner, options) {
     // only show IFrame once loaded, allowing background spinner gif to be seen
     // switch tab functions take care of hiding when content changes
     $(this.options.selectors.iframe).on('load', function() {
-        $('.reading-panel-content').show();
+        $('.reading-panel-content').css('visibility','visible');
     })
 }
 
@@ -143,7 +143,7 @@ ContentPanel.prototype.switchTab = function (tab) {
 };
 
 ContentPanel.prototype.updateTab = function (tabName) {
-    $('.reading-panel-content').hide();
+    $('.reading-panel-content').css('visibility', 'hidden');
 	var article = this.selectedArticle;
 	var tab = this.options.tabs[tabName];
 	if (!tab) return console.log('no tab data for',tabName)

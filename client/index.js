@@ -1,39 +1,21 @@
 import {App} from './js/App';
 
-// Initialise the app
-window.DWB = new App();
-
 // Todo: remove once client side translation system complete
 window.LANG = $('html').attr("lang");
 
-// Todo: migrate to server side data update routine
-var femaleFilter = {property: "P21", value:"Q6581072"};
-var maleFilter = {property: "P21", value:"Q6581097"};
-addToArticleDataRanks(CONTEXT_EVENT_DATA, -1000)
-appendWidthToImageUrls(CONTEXT_EVENT_DATA, 175)
-appendWidthToImageUrls(BIOGRAPHY_DATA, 175)
-scaleArticleDataRanks(BIOGRAPHY_DATA, 4, femaleFilter);
+// Get timeline data
+$.getJSON('data/' + LANG + '/timeline-data.json', function(timelineData) {
 
-// Setup the timeline
-DWB.createTimeline(document.getElementById("timeline-container"), BIOGRAPHY_DATA, CONTEXT_EVENT_DATA);
-DWB.setupTimelineSearch('#search-box');
-DWB.setupFilterOptions();
+    // Todo: move to createTimeline method
+    appendWidthToImageUrls(timelineData.articles, 175)
 
-// Setup colour code from the property list in options
-//DWB.setupColorCodeOptions();
-//DWB.setColorCode(DWB.options.colorCode.properties[0]);
-
-// Colour code by rank
-DWB.setRankColorScale(240 /*hue*/, femaleFilter );
-DWB.setRankColorScale(125 /*hue*/, maleFilter );
-
-DWB.timeline.showContextEvents = false;
-DWB.filtersChanged();
+    // Initialise app and render timeline
+    window.DWB = new App(timelineData,"#timeline-container");
+})
 
 
 // Click events
 
-// Todo: remove or move after setting up panel switching functions
 $('#btn-open-color-code').click( function() {
     DWB.openColorCodePanel();
 });
@@ -131,33 +113,9 @@ $('#search-box').on('input js-input', function() {
     }
 })
 
-// Todo: migrate to server side data update routine
-function scaleArticleDataRanks(articleData, scale, filter) {
-    for (var i=0; i<articleData.length; i++) {
-        var article = articleData[i];
-        if (doesArticleDataMatchFilter(article,filter)) {
-            article.rank = Math.round(article.rank * scale)
-        }
-    }
-}
-function addToArticleDataRanks(articleData, amount) {
-    for (var i=0; i<articleData.length; i++) {
-        var article = articleData[i];
-        article.rank += amount;
-    }
-}
-
 function appendWidthToImageUrls(articleData,width) {
     for (var i=0; i<articleData.length; i++) {
         var article = articleData[i];
         if (article.imageUrl) article.imageUrl += ("?width=" + width);
     }
-}
-
-function doesArticleDataMatchFilter(articleData, filter) {
-    return (
-        articleData.statements &&
-        articleData.statements[filter.property] &&
-        articleData.statements[filter.property].values.includes(filter.value)
-    );
 }
