@@ -7,13 +7,7 @@
     "dev": "webpack --colors --progress --watch -d",
     "build": "webpack --colors --progress -p"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://bitbucket.org/histropedia/dictionary-of-welsh-biography.git"
-  },
-  "author": "Navino Evans",
-  "license": "GPL-3.0",
-  "homepage": "https://bitbucket.org/histropedia/dictionary-of-welsh-biography#readme",
+  "author": "Histropedia",
   "devDependencies": {
     "copy-webpack-plugin": "^5.0.5",
     "css-loader": "^3.2.1",

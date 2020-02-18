@@ -3,6 +3,5 @@ client/node_modules/
 server/node_modules/
 server/public/
 server/data-backup/
-server/views/
 server/.env
 test/
