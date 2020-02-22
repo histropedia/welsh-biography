@@ -16,6 +16,9 @@ queries = require('./data-update/queries'),
 email = require('./data-update/email'),
 debug = require('debug')('dwb:data-update');
 
+var endpointUrl = 'https://query.wikidata.org/sparql',
+    queryDispatcher = new QueryDispatcher(endpointUrl);
+
 // Set working directory
 process.chdir( __dirname );
 
@@ -37,10 +40,33 @@ function rollbackData() {
   return;
 }
 
+// Get timeline data from all queries which are language dependant
+function getDataFor(language) {
+
+  var languageQueries = queries.getForLanguage(language);
+
+  var biographyDataPromise = queryDispatcher.query(languageQueries.biographyData),
+      contextDataPromise = queryDispatcher.query(languageQueries.contextData),
+      filterLabelsPromise = queryDispatcher.query(languageQueries.filterLabels);
+
+  Promise.all([
+    biographyDataPromise,
+    contextDataPromise,
+    filterLabelsPromise
+  ]).then( function(results) {
+    
+    return {
+      biographyData: results[0],
+      contextData: results[1],
+      filterLabels: results[2],
+    }
+  }).catch(function(err) {
+    throw {name: "languageQueryError", message:`Error running queries for language: ${language}`}
+  })
+}
+
 function updateData() {
-  var endpointUrl = 'https://query.wikidata.org/sparql',
-      queryDispatcher = new QueryDispatcher(endpointUrl),
-      coreDataEnPromise = queryDispatcher.query(queries.coreDataEn),
+  var coreDataEnPromise = queryDispatcher.query(queries.coreDataEn),
       coreDataCyPromise = queryDispatcher.query(queries.coreDataCy),
       filterDataPromise = queryDispatcher.query(queries.filterData),
       contextDataEnPromise = queryDispatcher.query(queries.contextDataEn),
@@ -51,6 +77,7 @@ function updateData() {
 
   debug("Queries sent ✔️");
 
+  // There's a limit of 5 parallel queries https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual#Query_limits
   Promise.all([
     coreDataEnPromise,
     coreDataCyPromise,
