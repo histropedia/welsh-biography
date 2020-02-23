@@ -16,8 +16,9 @@ queries = require('./data-update/queries'),
 email = require('./data-update/email'),
 debug = require('debug')('dwb:data-update');
 
-var endpointUrl = 'https://query.wikidata.org/sparql',
-    queryDispatcher = new QueryDispatcher(endpointUrl);
+const locales = ['en', 'cy'], // todo: create global config for supported locales
+endpointUrl = 'https://query.wikidata.org/sparql',
+queryDispatcher = new QueryDispatcher(endpointUrl);
 
 // Set working directory
 process.chdir( __dirname );
@@ -41,28 +42,38 @@ function rollbackData() {
 }
 
 // Get timeline data from all queries which are language dependant
+function getDataForLanguages(languages) {
+  let langData = {};
+  // Run queries for each langauge sequentially because of WDQS limit of 5 parallel queries
+  return locales.reduce((p, lang) => {
+    return p
+    .then(() => getDataFor(lang) )
+    .then(data => {langData[lang] = data});
+  }, Promise.resolve())
+    .then(() => { 
+      debug("All language queries complete ✔️");
+      return langData; 
+    })
+}
+
 function getDataFor(language) {
-
-  var languageQueries = queries.getForLanguage(language);
-
-  var biographyDataPromise = queryDispatcher.query(languageQueries.biographyData),
-      contextDataPromise = queryDispatcher.query(languageQueries.contextData),
-      filterLabelsPromise = queryDispatcher.query(languageQueries.filterLabels);
-
-  Promise.all([
-    biographyDataPromise,
-    contextDataPromise,
-    filterLabelsPromise
-  ]).then( function(results) {
-    
+  const langQueries = queries.getForLanguage(language);
+  return Promise.all([
+    queryDispatcher.query(langQueries.biographyData),
+    queryDispatcher.query(langQueries.contextData),
+    queryDispatcher.query(langQueries.filterLabels)
+  ])
+  .then( results => {
+    debug(language, " queries complete...");
     return {
       biographyData: results[0],
       contextData: results[1],
       filterLabels: results[2],
-    }
-  }).catch(function(err) {
-    throw {name: "languageQueryError", message:`Error running queries for language: ${language}`}
+    };
   })
+  .catch( err => {
+    throw {name: "languageQueryError", message:`Error running queries for language: ${language}`}
+  });
 }
 
 function updateData() {
