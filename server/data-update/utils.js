@@ -7,8 +7,24 @@ debug = require('debug')('dwb:data-update');
 function writeTimelineData(timelineData, lang) {
     var filePath = path.resolve('public/data/', lang) + '/timeline-data.json';
     return fs.outputJson(filePath, timelineData)
-  
+    .catch(err => {
+        throw new Error(`Error writing ${filePath} to disk \n ${err.message}`);
+    })
 }
+
+// Write timeline data for all locales to disk
+function writeAllTimelineData(allTimelineData) {
+    let langData, writeRequests = [];
+    for (let lang in allTimelineData) {
+      timelineData = allTimelineData[lang];
+      writeRequests.push(writeTimelineData(timelineData, lang));
+    }
+    return Promise.all(writeRequests)
+    .then(() => {
+      debug('All timeline data updated successfully ✔️');
+      return allTimelineData;
+    })
+  }
 
 function generateLabelData(itemLabelResults, lang) {
     var results = itemLabelResults.results.bindings;
@@ -33,23 +49,28 @@ function generateLabelData(itemLabelResults, lang) {
 }
 
 function backupTimelineData() {
-    fs.pathExists('./public/data')
+    return fs.pathExists('./public/data')
     .then( function(exists) {
         if (exists) {
-            return fs.copy('./public/data', './data-backup');
+            return fs.copy('./public/data', './data-backup')
+            .then(() => {debug("Timeline data backup complete ✔️")});
         } else {
             debug("No timeline data yet, skipping backup")
         }
         return false;
     })
+    .catch(err => {throw new Error(`Error backing up timeline data`)})
 }
 
 function rollbackTimelineData() {
-    return fs.copySync('./data-backup', './public/data');
+    debug('Rolling back timeline data...');
+    fs.copySync('./data-backup', './public/data');
+    debug('Old data restored! ✔️');
+    return;
 }
 
 module.exports = {
-    writeTimelineData: writeTimelineData,
+    writeAllTimelineData: writeAllTimelineData,
     generateLabelData: generateLabelData,
     backupTimelineData: backupTimelineData,
     rollbackTimelineData: rollbackTimelineData

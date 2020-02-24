@@ -11,7 +11,7 @@ var debug = require('debug')('dwb:app');
 var localeRouter = require('./routes/locale');
 var indexRouter = require('./routes/index');
 var noArticleRouter = require('./routes/no-article');
-var updateTimelineData = require('./data-update').updateTimelineData;
+var updateTimelineData = require('./data-update');
 
 var app = express();
 

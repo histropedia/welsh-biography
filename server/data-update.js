@@ -1,14 +1,14 @@
-/* Exports functions to update timeline data from Wikidata or rollback to previous version
- * Updates en-GB and cy timeline-data.json files in public/data folder
+/* Exports function to update timeline data from Wikidata
+ * Updates en and cy timeline-data.json files in `./public/data` folder
  * Backup of old timeline data stored in `./data-backup` folder
  * Can also be launched directly using `node data-update` or `node data-update --rollback`
  */
 
 require('dotenv').config();
 var QueryDispatcher = require('./data-update/query-dispatcher'),
-generateTimelineData = require('./data-update/generate-timeline-data'),
+generateArticleData = require('./data-update/generate-article-data'),
 utils = require('./data-update/utils.js'),
-writeTimelineData = utils.writeTimelineData,
+writeAllTimelineData = utils.writeAllTimelineData,
 generateLabelData = utils.generateLabelData,
 backupTimelineData = utils.backupTimelineData,
 rollbackTimelineData = utils.rollbackTimelineData,
@@ -25,145 +25,124 @@ process.chdir( __dirname );
 
  // Check if file launched directly instead of being required
 if (require.main === module) {
-  if (process.argv[2] === "--rollback") {
+  if (process.argv[2] === '--rollback') {
     // synchronous folder copying
-    rollbackData();
+    rollbackTimelineData();
   } else {
-    updateData();
+    updateTimelineData();
   }
 }
 
-function rollbackData() {
-  debug("Rolling back timeline data...")
-  // Synchronous folder copying
-  rollbackTimelineData();
-  debug("Old data restored! ✔️");
-  return;
+/*
+ * Update all timeline data from Wikidata 
+ */
+function updateTimelineData() {
+  debug('Starting update...');
+  Promise.resolve()
+  .then(backupTimelineData)
+  .then(getFilterData)
+  .then(getDataForLocales)
+  .then(generateTimelineData)
+  .then(writeAllTimelineData)
+  .then(email.sendDataUpdateLog)
+  .catch(handleDataUpdateError)
 }
 
-// Get timeline data from all queries which are language dependant
-function getDataForLanguages(languages) {
+/*
+ * Get filter properties and values for timeline entries
+ * Note: These query results have no labels (just P and Q numbers) so are reused for
+ * generating all language versions of timeline data
+ */
+function getFilterData() {
+  return queryDispatcher.query(queries.filterData)
+  .then(filterResults => {
+    debug('Filter data query complete ✔️');
+    return filterResults;
+  })
+  .catch(err => {throw new Error('Failed to retrieve filter data query results'); });
+}
+
+/*
+ * Get lang dependant query results for all configured locales
+ * Add previously retrieved lang independant filter data to each result group 
+ */
+function getDataForLocales(filterDataResults) {
+  return getDataForMultiple(locales)
+  .then(resultGroups => {
+    for (let lang in resultGroups) {
+      resultGroups[lang].filterData = filterDataResults;
+    }
+    return resultGroups;
+  })
+}
+
+/*
+ * Generate all timeline article and label data for each locale
+ */
+function generateTimelineData(allQueryResults) {
+  // Process and combine query results for each language to generate timeline data
+  let localeResults, timelineData = {};
+  for (let lang in allQueryResults) {
+    localeResults = allQueryResults[lang];
+    timelineData[lang] = {
+      articles: generateArticleData(localeResults, lang),
+      labels: generateLabelData(localeResults.filterLabels, lang)
+    }
+  }
+  return timelineData;
+}
+
+/*
+ * Handle data update process error
+ */
+function handleDataUpdateError(err) {
+  debug(err.message + ' ❌\n', err);
+    // Send failure email
+    email.sendDataUpdateLog(err);
+    
+    // Todo: Trigger n retries with wait period in between
+}
+
+/*
+ * Get all language dependant timeline data for an array of languages
+ */
+function getDataForMultiple(languages) {
   let langData = {};
-  // Run queries for each langauge sequentially because of WDQS limit of 5 parallel queries
-  return locales.reduce((p, lang) => {
+
+  // Run each getDataFor(lang) group sequentially because 5 parallel query limit 
+  // See https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual#Query_limits
+  return languages.reduce((p, lang) => {
     return p
     .then(() => getDataFor(lang) )
     .then(data => {langData[lang] = data});
   }, Promise.resolve())
     .then(() => { 
-      debug("All language queries complete ✔️");
+      debug('All language queries complete ✔️');
       return langData; 
     })
 }
 
+/*
+ * Get all language dependant timeline data for a single language
+ * Runs 3 queries in parallel
+ */
 function getDataFor(language) {
   const langQueries = queries.getForLanguage(language);
+  
   return Promise.all([
     queryDispatcher.query(langQueries.biographyData),
     queryDispatcher.query(langQueries.contextData),
     queryDispatcher.query(langQueries.filterLabels)
   ])
   .then( results => {
-    debug(language, " queries complete...");
+    debug(language, 'queries complete...');
     return {
       biographyData: results[0],
       contextData: results[1],
       filterLabels: results[2],
     };
   })
-  .catch( err => {
-    throw {name: "languageQueryError", message:`Error running queries for language: ${language}`}
-  });
+  .catch(err => {throw new Error(`Failed to retrieve language data query results for: ${language}`); });
 }
 
-function updateData() {
-  var coreDataEnPromise = queryDispatcher.query(queries.coreDataEn),
-      coreDataCyPromise = queryDispatcher.query(queries.coreDataCy),
-      filterDataPromise = queryDispatcher.query(queries.filterData),
-      contextDataEnPromise = queryDispatcher.query(queries.contextDataEn),
-      contextDataCyPromise = queryDispatcher.query(queries.contextDataCy),
-      itemLabelsEnPromise = queryDispatcher.query(queries.itemLabelsEn),
-      itemLabelsCyPromise = queryDispatcher.query(queries.itemLabelsCy),
-      dataBackupPromise = backupTimelineData();
-
-  debug("Queries sent ✔️");
-
-  // There's a limit of 5 parallel queries https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual#Query_limits
-  Promise.all([
-    coreDataEnPromise,
-    coreDataCyPromise,
-    filterDataPromise,
-    contextDataEnPromise,
-    contextDataCyPromise,
-    itemLabelsEnPromise,
-    itemLabelsCyPromise,
-    dataBackupPromise
-  ])
-    .then(function (values) {
-      // Process and combine results to generate timeline data
-      debug("Queries and data backup complete ✔️");
-
-      var coreDataEn = values[0],
-        coreDataCy = values[1],
-        filterData = values[2],
-        contextDataEn = values[3],
-        contextDataCy = values[4],
-        itemLabelsEn = values[5],
-        itemLabelsCy = values[6];
-
-      // Todo: automate from languages in app config
-      var articleDataEn = generateTimelineData({
-        coreData: coreDataEn,
-        contextData: contextDataEn,
-        filterData: filterData,
-        lang: 'en-GB'
-      });
-
-      // Todo: automate from languages in app config
-      var articleDataCy = generateTimelineData({
-        coreData: coreDataCy,
-        contextData: contextDataCy,
-        filterData: filterData,
-        lang: 'cy'
-      });
-
-      var labelsEn = generateLabelData(itemLabelsEn, "en-GB");
-      var labelsCy = generateLabelData(itemLabelsCy, "cy");
-
-      Promise.all([
-        writeTimelineData({ articles: articleDataEn, labels: labelsEn }, "en-GB"),
-        writeTimelineData({ articles: articleDataCy, labels: labelsCy }, "cy")
-      ])
-        .then(function () {
-          debug("Timeline data updated successfully ✔️");
-          email.sendDataUpdateLog({
-            stage: "complete",
-            articleCountEn: articleDataEn.length,
-            itemLabelCountEn: Object.keys(labelsEn.items).length,
-            articleCountCy: articleDataCy.length,
-            itemLabelCountCy: Object.keys(labelsCy.items).length,
-          });
-        })
-        .catch(function (err) {
-          debug("Error writing timeline data to disk ❌\n", err)
-          email.sendDataUpdateLog({
-            stage: "writing to disk",
-            error: err
-          });
-        })
-    })
-    .catch(function (err) {
-      debug("Error processing data update queries ❌\n", err)
-      email.sendDataUpdateLog({
-        stage: "processing queries",
-        error: err
-      });
-
-      // Todo: attempt to re-run the update after a wait period
-    })
-}
-
-module.exports = {
-  rollbackTimelineData: rollbackData,
-  updateTimelineData: updateData
-}
+module.exports = updateTimelineData;

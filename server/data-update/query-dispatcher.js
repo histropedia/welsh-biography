@@ -1,6 +1,6 @@
 /* SPARQL query dispatcher constructor */
 var fetch = require('node-fetch'),
-    package =require('../../package.json'),
+    package =require('../package.json'),
     appName = package.name,
     appVersion = package.version
 
