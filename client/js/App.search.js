@@ -14,7 +14,7 @@ App.prototype.setupTimelineSearch = function(inputSelector) {
 
     // Todo: setup client side i18n
     var groupLabels = {
-        "en-GB": ["Welsh History", "People"],
+        "en": ["Welsh History", "People"],
         "cy": ["Hanes Cymru", "Bobl"]
     }
 

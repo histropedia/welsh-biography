@@ -32,8 +32,8 @@ app.use(cookieSession({
 
 // i18n setup and redirecting
 i18n.configure({
-  locales: ['en-GB', 'cy'],
-  defaultLocale: 'en-GB',
+  locales: ['en', 'cy'],
+  defaultLocale: 'en',
   autoReload: true,
   directory: path.join(__dirname, '/locales')
 });
