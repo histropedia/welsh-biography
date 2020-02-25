@@ -11,7 +11,7 @@ var debug = require('debug')('dwb:app');
 var localeRouter = require('./routes/locale');
 var indexRouter = require('./routes/index');
 var noArticleRouter = require('./routes/no-article');
-var updateTimelineData = require('./data-update').updateTimelineData;
+var updateTimelineData = require('./data-update');
 
 var app = express();
 
@@ -32,8 +32,8 @@ app.use(cookieSession({
 
 // i18n setup and redirecting
 i18n.configure({
-  locales: ['en-GB', 'cy'],
-  defaultLocale: 'en-GB',
+  locales: ['en', 'cy'],
+  defaultLocale: 'en',
   autoReload: true,
   directory: path.join(__dirname, '/locales')
 });

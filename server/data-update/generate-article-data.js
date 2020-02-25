@@ -1,5 +1,5 @@
-/* Generates timeline data from Wikidata query results 
- * Combines separate coreData and filterData query results
+/* Generatesa timeline article data from Wikidata query results 
+ * Combines separate biographyData and filterData query results
  * Returns timeline data in HistropediaJS format 
  */
 
@@ -10,14 +10,14 @@ var OPTIONS = require('./options'),
     RANK_FACTORS = OPTIONS.RANK_FACTORS,
     BIOGRAPHY_URL = OPTIONS.BIOGRAPHY_URL;
 
-module.exports = function(queryResults) {
-  var coreData = queryResults.coreData,
+module.exports = function(queryResults, lang) {
+  var biographyData = queryResults.biographyData,
   contextData = queryResults.contextData,
   filterData = queryResults.filterData,
-  lang = queryResults.lang || "en-GB";
+  lang = lang || "en";
 
   // Join contextData with coreData without creating a copy 
-  var combinedResults = coreData.results.bindings;
+  var combinedResults = biographyData.results.bindings;
   combinedResults.push.apply(combinedResults, contextData.results.bindings);
 
   var resultsWithDateErrors = [];
@@ -148,7 +148,7 @@ function getDateRangeSubtitle(from, to, lang) {
 
 function getPrettyDate(date, lang) {
   // Todo: Check for BC dates
-  var lang = lang || "en-GB",
+  var lang = lang || "en",
   isBCE = date.year < 1,
   // Shift BCE dates for display (internally stored with year 0 = 1BC)
   year = (isBCE) ? ( date.year - 1 ) * -1 : date.year,

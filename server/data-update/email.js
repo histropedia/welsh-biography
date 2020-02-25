@@ -36,24 +36,22 @@ function sendAdminEmail(subject, text) {
   });
 }
 
-function sendDataUpdateLog(logData) {
-  var subject;
-  var message = `Stage Reached: ${logData.stage} \n`
-  if (logData.error) {
+function sendDataUpdateLog(timelineData) {
+  var subject, message;
+  if (timelineData instanceof Error) {
     subject = "Timeline data update FAIL!!";
-    message += `\n${logData.error.name}: \n${logData.error.message}`;
+    message = `\n${timelineData.name}: \n${timelineData.message}`;
   } else {
     subject = "Timeline data update SUCCESS";
-    message += `
+    message = `
 ENGLISH DATA COUNTS
-  - Timeline entries: ${logData.articleCountEn}
-  - Item labels: ${logData.itemLabelCountEn}
+  - Timeline entries: ${timelineData['en'].articles.length}
+  - Item labels: ${Object.keys(timelineData['en'].labels.items).length}
    
 WELSH DATA COUNTS
-  - Timeline entries: ${logData.articleCountCy}
-  - Item labels: ${logData.itemLabelCountCy}`
+  - Timeline entries: ${timelineData['cy'].articles.length}
+  - Item labels: ${Object.keys(timelineData['cy'].labels.items).length}`
   }
-
   sendAdminEmail(subject, message);
 }
 

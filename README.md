@@ -24,7 +24,7 @@ Important: Dependencies used in the application have their own licences. They ar
    - `npm run start:server`
 
 Note: All files in the `client` folder are either bundled or copied over to the relevant
-locations in the `server` folder during the build process.
+locations in the `server/public` folder during the build process.
 
 # Server setup and Deployment
 The app runs entirely from the `server` folder once the front end assets have been bundled.
@@ -35,10 +35,12 @@ So this is the only folder you need to deploy to the server.
   `node_modules` folder and `.env` file
 4. If it's the first time setup:
   - Create a new `.env` in the root folder of the application on the server, using a copy of `sample.env`
-  - Set `NODE_ENV` to `production` in the new file
+  - In the new file, set `NODE_ENV` to `production` and remove the `DEBUG` value
   - Make any other required changes to the `.env` for the environment you've deployed to
-  - install dependencies using `npm install` from the newly copied folder
+  - install dependencies using `npm ci` from the newly copied folder
 5. Launch app on the server with `npm start`
+
+NOTE: Instead of launching the app directly, you should use a process manager like PM2 (https://pm2.keymetrics.io/).
 
 # Data update process
 You can manually trigger an update of all timeline data using `npm run data-update`.
@@ -55,8 +57,9 @@ Extracted messages are stored in `server/locales` folder as .json files.
 Translations can then be added to the .json locale files, either manually or using a translation tool.
 New strings found are merged into existing files, keeping all existing translations intact.
 
-The app's language is set from the `accept-language` header in the request sent by the client.
-It can be set manually by appending `?lang=<language code>` to the url.
+The app's locale is set from the `accept-language` header in the request sent by the client.
+It can be set manually by appending `/<language code>` to the app's root URL. 
+This will set the locale and redirect back to the root URL.
 
 You can add new languages and change other settings using the `i18n.configure` options in `server/app.js`.
 For more info, see the i18n library documentation: https://github.com/mashpie/i18n-node

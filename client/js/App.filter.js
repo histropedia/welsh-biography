@@ -262,7 +262,7 @@ function reInitialiseSelect2(results, filterProperty, filterLabel) {
     $($controlElement).empty();
 
     var placeholderText; 
-    if (LANG === "en-GB") {
+    if (LANG === "en") {
         placeholderText = "Search for *property* filters";
     } else {
         placeholderText = "Chwiliwch am hidlwyr *property*";

@@ -1,7 +1,7 @@
 /* Options for data update process */
 
 exports.DATE_LABELS = {
-  "en-GB": {
+  "en": {
     months: ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     periods: {
       decade: "s",
@@ -29,7 +29,7 @@ exports.RANK_FACTORS = {
 // Manually set labels for properties used as filters and colour codes
 // Todo: Fallback to Wikidata labels so these options are optional
 exports.PROPERTY_LABELS = {
-  "en-GB": {
+  "en": {
     "P21": "Gender",
     "P106": "Occupation",
     "P19": "Place of birth",
@@ -54,6 +54,6 @@ exports.PROPERTY_LABELS = {
 // Dictionary of Welsh Biography uses different domains for en and cy version
 // Used for constructing Biography URL from ID
 exports.BIOGRAPHY_URL = {
-  "en-GB": 'https://biography.wales/article/',
+  "en": 'https://biography.wales/article/',
   "cy": "https://bywgraffiadur.cymru/article/"
 }
