@@ -109,4 +109,16 @@ export function registerEvents(app) {
             $('#btn-close-reading-panel').css('visibility', 'hidden')
         }
     })
+    
+    // Close hamburger menu on 'touch' event outside the menu
+    $(document).on('touchstart', function (event) {
+        if (!$('#hamburger').is(":visible")) return;
+        var $target = $(event.target);
+        if (!$target.closest('#hamburger').length) {
+            // Slight delay fixes issue with content panel tab clicks not registering
+            // if they trigger a menu collapse
+            // Todo: find better way to fix
+            setTimeout(function () { $('#hamburger').collapse('hide') }, 100);
+        }
+    });
 }

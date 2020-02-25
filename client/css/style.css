@@ -110,6 +110,10 @@ additional custom classes to match the style of the navbar to DWB site.
     width: 450px;
 }
 
+.navbar-toggler:focus {
+    outline: none;
+}
+
 /*MAIN ROUND BUTTON - primarily used in navbar, also used as the close
 button for the filter and info panels*/
 
