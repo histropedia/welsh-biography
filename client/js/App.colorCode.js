@@ -62,11 +62,11 @@ App.prototype.setRankColorScale = function(hue, articleFilter) {
         var fraction = article.data.rank / maxArticleRank,
             saturation = Math.round(saturationBottom + (saturationTop - saturationBottom) * fraction),
             lightness = Math.round(lightnessBottom + (lightnessTop - lightnessBottom) * fraction);
-        var color = 'hsl(' + [hue, saturation + "%", lightness + "%"].join(',');
+        var color = 'hsl(' + [hue, saturation + "%", lightness + "%"].join(',') + ')';
         lightness += hoverLightnessChange;
         saturation += hoverSaturationChange;
         saturation = Math.min(saturation, 100)
-        var hoverColor = 'hsl(' + [hue, saturation + "%", lightness + "%"].join(',');
+        var hoverColor = 'hsl(' + [hue, saturation + "%", lightness + "%"].join(',') + ')';
 
         setArticleColor(article, color, hoverColor);
     }
