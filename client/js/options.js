@@ -41,6 +41,12 @@ export var TIMELINE_OPTIONS = {
                     color: "#ab363a"
                 }
             },
+            defaultHoverStyle: {
+                color: '#111',
+                subheader: {
+                    color: '#333'
+                }
+            },
             periodLine: {
                 defaultHide: function(article) {
                     return !(article.isStarred || article.isActive)
