@@ -41,10 +41,12 @@ App.prototype.setColorCode = function(property) {
 
 // Assigns a rank colour scale without setting up any colour code options
 App.prototype.setRankColorScale = function(hue, articleFilter) {
-    var saturationTop = 95,
-    saturationBottom = 30,
+    var saturationTop = 90,
+    saturationBottom = 35,
     lightnessTop = 35,
     lightnessBottom = 25,
+    hoverLightnessChange = 5,
+    hoverSaturationChange = 65,
 
     hue = hue || 139,
     saturation,
@@ -57,11 +59,16 @@ App.prototype.setRankColorScale = function(hue, articleFilter) {
     for (var i=0; i<articlesLength; i++) {
         var article = articles[i];
         if ( !doesArticleMatchFilter(article, articleFilter) ) continue;
+        var fraction = article.data.rank / maxArticleRank,
+            saturation = Math.round(saturationBottom + (saturationTop - saturationBottom) * fraction),
+            lightness = Math.round(lightnessBottom + (lightnessTop - lightnessBottom) * fraction);
+        var color = 'hsl(' + [hue, saturation + "%", lightness + "%"].join(',') + ')';
+        lightness += hoverLightnessChange;
+        saturation += hoverSaturationChange;
+        saturation = Math.min(saturation, 100)
+        var hoverColor = 'hsl(' + [hue, saturation + "%", lightness + "%"].join(',') + ')';
 
-        var fraction = article.data.rank / maxArticleRank;
-        saturation = Math.round(saturationBottom + (saturationTop - saturationBottom) * fraction);
-        lightness = Math.round(lightnessBottom + (lightnessTop - lightnessBottom) * fraction);
-        setArticleColor(article, 'hsl(' + [hue, saturation + "%", lightness + "%"].join(',') + ')')
+        setArticleColor(article, color, hoverColor);
     }
     this.timeline.defaultRedraw();
 }
@@ -152,12 +159,23 @@ function applyTimelineColors(colorGroups) {
    }
 }
 
-function setArticleColor(article, color) {
+function setArticleColor(article, color, hoverColor) {
     // manual instead of article.setStyle for performance (no redraw between article changes)
     // set article.data.style as well or changes will revert if built in setOption or setStyle are run
+    // Todo: fix 
     article.data.style = article.data.style || {};
     article.data.activeStyle = article.data.activeStyle || {};
-    article.data.style.color = article.style.color = article.data.activeStyle.color = article.activeStyle.color = color;
+    article.data.hoverStyle = article.data.hoverStyle || {};
+    article.data.activeHoverStyle = article.data.activeHoverStyle || {}
+    article.data.style.color =
+        article.data.activeStyle.color = 
+        article.style.color = 
+        article.activeStyle.color = color;
+
+    article.data.hoverStyle.color =
+        article.data.activeHoverStyle.color =
+        article.hoverStyle.color =
+        article.activeHoverStyle.color = hoverColor;
 }
 
 // Render the legend in the colour code panel

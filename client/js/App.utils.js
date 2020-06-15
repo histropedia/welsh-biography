@@ -28,15 +28,17 @@ Histropedia.Timeline.prototype.fitArticles = function (options) {
         if (earliestDmy.isAfter(fromDmy)) earliestDmy = fromDmy;
         if (fromDmy.isAfter(latestDmy)) latestDmy = fromDmy;
     }
+    var defaultArticleStyle = this.options.article.defaultStyle,
+    connectorOffset = defaultArticleStyle.connectorLine.offsetX;
 
     var currentPixelSpan = this.timescaleManager.getPixelsBetween(earliestDmy, latestDmy);
-    var finalPixelSpan = this.options.width - startOffsetX - margin * 2;
+    var finalPixelSpan = this.options.width - startOffsetX - defaultArticleStyle.width - margin * 2;
     var zoomChange = Math.log(finalPixelSpan / currentPixelSpan) / Math.log(this.options.zoom.ratio);
     this.setZoom(this.timescaleManager.zoom + zoomChange);
+    var offsetX = margin + startOffsetX + connectorOffset;
     if (withAnimation) {
-        this.goToDateAnim(earliestDmy, {offsetX: margin + startOffsetX})
+        this.goToDateAnim(earliestDmy, {offsetX: offsetX})
     } else {
-        this.setStartDate(earliestDmy,margin + startOffsetX)
+        this.setStartDate(earliestDmy, offsetX)
     }
 }
-

@@ -94,7 +94,8 @@ export function registerEvents(app) {
                 app.timeline.setZoom(app.timeline.timescaleManager.zoom + 1.5);
                 break;
             case "fit-screen-btn":
-                app.timeline.fitArticles();
+                var offsetX = (!app.contentPanel.isOpen || app.isMobile)? 0 : 450;
+                app.timeline.fitArticles({offsetX: offsetX});
         }
     })
     
