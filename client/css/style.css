@@ -11,7 +11,7 @@ to the orginal CSS if required*/
     display:none;
 }
 /*new class to hold the footer in full width container*/
-.footer-container{
+.footer-container {
     width: 100%;
     background-color: #ab363a;
 }
@@ -50,11 +50,11 @@ ul {
 }
 /*END FOOTER*/
 
-
 /* ZOOM BUTTONS */
 .timeline-controls-set.fit-screen {
     bottom:250px;
 }
+
 .timeline-controls-set {
     font-size: 20px;
     cursor: pointer;
@@ -89,7 +89,7 @@ ul {
     border: 1px solid #ab363a;
 }
 
-#zoom-in-btn  {
+#zoom-in-btn {
     border-bottom: transparent solid 1px;
 }
 
@@ -151,6 +151,7 @@ button for the filter and info panels*/
     height: 40px;
     line-height: 40px;
 }
+
 /*position button for panels*/
 .filter-panel .btn-icon{
     position: absolute;
@@ -164,7 +165,6 @@ button for the filter and info panels*/
 .btn-icon.active > .fas {background-color:#00AD36;color: #fff;}
 
 /*END MAIN BUTTON/*
-
 
 /*TIMELINE TITLE*/
 /*center title inside container. Using flex to position applied filter tags*/
@@ -313,8 +313,6 @@ font-size: 0.85rem;
   color: #cccccc;;
 }
 
-
-
 /* reset some bootstrap elements for color code panel*/
 .color-code-filter-panel *{
     border-radius:0!important;
@@ -335,12 +333,12 @@ font-size: 0.85rem;
 #color-code-panel .input-group.mb-3 {
     margin: 0!important;
 }
+
 /*match to brand color*/
 #color-code-panel .input-group-text {
    background-color: #ab363a;
     color: #fff;
 }
-
 
 /*position and style filter and color code panels*/
 .filter-panel, .color-code-filter-panel  {
@@ -359,10 +357,12 @@ font-size: 0.85rem;
     box-sizing: border-box;
     overflow: auto;
     color: #FFFFFF
-}     
+}
+
 #filter-search-panel.filter-panel{
     background-color: rgba(47, 47, 47, 1)
 }
+
 .select2-results__options {
     max-height: 350px!important;
 }
@@ -371,13 +371,15 @@ font-size: 0.85rem;
     color: #d2d2d2;
     border-color: #6c757d;
 }
+
 .btn-close-panel {
     position: sticky; 
     top: 0;
     z-index:4;
 }
+
 /*style inner containers for filter panels*/
-.filter-panel-header    {
+.filter-panel-header {
      text-align: left;
     padding: 6px 6px;
     font-size: 1.5rem;
@@ -394,7 +396,7 @@ font-size: 0.85rem;
     margin-right: auto;
     width: 100%;
 }
-.active-filters{
+.active-filters {
     width: 100%;
     position: absolute;
     bottom: 20px;
