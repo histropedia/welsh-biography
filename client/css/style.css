@@ -532,7 +532,14 @@ font-size: 0.85rem;
 }	
 
 
-
+.youtube-iframe {
+    display: block;
+    width: 100%;
+    height: 297px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
 
 @media (min-width: 576px){
 footer.bywg_footer {
@@ -601,7 +608,7 @@ footer.bywg_footer {
     }
 
     .panel-content {
-        width: 50%;
+        max-width:715px;
     }
     
     .panel-header {
@@ -736,7 +743,7 @@ footer.bywg_footer {
         margin: 1rem 0 1rem 0;
     }
         .bywg_footer_second img {
-        width: 100%;
+        width: 90%;
         padding: 0;
         margin: 0;
     }
