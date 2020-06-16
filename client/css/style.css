@@ -12,6 +12,7 @@ to the orginal CSS if required*/
 }
 /*new class to hold the footer in full width container*/
 .footer-container {
+    flex: 0 0 auto;
     width: 100%;
     background-color: #ab363a;
 }
@@ -348,8 +349,7 @@ font-size: 0.85rem;
     top:0px;
     position: fixed;
     right: 0px;
-       background-color: rgba(47, 47, 47, 0.97);
-    padding: 0px 0 20px;
+    background-color: rgba(47, 47, 47, 0.97);
     box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0px rgba(0,0,0,0.02);
     border-radius: 2px;
     -webkit-box-sizing: border-box;
@@ -380,7 +380,8 @@ font-size: 0.85rem;
 
 /*style inner containers for filter panels*/
 .panel-header {
-     text-align: left;
+    flex: 0 0 auto;
+    text-align: left;
     padding: 6px 6px;
     font-size: 1.5rem;
     padding-top: 14px;
@@ -388,8 +389,7 @@ font-size: 0.85rem;
 .panel-header  h2 {font-size: 1.5rem}
 .panel-header  h1 {font-size: 2rem}
 .panel-content {
-    max-height: 100%;
-    min-height: 0;
+    flex: 1 1 auto;
     padding: 10px;
     overflow: auto;
     margin-left: auto;
@@ -419,6 +419,9 @@ font-size: 0.85rem;
     color: #fff;
     background-color: #ab363a;
     border-color: #ab363a;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
 }
 
 .label-active-filters {
@@ -545,13 +548,15 @@ footer.bywg_footer {
     .timeline-controls-set {display: inherit}
     #btn-open-info > .navlabel {display: none}  
     .twitter > .navlabel {display: none} 
-    .navbar-custom{
+    .navbar-custom {
         min-height: 86px
     }
+
     /*hide btn labels to fit in header on smaller desktops */
-  .navlabel {display: none}
+    .navlabel {display: none}
+
     /*move lang btn to end of row*/
-    #btn-lang-switch{
+    #btn-lang-switch {
         order: 1
     }
 
@@ -559,16 +564,19 @@ footer.bywg_footer {
     #show-search-btn {
         display: none
     }
+
     /*allow selected filters to be displayed under title*/
     #active-filters-container{
         display: inherit
     }
+
     /*stop reducing logo and title size*/
     .logo-bywg {
         height: 46px;
         max-width:inherit
-    } 
-/*Display event tile and search box, match width to reading window. Height controls navbar height*/
+    }
+
+    /*Display event tile and search box, match width to reading window. Height controls navbar height*/
     .event-title-container {
 		display: flex;
         font-size: 1.5rem;
@@ -584,19 +592,16 @@ footer.bywg_footer {
         padding: 0.5rem 0.5rem
     }
  
-/*resize and position filter panel on desktop*/
+    /*resize and position filter panel on desktop*/
     .panel {
-    position: absolute;
-    max-width: 100%;
-    /* max-height: 750px; */
-    /* top: 50%; */
-    /* left: 50%; */
-    /* transform: translate(-50%, -50%); */
-    color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        color: rgb(255, 255, 255);
     }
-    .panel-content{
-        width: 40%;
-        max-height: 60%;
+
+    .panel-content {
+        width: 50%;
     }
     
     .panel-header {
@@ -627,26 +632,23 @@ footer.bywg_footer {
 /* show event details in mini card on desktop*/
 	.event-details {
 	    display:inherit;
-            display: flex;
-    justify-content: center;
-    height: 84px;
-    flex-direction: column;
+        display: flex;
+        justify-content: center;
+        height: 84px;
+        flex-direction: column;
 	}
     
-        .col-lg-6 {
+    .col-lg-6 {
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
         max-width: 44%;
     }
     .col-lg-3 {
-          -ms-flex: 0 0 25%;
-    flex: 0 0 27%;
-    max-width: 27%;
+        -ms-flex: 0 0 25%;
+        flex: 0 0 27%;
+        max-width: 27%;
     }    
-        .footer-container {
-        position: absolute;
-    bottom: 0;
-    }
+
     .active-filters{bottom:120px}
 }
 
@@ -716,7 +718,6 @@ footer.bywg_footer {
         width: 100%;
     }
     footer.bywg_footer {
-        margin: 1rem auto 1rem auto;
         padding: 2rem 1rem;
     }
 }

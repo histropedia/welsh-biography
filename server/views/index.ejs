@@ -85,7 +85,7 @@
 	
 <!--************ FILTER PANEL****************-->
 	
-<div id="filter-types-panel" class="noselect panel text-center container" style="display: none">
+<div id="filter-types-panel" class="noselect panel text-center" style="display: none">
     <button class="btn-icon btn btn-close-filter-types-panel"><i class="fas fa-times"></i></button>
     <div class="panel-header">
         <h1><%= __("Filter the Timeline") %></h1>
@@ -96,10 +96,9 @@
             <button type="button" filter-property="gender" class="btn btn-outline-secondary btn-lg" style="text-align: left">gender<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
             <button type="button" filter-property="occupation" class="btn btn-outline-secondary btn-lg" style="text-align: left">occupation<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
         </div>
-       
+        <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= __("Clear All Filters") %></button>
     </div>
-     <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= __("Clear All Filters") %></button>
-       <div class="footer-container">
+    <div class="footer-container">
     <%- include('blocks/footer-' + lang); %>
 </div>
 </div>
@@ -131,8 +130,8 @@
     
 <!--************ INFO PANEL****************-->
 	
-<div id="info-panel" class="noselect panel container" style="display: none">
-    <button class="btn-icon btn btn-close-info-panel" style=""><i class="fas fa-times"></i></button>
+<div id="info-panel" class="noselect panel" style="display: none">
+    <button class="btn-icon btn btn-close-info-panel"><i class="fas fa-times"></i></button>
     <div class="panel-header">
         <h1><%- __('Dictionary of Welsh Biography') %></h1>
         <h2><%- __('Interactive Timeline') %></h2>
