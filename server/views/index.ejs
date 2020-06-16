@@ -85,13 +85,13 @@
 	
 <!--************ FILTER PANEL****************-->
 	
-<div id="filter-types-panel" class="noselect filter-panel text-center container" style="display: none">
+<div id="filter-types-panel" class="noselect panel text-center container" style="display: none">
     <button class="btn-icon btn btn-close-filter-types-panel"><i class="fas fa-times"></i></button>
-    <div class="filter-panel-header">
+    <div class="panel-header">
         <h1><%= __("Filter the Timeline") %></h1>
         <h6><%= __("Choose the type of filter you want to apply") %></h6>
     </div>
-    <div class="filter-panel-content">
+    <div class="panel-content">
         <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
             <button type="button" filter-property="gender" class="btn btn-outline-secondary btn-lg" style="text-align: left">gender<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
             <button type="button" filter-property="occupation" class="btn btn-outline-secondary btn-lg" style="text-align: left">occupation<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
@@ -106,12 +106,12 @@
 
 <!--************ FILTER PANEL SEARCH PANEL****************-->
 	
-<div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none">
+<div id="filter-search-panel" class="noselect panel" style="z-index: 4; display: none">
     <button href="#" class="btn-icon btn btn-close-filter-panel"><i class="fas fa-times"></i></button>
-    <div class="filter-panel-header">
+    <div class="panel-header">
         <h2><%= __("Filter by") %> <span id="filter-property-label">type</span></h2>
     </div>
-    <div class="filter-panel-content" role="group" aria-label="Vertical button group">
+    <div class="panel-content" role="group" aria-label="Vertical button group">
             <!-- *** populated by JavaScript *** -->
         <div class="filter-search-container">
             <select class="filter-panel-search" filter-property="gender" style="width:100%"></select>
@@ -131,13 +131,13 @@
     
 <!--************ INFO PANEL****************-->
 	
-<div id="info-panel" class="noselect filter-panel container" style="display: none">
+<div id="info-panel" class="noselect panel container" style="display: none">
     <button class="btn-icon btn btn-close-info-panel" style=""><i class="fas fa-times"></i></button>
-    <div class="filter-panel-header">
+    <div class="panel-header">
         <h1><%- __('Dictionary of Welsh Biography') %></h1>
         <h2><%- __('Interactive Timeline') %></h2>
     </div>
-    <div class="filter-panel-content">
+    <div class="panel-content">
 <p>
     <%- __('The Dictionary of Welsh Biography interactive timeline was developed by <a href="http://histropedia.com">Histropedia</a> for The National Library of Wales, with grant funding from the <a href="https://my-d.org">My-D Foundation</a>.') %>
 </p>

@@ -145,7 +145,7 @@ button for the filter and info panels*/
 }
 
 /* Increase button size for panels*/
-.filter-panel .btn-icon > .fas, .filter-panel .btn-icon > .fab, .btn-icon > .fa {
+.panel .btn-icon > .fas, .panel .btn-icon > .fab, .btn-icon > .fa {
     font-size: 1.5rem;
     width: 40px;
     height: 40px;
@@ -153,7 +153,7 @@ button for the filter and info panels*/
 }
 
 /*position button for panels*/
-.filter-panel .btn-icon{
+.panel .btn-icon{
     position: absolute;
     right: 0;
 }
@@ -341,7 +341,7 @@ font-size: 0.85rem;
 }
 
 /*position and style filter and color code panels*/
-.filter-panel, .color-code-filter-panel  {
+.panel, .color-code-filter-panel  {
     width:100%;
     height: 100%;
     z-index: 4;
@@ -359,7 +359,7 @@ font-size: 0.85rem;
     color: #FFFFFF
 }
 
-#filter-search-panel.filter-panel{
+#filter-search-panel.panel{
     background-color: rgba(47, 47, 47, 1)
 }
 
@@ -379,15 +379,15 @@ font-size: 0.85rem;
 }
 
 /*style inner containers for filter panels*/
-.filter-panel-header {
+.panel-header {
      text-align: left;
     padding: 6px 6px;
     font-size: 1.5rem;
     padding-top: 14px;
  }     
-.filter-panel-header  h2 {font-size: 1.5rem}
-.filter-panel-header  h1 {font-size: 2rem}
-.filter-panel-content {
+.panel-header  h2 {font-size: 1.5rem}
+.panel-header  h1 {font-size: 2rem}
+.panel-content {
     max-height: 100%;
     min-height: 0;
     padding: 10px;
@@ -407,7 +407,7 @@ font-size: 0.85rem;
 .active-filters .active-filter-tag.badge {
     font-size: 1rem;
 }
-.filter-panel-footer {
+.panel-footer {
     position: absolute; 
     bottom: 0; 
     text-align: center; 
@@ -436,7 +436,7 @@ font-size: 0.85rem;
     top: 35%;
 }
 /*make search box fill the panel*/
-.filter-panel-content input {
+.panel-content input {
     width: 100%;
 }
 
@@ -585,7 +585,7 @@ footer.bywg_footer {
     }
  
 /*resize and position filter panel on desktop*/
-    .filter-panel {
+    .panel {
     position: absolute;
     max-width: 100%;
     /* max-height: 750px; */
@@ -594,12 +594,12 @@ footer.bywg_footer {
     /* transform: translate(-50%, -50%); */
     color: rgb(255, 255, 255);
     }
-    .filter-panel-content{
+    .panel-content{
         width: 40%;
         max-height: 60%;
     }
     
-    .filter-panel-header {
+    .panel-header {
         text-align: center
     }
 /*resize and position the color code panel on desktop*/    
