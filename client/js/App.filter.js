@@ -35,7 +35,7 @@ App.prototype.setupFilterOptions = function () {
 
     // append generated html
     $('#filter-types-list-container').html(optionsElements);
-    $('#filter-search-panel .filter-panel-content').append(searchBoxElements);
+    $('#filter-search-panel .panel-content').append(searchBoxElements);
 
     // wrap in divs for easy hide/show
     $('.filter-panel-search').wrap('<div class="filter-search-container"></div>');

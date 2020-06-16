@@ -3,7 +3,7 @@ Wikidata and HistropediaJS driven interactive timeline of people in the Dictiona
 Developed by Histropedia for The National Library of Wales, with grant funding from the My-D Foundation.
 Timeline data like dates, names and filter options are all sourced directly from Wikidata. Images are from Wikimedia Commons, with articles from Wikipedia and the Dictionary of Welsh Biography.
 
-See the live running version at https://welsh-biography.histropedia.com
+See the live running version at https://llinellamser.bywgraffiadur.cymru
 
 # Licence
 The code for this application is open source, with terms of re-use covered by:

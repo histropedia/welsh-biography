@@ -85,33 +85,32 @@
 	
 <!--************ FILTER PANEL****************-->
 	
-<div id="filter-types-panel" class="noselect filter-panel text-center container" style="display: none">
+<div id="filter-types-panel" class="noselect panel text-center" style="display: none">
     <button class="btn-icon btn btn-close-filter-types-panel"><i class="fas fa-times"></i></button>
-    <div class="filter-panel-header">
+    <div class="panel-header">
         <h1><%= __("Filter the Timeline") %></h1>
         <h6><%= __("Choose the type of filter you want to apply") %></h6>
     </div>
-    <div class="filter-panel-content">
+    <div class="panel-content">
         <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
             <button type="button" filter-property="gender" class="btn btn-outline-secondary btn-lg" style="text-align: left">gender<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
             <button type="button" filter-property="occupation" class="btn btn-outline-secondary btn-lg" style="text-align: left">occupation<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
         </div>
-       
+        <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= __("Clear All Filters") %></button>
     </div>
-     <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= __("Clear All Filters") %></button>
-       <div class="footer-container">
+    <div class="footer-container">
     <%- include('blocks/footer-' + lang); %>
 </div>
 </div>
 
 <!--************ FILTER PANEL SEARCH PANEL****************-->
 	
-<div id="filter-search-panel" class="noselect filter-panel" style="z-index: 4; display: none">
+<div id="filter-search-panel" class="noselect panel" style="z-index: 4; display: none">
     <button href="#" class="btn-icon btn btn-close-filter-panel"><i class="fas fa-times"></i></button>
-    <div class="filter-panel-header">
+    <div class="panel-header">
         <h2><%= __("Filter by") %> <span id="filter-property-label">type</span></h2>
     </div>
-    <div class="filter-panel-content" role="group" aria-label="Vertical button group">
+    <div class="panel-content" role="group" aria-label="Vertical button group">
             <!-- *** populated by JavaScript *** -->
         <div class="filter-search-container">
             <select class="filter-panel-search" filter-property="gender" style="width:100%"></select>
@@ -131,41 +130,47 @@
     
 <!--************ INFO PANEL****************-->
 	
-<div id="info-panel" class="noselect filter-panel container" style="display: none">
-    <button class="btn-icon btn btn-close-info-panel" style=""><i class="fas fa-times"></i></button>
-    <div class="filter-panel-header">
+<div id="info-panel" class="noselect panel" style="display: none">
+    <button class="btn-icon btn btn-close-info-panel"><i class="fas fa-times"></i></button>
+    <div class="panel-header">
         <h1><%- __('Dictionary of Welsh Biography') %></h1>
         <h2><%- __('Interactive Timeline') %></h2>
     </div>
-    <div class="filter-panel-content">
-<p>
-    <%- __('The Dictionary of Welsh Biography interactive timeline was developed by <a href="http://histropedia.com">Histropedia</a> for The National Library of Wales, with grant funding from the <a href="https://my-d.org">My-D Foundation</a>.') %>
-</p>
+    <div class="panel-content">
+        <% if (lang === "en")  { 
+            var youtubeId = "xXc3kLbjVuo";
+        } else {
+            var youtubeId = "i3Bah78KeSw";
+        } %>
+        <iframe class="youtube-iframe" src="https://www.youtube.com/embed/<%= youtubeId %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>
+            <%- __('The Dictionary of Welsh Biography interactive timeline was developed by <a href="http://histropedia.com">Histropedia</a> for The National Library of Wales, with grant funding from the <a href="https://my-d.org">My-D Foundation</a>.') %>
+        </p>
 
-<p>
-    <%- __('The timeline is powered using linked open data and openly licenced content hosted by the <a href="https://www.wikimedia.org/">Wikimedia</a> projects.') %>
-    <%= __("This allows us to offer our users a new visual and interactive way of exploring the Dictionary of Welsh Biography content.") %></p>
-<p>
-    <%= __("Much of the data, and images used has been shared by The National Library of Wales, however the timeline also uses data and images shared by other institutions and individuals.") %>
-    <%= __("Whilst every effort is made to ensure the accuracy of this data we cannot guarantee the quality of all data used.") %>
-</p>
+        <p>
+            <%- __('The timeline is powered using linked open data and openly licenced content hosted by the <a href="https://www.wikimedia.org/">Wikimedia</a> projects.') %>
+            <%= __("This allows us to offer our users a new visual and interactive way of exploring the Dictionary of Welsh Biography content.") %></p>
+        <p>
+            <%= __("Much of the data, and images used has been shared by The National Library of Wales, however the timeline also uses data and images shared by other institutions and individuals.") %>
+            <%= __("Whilst every effort is made to ensure the accuracy of this data we cannot guarantee the quality of all data used.") %>
+        </p>
 
-<p>
-    <%= __("The Timeline only includes individuals whose birth or death dates are known or approximated.") %>
-    <%= __("The timeline does not include entries for people with no known dates and does not include entries for families or groups of people.") %>
-    <%- __('To perform a search of all the Welsh Biography entries please search using the <a href="https://biography.wales/">Dictionary of Welsh Biography website</a>.') %>
-</p>
-<p>
-    <%= __("This website is open source.") %>
-    <%- __('You can access the code via <a href="https://github.com/histropedia/welsh-biography">Github</a>.') %>
+        <p>
+            <%= __("The Timeline only includes individuals whose birth or death dates are known or approximated.") %>
+            <%= __("The timeline does not include entries for people with no known dates and does not include entries for families or groups of people.") %>
+            <%- __('To perform a search of all the Welsh Biography entries please search using the <a href="https://biography.wales/">Dictionary of Welsh Biography website</a>.') %>
+        </p>
+        <p>
+            <%= __("This website is open source.") %>
+            <%- __('You can access the code via <a href="https://github.com/histropedia/welsh-biography">Github</a>.') %>
 
-</p>
+        </p>
     </div>
-<div class="footer-container">
-    <!-- Load different footers per language as more than just text changes-->
-        
-    <%- include('blocks/footer-' + lang); %>
-</div></div>
+    <div class="footer-container">
+        <!-- Load different footers per language as more than just text changes-->
+        <%- include('blocks/footer-' + lang); %>
+    </div>
+</div>
 
 	
 <!--************ COLOR CODE PANEL****************-->	
