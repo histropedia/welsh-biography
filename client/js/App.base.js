@@ -27,6 +27,9 @@ export function App(timelineData, containerSelector) {
             isSummaryMode: false,
             tab: ""
         },
+        sharePanel: {
+            isOpen: false
+        },
         infoPanel: {
             isOpen: false
         }
@@ -82,6 +85,16 @@ export function App(timelineData, containerSelector) {
         this.isPortrait = windowWidth < windowHeight;
     }
 
+    this.openSharePanel = function () {
+        $('#share-panel').show();
+        this.state.sharePanel.isOpen = true;
+    }
+
+    this.closeSharePanel = function () {
+        $('#share-panel').hide();
+        this.state.sharePanel.isOpen = false;
+    }
+
     this.openInfoPanel = function () {
         $('#info-panel').show();
         this.state.infoPanel.isOpen = true;
@@ -93,6 +106,7 @@ export function App(timelineData, containerSelector) {
     }
 
     this.closeAllPanels = function () {
+        this.closeSharePanel();
         this.closeInfoPanel();
         this.closeFilterTypesPanel();
         this.closeFilterSearchPanel();

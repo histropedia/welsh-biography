@@ -66,6 +66,15 @@ export function registerEvents(app) {
         app.clearAllFilters();
     })
 
+    // Share panel
+    $('#btn-open-share').click(function () {
+        app.openSharePanel()
+    })
+
+    $('.btn-close-share-panel').click(function () {
+        app.closeSharePanel()
+    })
+
     // Info panel
     $('#btn-open-info').click(function () {
         app.openInfoPanel()
