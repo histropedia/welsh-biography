@@ -160,7 +160,10 @@ button for the filter and info panels*/
 }
 
 /*main button hover and active states*/
-.btn-icon:hover {color:rgba(231, 222, 222, 1)}
+.btn-icon:hover {
+    color:rgba(231, 222, 222, 1);
+    text-decoration: none;
+}
 .btn-icon > .fas:hover{text-decoration:none}
 .btn-icon.active{ text-decoration: none}
 .btn-icon.active > .fas {background-color:#00AD36;color: #fff;}
@@ -596,7 +599,7 @@ footer.bywg_footer {
     }
     /*increase spacing between buttons*/
     .btn-icon {
-        padding: 0.5rem 0.5rem
+        margin: 0.5rem 0.5rem
     }
  
     /*resize and position filter panel on desktop*/
