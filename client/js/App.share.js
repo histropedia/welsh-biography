@@ -7,6 +7,10 @@ import {App} from './App.base';
 App.prototype.updateShareUrl = function() {
     const shareUrl = this.getShareUrl();
     $('#share-url').val(shareUrl);
+
+    const encodedUrl = encodeURIComponent(shareUrl)
+    updateFacebookUrl(encodedUrl);
+    updateTwitterUrl(encodedUrl);
 }
 
 App.prototype.getShareUrl = function() {
@@ -46,4 +50,14 @@ function getShareOptions() {
     const includeTimeRange = $('#share-timerange-checkbox').prop('checked');
 
     return {includeFilters, includeTimeRange};
+}
+
+function updateFacebookUrl(url) {
+    const endpoint = $('.resp-sharing-button__link[aria-label="Facebook"').prop("href").split("u=")[0];
+    $('.resp-sharing-button__link[aria-label="Facebook"').prop("href", endpoint + 'u=' + url)
+}
+
+function updateTwitterUrl(url) {
+    const endpoint = $('.resp-sharing-button__link[aria-label="Twitter"').prop("href").split("url=")[0];
+    $('.resp-sharing-button__link[aria-label="Twitter"').prop("href", endpoint + 'url=' + url)
 }
