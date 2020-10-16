@@ -1,7 +1,6 @@
-//  Extends App class wwith methods related to sharing the timeline
+//  Extends App class with methods related to sharing the timeline
 //
-//  Generates share URL according to UI options.
-//  Includes filter selections and timerange.
+//  Generates share URL according to UI options for filters and timerange
 
 import {App} from './App.base';
 
