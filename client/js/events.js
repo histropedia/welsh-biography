@@ -68,11 +68,16 @@ export function registerEvents(app) {
 
     // Share panel
     $('#btn-open-share').click(function () {
-        app.openSharePanel()
+        app.openSharePanel();
+        app.updateShareUrl();
     })
 
     $('.btn-close-share-panel').click(function () {
         app.closeSharePanel()
+    })
+
+    $('.share-checkbox input').on('change', function () {
+        app.updateShareUrl();
     })
 
     // Info panel
