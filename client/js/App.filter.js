@@ -61,15 +61,17 @@ App.prototype.setupFilterOptions = function () {
     }
 }
 
-App.prototype.addFilter = function(property, value) {
+App.prototype.addFilter = function(property, value, fitArticles=true) {
     this.state.activeFilters[property].push(value);
     var valueLabel = this.getLabel.item(value);
     addFilterTagHtml(property, value, valueLabel);
     this.filtersChanged();
 
     // after adding filters, pan to see earliest visible article
-    var offsetX = (!this.contentPanel.isOpen || this.isMobile)? 0 : 450;
-    this.timeline.fitArticles({offsetX: offsetX, withAnim: true})
+    if (fitArticles) {
+        var offsetX = (!this.contentPanel.isOpen || this.isMobile)? 0 : 450;
+        this.timeline.fitArticles({offsetX: offsetX, withAnim: true})
+    }
 }    
 
 App.prototype.removeFilter = function(property, value) { 
