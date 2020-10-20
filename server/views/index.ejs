@@ -28,206 +28,33 @@
 	<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= gtmId %>"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= gtmId %>"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <%- include('blocks/header'); %>
 
-<nav class="navbar-custom navbar navbar-expand-lg navbar-dark bg-light">
-    <a id="show-search-btn" href="#" class="btn-icon"><i class="fas fa-search"></i></a>
-    <div class="event-title-container">
-        <div id="search-box-container" style="z-index: 3">
-        <input id="search-box" autocomplete="off" placeholder="<%= __("Search the Timeline") %>" >
-        </div>	
-        <span id="btn-close-reading-panel"><i class="far fa-times-circle"></i></span>
-    </div>
-    <div id="timeline-title-container">
-        <img class="logo-bywg" src="https://biography.wales/assets/img/logo_bywg.svg" title="Dictionary of Welsh Biography logo" alt="Read more about the project">
-        <div id="active-filters-container">
-        </div>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#hamburger" aria-controls="hamburger" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="hamburger">
-        <div class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <a href="#" id="btn-world-events" class="btn-icon"><i class="fas fa-dragon"></i><span class="navlabel"><%= __("Welsh History") %></span></a> 
-            <a href="#" id="btn-open-filters" class="btn-icon nav-item" data-toggle="collapse" data-target=".navbar-collapse.show"><i class="fas fa-filter"></i><span class="navlabel"><%= __("Filters") %></span><span class="label-total-filters"></span></a>
-            <!-- <a href="#" id="btn-open-color-code" class="btn-icon"><i class="fas fa-tint"></i><span class="navlabel"><%= __("Colour Code") %></span></a> -->
-            <% if (lang === "en")  { 
-                var twitterHref = "https://twitter.com/WelshBiography",
-                    langText = "Cymraeg",
-                    langHref = "/cy";
-            } else {
-                var twitterHref = "https://twitter.com/bywgraffiadur",
-                    langText = "English",
-                    langHref = "/en";
-            } %>
-            <a id="btn-open-share" class="btn-icon nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" href="#" alt="" title=""><i class="fas fa-share"></i><span class="navlabel"><%= __ ("Share") %></span></a>
-            <a class="twitter btn-icon nav-item" href=<%= twitterHref %> alt="Twitter" title="Twitter"><i class="fab fa-twitter"></i><span class="navlabel">Twitter</span></a>
-            <a id="btn-open-info" class="btn-icon nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" href="#" alt="" title=""><i class="fas fa-info"></i><span class="navlabel"><%= __ ("Info") %></span></a>
-            <a href=<%= langHref %> id="btn-lang-switch" class="btn-icon mx-2"><%= langText %></a>
-        </div>
-    </div>
-</nav> 
+    <%- include('blocks/panels'); %>	
 
-<!--************ ZOOM BUTTONS ***************-->
-<div class="timeline-controls-set fit-screen">
-	<a href="#" class="timeline-control-btn theme-btn" id="fit-screen-btn"><i class="fas fa-arrows-alt-h"></i></a>
-</div>
-<div class="timeline-controls-set">
-	<a href="#" class="timeline-control-btn theme-btn" id="zoom-in-btn"><i class="fas fa-plus"></i></a>
-	<a href="#" class="timeline-control-btn theme-btn" id="zoom-out-btn"><i class="fas fa-minus"></i></a>
-</div>
- 
-<!--************ READING PANEL****************-->	
-	
-<div id="reading-panel">
-    <div class="reading-panel-header">
-        <div class="event-details">
-            <h5 class="label-event-date reading-panel-date my-0">Day Month Year</h5>
-            <p class="label-event-desc reading-panel-desc my-0"></p>
-        </div>	
+    <div class="timeline-controls-set fit-screen">
+        <a href="#" class="timeline-control-btn theme-btn" id="fit-screen-btn"><i class="fas fa-arrows-alt-h"></i></a>
     </div>
-    <div class="reading-panel-btns-container">
-        <button type="button" class="btn-panel-switch" tab="dwb"><%= __("Dictionary of Welsh Biography") %></button>
-        <button type="button" class="btn-panel-switch" tab="wikipedia"><%= __("Wikipedia") %></button>
+    <div class="timeline-controls-set">
+        <a href="#" class="timeline-control-btn theme-btn" id="zoom-in-btn"><i class="fas fa-plus"></i></a>
+        <a href="#" class="timeline-control-btn theme-btn" id="zoom-out-btn"><i class="fas fa-minus"></i></a>
+    </div>
+
+    <div id="timeline-container"></div>
         
-    </div>
-    <div id="reading-panel-background">
-        <div class="reading-panel-content" style="overflow:auto;-webkit-overflow-scrolling:touch;">
-            <iframe id="reading-panel-iframe" src="https://en.m.wikipedia.org/wiki/Mary_Somerville" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
-        </div>
-    </div>
-</div>	
-	
-	
-<!--************ FILTER PANEL****************-->
-	
-<div id="filter-types-panel" class="noselect panel text-center" style="display: none">
-    <button class="btn-icon btn btn-close-filter-types-panel"><i class="fas fa-times"></i></button>
-    <div class="panel-header">
-        <h1><%= __("Filter the Timeline") %></h1>
-        <h6><%= __("Choose the type of filter you want to apply") %></h6>
-    </div>
-    <div class="panel-content">
-        <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
-            <button type="button" filter-property="gender" class="btn btn-outline-secondary btn-lg" style="text-align: left">gender<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
-            <button type="button" filter-property="occupation" class="btn btn-outline-secondary btn-lg" style="text-align: left">occupation<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
-        </div>
-        <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= __("Clear All Filters") %></button>
-    </div>
-    <div class="footer-container">
-    <%- include('blocks/footer-' + lang); %>
-</div>
-</div>
-
-<!--************ FILTER PANEL SEARCH PANEL****************-->
-	
-<div id="filter-search-panel" class="noselect panel" style="z-index: 4; display: none">
-    <button href="#" class="btn-icon btn btn-close-filter-panel"><i class="fas fa-times"></i></button>
-    <div class="panel-header">
-        <h2><%= __("Filter by") %> <span id="filter-property-label">type</span></h2>
-    </div>
-    <div class="panel-content" role="group" aria-label="Vertical button group">
-            <!-- *** populated by JavaScript *** -->
-        <div class="filter-search-container">
-            <select class="filter-panel-search" filter-property="gender" style="width:100%"></select>
-        </div>
-        <div class="filter-search-container">
-            <select class="filter-panel-search" filter-property="occupation" style="width:100%"></select>
-        </div>
-    </div>
-    <div class="mx-auto active-filters">
-    <h4 class="mb-4">Active Filters</h4>
-    <div id="panel-active-filters-container"></div>
-    </div>
-    <div class="footer-container">
-    <%- include('blocks/footer-' + lang); %>
-    </div>
-</div>
-    
-<!--************ INFO PANEL****************-->
-	
-<div id="info-panel" class="noselect panel" style="display: none">
-    <button class="btn-icon btn btn-close-info-panel"><i class="fas fa-times"></i></button>
-    <div class="panel-header">
-        <h1><%- __('Dictionary of Welsh Biography') %></h1>
-        <h2><%- __('Interactive Timeline') %></h2>
-    </div>
-    <div class="panel-content">
-        <% if (lang === "en")  { 
-            var youtubeId = "xXc3kLbjVuo";
-        } else {
-            var youtubeId = "i3Bah78KeSw";
-        } %>
-        <iframe class="youtube-iframe" src="https://www.youtube.com/embed/<%= youtubeId %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p>
-            <%- __('The Dictionary of Welsh Biography interactive timeline was developed by <a href="http://histropedia.com">Histropedia</a> for The National Library of Wales, with grant funding from the <a href="https://my-d.org">My-D Foundation</a>.') %>
-        </p>
-
-        <p>
-            <%- __('The timeline is powered using linked open data and openly licenced content hosted by the <a href="https://www.wikimedia.org/">Wikimedia</a> projects.') %>
-            <%= __("This allows us to offer our users a new visual and interactive way of exploring the Dictionary of Welsh Biography content.") %></p>
-        <p>
-            <%= __("Much of the data, and images used has been shared by The National Library of Wales, however the timeline also uses data and images shared by other institutions and individuals.") %>
-            <%= __("Whilst every effort is made to ensure the accuracy of this data we cannot guarantee the quality of all data used.") %>
-        </p>
-
-        <p>
-            <%= __("The Timeline only includes individuals whose birth or death dates are known or approximated.") %>
-            <%= __("The timeline does not include entries for people with no known dates and does not include entries for families or groups of people.") %>
-            <%- __('To perform a search of all the Welsh Biography entries please search using the <a href="https://biography.wales/">Dictionary of Welsh Biography website</a>.') %>
-        </p>
-        <p>
-            <%= __("This website is open source.") %>
-            <%- __('You can access the code via <a href="https://github.com/histropedia/welsh-biography">Github</a>.') %>
-
-        </p>
-    </div>
-    <div class="footer-container">
-        <!-- Load different footers per language as more than just text changes-->
-        <%- include('blocks/footer-' + lang); %>
-    </div>
-</div>
-
-<%- include('blocks/panel-share'); %>
-<!--************ COLOR CODE PANEL****************-->	
-	
-<div id="color-code-panel" class="color-code-filter-panel" style="display: none">
-    <a href="#" id="btn-close-color-code-mobile" class="btn-dark btn-block btn-sm btn btn-close-panel"><%= __("Close") %>&nbsp;<i class="fas fa-times"></i></a> 
-    <div class="color-code-filter-panel-header">	
-        <!--<button id="btn-close-color-code-desktop" class="btn btn-outline-primary btn-sm"><i class="fas fa-chevron-right"></i></button> -->
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="color-code-select"><%= __("Colour Code by") %></label>
-            </div>
-            <select class="custom-select" id="color-code-select">
-                <option selected="">option 1</option>
-                <option value="1">option 2</option>
-                <option value="2">option 3</option>
-                <option value="3">option 5</option>
-            </select>
-        </div>
-    </div>
-    <table id="color-code-table" class="table table-hover">
-        <tbody>
-        <!-- ***Color code key populated by JavaScript*** -->
-        </tbody>
-    </table>
-</div>
-
-<div id="timeline-container"></div>
-	
- 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.min.js"></script>
-<script src="https://cdn.histropedia.com/histropedia-1.2.0.min.js"></script>
-<script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.min.js"></script>
+    <script src="https://cdn.histropedia.com/histropedia-1.2.0.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
