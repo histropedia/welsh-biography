@@ -25,8 +25,11 @@
 	"This website is open source.": "Mae'r wefan hon yn ffynhonnell agored.",
 	"You can access the code via <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>.": "Cewch fynediad i'r cod trwy <a href=\"https://github.com/histropedia/welsh-biography\">Github</a>.",
 	"Interactive Timeline": "Llinell Amser Ryngweithiol",
+	"Dictionary of Welsh Biography interactive timeline": "Dictionary of Welsh Biography interactive timeline",
+	"Wikidata powered interactive timeline of over 4000 Welsh biographies": "Wikidata powered interactive timeline of over 4000 Welsh biographies",
 	"Share": "Share",
 	"Share the timeline": "Share the timeline",
-	"Copy the URL below to share the timeline.": "Copy the URL below to share the timeline.",
-	"Explore over 4000 entries in the Dictionary of Welsh Biography Interactive timeline.": "Explore over 4000 entries in the Dictionary of Welsh Biography Interactive timeline."
+	"Click one of the Social Media buttons below or copy the URL to share the timeline.": "Click one of the Social Media buttons below or copy the URL to share the timeline.",
+	"Use the checkboxes to choose whether to include the current filter selections and/or time range.": "Use the checkboxes to choose whether to include the current filter selections and/or time range.",
+	"Check out this Dictionary of Welsh Biography Timeline! @WelshBiography": "Check out this Dictionary of Welsh Biography Timeline! @WelshBiography"
 }
