@@ -27,6 +27,9 @@ export function App(timelineData, containerSelector) {
             isSummaryMode: false,
             tab: ""
         },
+        sharePanel: {
+            isOpen: false
+        },
         infoPanel: {
             isOpen: false
         }
@@ -50,6 +53,27 @@ export function App(timelineData, containerSelector) {
         this.setRankColorScale(125 /*hue*/, maleFilter );
 
         this.timeline.showContextEvents = false;
+
+        if (urlParameters.filters) {
+            const sharedFilters = urlParameters.filters.split("|");
+            for (let i=0; i< sharedFilters.length; i++) {
+                const parts = sharedFilters[i].split(":"),
+                      prop = parts[0],
+                      values = parts[1].split(",");
+                values.forEach(value => this.addFilter(prop, value, /*fitArticles*/ false))
+            }
+        }
+
+        if (urlParameters.zoom) {
+            this.timeline.timescaleManager.setZoom(parseFloat(urlParameters.zoom))
+        }
+        
+        if (urlParameters.start) {
+            const offset = parseFloat(urlParameters.offset || 0);
+            console.log(urlParameters.start)
+            this.timeline.setStartDate(urlParameters.start, offset);
+        }
+        
         this.filtersChanged();
     }
 
@@ -82,6 +106,16 @@ export function App(timelineData, containerSelector) {
         this.isPortrait = windowWidth < windowHeight;
     }
 
+    this.openSharePanel = function () {
+        $('#share-panel').show();
+        this.state.sharePanel.isOpen = true;
+    }
+
+    this.closeSharePanel = function () {
+        $('#share-panel').hide();
+        this.state.sharePanel.isOpen = false;
+    }
+
     this.openInfoPanel = function () {
         $('#info-panel').show();
         this.state.infoPanel.isOpen = true;
@@ -93,6 +127,7 @@ export function App(timelineData, containerSelector) {
     }
 
     this.closeAllPanels = function () {
+        this.closeSharePanel();
         this.closeInfoPanel();
         this.closeFilterTypesPanel();
         this.closeFilterSearchPanel();

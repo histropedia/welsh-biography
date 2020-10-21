@@ -1,0 +1,188 @@
+
+<!--************ RELATED CONTENT PANEL ************-->
+<div id="reading-panel">
+    <div class="reading-panel-header">
+        <div class="event-details">
+            <h5 class="label-event-date reading-panel-date my-0">Day Month Year</h5>
+            <p class="label-event-desc reading-panel-desc my-0"></p>
+        </div>	
+    </div>
+    <div class="reading-panel-btns-container">
+        <button type="button" class="btn-panel-switch" tab="dwb"><%= __("Dictionary of Welsh Biography") %></button>
+        <button type="button" class="btn-panel-switch" tab="wikipedia"><%= __("Wikipedia") %></button>
+        
+    </div>
+    <div id="reading-panel-background">
+        <div class="reading-panel-content" style="overflow:auto;-webkit-overflow-scrolling:touch;">
+            <iframe id="reading-panel-iframe" src="https://en.m.wikipedia.org/wiki/Mary_Somerville" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
+        </div>
+    </div>
+</div>	
+
+<!--************ FILTER PANEL ************-->
+<div id="filter-types-panel" class="noselect panel text-center" style="display: none">
+    <button class="btn-icon btn btn-close-filter-types-panel"><i class="fas fa-times"></i></button>
+    <div class="panel-header">
+        <h1><%= __("Filter the Timeline") %></h1>
+        <h6><%= __("Choose the type of filter you want to apply") %></h6>
+    </div>
+    <div class="panel-content">
+        <div id="filter-types-list-container" class="btn-group-vertical btn-block" role="group" aria-label="Vertical button group">
+            <button type="button" filter-property="gender" class="btn btn-outline-secondary btn-lg" style="text-align: left">gender<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
+            <button type="button" filter-property="occupation" class="btn btn-outline-secondary btn-lg" style="text-align: left">occupation<i class="fas fa-chevron-right"></i> <span class="label-active-filters"></span></button>
+        </div>
+        <button id="btn-clear-all-filters" type="button" class="btn btn-danger"><%= __("Clear All Filters") %></button>
+    </div>
+    <div class="footer-container">
+    <%- include('./footer-' + lang); %>
+</div>
+</div>
+
+<!--************ FILTER SEARCH PANEL ************-->
+<div id="filter-search-panel" class="noselect panel" style="z-index: 4; display: none">
+    <button href="#" class="btn-icon btn btn-close-filter-panel"><i class="fas fa-times"></i></button>
+    <div class="panel-header">
+        <h2><%= __("Filter by") %> <span id="filter-property-label">type</span></h2>
+    </div>
+    <div class="panel-content" role="group" aria-label="Vertical button group">
+            <!-- *** populated by JavaScript *** -->
+        <div class="filter-search-container">
+            <select class="filter-panel-search" filter-property="gender" style="width:100%"></select>
+        </div>
+        <div class="filter-search-container">
+            <select class="filter-panel-search" filter-property="occupation" style="width:100%"></select>
+        </div>
+    </div>
+    <div class="mx-auto active-filters">
+    <h4 class="mb-4">Active Filters</h4>
+    <div id="panel-active-filters-container"></div>
+    </div>
+    <div class="footer-container">
+    <%- include('./footer-' + lang); %>
+    </div>
+</div>
+
+<!--************ COLOUR CODE PANEL ************-->
+<div id="color-code-panel" class="color-code-filter-panel" style="display: none">
+    <a href="#" id="btn-close-color-code-mobile" class="btn-dark btn-block btn-sm btn btn-close-panel"><%= __("Close") %>&nbsp;<i class="fas fa-times"></i></a> 
+    <div class="color-code-filter-panel-header">	
+        <!--<button id="btn-close-color-code-desktop" class="btn btn-outline-primary btn-sm"><i class="fas fa-chevron-right"></i></button> -->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="color-code-select"><%= __("Colour Code by") %></label>
+            </div>
+            <select class="custom-select" id="color-code-select">
+                <option selected="">option 1</option>
+                <option value="1">option 2</option>
+                <option value="2">option 3</option>
+                <option value="3">option 5</option>
+            </select>
+        </div>
+    </div>
+    <table id="color-code-table" class="table table-hover">
+        <tbody>
+        <!-- ***Color code key populated by JavaScript*** -->
+        </tbody>
+    </table>
+</div>
+
+<!--************ INFO PANEL ************-->
+<div id="info-panel" class="noselect panel" style="display: none">
+    <button class="btn-icon btn btn-close-info-panel"><i class="fas fa-times"></i></button>
+    <div class="panel-header">
+        <h1><%- __('Dictionary of Welsh Biography') %></h1>
+        <h2><%- __('Interactive Timeline') %></h2>
+    </div>
+    <div class="panel-content">
+        <% if (lang === "en")  { 
+            var youtubeId = "xXc3kLbjVuo";
+        } else {
+            var youtubeId = "i3Bah78KeSw";
+        } %>
+        <iframe class="youtube-iframe" src="https://www.youtube.com/embed/<%= youtubeId %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>
+            <%- __('The Dictionary of Welsh Biography interactive timeline was developed by <a href="http://histropedia.com">Histropedia</a> for The National Library of Wales, with grant funding from the <a href="https://my-d.org">My-D Foundation</a>.') %>
+        </p>
+
+        <p>
+            <%- __('The timeline is powered using linked open data and openly licenced content hosted by the <a href="https://www.wikimedia.org/">Wikimedia</a> projects.') %>
+            <%= __("This allows us to offer our users a new visual and interactive way of exploring the Dictionary of Welsh Biography content.") %></p>
+        <p>
+            <%= __("Much of the data, and images used has been shared by The National Library of Wales, however the timeline also uses data and images shared by other institutions and individuals.") %>
+            <%= __("Whilst every effort is made to ensure the accuracy of this data we cannot guarantee the quality of all data used.") %>
+        </p>
+
+        <p>
+            <%= __("The Timeline only includes individuals whose birth or death dates are known or approximated.") %>
+            <%= __("The timeline does not include entries for people with no known dates and does not include entries for families or groups of people.") %>
+            <%- __('To perform a search of all the Welsh Biography entries please search using the <a href="https://biography.wales/">Dictionary of Welsh Biography website</a>.') %>
+        </p>
+        <p>
+            <%= __("This website is open source.") %>
+            <%- __('You can access the code via <a href="https://github.com/histropedia/welsh-biography">Github</a>.') %>
+
+        </p>
+    </div>
+    <div class="footer-container">
+        <!-- Load different footers per language as more than just text changes-->
+        <%- include('./footer-' + lang); %>
+    </div>
+</div>
+
+<!--************ SHARE PANEL ************-->
+<div id="share-panel" class="noselect panel" style="display: none">
+    <button class="btn-icon btn btn-close-share-panel"><i class="fas fa-times"></i></button>
+    <div class="panel-header">
+        <h1><%- __('Share the timeline') %></h1>
+    </div>
+    <div class="panel-content">
+        <p>
+            <%- __('Click one of the Social Media buttons below or copy the URL to share the timeline.') %>
+        </p>
+        <p>
+            <%- __('Use the checkboxes to choose whether to include the current filter selections and/or time range.') %>
+        </p>
+
+        <div class="form-check share-checkbox">
+            <label class="form-check-label" for="share-filters-checkbox">
+                <input type="checkbox" class="form-check-input" id="share-filters-checkbox" name="filters" checked>
+                <%- __('Filter selections') %>
+            </label>
+        </div>
+        <div class="form-check share-checkbox">
+            <label class="form-check-label" for="share-timerange-checkbox">
+                <input type="checkbox" class="form-check-input" id="share-timerange-checkbox" name="timerange" checked>
+                <%- __('Time range') %>
+            </label>
+        </div>
+
+        <input id="share-url" type="text">
+
+        <!-- Sharingbutton Facebook -->
+        <a class="resp-sharing-button__link"
+            href="https://facebook.com/sharer/sharer.php?u=https://llinellamser.bywgraffiadur.cymru/" target="_blank"
+            rel="noopener" aria-label="Facebook">
+            <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium">
+                <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z" />
+                    </svg></div>Facebook
+            </div>
+        </a>
+
+        <!-- Sharingbutton Twitter -->
+        <a class="resp-sharing-button__link"
+            href="https://twitter.com/intent/tweet/?text=<%- __('Check out this Dictionary of Welsh Biography Timeline! @WelshBiography') %>&amp;url=https://llinellamser.bywgraffiadur.cymru/"
+            target="_blank" rel="noopener" aria-label="Twitter">
+            <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium">
+                <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55 2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92 12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z" />
+                    </svg></div>Twitter
+            </div>
+        </a>
+
+    </div>
+</div>
